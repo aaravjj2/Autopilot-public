@@ -1,0 +1,52 @@
+# Hackathon judge stack — DEMO_MODE, no live venue keys required
+version: "3.8"
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    container_name: apex-hackathon-api
+    ports:
+      - "8000:8000"
+    environment:
+      - DEMO_MODE=true
+      - ALPACA_PAPER_TRADE=true
+      - SQLITE_PATH=/data/audit.db
+      - CORS_ORIGINS=http://localhost:3000,http://127.0.0.1:3000
+      - PUBLIC_DEMO_URL=${PUBLIC_DEMO_URL:-}
+      - ARB_STREAM_POLL_SEC=2
+      - ARB_STREAM_USE_PATCHES=true
+    volumes:
+      - hackathon-data:/data
+    command: ["uvicorn", "backend_api:app", "--host", "0.0.0.0", "--port", "8000"]
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/api/demo/status"]
+      interval: 20s
+      timeout: 8s
+      retries: 5
+    networks:
+      - hackathon
+
+  frontend:
+    build:
+      context: ./autopilot-local/frontend
+      dockerfile: Dockerfile.frontend
+    container_name: apex-hackathon-ui
+    ports:
+      - "3000:3000"
+    environment:
+      - NEXT_PUBLIC_API_URL=http://localhost:8000
+      - NEXT_PUBLIC_DEMO_MODE=true
+    depends_on:
+      backend:
+        condition: service_healthy
+    networks:
+      - hackathon
+
+volumes:
+  hackathon-data:
+
+networks:
+  hackathon:
+    driver: bridge

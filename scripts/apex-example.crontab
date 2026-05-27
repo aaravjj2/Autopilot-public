@@ -1,0 +1,30 @@
+# APEX Autopilot — example host crontab (ET-oriented jobs are already in-process via
+# `apex-autopilot` / APScheduler). Use this file only if you want OS-level redundancy
+# or to run a one-shot daily cycle without the long-lived scheduler.
+#
+# Prerequisites: same venv + `.env` as `apex-autopilot`, working directory = repo root.
+#
+# Install:  crontab -e   and paste adapted lines below.
+#
+# SHELL=/bin/bash
+# PATH=/usr/local/bin:/usr/bin:/bin
+#
+# Optional: one full daily pipeline at 09:35 ET (adjust for your server TZ).
+# On a UTC box, 09:35 ET ≈ 14:35 UTC during EST, or 13:35 UTC during EDT — prefer
+# running `apex-autopilot` under Docker/systemd instead of duplicating schedules here.
+# 35 14 * * 1-5 cd /path/to/Autopilot && . .venv/bin/activate && set -a && . ./.env && set +a && apex-engine >>/var/log/apex-engine.log 2>&1
+#
+# Polymarket MCP (optional): install the sibling repo into the same venv, then set
+#   POLYMARKET_REPO_PATH=/path/to/polymarket-mcp-server
+#   pip install -e "$POLYMARKET_REPO_PATH"
+#
+# Polymarket paper events (Gamma public; Alpaca-free): in `.env`
+#   POLYMARKET_PAPER_TRADING_ENABLED=true
+#   POLYMARKET_AUTOMATED_EVENTS_ENABLED=true
+#
+# Append resolved markets for offline training (public records):
+#   apex-pm-training-export
+#   POLYMARKET_TRAINING_EXPORT_PATH=./data/polymarket_training.jsonl
+#
+# Native Alpaca options (optional): set ALPACA_FLATTEN_OPTIONS_TO_EQUITY=false in `.env`
+# only if your Alpaca account has options approval; otherwise proposals stay equity-routed.

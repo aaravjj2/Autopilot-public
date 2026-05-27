@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>APEX Trading Terminal — Design</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/apex-terminal.css" />
+</head>
+<body class="landing">
+  <header style="border-bottom:1px solid var(--border); padding:14px 24px; display:flex; justify-content:space-between; align-items:center;">
+    <div class="brand" style="padding:0">
+      <div class="brand-mark">AX</div>
+      <div>
+        <h1>APEX Trading Terminal</h1>
+        <p>Autonomous paper-trading · Design v2</p>
+      </div>
+    </div>
+    <nav style="display:flex; gap:12px; align-items:center;">
+      <a href="dashboard.html" class="btn btn-primary">Launch Terminal</a>
+    </nav>
+  </header>
+
+  <section class="landing-hero">
+    <p class="pill live" style="margin:0 auto 20px; width:fit-content">Engine online · Paper mode</p>
+    <h2>Institutional-grade terminal.<br />Agentic execution built in.</h2>
+    <p style="max-width:640px; margin:16px auto 32px; color:var(--text-muted); font-size:17px;">
+      Bloomberg-density UI with AI signal pipeline, cross-market arb radar, options analytics,
+      risk gates, and live audit — wired to real Alpaca &amp; engine data.
+    </p>
+    <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
+      <a href="dashboard.html" class="btn btn-primary">Enter Terminal</a>
+      <a href="arb-radar.html" class="btn">Arb Radar</a>
+      <a href="settings.html" class="btn">Integrations</a>
+    </div>
+  </section>
+
+  <section class="feature-grid">
+    <a href="dashboard.html" class="feature-card">
+      <div class="card-title">Overview</div>
+      <h3 style="margin:8px 0;font-size:18px">Command Center</h3>
+      <p style="color:var(--text-muted);font-size:13px">KPIs, equity curve, watchlist, sector heatmap, agent pipeline, alerts.</p>
+    </a>
+    <a href="trading.html" class="feature-card">
+      <div class="card-title">Trading</div>
+      <h3 style="margin:8px 0;font-size:18px">Charts &amp; Options</h3>
+      <p style="color:var(--text-muted);font-size:13px">Multi-timeframe charts, chain viewer, greeks, order ticket, blotter.</p>
+    </a>
+    <a href="positions.html" class="feature-card">
+      <div class="card-title">Positions</div>
+      <h3 style="margin:8px 0;font-size:18px">Portfolio</h3>
+      <p style="color:var(--text-muted);font-size:13px">Open/closed books, exposure by sector, one-click close, P&amp;L attribution.</p>
+    </a>
+    <a href="autopilot.html" class="feature-card">
+      <div class="card-title">Autopilot</div>
+      <h3 style="margin:8px 0;font-size:18px">L0–L4 Pipeline</h3>
+      <p style="color:var(--text-muted);font-size:13px">Proposals queue, risk checks, scheduler jobs, conviction scoring.</p>
+    </a>
+    <a href="signals.html" class="feature-card">
+      <div class="card-title">Signals</div>
+      <h3 style="margin:8px 0;font-size:18px">Opportunities</h3>
+      <p style="color:var(--text-muted);font-size:13px">Ranked scores, PM divergence, catalyst tags, filter by conviction.</p>
+    </a>
+    <a href="analytics.html" class="feature-card">
+      <div class="card-title">Analytics</div>
+      <h3 style="margin:8px 0;font-size:18px">Performance</h3>
+      <p style="color:var(--text-muted);font-size:13px">Sharpe, drawdown, arb backtest, signal quality, category breakdown.</p>
+    </a>
+    <a href="arb-radar.html" class="feature-card">
+      <div class="card-title">Arb Radar</div>
+      <h3 style="margin:8px 0;font-size:18px">Kalshi × Polymarket</h3>
+      <p style="color:var(--text-muted);font-size:13px">Live spread stream, thesis SSE, paper-trade, settlement flags.</p>
+    </a>
+    <a href="live-feed.html" class="feature-card">
+      <div class="card-title">Live Feed</div>
+      <h3 style="margin:8px 0;font-size:18px">Audit Stream</h3>
+      <p style="color:var(--text-muted);font-size:13px">Real-time events, filters, export, WebSocket status.</p>
+    </a>
+    <a href="settings.html" class="feature-card">
+      <div class="card-title">Settings</div>
+      <h3 style="margin:8px 0;font-size:18px">System</h3>
+      <p style="color:var(--text-muted);font-size:13px">Integration health matrix, risk limits, API keys, refresh controls.</p>
+    </a>
+  </section>
+
+  <footer style="text-align:center;padding:32px;color:var(--text-dim);font-size:12px;border-top:1px solid var(--border)">
+    HTML design prototypes · <code>design/html/</code> · Map to Next.js under <code>autopilot-local/frontend</code>
+  </footer>
+</body>
+</html>

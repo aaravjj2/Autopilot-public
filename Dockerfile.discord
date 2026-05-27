@@ -1,0 +1,12 @@
+FROM python:3.11-slim
+
+WORKDIR /app
+# Copy only the Discord requirements and install them
+COPY Discord/zen_instatrade/requirements.txt ./requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy the Discord integration folder and the new service launcher
+COPY Discord/zen_instatrade/ ./discord_bot/
+WORKDIR /app/discord_bot
+
+CMD ["python", "run_discord_service.py"]

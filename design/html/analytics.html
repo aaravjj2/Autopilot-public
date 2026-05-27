@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Analytics — APEX Design</title>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/apex-terminal.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar"><a class="nav-link active" href="analytics.html">Analytics</a></aside>
+    <header class="topbar"><div class="tabs"><span class="tab active">Performance</span><span class="tab">Arb backtest</span><span class="tab">Signal quality</span></div></header>
+    <main class="main">
+      <div class="grid grid-kpi" style="grid-template-columns:repeat(6,1fr);margin-bottom:14px">
+        <div class="card"><div class="card-title">Sharpe</div><div class="kpi-value">1.42</div></div>
+        <div class="card"><div class="card-title">Win rate</div><div class="kpi-value">58%</div></div>
+        <div class="card"><div class="card-title">Max DD</div><div class="kpi-value kpi-down">-4.2%</div></div>
+        <div class="card"><div class="card-title">PF</div><div class="kpi-value">1.8</div></div>
+        <div class="card"><div class="card-title">Arb trades</div><div class="kpi-value">89</div></div>
+        <div class="card"><div class="card-title">ROC ann.</div><div class="kpi-value kpi-up">12%</div></div>
+      </div>
+      <div class="card">
+        <div class="card-title">Cumulative edge (90d backtest)</div>
+        <div class="chart-area" style="height:260px"><div class="chart-line"></div></div>
+      </div>
+      <div class="card" style="margin-top:14px">
+        <div class="card-title">Per-category stats</div>
+        <table>
+          <thead><tr><th>Category</th><th>Trades</th><th>Win%</th><th>Avg edge</th><th>PNL</th></tr></thead>
+          <tbody><tr><td>Macro</td><td>34</td><td>65%</td><td>$0.04</td><td class="kpi-up">+$120</td></tr></tbody>
+        </table>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

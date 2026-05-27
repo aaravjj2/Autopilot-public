@@ -1,0 +1,334 @@
+#!/usr/bin/env python3
+"""APEX Unified Exit Manager - Monitors and exits ALL positions (Alpaca + Discord)"""
+from __future__ import annotations
+
+import os
+import sys
+import time
+import logging
+import sqlite3
+import requests
+from datetime import datetime, timedelta
+from pathlib import Path
+from typing import Any
+
+sys.path.insert(0, str(Path(__file__).resolve().parent / "src"))
+
+from dotenv import load_dotenv
+load_dotenv()
+
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s [%(name)s] %(levelname)s: %(message)s",
+    handlers=[
+        logging.StreamHandler(),
+        logging.FileHandler("/tmp/apex-logs/exit_manager.log"),
+    ]
+)
+logger = logging.getLogger("apex-exit-manager")
+
+# Alpaca configuration
+ALPACA_API_KEY = os.getenv("ALPACA_API_KEY", "")
+ALPACA_SECRET_KEY = os.getenv("ALPACA_SECRET_KEY", "")
+ALPACA_BASE_URL = os.getenv("ALPACA_BASE_URL", "https://paper-api.alpaca.markets")
+
+def alpaca_headers():
+    return {
+        "APCA-API-KEY-ID": ALPACA_API_KEY,
+        "APCA-API-SECRET-KEY": ALPACA_SECRET_KEY,
+        "Content-Type": "application/json",
+    }
+
+def get_alpaca_positions():
+    """Get all open positions from Alpaca."""
+    try:
+        resp = requests.get(
+            f"{ALPACA_BASE_URL}/v2/positions",
+            headers=alpaca_headers(),
+            timeout=10
+        )
+        if resp.ok:
+            return resp.json()
+        logger.error(f"Alpaca positions error: {resp.status_code} {resp.text}")
+        return []
+    except Exception as e:
+        logger.error(f"Alpaca positions exception: {e}")
+        return []
+
+def get_alpaca_orders(status="open"):
+    """Get orders from Alpaca."""
+    try:
+        resp = requests.get(
+            f"{ALPACA_BASE_URL}/v2/orders",
+            headers=alpaca_headers(),
+            params={"status": status},
+            timeout=10
+        )
+        if resp.ok:
+            return resp.json()
+        return []
+    except Exception as e:
+        logger.error(f"Alpaca orders error: {e}")
+        return []
+
+def sell_position(symbol: str, qty: str, side: str = "sell") -> dict:
+    """Sell a position at market."""
+    try:
+        payload = {
+            "symbol": symbol,
+            "qty": qty,
+            "side": side,
+            "type": "market",
+            "time_in_force": "day",
+        }
+        resp = requests.post(
+            f"{ALPACA_BASE_URL}/v2/orders",
+            headers=alpaca_headers(),
+            json=payload,
+            timeout=15
+        )
+        if resp.ok:
+            result = resp.json()
+            logger.info(f"✅ Sold {qty}x {symbol} | Order ID: {result.get('id')}")
+            return result
+        else:
+            logger.error(f"❌ Failed to sell {symbol}: {resp.status_code} {resp.text}")
+            return {"error": resp.text}
+    except Exception as e:
+        logger.error(f"❌ Sell exception for {symbol}: {e}")
+        return {"error": str(e)}
+
+def check_alpaca_exits():
+    """Check Alpaca positions for exit conditions."""
+    positions = get_alpaca_positions()
+    
+    if not positions:
+        logger.info("📊 No Alpaca positions to monitor")
+        return []
+    
+    logger.info(f"🔍 Monitoring {len(positions)} Alpaca position(s)...")
+    exited = []
+    
+    for pos in positions:
+        symbol = pos.get("symbol", "")
+        qty = pos.get("qty", "0")
+        current_price = float(pos.get("current_price", 0))
+        avg_entry = float(pos.get("avg_entry_price", 0))
+        unrealized_pl = float(pos.get("unrealized_pl", 0))
+        unrealized_plpc = float(pos.get("unrealized_plpc", 0))
+        asset_class = pos.get("asset_class", "us_equity")
+        
+        pl_pct = unrealized_plpc * 100
+        
+        logger.info(f"📈 {symbol} | Qty: {qty} | Entry: ${avg_entry:.2f} | Current: ${current_price:.2f} | P&L: ${unrealized_pl:.2f} ({pl_pct:+.1f}%)")
+        
+        should_exit = False
+        exit_reason = None
+        
+        # Check for options (OCC symbols are longer)
+        is_option = asset_class == "option" or len(symbol) > 10
+        
+        if is_option:
+            # Options: exit if -50% loss or +100% gain
+            if pl_pct <= -50:
+                should_exit = True
+                exit_reason = "OPTION_STOP_LOSS_50PCT"
+            elif pl_pct >= 100:
+                should_exit = True
+                exit_reason = "OPTION_TAKE_PROFIT_100PCT"
+            
+            # Check expiration (OCC format: TICKERYYMMDDC00000000)
+            if len(symbol) >= 12:
+                try:
+                    exp_str = symbol[6:12]  # YYMMDD
+                    exp_date = datetime.strptime(exp_str, "%y%m%d")
+                    days_to_exp = (exp_date - datetime.now()).days
+                    if days_to_exp <= 1:
+                        should_exit = True
+                        exit_reason = f"OPTION_EXPIRATION_{days_to_exp}D"
+                except:
+                    pass
+        else:
+            # Equities: exit if -10% loss or +20% gain
+            if pl_pct <= -10:
+                should_exit = True
+                exit_reason = "EQUITY_STOP_LOSS_10PCT"
+            elif pl_pct >= 20:
+                should_exit = True
+                exit_reason = "EQUITY_TAKE_PROFIT_20PCT"
+        
+        if should_exit:
+            logger.info(f"🚪 EXITING {symbol}: {exit_reason} (P&L: {pl_pct:+.1f}%)")
+            result = sell_position(symbol, qty)
+            if "error" not in result:
+                exited.append({
+                    "symbol": symbol,
+                    "qty": qty,
+                    "reason": exit_reason,
+                    "pl_pct": pl_pct,
+                })
+    
+    return exited
+
+def check_discord_exits():
+    """Check Discord-tracked positions for exit conditions."""
+    # Use consolidated audit.db (migrated from discord_trades.db)
+    db_path = Path("data/audit.db")
+    if not db_path.exists():
+        logger.debug("No audit database found")
+        return []
+    
+    conn = sqlite3.connect(db_path)
+    conn.row_factory = sqlite3.Row
+    cursor = conn.cursor()
+    
+    # Check if discord_trades table exists
+    cursor.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='discord_trades'")
+    if not cursor.fetchone():
+        logger.debug("No discord_trades table in audit.db")
+        conn.close()
+        return []
+    
+    # Check if brain_approved column exists
+    cursor.execute("PRAGMA table_info(discord_trades)")
+    columns = [row[1] for row in cursor.fetchall()]
+    
+    if "brain_approved" in columns:
+        cursor.execute("SELECT * FROM discord_trades WHERE status = 'open' AND brain_approved = 1")
+    else:
+        cursor.execute("SELECT * FROM discord_trades WHERE status = 'open'")
+    
+    open_trades = [dict(row) for row in cursor.fetchall()]
+    conn.close()
+    
+    if not open_trades:
+        logger.debug("No open Discord trades to monitor")
+        return []
+    
+    logger.info(f"🔍 Monitoring {len(open_trades)} Discord trade(s)...")
+    exited = []
+    
+    # Get current Alpaca positions to match
+    alpaca_positions = get_alpaca_positions()
+    position_map = {p["symbol"]: p for p in alpaca_positions}
+    
+    for trade in open_trades:
+        symbol = trade.get("symbol", "")
+        entry_price = trade.get("entry_price")
+        stop_loss = trade.get("stop_loss")
+        target = trade.get("target")
+        contracts = trade.get("contracts", 1)
+        
+        # Find matching Alpaca position
+        pos = position_map.get(symbol)
+        if not pos:
+            logger.debug(f"No Alpaca position found for Discord trade {symbol}")
+            continue
+        
+        current_price = float(pos.get("current_price", 0))
+        unrealized_plpc = float(pos.get("unrealized_plpc", 0))
+        pl_pct = unrealized_plpc * 100
+        
+        logger.info(f"📈 Discord {symbol} | Entry: ${entry_price} | Current: ${current_price:.2f} | P&L: {pl_pct:+.1f}%")
+        
+        should_exit = False
+        exit_reason = None
+        
+        # Check stop loss
+        if stop_loss and current_price <= float(stop_loss):
+            should_exit = True
+            exit_reason = "DISCORD_STOP_LOSS"
+        
+        # Check take profit
+        if target and current_price >= float(target):
+            should_exit = True
+            exit_reason = "DISCORD_TAKE_PROFIT"
+        
+        # Default: -30% stop or +50% target
+        if not stop_loss and pl_pct <= -30:
+            should_exit = True
+            exit_reason = "DISCORD_DEFAULT_STOP_30PCT"
+        if not target and pl_pct >= 50:
+            should_exit = True
+            exit_reason = "DISCORD_DEFAULT_TARGET_50PCT"
+        
+        # Check expiration
+        expiration = trade.get("expiration", "")
+        if expiration:
+            try:
+                exp_date = datetime.strptime(expiration, "%m/%d/%Y")
+                days_to_exp = (exp_date - datetime.now()).days
+                if days_to_exp <= 1:
+                    should_exit = True
+                    exit_reason = f"DISCORD_EXPIRATION_{days_to_exp}D"
+            except:
+                pass
+        
+        if should_exit:
+            logger.info(f"🚪 EXITING Discord {symbol}: {exit_reason}")
+            result = sell_position(symbol, str(contracts), "sell")
+            if "error" not in result:
+                # Update database
+                conn = sqlite3.connect(db_path)
+                cursor = conn.cursor()
+                cursor.execute(
+                    "UPDATE discord_trades SET status = 'closed', exit_price = ?, exit_at = ? WHERE id = ?",
+                    (current_price, datetime.utcnow().isoformat(), trade["id"])
+                )
+                conn.commit()
+                conn.close()
+                
+                exited.append({
+                    "symbol": symbol,
+                    "contracts": contracts,
+                    "reason": exit_reason,
+                    "pl_pct": pl_pct,
+                })
+    
+    return exited
+
+def run_exit_check():
+    """Run one exit check cycle."""
+    logger.info("=" * 60)
+    logger.info("🔍 Running exit check...")
+    
+    alpaca_exits = check_alpaca_exits()
+    discord_exits = check_discord_exits()
+    
+    total_exits = len(alpaca_exits) + len(discord_exits)
+    
+    if total_exits > 0:
+        logger.info(f"✅ Exited {total_exits} position(s):")
+        for ex in alpaca_exits:
+            logger.info(f"   Alpaca: {ex['symbol']} ({ex['reason']})")
+        for ex in discord_exits:
+            logger.info(f"   Discord: {ex['symbol']} ({ex['reason']})")
+    else:
+        logger.info("✅ No exits needed")
+    
+    logger.info("=" * 60)
+    return total_exits
+
+def main():
+    """Main loop - check every 5 minutes."""
+    logger.info("🤖 APEX Unified Exit Manager Started")
+    logger.info(f"   Alpaca: {'✓' if ALPACA_API_KEY else '✗'}")
+    logger.info("   Check interval: 5 minutes")
+    
+    # Run initial check
+    run_exit_check()
+    
+    # Continuous monitoring
+    while True:
+        try:
+            time.sleep(300)  # 5 minutes
+            run_exit_check()
+        except KeyboardInterrupt:
+            logger.info("Exit manager stopped by user")
+            break
+        except Exception as e:
+            logger.error(f"Exit manager error: {e}", exc_info=True)
+            time.sleep(60)
+
+if __name__ == "__main__":
+    main()

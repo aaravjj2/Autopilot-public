@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Arb Radar — APEX Terminal Design</title>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/apex-terminal.css" />
+</head>
+<body>
+  <div class="app-shell has-right">
+    <aside class="sidebar">
+      <div class="brand"><div class="brand-mark">AX</div><div><h1>APEX Terminal</h1></div></div>
+      <nav class="nav-group">
+        <a class="nav-link" href="dashboard.html">Overview</a>
+        <a class="nav-link active" href="arb-radar.html">Arb Radar</a>
+        <a class="nav-link" href="analytics.html">Analytics</a>
+      </nav>
+    </aside>
+    <header class="topbar">
+      <span class="pill live">Stream · 5s poll</span>
+      <span class="pill">Max edge <strong class="mono kpi-up">4.2%</strong></span>
+      <button class="btn btn-primary">Scan now</button>
+    </header>
+    <main class="main">
+      <div class="page-header">
+        <div><h2>Cross-Market Arb Radar</h2><p>Kalshi ↔ Polymarket · Settlement-aware · Paper only</p></div>
+      </div>
+      <div class="grid grid-kpi" style="margin-bottom:14px;grid-template-columns:repeat(4,1fr)">
+        <div class="card"><div class="card-title">Active</div><div class="kpi-value">3</div></div>
+        <div class="card"><div class="card-title">Resolved</div><div class="kpi-value">47</div></div>
+        <div class="card"><div class="card-title">Win rate</div><div class="kpi-value kpi-up">62%</div></div>
+        <div class="card"><div class="card-title">Best edge</div><div class="kpi-value">4.2%</div></div>
+      </div>
+      <div class="card">
+        <div class="card-header"><span class="card-title">Live opportunities</span><span style="font-size:11px;color:var(--text-dim)">WS /api/arb/stream</span></div>
+        <table>
+          <thead>
+            <tr><th>Question</th><th>Kalshi</th><th>Poly</th><th>Gross</th><th>Net</th><th>Match</th><th></th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Fed cut by June?</td>
+              <td class="mono">YES 0.62</td>
+              <td class="mono">NO 0.34</td>
+              <td>6.1%</td>
+              <td class="kpi-up"><strong>4.2%</strong></td>
+              <td>0.94</td>
+              <td><button class="btn btn-primary" style="padding:4px 10px;font-size:11px">Paper trade</button></td>
+            </tr>
+            <tr>
+              <td>CPI above 3% Q2?</td>
+              <td class="mono">YES 0.41</td>
+              <td class="mono">NO 0.55</td>
+              <td>3.8%</td>
+              <td>2.1%</td>
+              <td>0.88</td>
+              <td><button class="btn" style="padding:4px 10px;font-size:11px">Thesis</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </main>
+    <aside class="right-panel">
+      <div class="card">
+        <div class="card-title">Thesis (streaming)</div>
+        <div style="font-size:12px;color:var(--text-muted);line-height:1.6;max-height:400px;overflow:auto">
+          <p><strong>Agent 1 — Economist:</strong> Rate path priced aggressively on Kalshi…</p>
+          <p style="margin-top:8px"><strong>Settlement:</strong> Same CPI release window · flags: []</p>
+          <p style="margin-top:8px;color:var(--cyan)">▌ streaming token…</p>
+        </div>
+        <input style="width:100%;margin-top:12px;padding:8px;border-radius:6px;border:1px solid var(--border);background:var(--bg-base)" placeholder="Ask about this arb…" />
+        <button class="btn" style="width:100%;margin-top:8px">Chat</button>
+      </div>
+    </aside>
+    <footer class="statusbar"><span>Arb engine: live scan</span></footer>
+  </div>
+  <script src="js/terminal.js"></script>
+</body>
+</html>

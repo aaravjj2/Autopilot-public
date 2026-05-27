@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Autopilot — APEX Design</title>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/apex-terminal.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="nav-link" href="dashboard.html">Overview</a>
+      <a class="nav-link active" href="autopilot.html">Autopilot</a>
+    </aside>
+    <header class="topbar"><span class="pill live">Scheduler RUNNING</span><button class="btn btn-primary">Run cycle</button></header>
+    <main class="main">
+      <div class="page-header"><h2>Autopilot Pipeline</h2><p>Proposals · Risk gates · Execution queue</p></div>
+      <div class="pipeline" style="margin-bottom:20px">
+        <div class="pipe-stage active"><strong>L0</strong><span>Ingestion</span></div>
+        <div class="pipe-stage active"><strong>L1</strong><span>Brain</span></div>
+        <div class="pipe-stage active"><strong>L2</strong><span>Agent panel</span></div>
+        <div class="pipe-stage"><strong>L3</strong><span>Execution</span></div>
+        <div class="pipe-stage"><strong>L4</strong><span>Observability</span></div>
+      </div>
+      <div class="grid grid-2">
+        <div class="card">
+          <div class="card-title">Active proposals</div>
+          <table>
+            <thead><tr><th>ID</th><th>Symbol</th><th>Dir</th><th>Conv</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr><td class="mono">p-1042</td><td>NVDA</td><td>LONG</td><td>8.4</td><td><span class="tag tag-neutral">Risk review</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card">
+          <div class="card-title">Risk checks (R01–R15)</div>
+          <ul style="list-style:none;font-size:12px;line-height:2;color:var(--text-muted)">
+            <li>✓ R01 Paper only</li><li>✓ R02 Position cap</li><li>✓ R06 Earnings blackout</li><li>○ R09 Dexter gate</li>
+          </ul>
+        </div>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

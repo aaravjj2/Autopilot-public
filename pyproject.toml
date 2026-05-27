@@ -1,0 +1,70 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "apex-autopilot-engine"
+version = "1.0.0"
+description = "APEX Autonomous Paper-Trading Execution System"
+license = "Apache-2.0"
+requires-python = ">=3.11"
+dependencies = [
+  "apscheduler>=3.10.4,<4",
+  "cryptography>=42.0,<43",
+  "pydantic>=2.8,<3",
+  "pydantic-settings>=2.3,<3",
+  "pandas>=2.2,<3",
+  "numpy>=2.0,<3",
+  "requests>=2.32,<3",
+  "streamlit>=1.45,<2",
+  "starlette>=0.45,<2",
+  "yfinance>=0.2.61,<1",
+  "python-dateutil>=2.9,<3",
+  "uvicorn>=0.27,<1",
+  "redis>=5.0,<6",
+  "jsonpatch>=1.33,<2",
+  "grpcio>=1.62,<2",
+  "grpcio-tools>=1.62,<2",
+  "protobuf>=4.25,<6",
+  "httpx>=0.27,<1",
+  "fastapi>=0.110,<1",
+  "transitions>=0.9,<1",
+  "prometheus-client>=0.20,<1",
+  "reportlab>=4.0,<5",
+  "websockets>=12.0,<14",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.2,<9",
+]
+agents = [
+  "langgraph>=0.4.8",
+  "langchain-openai>=0.3.23",
+  "stockstats>=0.6.5",
+  "openai>=2.0,<3",
+]
+polymarket-mcp = [
+  "mcp>=1.0.0,<2",
+  "httpx>=0.27.0,<1",
+]
+
+[tool.pytest.ini_options]
+addopts = "-q"
+testpaths = ["tests"]
+pythonpath = ["src"]
+
+[project.scripts]
+apex-engine = "apex.main:run_daily_cycle"
+apex-scheduler = "apex.main:run_scheduler"
+apex-autopilot = "apex.main:run_autopilot"
+apex-dashboard = "apex.main:run_dashboard"
+apex-monitor = "apex.main:run_dashboard"
+apex-healthz = "apex.main:run_health_server"
+apex-gates = "apex.main:run_predeployment_gates"
+apex-polymarket-agent = "apex.main:run_polymarket_agent"
+apex-pm-training-export = "apex.main:run_polymarket_training_export"
+apex-self-improvement = "apex.main:run_self_improvement"
+
+[tool.setuptools.packages.find]
+where = ["src"]

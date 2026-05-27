@@ -1,0 +1,64 @@
+syntax = "proto3";
+
+package apex.arb;
+
+// Week 1 Day 2: L1 Brain <-> L3 Execution contracts
+
+message OrderbookLevel {
+  double price = 1;
+  double qty = 2;
+}
+
+message L2Orderbook {
+  string venue = 1;
+  string ticker = 2;
+  repeated OrderbookLevel yes_bids = 3;
+  repeated OrderbookLevel no_bids = 4;
+}
+
+message ArbOpportunityMsg {
+  string id = 1;
+  string kalshi_ticker = 2;
+  string poly_market_id = 3;
+  string question = 4;
+  double net_edge = 5;
+  double gross_spread = 6;
+  double vwap_edge = 7;
+  double kelly_fraction = 8;
+  double ai_confidence_score = 9;
+  string category = 10;
+}
+
+message ArbScanRequest {
+  int32 limit = 1;
+  double min_edge = 2;
+}
+
+message ArbScanResponse {
+  repeated ArbOpportunityMsg opportunities = 1;
+  int64 scanned_at_unix = 2;
+}
+
+message SignalRouteRequest {
+  string arb_id = 1;
+  string strategy = 2;
+}
+
+message SignalRouteResponse {
+  bool approved = 1;
+  string reason = 2;
+}
+
+service ArbBrainService {
+  rpc ScanOpportunities(ArbScanRequest) returns (ArbScanResponse);
+  rpc RouteSignal(SignalRouteRequest) returns (SignalRouteResponse);
+}
+
+service OrderbookIngestService {
+  rpc PushOrderbook(L2Orderbook) returns (OrderbookPushAck);
+}
+
+message OrderbookPushAck {
+  bool ok = 1;
+  string cache_key = 2;
+}

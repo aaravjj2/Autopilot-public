@@ -1,0 +1,12 @@
+{
+  "title": "APEX Slippage by Venue",
+  "uid": "apex-slippage",
+  "panels": [
+    {
+      "title": "SOR leg slippage (bps)",
+      "type": "timeseries",
+      "targets": [{ "expr": "apex_sor_slippage_bps", "legendFormat": "{{venue}}" }]
+    }
+  ],
+  "schemaVersion": 38
+}

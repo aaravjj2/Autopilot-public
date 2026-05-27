@@ -1,0 +1,54 @@
+from __future__ import annotations
+
+from enum import Enum
+
+
+class Direction(str, Enum):
+    LONG = "LONG"
+    SHORT = "SHORT"
+    NEUTRAL = "NEUTRAL"
+
+
+class Instrument(str, Enum):
+    EQUITY = "EQUITY"
+    CALL = "CALL"
+    PUT = "PUT"
+    VERTICAL = "VERTICAL"
+    STRADDLE = "STRADDLE"
+    IRON_CONDOR = "IRON_CONDOR"
+    # Binary / event contract (paper simulation; not Alpaca).
+    POLYMARKET_EVENT = "POLYMARKET_EVENT"
+    KALSHI_EVENT = "KALSHI_EVENT"
+    ARB_PAIR = "ARB_PAIR"
+
+
+class PMSignal(str, Enum):
+    BULLISH = "BULLISH"
+    BEARISH = "BEARISH"
+    NEUTRAL = "NEUTRAL"
+    NO_MARKET = "NO_MARKET"
+
+
+class EventType(str, Enum):
+    OPPORTUNITY_SCORED = "OPPORTUNITY_SCORED"
+    PROPOSAL_CREATED = "PROPOSAL_CREATED"
+    RISK_REJECTED = "RISK_REJECTED"
+    ORDER_SUBMITTED = "ORDER_SUBMITTED"
+    ORDER_FILLED = "ORDER_FILLED"
+    ORDER_CANCELLED = "ORDER_CANCELLED"
+    TRADE_CLOSED = "TRADE_CLOSED"
+    SYSTEM_ALERT = "SYSTEM_ALERT"
+    GATE_RESULT = "GATE_RESULT"
+    ARB_DETECTED = "ARB_DETECTED"
+    ARB_RISK_PASSED = "ARB_RISK_PASSED"
+    ARB_RISK_FAILED = "ARB_RISK_FAILED"
+    ARB_PAPER_SUBMITTED = "ARB_PAPER_SUBMITTED"
+    ARB_RESOLVED = "ARB_RESOLVED"
+    LEG_IMBALANCE = "LEG_IMBALANCE"
+
+
+class RiskAction(str, Enum):
+    HARD_BLOCK = "HARD_BLOCK"
+    CANCEL = "CANCEL"
+    DEFER = "DEFER"
+    RESIZE = "RESIZE"

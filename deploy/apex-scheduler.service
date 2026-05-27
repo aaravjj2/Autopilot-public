@@ -1,0 +1,19 @@
+[Unit]
+Description=APEX Trading Scheduler
+Documentation=https://github.com/anomalyco/autopilot
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=%(U)s
+WorkingDirectory=/home/%(U)s/Autopilot
+ExecStart=/home/%(U)s/miniconda3/bin/python -m apex.main
+Restart=on-failure
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+Environment=PYTHONUNBUFFERED=1
+
+[Install]
+WantedBy=multi-user.target

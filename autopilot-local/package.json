@@ -1,0 +1,14 @@
+{
+  "name": "autopilot-local",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently -n apex,web -c blue,green \"npm run dev:apex\" \"npm run dev:frontend\"",
+    "dev:apex": "cd .. && if [ -x .venv/bin/python ]; then .venv/bin/python -m uvicorn backend_api:app --reload --host 0.0.0.0 --port 8000; else python -m uvicorn backend_api:app --reload --host 0.0.0.0 --port 8000; fi",
+    "dev:market": "bash -c 'cd backend && export PYTHONPATH=../../src:${PYTHONPATH:-} && PY=python3; if [ -x ../.venv/bin/python ]; then PY=../.venv/bin/python; fi; $PY -m uvicorn main:app --reload --host 0.0.0.0 --port 8001'",
+    "dev:frontend": "cd frontend && npm run dev",
+    "install:all": "cd backend && pip install -r requirements.txt && cd ../frontend && npm install"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0"
+  }
+}

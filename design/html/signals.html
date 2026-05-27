@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Signals — APEX Design</title>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/apex-terminal.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar"><a class="nav-link active" href="signals.html">Signals</a></aside>
+    <header class="topbar">
+      <select class="btn"><option>All instruments</option><option>Equity</option><option>Options</option></select>
+      <select class="btn"><option>Conviction ≥ 6</option><option>≥ 7</option><option>≥ 8</option></select>
+    </header>
+    <main class="main">
+      <div class="page-header"><h2>Opportunity Signals</h2><p>Engine-scored from audit · PM divergence</p></div>
+      <div class="card">
+        <table>
+          <thead><tr><th>Symbol</th><th>Direction</th><th>Tech</th><th>Fund</th><th>PM</th><th>Conv</th><th>Catalyst</th><th>R:R</th></tr></thead>
+          <tbody>
+            <tr><td>NVDA</td><td><span class="tag tag-long">LONG</span></td><td>7.8</td><td>8.1</td><td>Bull</td><td><strong>8.4</strong></td><td>AI capex</td><td>2.8</td></tr>
+            <tr><td>AMD</td><td><span class="tag tag-long">LONG</span></td><td>7.2</td><td>6.9</td><td>Neutral</td><td>7.6</td><td>Share gain</td><td>2.1</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

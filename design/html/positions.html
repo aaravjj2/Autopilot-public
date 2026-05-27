@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Positions — APEX Design</title>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/apex-terminal.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand"><div class="brand-mark">AX</div><div><h1>APEX</h1></div></div>
+      <a class="nav-link" href="dashboard.html">Overview</a>
+      <a class="nav-link active" href="positions.html">Positions</a>
+    </aside>
+    <header class="topbar"><span class="pill">7 open · 2 closed today</span><button class="btn">Close all losers</button></header>
+    <main class="main">
+      <div class="page-header"><div><h2>Positions</h2><p>Unrealized <span class="kpi-up mono">+$2,340</span></p></div></div>
+      <div class="card">
+        <div class="tabs"><span class="tab active">Open</span><span class="tab">Closed</span><span class="tab">Exposure map</span></div>
+        <table>
+          <thead><tr><th>Symbol</th><th>Side</th><th>Qty</th><th>Avg</th><th>Mkt</th><th>P&amp;L</th><th>%</th><th></th></tr></thead>
+          <tbody>
+            <tr><td class="mono">NVDA</td><td><span class="tag tag-long">LONG</span></td><td>25</td><td>138.20</td><td>142.30</td><td class="kpi-up">+102</td><td>+2.9%</td><td><button class="btn" style="font-size:11px">Close</button></td></tr>
+            <tr><td class="mono">AAPL</td><td><span class="tag tag-long">LONG</span></td><td>40</td><td>200.10</td><td>198.50</td><td class="kpi-down">-64</td><td>-0.8%</td><td><button class="btn" style="font-size:11px">Close</button></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </main>
+    <footer class="statusbar"><span>Alpaca positions</span></footer>
+  </div>
+</body>
+</html>

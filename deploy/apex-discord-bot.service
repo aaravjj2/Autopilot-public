@@ -1,0 +1,19 @@
+[Unit]
+Description=APEX Discord Bot (service + API)
+Documentation=https://github.com/anomalyco/autopilot
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=aarav
+WorkingDirectory=/home/aarav/Aarav/Autopilot/Discord/zen_instatrade
+ExecStart=/usr/bin/python3 /home/aarav/Aarav/Autopilot/Discord/zen_instatrade/run_discord_service.py
+Restart=always
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+Environment=PYTHONUNBUFFERED=1
+
+[Install]
+WantedBy=multi-user.target

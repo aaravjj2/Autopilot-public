@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Overview — APEX Terminal Design</title>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/apex-terminal.css" />
+  <script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+</head>
+<body>
+  <div class="app-shell has-right">
+    <aside class="sidebar">
+      <div class="brand"><div class="brand-mark">AX</div><div><h1>APEX Terminal</h1><p>Paper · Live data</p></div></div>
+      <nav class="nav-group"><div class="nav-label">Trade</div>
+        <a class="nav-link active" href="dashboard.html">Overview</a>
+        <a class="nav-link" href="trading.html">Trading</a>
+        <a class="nav-link" href="positions.html">Positions</a>
+        <a class="nav-link" href="signals.html">Signals <span class="nav-badge">12</span></a>
+      </nav>
+      <nav class="nav-group"><div class="nav-label">Intel</div>
+        <a class="nav-link" href="autopilot.html">Autopilot</a>
+        <a class="nav-link" href="arb-radar.html">Arb Radar <span class="nav-badge">3</span></a>
+        <a class="nav-link" href="analytics.html">Analytics</a>
+        <a class="nav-link" href="live-feed.html">Live Feed</a>
+      </nav>
+      <nav class="nav-group"><div class="nav-label">System</div>
+        <a class="nav-link" href="settings.html">Settings</a>
+      </nav>
+    </aside>
+
+    <header class="topbar">
+      <div class="search-box" data-cmd-open style="cursor:pointer"><span>⌕</span> Search symbol, command… <kbd>⌘K</kbd></div>
+      <span class="pill">NYSE · Regular</span>
+      <span class="pill live">Live</span>
+      <button class="icon-btn" title="Alerts">🔔</button>
+      <button class="btn btn-primary">Quick Order</button>
+    </header>
+
+    <main class="main">
+      <div class="page-header">
+        <div>
+          <h2>Command Center</h2>
+          <p>Real-time portfolio · Engine RUNNING · Last sync <span class="mono">14:32:08 ET</span></p>
+        </div>
+        <div style="display:flex;gap:8px">
+          <button class="btn">Export</button>
+          <button class="btn btn-primary">Refresh Cache</button>
+        </div>
+      </div>
+
+      <div class="grid grid-kpi" style="margin-bottom:14px">
+        <div class="card"><div class="card-title">Portfolio</div><div class="kpi-value">$128,450</div><div class="kpi-sub kpi-up">+1.24% today</div></div>
+        <div class="card"><div class="card-title">Buying Power</div><div class="kpi-value">$42,100</div><div class="kpi-sub">Cash $18.2k</div></div>
+        <div class="card"><div class="card-title">Positions</div><div class="kpi-value">7</div><div class="kpi-sub">5 profitable</div></div>
+        <div class="card"><div class="card-title">Signals</div><div class="kpi-value">12</div><div class="kpi-sub">4 ≥ 7 conviction</div></div>
+        <div class="card"><div class="card-title">Arb Active</div><div class="kpi-value">3</div><div class="kpi-sub kpi-up">62% win rate</div></div>
+      </div>
+
+      <div class="grid grid-3" style="margin-bottom:14px">
+        <div class="card">
+          <div class="card-header"><span class="card-title">Equity Curve · 30D</span>
+            <div class="tabs"><span class="tab active">1M</span><span class="tab">3M</span><span class="tab">YTD</span></div>
+          </div>
+          <div class="chart-area"><div class="chart-line"></div></div>
+        </div>
+        <div class="card">
+          <div class="card-title" style="margin-bottom:12px">Risk Gauges</div>
+          <div class="gauge-row">
+            <div class="gauge"><div class="gauge-ring">2.1%</div><span style="font-size:11px;color:var(--text-dim)">Daily DD</span></div>
+            <div class="gauge"><div class="gauge-ring" style="border-top-color:var(--amber)">68%</div><span style="font-size:11px;color:var(--text-dim)">Exposure</span></div>
+            <div class="gauge"><div class="gauge-ring" style="border-top-color:var(--accent)">1.4</div><span style="font-size:11px;color:var(--text-dim)">Sharpe</span></div>
+          </div>
+          <div style="margin-top:14px;font-size:12px;color:var(--text-muted)">
+            <div style="display:flex;justify-content:space-between;margin-bottom:6px"><span>Max position</span><span class="mono">5% OK</span></div>
+            <div style="display:flex;justify-content:space-between"><span>Loss cut brain</span><span class="mono kpi-up">Idle</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-2" style="margin-bottom:14px">
+        <div class="card">
+          <div class="card-header"><span class="card-title">Watchlist</span><button class="btn btn-ghost" style="padding:4px 8px;font-size:11px">+ Add</button></div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Symbol</th><th>Last</th><th>Chg%</th><th>Vol</th><th>Signal</th></tr></thead>
+              <tbody>
+                <tr><td class="mono" style="font-weight:600">NVDA</td><td>142.30</td><td class="kpi-up">+2.1%</td><td>48M</td><td><span class="tag tag-long">Long 8.2</span></td></tr>
+                <tr><td class="mono" style="font-weight:600">AAPL</td><td>198.50</td><td class="kpi-down">-0.4%</td><td>22M</td><td><span class="tag tag-neutral">Neutral</span></td></tr>
+                <tr><td class="mono" style="font-weight:600">TSLA</td><td>248.10</td><td class="kpi-up">+1.8%</td><td>31M</td><td><span class="tag tag-long">Long 7.1</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title" style="margin-bottom:12px">Sector Heatmap</div>
+          <div class="heatmap">
+            <div class="heat-cell" style="background:rgba(34,197,94,0.5)">Tech</div>
+            <div class="heat-cell" style="background:rgba(34,197,94,0.25)">Fin</div>
+            <div class="heat-cell" style="background:rgba(239,68,68,0.3)">Energy</div>
+            <div class="heat-cell" style="background:rgba(34,197,94,0.4)">Hlth</div>
+            <div class="heat-cell" style="background:rgba(245,158,11,0.3)">Ind</div>
+            <div class="heat-cell" style="background:rgba(34,197,94,0.2)">Cons</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-2">
+        <div class="card">
+          <div class="card-header"><span class="card-title">Top Opportunities</span><a href="signals.html" class="btn btn-ghost" style="font-size:11px">View all</a></div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Symbol</th><th>Dir</th><th>Conv</th><th>PM</th><th>R:R</th></tr></thead>
+              <tbody>
+                <tr><td>NVDA</td><td><span class="tag tag-long">LONG</span></td><td>8.4</td><td>Bull</td><td>2.8</td></tr>
+                <tr><td>AMD</td><td><span class="tag tag-long">LONG</span></td><td>7.6</td><td>Neutral</td><td>2.1</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title" style="margin-bottom:12px">Agent Pipeline (L0→L4)</div>
+          <div class="pipeline">
+            <div class="pipe-stage active"><strong>L0</strong><span>Ingest</span></div>
+            <div class="pipe-stage active"><strong>L1</strong><span>Brain</span></div>
+            <div class="pipe-stage active"><strong>L2</strong><span>Agents</span></div>
+            <div class="pipe-stage"><strong>L3</strong><span>Exec</span></div>
+            <div class="pipe-stage"><strong>L4</strong><span>Obs</span></div>
+          </div>
+          <p style="margin-top:12px;font-size:12px;color:var(--text-muted)">Last proposal <span class="mono">NVDA LONG</span> · 2m ago · Pending risk</p>
+        </div>
+      </div>
+    </main>
+
+    <aside class="right-panel">
+      <div class="card" style="margin-bottom:12px">
+        <div class="card-title">Order Ticket</div>
+        <div class="ticket">
+          <label>Symbol</label><input value="NVDA" />
+          <div class="side-toggle">
+            <button class="btn active-buy" type="button">Buy</button>
+            <button class="btn" type="button">Sell</button>
+          </div>
+          <label>Qty</label><input type="number" value="10" />
+          <label>Type</label><select><option>Market</option><option>Limit</option></select>
+          <button class="btn btn-primary" style="width:100%">Submit Paper Order</button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">Alerts</div>
+        <ul style="list-style:none;font-size:12px;color:var(--text-muted)">
+          <li style="padding:8px 0;border-bottom:1px solid var(--border)">Arb edge &gt; 4% · Fed path</li>
+          <li style="padding:8px 0;border-bottom:1px solid var(--border)">NVDA conviction 8.4</li>
+          <li style="padding:8px 0">Cache refreshed</li>
+        </ul>
+      </div>
+    </aside>
+
+    <footer class="statusbar">
+      <span>WS: connected</span>
+      <span>API: 12ms</span>
+      <span>Data age: 8s</span>
+      <span>Alpaca: ACTIVE</span>
+      <span style="margin-left:auto">APEX v2 Design</span>
+    </footer>
+  </div>
+
+  <div id="cmd-palette" class="cmd-palette" data-cmd-close>
+    <div class="cmd-dialog">
+      <input class="cmd-input" placeholder="Go to page, symbol, or action…" />
+      <div class="cmd-list">
+        <div class="cmd-item"><span>Open Trading</span><kbd>→</kbd></div>
+        <div class="cmd-item"><span>Arb Radar</span><kbd>→</kbd></div>
+        <div class="cmd-item"><span>Refresh engine cache</span><kbd>↵</kbd></div>
+      </div>
+    </div>
+  </div>
+  <script src="js/terminal.js"></script>
+</body>
+</html>

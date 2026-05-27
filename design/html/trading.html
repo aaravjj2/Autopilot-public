@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Trading — APEX Terminal Design</title>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/apex-terminal.css" />
+  <style>
+    .trading-layout { display:grid; grid-template-columns:1fr 340px; grid-template-rows:auto 1fr auto; gap:14px; height:calc(100vh - var(--topbar-h) - 80px); }
+    .chart-main { grid-column:1; grid-row:1/3; min-height:420px; }
+    .chain-panel { grid-column:2; grid-row:1/4; }
+    .order-strip { grid-column:1; display:flex; gap:8px; flex-wrap:wrap; }
+  </style>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand"><div class="brand-mark">AX</div><div><h1>APEX Terminal</h1></div></div>
+      <nav class="nav-group"><div class="nav-label">Trade</div>
+        <a class="nav-link" href="dashboard.html">Overview</a>
+        <a class="nav-link active" href="trading.html">Trading</a>
+        <a class="nav-link" href="positions.html">Positions</a>
+        <a class="nav-link" href="signals.html">Signals</a>
+      </nav>
+      <nav class="nav-group"><div class="nav-label">Intel</div>
+        <a class="nav-link" href="arb-radar.html">Arb Radar</a>
+        <a class="nav-link" href="analytics.html">Analytics</a>
+      </nav>
+    </aside>
+    <header class="topbar">
+      <div class="search-box"><span class="mono" style="font-weight:600;color:var(--text)">NVDA</span> · $142.30 <span class="kpi-up">+2.14%</span></div>
+      <div class="tabs"><span class="tab">1m</span><span class="tab">5m</span><span class="tab">15m</span><span class="tab">1h</span><span class="tab active">1D</span><span class="tab">1W</span></div>
+      <button class="btn btn-primary">Trade</button>
+    </header>
+    <main class="main">
+      <div class="trading-layout">
+        <div class="card chart-main">
+          <div class="card-header">
+            <span class="card-title">Price · NVDA</span>
+            <span style="font-size:12px;color:var(--text-muted)">Vol profile · VWAP · EMA20/50</span>
+          </div>
+          <div class="chart-area" style="height:360px"><div class="chart-line"></div></div>
+          <div class="order-strip" style="margin-top:12px">
+            <span class="pill">IV Rank 42</span>
+            <span class="pill">P/C OI 0.82</span>
+            <span class="pill">Earnings 12d</span>
+          </div>
+        </div>
+        <div class="card chain-panel">
+          <div class="card-header"><span class="card-title">Options · Apr 18</span></div>
+          <div class="tabs"><span class="tab active">Calls</span><span class="tab">Puts</span><span class="tab">Greeks</span></div>
+          <div class="table-wrap" style="max-height:480px">
+            <table>
+              <thead><tr><th>Strike</th><th>Bid</th><th>Ask</th><th>IV</th><th>Δ</th></tr></thead>
+              <tbody>
+                <tr><td>140</td><td>4.20</td><td>4.35</td><td>38%</td><td>0.52</td></tr>
+                <tr><td>145</td><td>2.10</td><td>2.25</td><td>36%</td><td>0.38</td></tr>
+                <tr><td>150</td><td>0.95</td><td>1.05</td><td>34%</td><td>0.22</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="ticket" style="margin-top:12px">
+            <label>Strategy</label><select><option>Single leg</option><option>Vertical</option><option>Iron condor</option></select>
+            <button class="btn btn-primary" style="width:100%;margin-top:8px">Preview &amp; Send</button>
+          </div>
+        </div>
+      </div>
+      <div class="card" style="margin-top:14px">
+        <div class="card-title">Order Blotter (today)</div>
+        <table>
+          <thead><tr><th>Time</th><th>Symbol</th><th>Side</th><th>Qty</th><th>Status</th><th>Fill</th></tr></thead>
+          <tbody>
+            <tr><td>14:02</td><td>NVDA</td><td>Buy</td><td>10</td><td><span class="tag tag-long">Filled</span></td><td>141.20</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </main>
+    <footer class="statusbar"><span>Options: yfinance</span><span>Chart: 252 bars</span></footer>
+  </div>
+  <script src="js/terminal.js"></script>
+</body>
+</html>

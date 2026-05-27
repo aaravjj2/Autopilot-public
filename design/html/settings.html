@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Settings — APEX Terminal Design</title>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/apex-terminal.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand"><div class="brand-mark">AX</div><div><h1>APEX Terminal</h1></div></div>
+      <a class="nav-link" href="dashboard.html">Overview</a>
+      <a class="nav-link active" href="settings.html">Settings</a>
+    </aside>
+    <header class="topbar"><h2 style="font-size:16px">Settings &amp; Configuration</h2><button class="btn btn-primary">Refresh integrations</button></header>
+    <main class="main">
+      <div class="grid grid-2">
+        <div class="card">
+          <div class="card-title" style="margin-bottom:14px">Integration Health (live probes)</div>
+          <table>
+            <thead><tr><th>Service</th><th>Status</th><th>Detail</th></tr></thead>
+            <tbody>
+              <tr><td>Alpaca</td><td><span class="tag tag-long">Connected</span></td><td class="mono" style="font-size:11px">account ACTIVE</td></tr>
+              <tr><td>yfinance</td><td><span class="tag tag-long">Connected</span></td><td>market data OK</td></tr>
+              <tr><td>TradingAgents</td><td><span class="tag tag-long">Connected</span></td><td>external/TradingAgents</td></tr>
+              <tr><td>Dexter</td><td><span class="tag tag-long">Connected</span></td><td>external/dexter</td></tr>
+              <tr><td>Polymarket</td><td><span class="tag tag-long">Connected</span></td><td>external/PolyMarket-MCP</td></tr>
+              <tr><td>LLM (Ollama)</td><td><span class="tag tag-short">Offline</span></td><td>localhost:11434 unreachable</td></tr>
+              <tr><td>Discord</td><td><span class="tag tag-neutral">Optional</span></td><td>no token</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card">
+          <div class="card-title" style="margin-bottom:14px">Risk Configuration</div>
+          <div class="ticket">
+            <label>Max position %</label><input type="number" value="5" />
+            <label>Max open positions</label><input type="number" value="20" />
+            <label>Daily loss limit %</label><input type="number" value="3" />
+            <label>Conviction floor</label><input type="number" value="6" step="0.5" />
+            <label style="margin-top:8px"><input type="checkbox" checked /> Paper trading only (R01)</label>
+          </div>
+        </div>
+      </div>
+      <div class="card" style="margin-top:14px">
+        <div class="card-title">Repo registry</div>
+        <p style="font-size:12px;color:var(--text-muted);margin-top:8px">Paths validated against <code>keys.env</code> + bundled <code>external/</code> fallbacks.</p>
+      </div>
+    </main>
+  </div>
+  <script src="js/terminal.js"></script>
+</body>
+</html>

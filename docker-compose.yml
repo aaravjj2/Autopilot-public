@@ -1,0 +1,139 @@
+# APEX Autopilot - Docker Compose
+# Starts all services in isolated containers
+
+version: '3.8'
+
+services:
+  # Backend API
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    container_name: apex-backend
+    ports:
+      - "8000:8000"
+    environment:
+      - ALPACA_API_KEY=${ALPACA_API_KEY}
+      - ALPACA_SECRET_KEY=${ALPACA_SECRET_KEY}
+      - ALPACA_BASE_URL=${ALPACA_BASE_URL:-https://paper-api.alpaca.markets}
+      - DISCORD_USER_TOKEN=${DISCORD_USER_TOKEN}
+      - SQLITE_PATH=/data/audit.db
+      - REDIS_URL=redis://redis:6379/0
+      - ARB_STREAM_USE_PATCHES=true
+    volumes:
+      - apex-data:/data
+      - ./data:/app/data
+    restart: unless-stopped
+    depends_on:
+      - redis
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    networks:
+      - apex-network
+
+  redis:
+    image: redis:7-alpine
+    container_name: apex-redis
+    ports:
+      - "6379:6379"
+    restart: unless-stopped
+    networks:
+      - apex-network
+
+  # Frontend
+  frontend:
+    build:
+      context: ./autopilot-local/frontend
+      dockerfile: Dockerfile.frontend
+    container_name: apex-frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - NEXT_PUBLIC_API_URL=http://backend:8000
+    depends_on:
+      backend:
+        condition: service_healthy
+    restart: unless-stopped
+    networks:
+      - apex-network
+
+  # APEX Scheduler
+  scheduler:
+    build:
+      context: .
+      dockerfile: Dockerfile.scheduler
+    container_name: apex-scheduler
+    environment:
+      - ALPACA_API_KEY=${ALPACA_API_KEY}
+      - ALPACA_SECRET_KEY=${ALPACA_SECRET_KEY}
+      - SQLITE_PATH=/data/audit.db
+    volumes:
+      - apex-data:/data
+    depends_on:
+      backend:
+        condition: service_healthy
+    restart: unless-stopped
+    networks:
+      - apex-network
+
+  # Discord Bot
+  discord-bot:
+    build:
+      context: .
+      dockerfile: Dockerfile.discord
+    container_name: apex-discord
+    environment:
+      - DISCORD_USER_TOKEN=${DISCORD_USER_TOKEN}
+      - ALPACA_API_KEY=${ALPACA_API_KEY}
+      - ALPACA_SECRET_KEY=${ALPACA_SECRET_KEY}
+      - SQLITE_PATH=/data/audit.db
+    volumes:
+      - apex-data:/data
+    depends_on:
+      backend:
+        condition: service_healthy
+    restart: unless-stopped
+    networks:
+      - apex-network
+
+  # Prometheus (monitoring)
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: apex-prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus-data:/prometheus
+    restart: unless-stopped
+    networks:
+      - apex-network
+
+  # Grafana (dashboards)
+  grafana:
+    image: grafana/grafana:latest
+    container_name: apex-grafana
+    ports:
+      - "3001:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_PASSWORD:-admin}
+    volumes:
+      - grafana-data:/var/lib/grafana
+      - ./monitoring/grafana/dashboards:/etc/grafana/provisioning/dashboards
+    depends_on:
+      - prometheus
+    restart: unless-stopped
+    networks:
+      - apex-network
+
+volumes:
+  apex-data:
+  prometheus-data:
+  grafana-data:
+
+networks:
+  apex-network:
+    driver: bridge

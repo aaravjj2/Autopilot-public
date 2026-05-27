@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Live Feed — APEX Design</title>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/apex-terminal.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar"><a class="nav-link active" href="live-feed.html">Live Feed</a></aside>
+    <header class="topbar">
+      <input class="btn" style="flex:1;max-width:200px;text-align:left" placeholder="Filter event type…" />
+      <button class="btn">Export JSON</button>
+      <span class="pill live">200 events</span>
+    </header>
+    <main class="main">
+      <div class="card">
+        <div class="table-wrap" style="max-height:70vh">
+          <table>
+            <thead><tr><th>Time</th><th>Type</th><th>Symbol</th><th>Conv</th><th>Payload</th></tr></thead>
+            <tbody>
+              <tr><td class="mono">14:32:01</td><td>OPPORTUNITY_SCORED</td><td>NVDA</td><td>8.4</td><td style="max-width:320px;overflow:hidden;text-overflow:ellipsis">direction=LONG…</td></tr>
+              <tr><td class="mono">14:31:44</td><td>PROPOSAL_CREATED</td><td>NVDA</td><td>8.4</td><td>entry=141.2…</td></tr>
+              <tr><td class="mono">14:30:12</td><td>RISK_CHECK</td><td>—</td><td>—</td><td>R02 pass</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

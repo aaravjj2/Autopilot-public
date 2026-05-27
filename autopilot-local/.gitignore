@@ -1,0 +1,10 @@
+.env.local
+.env
+autopilot.db
+__pycache__/
+*.pyc
+.venv/
+node_modules/
+frontend/.next/
+frontend/out/
+.DS_Store
