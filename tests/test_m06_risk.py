@@ -5,7 +5,6 @@ from __future__ import annotations
 from apex.core.config import Settings
 from apex.domain.models import ArbOpportunity
 from apex.layers.l3.risk_checks import RiskCheckEngine
-from apex.repositories.sqlite_store import SQLiteStore
 
 
 def _opp() -> ArbOpportunity:
@@ -34,7 +33,6 @@ def test_m06_passes_under_cap(tmp_path, monkeypatch):
         ARB_MAX_DAILY_LOSS_USD=500.0,
         ARB_PAPER_RELAX_ORDERBOOK=True,
     )
-    store = SQLiteStore(settings.sqlite_path)
     monkeypatch.setattr(
         "apex.layers.l3.risk_checks.fetch_kalshi_orderbook",
         lambda t: {"yes": [[0.5, 1000]], "no": [[0.5, 1000]]},
