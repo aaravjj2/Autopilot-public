@@ -466,6 +466,30 @@ class AlpacaDirectIntegration:
                 raise
             return {"error": str(exc), "status": "exception"}
 
+    def close_stock_position(self, symbol: str) -> dict[str, Any]:
+        """Liquidate an entire stock position (market). DELETE /v2/positions/{symbol}."""
+        import urllib.parse
+
+        import requests
+
+        sym = urllib.parse.quote(symbol, safe="")
+        try:
+            resp = requests.delete(
+                f"{self._base_url}/v2/positions/{sym}",
+                headers=self._headers(),
+                timeout=30,
+            )
+            if resp.status_code in (200, 201, 204):
+                if resp.text:
+                    try:
+                        return resp.json()
+                    except Exception:
+                        return {"status": "closed", "symbol": symbol}
+                return {"status": "closed", "symbol": symbol}
+            return {"error": resp.text, "http_status": resp.status_code}
+        except Exception as exc:
+            return {"error": str(exc), "status": "exception"}
+
 
 class AlpacaStreamClient:
     """WebSocket streaming client for Alpaca real-time data (options quotes + trade updates)."""
@@ -569,27 +593,3 @@ class AlpacaStreamClient:
                     if str(order.get("id", "")).replace("-", "").lower() == order_id.replace("-", "").lower():
                         return m
         return None
-
-    def close_stock_position(self, symbol: str) -> dict[str, Any]:
-        """Liquidate an entire stock position (market). DELETE /v2/positions/{symbol}."""
-        import urllib.parse
-
-        import requests
-
-        sym = urllib.parse.quote(symbol, safe="")
-        try:
-            resp = requests.delete(
-                f"{self._base_url}/v2/positions/{sym}",
-                headers=self._headers(),
-                timeout=30,
-            )
-            if resp.status_code in (200, 201, 204):
-                if resp.text:
-                    try:
-                        return resp.json()
-                    except Exception:
-                        return {"status": "closed", "symbol": symbol}
-                return {"status": "closed", "symbol": symbol}
-            return {"error": resp.text, "http_status": resp.status_code}
-        except Exception as exc:
-            return {"error": str(exc), "status": "exception"}
