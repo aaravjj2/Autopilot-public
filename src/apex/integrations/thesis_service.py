@@ -47,17 +47,19 @@ _SYSTEM_PROMPT = (
 
 
 def _build_user_prompt(opp: ArbOpportunity) -> str:
+    # Implied prices derived from available fields
+    kalshi_no_ask = 1.0 - opp.kalshi_yes_ask
+    poly_yes_ask = 1.0 - opp.poly_no_ask
     return (
         f"Question: {opp.question}\n"
-        f"Kalshi YES ask: {opp.kalshi_best_ask_yes:.4f}  "
-        f"Kalshi NO ask: {opp.kalshi_best_ask_no:.4f}\n"
-        f"Polymarket YES implied: {opp.poly_best_ask_yes:.4f}  "
-        f"Polymarket NO implied: {opp.poly_best_ask_no:.4f}\n"
+        f"Kalshi YES ask: {opp.kalshi_yes_ask:.4f}  "
+        f"Kalshi NO ask: {kalshi_no_ask:.4f}\n"
+        f"Polymarket YES implied: {poly_yes_ask:.4f}  "
+        f"Polymarket NO implied: {opp.poly_no_ask:.4f}\n"
         f"Net edge (after fees): {opp.net_edge:.4f}\n"
-        f"Direction: {opp.direction}\n"
-        f"Kalshi 24h volume: {opp.kalshi_volume:,.0f}  "
-        f"Polymarket 24h volume: {opp.poly_volume:,.0f}\n"
-        f"Title match score: {opp.title_match_score:.2f}\n"
+        f"Kalshi 24h volume: {opp.volume_kalshi:,.0f}  "
+        f"Polymarket 24h volume: {opp.volume_poly:,.0f}\n"
+        f"Title match score: {opp.settlement_match_score:.2f}\n"
         "\nProduce the JSON thesis now."
     )
 
