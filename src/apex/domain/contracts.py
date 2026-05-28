@@ -47,6 +47,8 @@ class BrokerClient(Protocol):
 
     def get_order(self, order_id: str) -> dict[str, Any]: ...
 
+    def get_orders(self, status: str = "open") -> list[dict[str, Any]]: ...
+
 
 class BrainClient(Protocol):
     def score_symbol(

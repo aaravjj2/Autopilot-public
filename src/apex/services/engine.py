@@ -911,10 +911,10 @@ class ApexEngine:
         
         try:
             # Get account info for equity tracking
-            account = self.execution.broker.get_account()
-            equity = float(account.get("equity", 0))
-            cash = float(account.get("cash", 0))
-            positions_value = equity - cash
+            account = self.execution.broker.get_account_snapshot()
+            equity = account.equity
+            positions_value = sum(p.market_value for p in account.open_positions)
+            cash = equity - positions_value
             
             # Record equity point
             self.store.add_equity_point(

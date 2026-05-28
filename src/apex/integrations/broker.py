@@ -180,6 +180,9 @@ class PaperBrokerSimulator:
             return {"id": order_id, "status": "failed", "error": "simulated_submit_failure"}
         return {"id": order_id, "status": "filled"}
 
+    def get_orders(self, status: str = "open") -> list[dict[str, Any]]:
+        return []
+
     def close_symbol_position(self, symbol: str) -> bool:
         """Remove simulated position and restore notional buying power."""
         pos = self.positions.pop(symbol, None)
@@ -468,6 +471,9 @@ class AlpacaBrokerAdapter:
     def get_order(self, order_id: str) -> dict[str, Any]:
         return self.alpaca.get_order(order_id)
 
+    def get_orders(self, status: str = "open") -> list[dict[str, Any]]:
+        return self.alpaca.get_orders(status=status)
+
     def close_symbol_position(self, symbol: str) -> bool:
         """Market-liquidate an equity position via Alpaca (paper or live)."""
         body = self.alpaca.close_stock_position(symbol)
@@ -702,6 +708,9 @@ class VenueRoutingBroker:
         if self._order_venue.get(order_id) == "pm" and self.polymarket_paper is not None:
             return self.polymarket_paper.get_order(order_id)
         return self.equity_broker.get_order(order_id)
+
+    def get_orders(self, status: str = "open") -> list[dict[str, Any]]:
+        return self.equity_broker.get_orders(status=status)
 
     def get_positions(self) -> list[Position]:
         out = list(self.equity_broker.get_positions())
