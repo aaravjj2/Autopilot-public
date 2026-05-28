@@ -4,6 +4,7 @@ import json
 import os
 import subprocess
 import sys
+import tempfile
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
@@ -99,14 +100,22 @@ class PolymarketMCPAdapter:
             "print(json.dumps(_out, default=str))\n"
         )
         try:
-            proc = subprocess.run(
-                [sys.executable, "-c", script],
-                cwd=str(self._repo_root),
-                capture_output=True,
-                text=True,
-                timeout=timeout,
-                env=env,
-            )
+            with tempfile.NamedTemporaryFile(
+                mode="w", suffix=".py", delete=False
+            ) as f:
+                f.write(script)
+                tmp_path = f.name
+            try:
+                proc = subprocess.run(
+                    [sys.executable, tmp_path],
+                    cwd=str(self._repo_root),
+                    capture_output=True,
+                    text=True,
+                    timeout=timeout,
+                    env=env,
+                )
+            finally:
+                os.unlink(tmp_path)
             if proc.returncode != 0:
                 LOGGER.debug(
                     "Polymarket MCP python bridge rc=%s stderr=%s",
