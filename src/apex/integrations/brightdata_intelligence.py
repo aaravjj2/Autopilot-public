@@ -123,8 +123,8 @@ class BrightDataIntelligence:
                 if s.startswith("{") or s.startswith("["):
                     try:
                         payload = json.loads(s)
-                    except Exception:
-                        pass
+                    except json.JSONDecodeError:
+                        LOGGER.warning("Brightdata: malformed JSON payload, skipping")
 
             # discover: list of {link,title,description,relevance_score}
             if isinstance(payload, list):

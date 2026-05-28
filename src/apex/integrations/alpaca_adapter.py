@@ -535,8 +535,8 @@ class AlpacaStreamClient:
         if self._ws:
             try:
                 self._ws.close()
-            except Exception:
-                pass
+            except Exception as e:
+                LOGGER.warning("WebSocket close error: %s", e)
             self._ws = None
 
     def subscribe_option_quotes(self, symbols: list[str]) -> None:
