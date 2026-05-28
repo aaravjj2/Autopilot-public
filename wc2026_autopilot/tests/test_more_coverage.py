@@ -1,6 +1,5 @@
-from unittest.mock import MagicMock, patch
+from unittest.mock import patch
 
-import pytest
 
 from ingestion import market_fetcher
 from ingestion.wc2026_fixtures import _build_synthetic_104, _parse_jfjelstul_matches_json, parse_fixture_text

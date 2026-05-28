@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import sqlite3
-from typing import Any
 
 
 def count_rows(conn: sqlite3.Connection, table: str) -> int:

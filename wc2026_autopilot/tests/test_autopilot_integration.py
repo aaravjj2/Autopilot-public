@@ -2,7 +2,6 @@ import os
 
 from autopilot import run_once
 from db.seed import seed_all
-import os
 import pytest
 
 

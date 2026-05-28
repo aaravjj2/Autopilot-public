@@ -1,7 +1,7 @@
 import asyncio
 from unittest.mock import MagicMock
 from apex.core.config import Settings
-from apex.layers.l3.execution import ExecutionService, fast_fill_peek
+from apex.layers.l3.execution import ExecutionService
 from apex.domain.models import ArbOpportunity
 from datetime import datetime, timezone
 import logging

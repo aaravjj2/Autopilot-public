@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import sqlite3
-import sys
 from pathlib import Path
 
 def migrate_database(audit_db_path: str = "data/audit.db") -> None:

@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 """APEX Database Backup Script - Automated daily backups"""
-import os
 import shutil
 import logging
 from datetime import datetime

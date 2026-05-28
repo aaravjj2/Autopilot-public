@@ -38,7 +38,7 @@ def test_no_8001_in_frontend_source() -> None:
             for marker in ["// ", "# ", "comment", "legacy", "DB01", ".includes(':8001')"]
         )
     ]
-    assert non_comment_hits == [], f"Unexpected :8001 references:\n" + "\n".join(non_comment_hits)
+    assert non_comment_hits == [], "Unexpected :8001 references:\n" + "\n".join(non_comment_hits)
 
 
 def test_playwright_config_has_two_webserver_entries() -> None:
