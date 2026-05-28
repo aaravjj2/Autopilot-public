@@ -92,16 +92,30 @@ def _active_pointer_path(settings: Settings | None = None) -> Path:
     return _model_dir(settings) / "active.json"
 
 
+# In-process cache for the active model, invalidated by the pointer file mtime
+# so a freshly promoted model is picked up without restarting the process.
+_MODEL_CACHE: dict[str, Any] = {"path": None, "mtime": None, "model": None}
+
+
 def load_active_model(settings: Settings | None = None) -> ArbEdgeModel | None:
     ptr = _active_pointer_path(settings)
     if not ptr.is_file():
         return None
     try:
+        mtime = ptr.stat().st_mtime
+        if (
+            _MODEL_CACHE["model"] is not None
+            and _MODEL_CACHE["path"] == str(ptr)
+            and _MODEL_CACHE["mtime"] == mtime
+        ):
+            return _MODEL_CACHE["model"]
         meta = json.loads(ptr.read_text(encoding="utf-8"))
         model_path = Path(meta["model_path"])
         if not model_path.is_file():
             return None
-        return ArbEdgeModel.from_dict(json.loads(model_path.read_text(encoding="utf-8")))
+        model = ArbEdgeModel.from_dict(json.loads(model_path.read_text(encoding="utf-8")))
+        _MODEL_CACHE.update(path=str(ptr), mtime=mtime, model=model)
+        return model
     except Exception as exc:
         LOGGER.warning("load_active_model failed: %s", exc)
         return None

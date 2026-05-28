@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import os
+import time
 from datetime import datetime, timezone
 from typing import Any
 
@@ -39,16 +41,34 @@ def get_alpaca_client(settings: Settings | None = None) -> AlpacaDirectIntegrati
     )
 
 
-def probe_yfinance() -> tuple[bool, str]:
+# Cache the yfinance reachability probe so hot endpoints like /health don't
+# issue a live SPY network request on every call. Refreshes at most once per
+# window (default 60s); failures are cached for a shorter window so recovery
+# is detected quickly.
+_YF_PROBE_TTL_OK_SEC = float(os.getenv("APEX_YF_PROBE_TTL_SEC", "60"))
+_YF_PROBE_TTL_FAIL_SEC = 15.0
+_yf_probe_cache: dict[str, Any] = {"ts": 0.0, "result": None}
+
+
+def probe_yfinance(*, force: bool = False) -> tuple[bool, str]:
+    now = time.monotonic()
+    cached = _yf_probe_cache["result"]
+    if not force and cached is not None:
+        ttl = _YF_PROBE_TTL_OK_SEC if cached[0] else _YF_PROBE_TTL_FAIL_SEC
+        if (now - _yf_probe_cache["ts"]) < ttl:
+            return cached
     try:
         import yfinance as yf
 
         hist = yf.Ticker("SPY").history(period="5d", interval="1d")
         if hist is None or hist.empty:
-            return False, "yfinance returned no SPY data"
-        return True, "ok"
+            result = (False, "yfinance returned no SPY data")
+        else:
+            result = (True, "ok")
     except Exception as exc:
-        return False, str(exc)
+        result = (False, str(exc))
+    _yf_probe_cache.update(ts=now, result=result)
+    return result
 
 
 def probe_market_feeds(settings: Settings | None = None) -> dict[str, Any]:

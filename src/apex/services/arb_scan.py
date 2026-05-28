@@ -3,6 +3,8 @@
 from __future__ import annotations
 
 import os
+import threading
+import time
 from typing import Any
 
 from apex.core.config import Settings, get_settings
@@ -14,6 +16,16 @@ from apex.services.fast_cache import invalidate
 LOGGER = get_logger(__name__)
 
 _STAKE_FOR_VWAP = 50.0
+
+# Single-flight + coalesce guard. The scheduler (~3 min), PM-agent loop (~5 min),
+# and optional backend loop can all trigger full scans. Without this, two
+# triggers that fire close together each run a complete (expensive) scan. The
+# lock serializes scans; the coalesce window lets a second caller reuse a result
+# that was just produced instead of re-scanning.
+_SCAN_LOCK = threading.Lock()
+# Keyed by db path so distinct stores (and tests) never share a cached result.
+_SCAN_STATE: dict[str, dict[str, Any]] = {}
+_SCAN_COALESCE_SEC = float(os.getenv("APEX_ARB_SCAN_COALESCE_SEC", "25"))
 
 
 def _ingest_l2_for_opportunity(opp: Any, settings: Settings) -> float | None:
@@ -62,10 +74,50 @@ def scan_and_persist(
     settings: Settings | None = None,
     limit: int = 100,
     ingest_l2: bool = True,
+    force: bool = False,
 ) -> list[Any]:
-    """Run ArbEngine.scan and upsert into SQLite."""
+    """Run ArbEngine.scan and upsert into SQLite.
+
+    Concurrent calls are serialized; a result produced within the coalesce
+    window is reused instead of triggering a duplicate full scan (set
+    ``force=True`` to bypass).
+    """
     settings = settings or get_settings()
     store = store or SQLiteStore(settings.sqlite_path)
+    key = str(settings.sqlite_path)
+
+    with _SCAN_LOCK:
+        state = _SCAN_STATE.get(key)
+        if not force and _SCAN_COALESCE_SEC > 0 and state:
+            age = time.monotonic() - float(state["ts"])
+            if (
+                state["result"]
+                and age < _SCAN_COALESCE_SEC
+                and int(state["limit"]) >= limit
+            ):
+                LOGGER.info(
+                    "scan_and_persist: reusing scan from %.1fs ago (coalesced)", age
+                )
+                return list(state["result"])[:limit]
+
+        opps = _run_scan_and_persist(
+            store, settings=settings, limit=limit, ingest_l2=ingest_l2
+        )
+        _SCAN_STATE[key] = {
+            "ts": time.monotonic(),
+            "result": list(opps),
+            "limit": limit,
+        }
+        return opps
+
+
+def _run_scan_and_persist(
+    store: SQLiteStore,
+    *,
+    settings: Settings,
+    limit: int,
+    ingest_l2: bool,
+) -> list[Any]:
     engine = ArbEngine(settings=settings, store=store)
     opps = engine.scan()[:limit]
 

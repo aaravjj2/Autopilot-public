@@ -3,6 +3,7 @@ import difflib
 import re
 import httpx
 import time
+from concurrent.futures import ThreadPoolExecutor
 from dataclasses import dataclass
 from apex.core.async_bridge import run_sync
 from apex.core.config import Settings
@@ -91,77 +92,14 @@ class ArbEngine:
             LOGGER.info("ArbEngine.scan(): DEMO_MODE returning %d seeded opportunities", len(opps))
             return opps
         now = time.time()
-        kalshi_markets = []
 
-        try:
-            # Kalshi circuit breaker check
-            if self._kalshi_errors >= self.CIRCUIT_THRESHOLD:
-                cooldown = 60 * (2 ** (self._kalshi_errors - self.CIRCUIT_THRESHOLD))
-                if now - self._kalshi_last_error > cooldown:
-                    LOGGER.info("Kalshi circuit breaker attempting auto-resume.")
-                    self._kalshi_errors = self.CIRCUIT_THRESHOLD - 1
-                else:
-                    raise BrokerCircuitOpenError("kalshi")
-            if self._kalshi_errors < self.CIRCUIT_THRESHOLD:
-                kalshi_client = KalshiEventClient(self.settings)
-                kalshi_markets = kalshi_client.get_macro_markets(
-                    min_volume=self.settings.kalshi_min_volume_24h,
-                    fast=True,
-                )
-                self._kalshi_errors = 0
-                LOGGER.info("Kalshi circuit breaker reset after successful fetch.")
-            else:
-                kalshi_markets = []
-        except BrokerCircuitOpenError:
-            LOGGER.critical("Kalshi circuit breaker open. Skipping Kalshi fetch.")
-            kalshi_markets = []
-        except httpx.HTTPStatusError as e:
-            # Increment only on 429 or 500 errors
-            if e.response.status_code in (429, 500):
-                self._kalshi_errors += 1
-                self._kalshi_last_error = now
-                LOGGER.error("Kalshi fetch failed with status %s", e.response.status_code)
-            else:
-                LOGGER.error("Kalshi fetch failed with unexpected status %s", e.response.status_code)
-        except httpx.RequestError as e:
-            LOGGER.error("Kalshi request error: %s", e)
-
-        poly_markets = []
-        # Poly Circuit Breaker Cool-off
-        if self._poly_errors >= self.CIRCUIT_THRESHOLD:
-            cooldown = 60 * (2 ** (self._poly_errors - self.CIRCUIT_THRESHOLD))
-            if now - self._poly_last_error > cooldown:
-                LOGGER.info("Polymarket circuit breaker attempting auto-resume.")
-                self._poly_errors = self.CIRCUIT_THRESHOLD - 1
-            else:
-                LOGGER.critical("Polymarket circuit breaker open. Skipping Polymarket fetch.")
-                return []
-
-        try:
-            if self._poly_errors < self.CIRCUIT_THRESHOLD:
-                from apex.integrations.polymarket_gamma_public import fetch_active_liquid_markets
-                poly_min_vol = min(100.0, float(self.settings.kalshi_min_volume_24h))
-                poly_markets = fetch_active_liquid_markets(
-                    limit=int(self.settings.arb_poly_fetch_limit),
-                    min_volume=poly_min_vol,
-                    enrich_for_arb=True,
-                )
-                self._poly_errors = 0
-                LOGGER.info("Polymarket circuit breaker reset after successful fetch.")
-            else:
-                poly_markets = []
-        except BrokerCircuitOpenError:
-            LOGGER.critical("Polymarket circuit breaker open. Skipping Polymarket fetch.")
-            poly_markets = []
-        except httpx.HTTPStatusError as e:
-            if e.response.status_code in (429, 500):
-                self._poly_errors += 1
-                self._poly_last_error = now
-                LOGGER.error("Polymarket fetch failed with status %s", e.response.status_code)
-            else:
-                LOGGER.error("Polymarket fetch failed with unexpected status %s", e.response.status_code)
-        except httpx.RequestError as e:
-            LOGGER.error("Polymarket request error: %s", e)
+        # Fetch Kalshi and Polymarket concurrently — these are independent,
+        # network-bound calls and dominate scan latency when run sequentially.
+        with ThreadPoolExecutor(max_workers=2, thread_name_prefix="arb-fetch") as pool:
+            f_kalshi = pool.submit(self._fetch_kalshi, now)
+            f_poly = pool.submit(self._fetch_poly, now)
+            kalshi_markets = f_kalshi.result()
+            poly_markets = f_poly.result()
 
         opportunities = []
         seen_pairs: set[tuple[str, str]] = set()
@@ -169,11 +107,16 @@ class ArbEngine:
             return opportunities
 
         from apex.integrations.chromadb_market_store import ChromaMarketStore
+        from apex.services.settlement_auditor import SettlementAuditor
         chroma_store = ChromaMarketStore(self.settings.chromadb_path)
         for poly in poly_markets:
             chroma_store.upsert_market(poly.get("id", ""), poly.get("question", ""), "polymarket")
         for k in kalshi_markets:
             chroma_store.upsert_market(k.ticker, k.title, "kalshi")
+
+        # Reuse a single auditor across all candidate pairs instead of
+        # constructing one per match (each construction reloads settings/state).
+        auditor = SettlementAuditor(settings=self.settings)
 
         for k in kalshi_markets:
             match = self._combined_match(k.title, poly_markets, chroma_store)
@@ -187,8 +130,6 @@ class ArbEngine:
             if net < self.settings.arb_min_net_edge:
                 continue
 
-            from apex.services.settlement_auditor import SettlementAuditor
-            auditor = SettlementAuditor(settings=self.settings)
             verdict = auditor.verify(
                 k.title,
                 poly.get("question", ""),
@@ -226,6 +167,77 @@ class ArbEngine:
         self._apply_intelligence_context(opportunities)
         LOGGER.info("ArbEngine.scan(): found %d opportunities", len(opportunities))
         return opportunities
+
+    def _fetch_kalshi(self, now: float) -> list:
+        """Fetch Kalshi macro markets with circuit-breaker handling."""
+        try:
+            if self._kalshi_errors >= self.CIRCUIT_THRESHOLD:
+                cooldown = 60 * (2 ** (self._kalshi_errors - self.CIRCUIT_THRESHOLD))
+                if now - self._kalshi_last_error > cooldown:
+                    LOGGER.info("Kalshi circuit breaker attempting auto-resume.")
+                    self._kalshi_errors = self.CIRCUIT_THRESHOLD - 1
+                else:
+                    raise BrokerCircuitOpenError("kalshi")
+            if self._kalshi_errors < self.CIRCUIT_THRESHOLD:
+                kalshi_client = KalshiEventClient(self.settings)
+                markets = kalshi_client.get_macro_markets(
+                    min_volume=self.settings.kalshi_min_volume_24h,
+                    fast=True,
+                )
+                self._kalshi_errors = 0
+                LOGGER.info("Kalshi circuit breaker reset after successful fetch.")
+                return markets
+            return []
+        except BrokerCircuitOpenError:
+            LOGGER.critical("Kalshi circuit breaker open. Skipping Kalshi fetch.")
+            return []
+        except httpx.HTTPStatusError as e:
+            if e.response.status_code in (429, 500):
+                self._kalshi_errors += 1
+                self._kalshi_last_error = now
+                LOGGER.error("Kalshi fetch failed with status %s", e.response.status_code)
+            else:
+                LOGGER.error("Kalshi fetch failed with unexpected status %s", e.response.status_code)
+            return []
+        except httpx.RequestError as e:
+            LOGGER.error("Kalshi request error: %s", e)
+            return []
+
+    def _fetch_poly(self, now: float) -> list:
+        """Fetch Polymarket liquid markets with circuit-breaker handling."""
+        if self._poly_errors >= self.CIRCUIT_THRESHOLD:
+            cooldown = 60 * (2 ** (self._poly_errors - self.CIRCUIT_THRESHOLD))
+            if now - self._poly_last_error > cooldown:
+                LOGGER.info("Polymarket circuit breaker attempting auto-resume.")
+                self._poly_errors = self.CIRCUIT_THRESHOLD - 1
+            else:
+                LOGGER.critical("Polymarket circuit breaker open. Skipping Polymarket fetch.")
+                return []
+        try:
+            from apex.integrations.polymarket_gamma_public import fetch_active_liquid_markets
+            poly_min_vol = min(100.0, float(self.settings.kalshi_min_volume_24h))
+            markets = fetch_active_liquid_markets(
+                limit=int(self.settings.arb_poly_fetch_limit),
+                min_volume=poly_min_vol,
+                enrich_for_arb=True,
+            )
+            self._poly_errors = 0
+            LOGGER.info("Polymarket circuit breaker reset after successful fetch.")
+            return markets
+        except BrokerCircuitOpenError:
+            LOGGER.critical("Polymarket circuit breaker open. Skipping Polymarket fetch.")
+            return []
+        except httpx.HTTPStatusError as e:
+            if e.response.status_code in (429, 500):
+                self._poly_errors += 1
+                self._poly_last_error = now
+                LOGGER.error("Polymarket fetch failed with status %s", e.response.status_code)
+            else:
+                LOGGER.error("Polymarket fetch failed with unexpected status %s", e.response.status_code)
+            return []
+        except httpx.RequestError as e:
+            LOGGER.error("Polymarket request error: %s", e)
+            return []
 
     def _apply_intelligence_context(self, opportunities: list[ArbOpportunity]) -> None:
         if not opportunities or self.intelligence is None:

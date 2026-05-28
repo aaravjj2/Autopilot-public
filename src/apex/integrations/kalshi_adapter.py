@@ -23,6 +23,22 @@ KALSHI_PROD_BASE = KALSHI_BASE
 # Last scan metrics for observability / API status
 _last_scan_metrics: dict[str, Any] = {}
 
+# Shared keep-alive HTTP client for public market/orderbook reads. Reusing a
+# single pooled client across pagination + orderbook fetches avoids the
+# per-request TCP/TLS handshake that dominated Kalshi scan latency.
+_SHARED_CLIENT: httpx.Client | None = None
+
+
+def _shared_client() -> httpx.Client:
+    global _SHARED_CLIENT
+    if _SHARED_CLIENT is None or _SHARED_CLIENT.is_closed:
+        _SHARED_CLIENT = httpx.Client(
+            timeout=15,
+            limits=httpx.Limits(max_keepalive_connections=16, max_connections=32),
+            headers={"Accept": "application/json"},
+        )
+    return _SHARED_CLIENT
+
 
 def resolve_kalshi_rest_base(settings: Settings | None = None) -> str:
     """Public REST base for market lists/orderbooks (demo API when demo trading is on)."""
@@ -117,9 +133,11 @@ def fetch_open_markets(
     max_pages: int | None = None,
     max_markets: int | None = None,
     base_url: str | None = None,
+    client: httpx.Client | None = None,
 ) -> list[dict]:
     """List open markets with cursor pagination (bounded)."""
     rest_base = (base_url or KALSHI_BASE).rstrip("/")
+    http = client or _shared_client()
     markets: list[dict] = []
     cursor: str | None = None
     pages = 0
@@ -129,7 +147,7 @@ def fetch_open_markets(
             params["cursor"] = cursor
         if category:
             params["category"] = category
-        resp = httpx.get(f"{rest_base}/markets", params=params, timeout=15)
+        resp = http.get(f"{rest_base}/markets", params=params, timeout=15)
         resp.raise_for_status()
         data = resp.json()
         batch = data.get("markets", [])
@@ -146,9 +164,12 @@ def fetch_open_markets(
     return markets
 
 
-def fetch_orderbook(ticker: str, *, base_url: str | None = None) -> dict:
+def fetch_orderbook(
+    ticker: str, *, base_url: str | None = None, client: httpx.Client | None = None
+) -> dict:
     rest_base = (base_url or KALSHI_BASE).rstrip("/")
-    resp = httpx.get(
+    http = client or _shared_client()
+    resp = http.get(
         f"{rest_base}/markets/{ticker}/orderbook",
         timeout=10,
     )
@@ -229,6 +250,7 @@ def _fetch_one_orderbook(
     min_volume: float,
     *,
     base_url: str | None = None,
+    client: httpx.Client | None = None,
 ) -> KalshiMarket | None:
     ticker = str(m.get("ticker", ""))
     if not ticker:
@@ -237,7 +259,7 @@ def _fetch_one_orderbook(
     if vol < min_volume:
         return None
     try:
-        ob = fetch_orderbook(ticker, base_url=base_url)
+        ob = fetch_orderbook(ticker, base_url=base_url, client=client)
         asks = reconstruct_asks(ob)
         return _market_to_kalshi(m, asks)
     except Exception as exc:
@@ -251,7 +273,11 @@ class KalshiEventClient:
 
     def __init__(self, settings: Settings):
         self.settings = settings
-        self._http = httpx.Client(timeout=15)
+        self._http = httpx.Client(
+            timeout=15,
+            limits=httpx.Limits(max_keepalive_connections=16, max_connections=32),
+            headers={"Accept": "application/json"},
+        )
         self._rest_base = resolve_kalshi_rest_base(settings)
 
     def get_macro_markets(
@@ -273,24 +299,35 @@ class KalshiEventClient:
         all_markets: list[dict] = []
         raw_pool: list[dict] = []
         categories = list(self.MACRO_CATEGORIES)
-        for cat in categories:
+
+        # Fetch the macro categories concurrently over the pooled client.
+        def _fetch_cat(cat: str) -> list[dict]:
             try:
-                raw = fetch_open_markets(
+                return fetch_open_markets(
                     category=cat,
                     limit=100,
                     max_pages=max_pages,
                     max_markets=max_per_cat,
                     base_url=rest_base,
+                    client=self._http,
                 )
-                for m in raw:
-                    ticker = str(m.get("ticker", ""))
-                    if is_combo_parlay_ticker(ticker):
-                        continue
-                    raw_pool.append(m)
-                    if market_volume_24h(m) >= min_volume:
-                        all_markets.append(m)
             except Exception as e:
                 LOGGER.warning("Kalshi fetch failed for category %s: %s", cat, e)
+                return []
+
+        with ThreadPoolExecutor(
+            max_workers=max(1, min(len(categories), 6))
+        ) as cat_pool:
+            raw_by_cat = list(cat_pool.map(_fetch_cat, categories))
+
+        for raw in raw_by_cat:
+            for m in raw:
+                ticker = str(m.get("ticker", ""))
+                if is_combo_parlay_ticker(ticker):
+                    continue
+                raw_pool.append(m)
+                if market_volume_24h(m) >= min_volume:
+                    all_markets.append(m)
 
         volume_relaxed = False
         if not all_markets and raw_pool:
@@ -315,7 +352,11 @@ class KalshiEventClient:
         with ThreadPoolExecutor(max_workers=max(1, concurrency)) as pool:
             futures = {
                 pool.submit(
-                    _fetch_one_orderbook, m, relaxed_min, base_url=rest_base
+                    _fetch_one_orderbook,
+                    m,
+                    relaxed_min,
+                    base_url=rest_base,
+                    client=self._http,
                 ): m
                 for m in candidates
             }

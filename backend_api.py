@@ -784,12 +784,32 @@ def get_opportunities():
 def get_events(limit: int = 100):
     return list(cache._events)[:limit]
 
+# Short TTL cache for the model-scored arb feed. The underlying rows only
+# change when a scan persists (minutes apart), so caching for a few seconds
+# removes redundant DB reads + ML scoring on bursty/polled requests.
+_ARB_OPPS_TTL_SEC = float(os.getenv("APEX_ARB_OPPS_TTL_SEC", "5"))
+_arb_opps_cache: dict[int, tuple[float, list]] = {}
+_arb_opps_lock = threading.Lock()
+
+
 @app.get("/api/arb/opportunities")
 def list_arb_opportunities(limit: int = 100):
+    import time as _time
+
     from apex.ml.arb_edge_model import apply_model_scores
 
+    now = _time.monotonic()
+    with _arb_opps_lock:
+        cached = _arb_opps_cache.get(limit)
+        if cached and (now - cached[0]) < _ARB_OPPS_TTL_SEC:
+            return cached[1]
+
     rows = store.list_arb_opportunities(limit=limit)
-    return apply_model_scores(rows)
+    scored = apply_model_scores(rows)
+
+    with _arb_opps_lock:
+        _arb_opps_cache[limit] = (now, scored)
+    return scored
 
 
 def _latest_intelligence_report(ticker: str) -> Path | None:

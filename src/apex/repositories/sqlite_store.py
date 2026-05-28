@@ -20,8 +20,15 @@ class SQLiteStore:
 
     @contextmanager
     def _conn(self) -> Iterator[sqlite3.Connection]:
-        conn = sqlite3.connect(self._db_path)
+        conn = sqlite3.connect(self._db_path, timeout=30.0)
         conn.row_factory = sqlite3.Row
+        # Per-connection fast pragmas. WAL is already set persistently on the DB
+        # file; NORMAL sync is durable under WAL and much faster than FULL, and
+        # busy_timeout prevents spurious "database is locked" errors when the
+        # backend's thread pools touch the store concurrently.
+        conn.execute("PRAGMA synchronous=NORMAL")
+        conn.execute("PRAGMA busy_timeout=30000")
+        conn.execute("PRAGMA temp_store=MEMORY")
         try:
             yield conn
             conn.commit()
