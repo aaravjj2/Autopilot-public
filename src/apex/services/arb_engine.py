@@ -82,7 +82,8 @@ class ArbEngine:
 
     def scan(self) -> list[ArbOpportunity]:
         """Fetch Kalshi + Polymarket markets, find matching pairs, compute arb."""
-        assert self.settings.alpaca_paper_trade, "M01_PAPER_REQUIRED: live trading not permitted"
+        if not self.settings.alpaca_paper_trade:
+            raise ValueError("M01_PAPER_REQUIRED: live trading not permitted")
         if self.settings.demo_mode:
             from apex.demo.seed_data import demo_opportunities_list
 
@@ -91,7 +92,7 @@ class ArbEngine:
             return opps
         now = time.time()
         kalshi_markets = []
-        
+
         try:
             # Kalshi circuit breaker check
             if self._kalshi_errors >= self.CIRCUIT_THRESHOLD:
@@ -135,7 +136,7 @@ class ArbEngine:
             else:
                 LOGGER.critical("Polymarket circuit breaker open. Skipping Polymarket fetch.")
                 return []
-        
+
         try:
             if self._poly_errors < self.CIRCUIT_THRESHOLD:
                 from apex.integrations.polymarket_gamma_public import fetch_active_liquid_markets
@@ -166,7 +167,7 @@ class ArbEngine:
         seen_pairs: set[tuple[str, str]] = set()
         if not kalshi_markets or not poly_markets:
             return opportunities
-            
+
         from apex.integrations.chromadb_market_store import ChromaMarketStore
         chroma_store = ChromaMarketStore(self.settings.chromadb_path)
         for poly in poly_markets:

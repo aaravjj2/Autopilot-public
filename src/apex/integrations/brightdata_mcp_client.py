@@ -108,8 +108,10 @@ class BrightDataMcpClient:
         return bool(self._tools_cache and name in self._tools_cache)
 
     async def _read_loop(self) -> None:
-        assert self._proc is not None
-        assert self._proc.stdout is not None
+        if self._proc is None:
+            raise RuntimeError("_read_loop called before MCP process started")
+        if self._proc.stdout is None:
+            raise RuntimeError("MCP process has no stdout pipe")
         while True:
             line = await self._proc.stdout.readline()
             if not line:
@@ -132,8 +134,10 @@ class BrightDataMcpClient:
 
     async def _rpc(self, method: str, params: dict[str, Any]) -> dict[str, Any]:
         await self._ensure_started()
-        assert self._proc is not None
-        assert self._proc.stdin is not None
+        if self._proc is None:
+            raise RuntimeError("_rpc called before MCP process started")
+        if self._proc.stdin is None:
+            raise RuntimeError("MCP process has no stdin pipe")
         req_id = self._next_id
         self._next_id += 1
         loop = asyncio.get_running_loop()
@@ -152,8 +156,10 @@ class BrightDataMcpClient:
 
     async def _notify(self, method: str, params: dict[str, Any]) -> None:
         await self._ensure_started()
-        assert self._proc is not None
-        assert self._proc.stdin is not None
+        if self._proc is None:
+            raise RuntimeError("_notify called before MCP process started")
+        if self._proc.stdin is None:
+            raise RuntimeError("MCP process has no stdin pipe")
         import json
 
         payload = {"jsonrpc": "2.0", "method": method, "params": params}
