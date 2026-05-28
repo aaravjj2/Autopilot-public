@@ -5,7 +5,7 @@ from datetime import datetime
 from zoneinfo import ZoneInfo
 
 from apscheduler.schedulers.background import BackgroundScheduler
-from sqlmodel import Session, select
+from sqlmodel import select
 
 from data.congress import refresh_political_portfolio
 from data.performance import snapshot_all_portfolios, snapshot_portfolio_performance

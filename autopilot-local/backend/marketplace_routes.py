@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import asyncio
 import json
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Any
 
 from fastapi import APIRouter, Depends, HTTPException
@@ -56,7 +56,6 @@ def get_open_positions() -> list[dict[str, Any]]:
     from apex.core.config import get_settings
     from apex.integrations.hub import get_integration_hub
 
-    s = get_settings()
     hub = get_integration_hub()
     if not hub or not hub.has_alpaca():
         raise HTTPException(status_code=503, detail="Alpaca not configured")
@@ -250,7 +249,7 @@ def dashboard(session: Session = Depends(get_session)) -> dict[str, Any]:
 async def _pnl_stream():
     alpaca = AlpacaClient()
     while True:
-        payload: dict[str, Any] = {"positions": [], "timestamp": datetime.utcnow().isoformat()}
+        payload: dict[str, Any] = {"positions": [], "timestamp": datetime.now(timezone.utc).isoformat()}
         if alpaca.configured:
             positions = alpaca.get_positions()
             tickers = [str(p["symbol"]).upper() for p in positions]

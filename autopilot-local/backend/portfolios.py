@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Any
 
 from sqlmodel import Session, select
@@ -152,7 +152,7 @@ def update_holdings(
         )
     portfolio = session.get(Portfolio, portfolio_id)
     if portfolio:
-        portfolio.last_refreshed_at = datetime.utcnow()
-        portfolio.updated_at = datetime.utcnow()
+        portfolio.last_refreshed_at = datetime.now(timezone.utc)
+        portfolio.updated_at = datetime.now(timezone.utc)
     session.commit()
     return changed

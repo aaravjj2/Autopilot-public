@@ -4,7 +4,6 @@ import asyncio
 import json
 import logging
 from contextlib import asynccontextmanager
-from datetime import datetime
 from typing import Any
 
 from fastapi import FastAPI, HTTPException, WebSocket, WebSocketDisconnect
@@ -201,7 +200,6 @@ async def thesis_chat(arb_id: str, payload: dict):
     from apex.core.config import get_settings
     from apex.repositories.sqlite_store import SQLiteStore
     from apex.services.thesis_client import ThesisClient
-    import json
 
     settings = get_settings()
     store = SQLiteStore(settings.sqlite_path)

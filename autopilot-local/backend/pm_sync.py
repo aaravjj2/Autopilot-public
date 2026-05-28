@@ -3,7 +3,7 @@ from __future__ import annotations
 import json
 import logging
 import sqlite3
-from datetime import datetime
+from datetime import datetime, timezone
 from pathlib import Path
 
 from sqlmodel import Session, select
@@ -93,7 +93,7 @@ def _sync_positions(apex_conn: sqlite3.Connection) -> int:
                 quantity=stake / entry_price if entry_price > 0 else stake,
                 current_value=stake,
                 status="open",
-                opened_at=datetime.fromisoformat(row["timestamp"]) if row["timestamp"] else datetime.utcnow(),
+                opened_at=datetime.fromisoformat(row["timestamp"]) if row["timestamp"] else datetime.now(timezone.utc),
             )
             session.add(position)
             count += 1
@@ -146,7 +146,7 @@ def _sync_trades(apex_conn: sqlite3.Connection) -> int:
                 entry_price=entry_price,
                 order_id=order_id,
                 status=status,
-                executed_at=datetime.fromisoformat(row["timestamp"]) if row["timestamp"] else datetime.utcnow(),
+                executed_at=datetime.fromisoformat(row["timestamp"]) if row["timestamp"] else datetime.now(timezone.utc),
             )
             session.add(trade)
             existing_order_ids.add(order_id)

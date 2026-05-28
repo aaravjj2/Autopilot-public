@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import math
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Any
 
 from sqlmodel import Session, select
@@ -9,7 +9,6 @@ from sqlmodel import Session, select
 from alpaca_client import AlpacaClient
 from config import get_settings
 from db import Holding, Portfolio, Trade, UserPosition
-from portfolios import get_portfolio_spec
 
 
 def _account_value(alpaca: AlpacaClient) -> float:
@@ -69,7 +68,7 @@ def follow_portfolio(session: Session, portfolio_id: str) -> dict[str, Any]:
                     price=fill_px,
                     alpaca_order_id=order_id,
                     status=str(filled.get("status") or "filled"),
-                    executed_at=datetime.utcnow(),
+                    executed_at=datetime.now(timezone.utc),
                 )
             )
             session.add(
@@ -83,7 +82,7 @@ def follow_portfolio(session: Session, portfolio_id: str) -> dict[str, Any]:
             )
             orders.append({"ticker": h.ticker, "qty": qty, "side": "buy"})
     portfolio.is_following = True
-    portfolio.updated_at = datetime.utcnow()
+    portfolio.updated_at = datetime.now(timezone.utc)
     session.commit()
     return {"ok": True, "orders": orders}
 
@@ -110,13 +109,13 @@ def unfollow_portfolio(session: Session, portfolio_id: str) -> dict[str, Any]:
                     qty=pos.qty,
                     price=pos.current_price,
                     status="filled",
-                    executed_at=datetime.utcnow(),
+                    executed_at=datetime.now(timezone.utc),
                 )
             )
             session.delete(pos)
             closed.append(pos.ticker)
     portfolio.is_following = False
-    portfolio.updated_at = datetime.utcnow()
+    portfolio.updated_at = datetime.now(timezone.utc)
     session.commit()
     return {"ok": True, "closed": closed}
 

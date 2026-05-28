@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections import defaultdict
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from typing import Any
 
 import httpx
@@ -46,7 +46,7 @@ def _holdings_from_trades(
     trades: list[dict[str, Any]], top_n: int = 8
 ) -> list[tuple[str, float]]:
     scores: dict[str, float] = defaultdict(float)
-    cutoff = datetime.utcnow() - timedelta(days=90)
+    cutoff = datetime.now(timezone.utc) - timedelta(days=90)
     for row in trades:
         try:
             raw_dt = row.get("TransactionDate") or row.get("Date")

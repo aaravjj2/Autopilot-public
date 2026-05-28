@@ -1,9 +1,9 @@
 from __future__ import annotations
 
-from datetime import date, datetime
+from datetime import date, datetime, timezone
 from typing import Generator
 
-from sqlmodel import Field, Session, SQLModel, create_engine, select
+from sqlmodel import Field, Session, SQLModel, create_engine
 
 from config import get_settings
 
@@ -16,8 +16,8 @@ class Portfolio(SQLModel, table=True):
     pilot_name: str = ""
     is_following: bool = Field(default=False)
     last_refreshed_at: datetime | None = None
-    created_at: datetime = Field(default_factory=datetime.utcnow)
-    updated_at: datetime = Field(default_factory=datetime.utcnow)
+    created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+    updated_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
 
 
 class Holding(SQLModel, table=True):
@@ -26,7 +26,7 @@ class Holding(SQLModel, table=True):
     ticker: str
     weight: float = 0.0
     shares: float = 0.0
-    last_updated: datetime = Field(default_factory=datetime.utcnow)
+    last_updated: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
 
 
 class Trade(SQLModel, table=True):
@@ -72,7 +72,7 @@ class PolymarketPosition(SQLModel, table=True):
     current_value: float = 0.0
     unrealized_pl: float = 0.0
     status: str = "open"  # open | resolved_yes | resolved_no | closed
-    opened_at: datetime = Field(default_factory=datetime.utcnow)
+    opened_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
     resolved_at: datetime | None = None
 
     class Config:
@@ -90,7 +90,7 @@ class PolymarketTrade(SQLModel, table=True):
     exit_price: float | None = None
     order_id: str = ""
     status: str = "filled"  # filled | cancelled | failed
-    executed_at: datetime = Field(default_factory=datetime.utcnow)
+    executed_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
 
     class Config:
         table_name = "polymarket_trade"
@@ -116,7 +116,7 @@ class RefreshLog(SQLModel, table=True):
     job_name: str
     status: str
     message: str = ""
-    ran_at: datetime = Field(default_factory=datetime.utcnow)
+    ran_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
 
 
 _engine = None
