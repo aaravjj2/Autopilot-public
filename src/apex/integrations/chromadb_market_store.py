@@ -6,8 +6,17 @@ from apex.core.logging import get_logger
 
 LOGGER = get_logger(__name__)
 
+# Remember the last title upserted for each ``ids`` key, keyed by the on-disk
+# collection path. Re-upserting an unchanged title recomputes a sentence
+# embedding for no benefit, so we skip it. Persisting at module scope means the
+# skip survives across ArbEngine.scan() calls within a process.
+_UPSERT_SEEN: dict[str, dict[str, str]] = {}
+
+
 class ChromaMarketStore:
     def __init__(self, chromadb_path: Path):
+        self._path_key = str(chromadb_path)
+        self._seen = _UPSERT_SEEN.setdefault(self._path_key, {})
         try:
             import chromadb
             from chromadb.utils import embedding_functions
@@ -42,14 +51,23 @@ class ChromaMarketStore:
     def upsert_market(self, market_id: str, title: str, platform: str) -> None:
         if self._collection is None:
             return
-        
+        if not title:
+            return
+
+        doc_id = f"{platform}_{market_id}"
+        # Skip the embedding round-trip when the title is unchanged since the
+        # last time we upserted this id.
+        if self._seen.get(doc_id) == title:
+            return
+
         import chromadb.errors
         try:
             self._collection.upsert(
                 documents=[title],
                 metadatas=[{"platform": platform, "title": title}],
-                ids=[f"{platform}_{market_id}"]
+                ids=[doc_id]
             )
+            self._seen[doc_id] = title
         except chromadb.errors.ChromaError as e:
             LOGGER.warning("ChromaDB upsert failed for %s: %s", market_id, e)
         except ValueError as e:

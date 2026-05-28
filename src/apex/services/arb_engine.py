@@ -46,12 +46,16 @@ def _topics_compatible(kalshi_title: str, poly_question: str) -> bool:
     return bool(kt & pt)
 
 
+def _tokens(text: str) -> set[str]:
+    """Significant word + number tokens used for overlap scoring and the
+    candidate-prefilter inverted index."""
+    words = set(re.findall(r"[a-z]{3,}", text.lower()))
+    nums = set(re.findall(r"\d{2,}", text))
+    return words | nums
+
+
 def _token_overlap_score(a: str, b: str) -> float:
-    words_a = set(re.findall(r"[a-z]{3,}", a.lower()))
-    words_b = set(re.findall(r"[a-z]{3,}", b.lower()))
-    nums_a = set(re.findall(r"\d{2,}", a))
-    nums_b = set(re.findall(r"\d{2,}", b))
-    ta, tb = words_a | nums_a, words_b | nums_b
+    ta, tb = _tokens(a), _tokens(b)
     if not ta or not tb:
         return 0.0
     inter = len(ta & tb)
@@ -80,6 +84,11 @@ class ArbEngine:
     _kalshi_last_error: float = 0.0
     _poly_last_error: float = 0.0
     CIRCUIT_THRESHOLD: int = 3
+    # Latency observability — populated by scan(), read by scan_and_persist.
+    _last_fetch_ms: float = 0.0
+    _last_match_ms: float = 0.0
+    _last_kalshi_count: int = 0
+    _last_poly_count: int = 0
 
     def scan(self) -> list[ArbOpportunity]:
         """Fetch Kalshi + Polymarket markets, find matching pairs, compute arb."""
@@ -95,16 +104,23 @@ class ArbEngine:
 
         # Fetch Kalshi and Polymarket concurrently — these are independent,
         # network-bound calls and dominate scan latency when run sequentially.
+        _t_fetch = time.perf_counter()
         with ThreadPoolExecutor(max_workers=2, thread_name_prefix="arb-fetch") as pool:
             f_kalshi = pool.submit(self._fetch_kalshi, now)
             f_poly = pool.submit(self._fetch_poly, now)
             kalshi_markets = f_kalshi.result()
             poly_markets = f_poly.result()
+        self._last_fetch_ms = (time.perf_counter() - _t_fetch) * 1000.0
+        self._last_match_ms = 0.0
+        self._last_kalshi_count = len(kalshi_markets or [])
+        self._last_poly_count = len(poly_markets or [])
 
         opportunities = []
         seen_pairs: set[tuple[str, str]] = set()
         if not kalshi_markets or not poly_markets:
             return opportunities
+
+        _t_match = time.perf_counter()
 
         from apex.integrations.chromadb_market_store import ChromaMarketStore
         from apex.services.settlement_auditor import SettlementAuditor
@@ -114,12 +130,21 @@ class ArbEngine:
         for k in kalshi_markets:
             chroma_store.upsert_market(k.ticker, k.title, "kalshi")
 
+        # Build a token -> poly-index inverted index once so each Kalshi title
+        # only scores Polymarket candidates that share at least one token,
+        # instead of the full O(K*P) cross product.
+        poly_index: dict[str, list[int]] = {}
+        for idx, p in enumerate(poly_markets):
+            p_q = p.get("question", "") or p.get("title", "")
+            for tok in _tokens(p_q):
+                poly_index.setdefault(tok, []).append(idx)
+
         # Reuse a single auditor across all candidate pairs instead of
         # constructing one per match (each construction reloads settings/state).
         auditor = SettlementAuditor(settings=self.settings)
 
         for k in kalshi_markets:
-            match = self._combined_match(k.title, poly_markets, chroma_store)
+            match = self._combined_match(k.title, poly_markets, chroma_store, poly_index)
             if match is None:
                 continue
 
@@ -165,7 +190,13 @@ class ArbEngine:
             )
 
         self._apply_intelligence_context(opportunities)
-        LOGGER.info("ArbEngine.scan(): found %d opportunities", len(opportunities))
+        self._last_match_ms = (time.perf_counter() - _t_match) * 1000.0
+        LOGGER.info(
+            "ArbEngine.scan(): found %d opportunities (fetch=%.0fms match=%.0fms)",
+            len(opportunities),
+            self._last_fetch_ms,
+            self._last_match_ms,
+        )
         return opportunities
 
     def _fetch_kalshi(self, now: float) -> list:
@@ -288,16 +319,41 @@ class ArbEngine:
             return 24.0
         return max(0.0, (opp.resolution_ts.timestamp() - time.time()) / 3600.0)
 
-    def _combined_match(self, kalshi_title: str, poly_markets: list[dict], chroma_store) -> dict | None:
+    def _combined_match(
+        self,
+        kalshi_title: str,
+        poly_markets: list[dict],
+        chroma_store,
+        poly_index: dict[str, list[int]] | None = None,
+    ) -> dict | None:
         """Combine fuzzy, token, and semantic match to find best pair."""
         semantic_matches = chroma_store.find_semantic_match(kalshi_title, "kalshi", top_k=5)
         semantic_map = dict(semantic_matches)
         min_score = float(self.settings.arb_match_min_combined_score)
 
+        # Restrict scoring to a candidate set: poly markets sharing a token with
+        # the Kalshi title (via the inverted index) plus any semantic hits. This
+        # collapses the per-title work from O(P) to O(candidates) on large books.
+        if poly_index is not None:
+            cand_idx: set[int] = set()
+            for tok in _tokens(kalshi_title):
+                hits = poly_index.get(tok)
+                if hits:
+                    cand_idx.update(hits)
+            candidates: list[dict] = [poly_markets[i] for i in cand_idx]
+            if semantic_map:
+                seen_ids = {c.get("id", "") for c in candidates}
+                for p in poly_markets:
+                    pid = p.get("id", "")
+                    if pid in semantic_map and pid not in seen_ids:
+                        candidates.append(p)
+        else:
+            candidates = poly_markets
+
         best_match = None
         best_score = 0.0
 
-        for p in poly_markets:
+        for p in candidates:
             p_q = p.get("question", "") or p.get("title", "")
             if not p_q:
                 continue

@@ -1126,6 +1126,15 @@ def get_l2_orderbook(venue: str, ticker: str):
     return book
 
 
+@app.get("/api/arb/metrics")
+def arb_scan_metrics():
+    """Latency observability for the arb scan hot path (fetch/match/total ms,
+    coalesce hit-rate, rolling averages)."""
+    from apex.observability import scan_metrics
+
+    return scan_metrics.snapshot()
+
+
 @app.post("/api/arb/scan")
 async def trigger_arb_scan():
     """Manual arb scan (same as scheduler loop)."""

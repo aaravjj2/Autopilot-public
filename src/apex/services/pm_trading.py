@@ -317,16 +317,30 @@ async def _paper_trade_opportunities(
     opps: list[ArbOpportunity],
     settings: Settings,
 ) -> tuple[list[dict[str, Any]], list[str]]:
+    from apex.services.arb_ranking import passes_quality_gate, rank_for_execution
+
     trades: list[dict[str, Any]] = []
     errors: list[str] = []
-    ranked = sorted(opps, key=lambda o: -(float(getattr(o, "net_edge", 0) or 0)))
+    # Rank by composite execution quality (edge + settlement confidence +
+    # liquidity + executable VWAP edge − flag penalty) rather than raw edge, so
+    # the limited per-cycle trade budget goes to the best opportunities first.
+    ranked = rank_for_execution(opps)
     cap = int(settings.kalshi_arb_max_auto_trades_per_cycle)
-    for opp in ranked[:cap]:
+    considered = 0
+    for opp in ranked:
+        if considered >= cap:
+            break
         if settings.kalshi_demo_trading_enabled and _is_seeded_demo_opportunity(opp):
             continue
         edge = float(getattr(opp, "net_edge", 0) or 0)
         if edge < settings.arb_min_net_edge:
             continue
+        gate_ok, gate_reason = passes_quality_gate(opp, settings)
+        if not gate_ok:
+            errors.append(f"{opp.id}:gate:{gate_reason}")
+            continue
+        # Only opportunities that clear the quality gate count against the cap.
+        considered += 1
         risk = engine.execution.risk_engine.run_arb_paper(opp)
         if not risk.all_passed:
             errors.append(f"{opp.id}:{risk.rejection_reason}")

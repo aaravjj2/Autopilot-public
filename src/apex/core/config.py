@@ -277,6 +277,16 @@ class Settings(BaseSettings):
         default=0.58, alias="ARB_MATCH_MIN_COMBINED_SCORE"
     )
     arb_min_net_edge: float = Field(default=0.02, alias="ARB_MIN_NET_EDGE")
+    # Pre-trade execution quality gate (applied before sizing/risk checks).
+    arb_exec_min_settlement_score: float = Field(
+        default=0.55, ge=0.0, le=1.0, alias="ARB_EXEC_MIN_SETTLEMENT_SCORE"
+    )
+    arb_exec_min_leg_volume_usd: float = Field(
+        default=2000.0, ge=0.0, alias="ARB_EXEC_MIN_LEG_VOLUME_USD"
+    )
+    arb_exec_max_settlement_flags: int = Field(
+        default=2, ge=0, le=20, alias="ARB_EXEC_MAX_SETTLEMENT_FLAGS"
+    )
     arb_paper_relax_orderbook: bool = Field(
         default=True, alias="ARB_PAPER_RELAX_ORDERBOOK"
     )

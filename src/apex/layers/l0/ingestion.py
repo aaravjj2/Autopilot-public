@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import time
 from collections.abc import Callable
+from concurrent.futures import ThreadPoolExecutor
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
 from statistics import mean
@@ -36,6 +37,7 @@ class DataIngestionService:
         max_fetch_attempts: int = 2,
         fetch_backoff_sec: float = 1.5,
         inter_symbol_delay_ms: int = 0,
+        fetch_workers: int = 8,
     ):
         self.market_data = market_data
         self.options_data = options_data
@@ -45,7 +47,25 @@ class DataIngestionService:
         self._max_fetch_attempts = max(1, min(int(max_fetch_attempts), 20))
         self._fetch_backoff_sec = max(0.0, float(fetch_backoff_sec))
         self._inter_symbol_delay_ms = max(0, min(int(inter_symbol_delay_ms), 30_000))
+        self._fetch_workers = max(1, min(int(fetch_workers), 32))
         self.cache = IngestionCache()
+
+    def _map_symbols(self, symbols: list[str], worker: Callable[[str], None]) -> None:
+        """Run ``worker`` for each symbol, in parallel unless an inter-symbol
+        delay is configured (in which case the delay implies rate-limiting and
+        we stay sequential)."""
+        delay = self._inter_symbol_delay_ms / 1000.0
+        if delay > 0 or self._fetch_workers <= 1 or len(symbols) <= 1:
+            for i, symbol in enumerate(symbols):
+                if i > 0 and delay > 0:
+                    time.sleep(delay)
+                worker(symbol)
+            return
+        with ThreadPoolExecutor(
+            max_workers=min(self._fetch_workers, len(symbols)),
+            thread_name_prefix="apex-ingest",
+        ) as pool:
+            list(pool.map(worker, symbols))
 
     def _with_network_retries(self, label: str, fn: Callable[[], Any]) -> Any:
         return call_with_retries(
@@ -56,10 +76,7 @@ class DataIngestionService:
         )
 
     def refresh_market_data(self, symbols: list[str]) -> None:
-        delay = self._inter_symbol_delay_ms / 1000.0
-        for i, symbol in enumerate(symbols):
-            if i > 0 and delay > 0:
-                time.sleep(delay)
+        def worker(symbol: str) -> None:
             try:
                 bars = self._with_network_retries(
                     f"market.bars:{symbol}", lambda: self.market_data.get_daily_bars(symbol)
@@ -84,13 +101,12 @@ class DataIngestionService:
                 }
             except Exception as exc:  # noqa: BLE001
                 LOGGER.warning("Market data refresh failed for %s: %s", symbol, exc)
+
+        self._map_symbols(symbols, worker)
         self.cache.refreshed_at["market"] = datetime.now(tz=timezone.utc)
 
     def refresh_options_data(self, symbols: list[str]) -> None:
-        delay = self._inter_symbol_delay_ms / 1000.0
-        for i, symbol in enumerate(symbols):
-            if i > 0 and delay > 0:
-                time.sleep(delay)
+        def worker(symbol: str) -> None:
             try:
                 chain = self._with_network_retries(
                     f"options.chain:{symbol}", lambda: self.options_data.get_option_chain(symbol)
@@ -101,6 +117,8 @@ class DataIngestionService:
                 self.cache.options[symbol] = {"chain": chain, "iv_rank": iv_rank}
             except Exception as exc:  # noqa: BLE001
                 LOGGER.warning("Options data refresh failed for %s: %s", symbol, exc)
+
+        self._map_symbols(symbols, worker)
         self.cache.refreshed_at["options"] = datetime.now(tz=timezone.utc)
 
     def refresh_polymarket_macro(self) -> None:
@@ -155,8 +173,11 @@ class DataIngestionService:
         priority = [s.upper() for s in (priority_symbols or []) if s]
         queue = priority + [s for s in candidates if s.upper() not in set(priority)]
 
-        for symbol in queue:
-            pin = symbol.upper() in set(priority)
+        # Prefetch the (bars, iv_rank, sector) triplet for every candidate in
+        # parallel, then run the order-dependent filtering sequentially below.
+        prefetched: dict[str, tuple[Any, Any, Any] | None] = {}
+
+        def prefetch(symbol: str) -> None:
             try:
                 bars = self._with_network_retries(
                     f"watchlist.bars:{symbol}",
@@ -170,9 +191,19 @@ class DataIngestionService:
                     f"watchlist.sector:{symbol}",
                     lambda s=symbol: self.market_data.get_sector(s),
                 )
+                prefetched[symbol] = (bars, iv_rank, sector)
             except Exception as exc:  # noqa: BLE001
                 LOGGER.warning("Watchlist skipped %s (fetch failed): %s", symbol, exc)
+                prefetched[symbol] = None
+
+        self._map_symbols(queue, prefetch)
+
+        for symbol in queue:
+            pin = symbol.upper() in set(priority)
+            fetched = prefetched.get(symbol)
+            if fetched is None:
                 continue
+            bars, iv_rank, sector = fetched
             if not bars:
                 continue
             avg_volume = mean([bar["volume"] for bar in bars[-20:]])

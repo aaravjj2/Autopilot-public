@@ -86,6 +86,8 @@ def scan_and_persist(
     store = store or SQLiteStore(settings.sqlite_path)
     key = str(settings.sqlite_path)
 
+    from apex.observability import scan_metrics
+
     with _SCAN_LOCK:
         state = _SCAN_STATE.get(key)
         if not force and _SCAN_COALESCE_SEC > 0 and state:
@@ -95,13 +97,24 @@ def scan_and_persist(
                 and age < _SCAN_COALESCE_SEC
                 and int(state["limit"]) >= limit
             ):
+                scan_metrics.record_coalesce_hit()
                 LOGGER.info(
                     "scan_and_persist: reusing scan from %.1fs ago (coalesced)", age
                 )
                 return list(state["result"])[:limit]
 
-        opps = _run_scan_and_persist(
+        _t0 = time.perf_counter()
+        opps, engine = _run_scan_and_persist(
             store, settings=settings, limit=limit, ingest_l2=ingest_l2
+        )
+        total_ms = (time.perf_counter() - _t0) * 1000.0
+        scan_metrics.record_scan(
+            total_ms=total_ms,
+            fetch_ms=getattr(engine, "_last_fetch_ms", 0.0),
+            match_ms=getattr(engine, "_last_match_ms", 0.0),
+            kalshi_count=getattr(engine, "_last_kalshi_count", 0),
+            poly_count=getattr(engine, "_last_poly_count", 0),
+            opportunities=len(opps),
         )
         _SCAN_STATE[key] = {
             "ts": time.monotonic(),
@@ -117,7 +130,7 @@ def _run_scan_and_persist(
     settings: Settings,
     limit: int,
     ingest_l2: bool,
-) -> list[Any]:
+) -> tuple[list[Any], ArbEngine]:
     engine = ArbEngine(settings=settings, store=store)
     opps = engine.scan()[:limit]
 
@@ -151,4 +164,4 @@ def _run_scan_and_persist(
                     pass
     invalidate(f"pm_brain:{settings.sqlite_path}")
     LOGGER.info("scan_and_persist: saved %d opportunities", len(opps))
-    return opps
+    return opps, engine

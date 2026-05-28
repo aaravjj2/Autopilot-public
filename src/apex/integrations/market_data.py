@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import threading
 from datetime import date
 from typing import Any
 
@@ -7,17 +8,33 @@ import numpy as np
 import requests
 import yfinance as yf
 
+# Reuse Ticker objects per symbol. yfinance caches ``.info`` / history results
+# on the instance, so reusing one Ticker collapses the repeated fundamentals /
+# sector / earnings lookups for a symbol into shared network round-trips.
+_TICKER_CACHE: dict[str, Any] = {}
+_TICKER_LOCK = threading.Lock()
+
+
+def _ticker(symbol: str):
+    key = symbol.upper()
+    with _TICKER_LOCK:
+        tk = _TICKER_CACHE.get(key)
+        if tk is None:
+            tk = yf.Ticker(key)
+            _TICKER_CACHE[key] = tk
+        return tk
+
 
 class YFinanceMarketDataClient:
     def get_intraday_price(self, symbol: str) -> float:
-        ticker = yf.Ticker(symbol)
+        ticker = _ticker(symbol)
         hist = ticker.history(period="1d", interval="1m")
         if hist.empty:
             raise ValueError(f"No intraday data for {symbol}")
         return float(hist["Close"].iloc[-1])
 
     def get_daily_bars(self, symbol: str, lookback_days: int = 252) -> list[dict[str, Any]]:
-        ticker = yf.Ticker(symbol)
+        ticker = _ticker(symbol)
         hist = ticker.history(period=f"{lookback_days}d", interval="1d")
         if hist.empty:
             return []
@@ -35,7 +52,7 @@ class YFinanceMarketDataClient:
 
     def get_fundamentals(self, symbol: str) -> dict[str, Any]:
         try:
-            info = yf.Ticker(symbol).info or {}
+            info = _ticker(symbol).info or {}
         except Exception:
             info = {}
         return {
@@ -48,12 +65,12 @@ class YFinanceMarketDataClient:
 
     def get_sector(self, symbol: str) -> str:
         try:
-            return str((yf.Ticker(symbol).info or {}).get("sector", "UNKNOWN"))
+            return str((_ticker(symbol).info or {}).get("sector", "UNKNOWN"))
         except Exception:
             return "UNKNOWN"
 
     def get_earnings_date(self, symbol: str) -> date | None:
-        calendar = yf.Ticker(symbol).calendar
+        calendar = _ticker(symbol).calendar
         if calendar is None or len(calendar) == 0:
             return None
         try:
