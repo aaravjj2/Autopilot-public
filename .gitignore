@@ -146,6 +146,12 @@ autopilot-local/.venv/
 # --- Jupyter ---
 .ipynb_checkpoints/
 
+# --- Submission demo artifacts (regenerate via scripts/build_submission_artifacts.sh) ---
+artifacts/submission/video/
+artifacts/submission/*.webm
+artifacts/submission/*.mp4
+APEX_Autopilot_Submission_Artifacts.zip
+
 # --- Misc ---
 .cache/
 *.bak

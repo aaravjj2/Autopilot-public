@@ -86,7 +86,7 @@ curl -s http://127.0.0.1:8000/api/arb/opportunities | python3 -c "import sys,jso
 curl -s http://127.0.0.1:8000/proposals | python3 -c "import sys,json; d=json.load(sys.stdin); print('proposals', len(d) if isinstance(d,list) else 'check shape')"
 ```
 
-**Startup:** `bash /home/aarav/Aarav/Autopilot/start_all.sh` (uses Python with `uvicorn` installed).
+**Startup:** `bash start_all.sh` (auto-frees port 8000 if a foreign process is bound; uses Python with `uvicorn`).
 
 ### 2.1 What APEX Autopilot is (one paragraph)
 
@@ -612,7 +612,7 @@ Example `M05_SETTLEMENT_BLOCKED` or `M07_SLIPPAGE_EXCEEDED` string — shows tra
 
 ## 8. Live Demo Script (5–7 minutes)
 
-**Prereq:** `bash start_all.sh`; confirm `curl http://127.0.0.1:8000/health` returns APEX (not another service on :8000).
+**Prereq:** `bash start_all.sh`; confirm `curl http://127.0.0.1:8000/health` returns APEX JSON (`proposals`, `timestamp` keys).
 
 | Step | Action | Say this |
 |------|--------|----------|

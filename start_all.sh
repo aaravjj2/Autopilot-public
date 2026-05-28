@@ -45,6 +45,11 @@ pkill -f "scheduler.py" 2>/dev/null || true
 pkill -f "run_discord_bot" 2>/dev/null || true
 sleep 2
 
+# Free :8000 if another local app (e.g. unrelated uvicorn) is bound
+if [[ -x "$APEX_DIR/scripts/ensure_apex_port_8000.sh" ]]; then
+    bash "$APEX_DIR/scripts/ensure_apex_port_8000.sh" || true
+fi
+
 # Load environment (keys.env + .env via Python bootstrap)
 log "Loading environment..."
 cd "$APEX_DIR"
@@ -59,12 +64,22 @@ BACKEND_PID=$!
 echo $BACKEND_PID > "$LOG_DIR/backend.pid"
 log "  Backend PID: $BACKEND_PID"
 
-# Wait for APEX backend to be ready
+# Wait for APEX backend to be ready (verify JSON is APEX, not a foreign :8000 service)
 log "  Waiting for APEX backend..."
-for i in {1..30}; do
-    if curl -s http://localhost:8000/health > /dev/null 2>&1; then
+apex_health_ok() {
+    local body
+    body="$(curl -sf --max-time 3 http://127.0.0.1:8000/health 2>/dev/null || true)"
+    [[ -n "$body" ]] || return 1
+    echo "$body" | grep -q '"proposals"' && echo "$body" | grep -q '"timestamp"'
+}
+for i in {1..45}; do
+    if apex_health_ok; then
         log "  APEX backend ready!"
         break
+    fi
+    if [[ $i -eq 45 ]]; then
+        error "Port 8000 is not serving APEX /health. Run: bash scripts/ensure_apex_port_8000.sh && check /tmp/apex-logs/backend.log"
+        exit 1
     fi
     sleep 1
 done

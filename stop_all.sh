@@ -44,4 +44,9 @@ pkill -f "next dev" 2>/dev/null || true
 pkill -f "scheduler.py" 2>/dev/null || true
 pkill -f "run_discord_bot" 2>/dev/null || true
 
+# Release :8000 if a stale non-APEX listener remains
+if [[ -x "$APEX_DIR/scripts/ensure_apex_port_8000.sh" ]]; then
+    bash "$APEX_DIR/scripts/ensure_apex_port_8000.sh" 2>/dev/null || true
+fi
+
 echo "All APEX services stopped."

@@ -20,8 +20,8 @@ Prediction-market arbitrage is split across Kalshi and Polymarket. Retail and st
 ## 60-second judge demo (no API keys)
 
 ```bash
-git clone https://github.com/aaravjj2/Autopilot.git
-cd Autopilot
+git clone https://github.com/aaravjj2/Autopilot-public.git
+cd Autopilot-public
 python -m venv .venv && source .venv/bin/activate
 pip install -e ".[dev]"
 export DEMO_MODE=true
