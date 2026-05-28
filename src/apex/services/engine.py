@@ -787,11 +787,10 @@ class ApexEngine:
 
     def prediction_markets_agent_cycle(self) -> None:
         """Unified Polymarket + Kalshi arb paper agents (scheduler + API loop)."""
-        import asyncio
-
+        from apex.core.async_bridge import run_sync
         from apex.services.pm_trading import run_prediction_markets_agent_cycle
 
-        asyncio.run(run_prediction_markets_agent_cycle(self))
+        run_sync(run_prediction_markets_agent_cycle(self))
 
     def self_improvement_cycle(self) -> None:
         """Export → train → evaluate → promote → brain feedback."""
@@ -801,11 +800,10 @@ class ApexEngine:
 
     def world_cup_agent_cycle(self) -> None:
         """FIFA World Cup discover → score → paper trade."""
-        import asyncio
-
+        from apex.core.async_bridge import run_sync
         from apex.services.world_cup_trading import run_world_cup_agent_cycle
 
-        asyncio.run(run_world_cup_agent_cycle(self))
+        run_sync(run_world_cup_agent_cycle(self))
 
     def world_cup_discovery(self) -> None:
         from apex.services.world_cup_trading import discover_and_persist

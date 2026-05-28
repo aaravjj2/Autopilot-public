@@ -114,6 +114,14 @@ $RECYCLE.BIN/
 .cursorrules
 .antigravitycli/
 agent-transcripts/
+.agents/
+skills-lock.json
+
+# --- Local runtime state (may contain API tokens / webhooks) ---
+.state/
+
+# --- Office lock files ---
+~$*
 
 # --- Docker overrides ---
 docker-compose.override.yml

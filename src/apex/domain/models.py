@@ -171,6 +171,7 @@ class ArbOpportunity:
     kelly_fraction: float = 0.0
     vwap_edge: float = 0.0
     thesis_settlement_verdict: str | None = None
+    web_context: dict[str, object] | None = None
 
 
 @dataclass

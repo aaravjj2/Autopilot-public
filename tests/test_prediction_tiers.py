@@ -159,3 +159,15 @@ def test_high_tier_doubles_stake_vs_mid() -> None:
     )
     assert high is not None and mid is not None
     assert high.suggested_stake_usd == pytest.approx(mid.suggested_stake_usd * 2.0)
+
+
+def test_build_prediction_signal_returns_none_for_non_finite_values() -> None:
+    settings = Settings(world_cup_min_model_edge=0.03, kelly_alpha=0.25)
+    bad_rows = [
+        {"model_edge": float("nan"), "fair_prob": 0.55, "model_confidence": 0.9},
+        {"model_edge": 0.06, "fair_prob": float("inf"), "model_confidence": 0.9},
+        {"model_edge": 0.06, "fair_prob": 0.55, "market_yes_ask": float("nan"), "model_confidence": 0.9},
+        {"model_edge": 0.06, "fair_prob": 0.55, "model_confidence": float("nan")},
+    ]
+    for row in bad_rows:
+        assert build_prediction_signal(row, settings=settings, min_edge=0.05) is None

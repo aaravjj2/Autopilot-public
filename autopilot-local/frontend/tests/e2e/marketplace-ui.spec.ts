@@ -16,6 +16,6 @@ test.describe('Marketplace UI', () => {
     await gotoTerminal(page, '/dashboard/settings');
     await expect(page.getByRole('heading', { name: /Settings/ })).toBeVisible();
     await expect(page.getByText('APEX Engine')).toBeVisible();
-    await expect(page.getByText('Copy Trading API')).toBeVisible();
+    await expect(page.getByText(/Copy-trading API/i)).toBeVisible();
   });
 });

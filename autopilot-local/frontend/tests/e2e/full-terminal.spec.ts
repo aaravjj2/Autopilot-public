@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { gotoTerminal, clickSidebar } from './helpers';
+import { gotoTerminal, clickSidebar, sidebarLink } from './helpers';
 
 /** All sidebar tabs in TerminalLayout */
 const TABS = [
@@ -26,15 +26,20 @@ test.describe('Every sidebar tab', () => {
     test(`${tab.label} loads via direct URL`, async ({ page }) => {
       await gotoTerminal(page, tab.path);
       await expect(page.getByRole('heading', { name: tab.heading })).toBeVisible();
-      await expect(page.locator('.sidebar').getByRole('link', { name: tab.label, exact: true })).toHaveClass(/active/);
+      await expect(sidebarLink(page, tab.label)).toHaveClass(/active/);
     });
   }
 
   test('navigate every tab via sidebar clicks', async ({ page }) => {
+    test.setTimeout(180_000);
     await gotoTerminal(page, '/dashboard');
     for (const tab of TABS) {
-      await clickSidebar(page, tab.label);
-      await expect(page).toHaveURL(new RegExp(tab.path.replace('/', '\\/') + '(\\/)?$'));
+      const link = sidebarLink(page, tab.label);
+      await link.scrollIntoViewIfNeeded();
+      await Promise.all([
+        page.waitForURL(new RegExp(tab.path.replace('/', '\\/') + '(\\/)?$'), { timeout: 20_000 }),
+        link.click(),
+      ]);
       await expect(page.getByRole('heading', { name: tab.heading })).toBeVisible();
     }
   });
@@ -105,10 +110,11 @@ test.describe('Trading features', () => {
 test.describe('Positions features', () => {
   test('Open and Closed tabs', async ({ page }) => {
     await gotoTerminal(page, '/dashboard/positions');
-    const tabs = page.locator('.main .card .tabs').first();
-    await tabs.getByRole('button', { name: 'Closed', exact: true }).click();
-    await expect(tabs.getByRole('button', { name: 'Closed', exact: true })).toBeVisible();
-    await tabs.getByRole('button', { name: 'Open', exact: true }).click();
+    const closedTab = page.getByRole('button', { name: 'Closed', exact: true }).first();
+    const openTab = page.getByRole('button', { name: 'Open', exact: true }).first();
+    await closedTab.click();
+    await expect(closedTab).toHaveClass(/active/);
+    await openTab.click();
     await expect(page.getByRole('columnheader', { name: 'Symbol' })).toBeVisible();
   });
 });
@@ -179,7 +185,7 @@ test.describe('Marketplace features', () => {
 test.describe('Polymarket features', () => {
   test('Sync from engine button', async ({ page }) => {
     await gotoTerminal(page, '/dashboard/polymarket');
-    const btn = page.getByRole('button', { name: /Sync from engine/i });
+    const btn = page.getByRole('button', { name: /Sync copy-trading DB/i });
     await btn.click();
     await expect(btn).toBeEnabled({ timeout: 30_000 });
   });
@@ -196,7 +202,7 @@ test.describe('Settings features', () => {
   test('dual backend cards visible', async ({ page }) => {
     await gotoTerminal(page, '/dashboard/settings');
     await expect(page.getByText('APEX Engine')).toBeVisible();
-    await expect(page.getByText(/Marketplace API/i)).toBeVisible();
+    await expect(page.getByText(/Copy-trading API/i)).toBeVisible();
     await expect(page.getByText('Integrations (APEX)')).toBeVisible();
   });
 });

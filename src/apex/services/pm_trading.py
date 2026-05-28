@@ -197,7 +197,17 @@ def run_polymarket_agent_cycle(engine: ApexEngine) -> dict[str, Any]:
     settings = engine.settings
     if not settings.polymarket_paper_trading_enabled:
         return {"status": "disabled", "detail": "POLYMARKET_PAPER_TRADING_ENABLED=false"}
-    proposals = engine.polymarket_event_discovery()
+    try:
+        proposals = engine.polymarket_event_discovery()
+    except Exception as exc:
+        LOGGER.warning("run_polymarket_agent_cycle: discovery failed: %s", exc)
+        return {
+            "status": "error",
+            "discovery_count": 0,
+            "submitted_count": 0,
+            "order_ids": [],
+            "detail": f"discovery_failed: {exc}",
+        }
     if not settings.polymarket_automated_events_enabled:
         return {
             "status": "ok",
@@ -206,7 +216,17 @@ def run_polymarket_agent_cycle(engine: ApexEngine) -> dict[str, Any]:
             "order_ids": [],
             "detail": "automated submission off; proposals discovered only",
         }
-    order_ids = engine.polymarket_paper_order_submission(proposals)
+    try:
+        order_ids = engine.polymarket_paper_order_submission(proposals)
+    except Exception as exc:
+        LOGGER.warning("run_polymarket_agent_cycle: submission failed: %s", exc)
+        return {
+            "status": "error",
+            "discovery_count": len(proposals),
+            "submitted_count": 0,
+            "order_ids": [],
+            "detail": f"submission_failed: {exc}",
+        }
     return {
         "status": "ok",
         "discovery_count": len(proposals),
@@ -485,6 +505,7 @@ def pm_agents_status(engine: ApexEngine, store: SQLiteStore | None = None) -> di
     kalshi_demo = settings.kalshi_demo_trading_enabled and kalshi_broker is not None
     mode = kalshi_execution_mode_label(settings)
     kalshi_book = build_kalshi_book(store)
+    polymarket_book = build_polymarket_book(store)
     return {
         "execution_mode": mode,
         "kalshi_demo_trading_enabled": settings.kalshi_demo_trading_enabled,
@@ -509,8 +530,8 @@ def pm_agents_status(engine: ApexEngine, store: SQLiteStore | None = None) -> di
             "execution_mode": mode,
         },
         "polymarket_book": {
-            "open_positions": build_polymarket_book(store)["summary"]["open_positions"],
-            "trades": len(build_polymarket_book(store)["trades"]),
+            "open_positions": polymarket_book["summary"]["open_positions"],
+            "trades": len(polymarket_book["trades"]),
             "execution_mode": "paper_simulated",
         },
     }

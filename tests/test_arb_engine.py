@@ -55,7 +55,7 @@ def test_scan_and_persist_demo(tmp_path: Path, monkeypatch) -> None:
     fake_auditor = SimpleNamespace()
     fake_auditor.verify = lambda k, p, **kwargs: SimpleNamespace(match_score=0.9, flags=[])
     import apex.services.settlement_auditor as auditor_mod
-    monkeypatch.setattr(auditor_mod, "SettlementAuditor", lambda: fake_auditor)
+    monkeypatch.setattr(auditor_mod, "SettlementAuditor", lambda **kwargs: fake_auditor)
 
     # Mock Polymarket fetch locally inside the function (since it's imported locally)
     # Actually it's easier to mock it in sys.modules or just patch the arb_engine module since Python binds it there if it's imported at the top,
@@ -71,3 +71,51 @@ def test_scan_and_persist_demo(tmp_path: Path, monkeypatch) -> None:
     store.save_arb_opportunities(found)
     rows = store.list_arb_opportunities()
     assert len(rows) == len(found)
+
+
+def test_scan_returns_empty_when_polymarket_circuit_open(tmp_path: Path) -> None:
+    from apex.core.config import Settings
+    from apex.services.arb_engine import ArbEngine
+
+    db_path = tmp_path / "test_arb_circuit.db"
+    store = SQLiteStore(db_path)
+    engine = ArbEngine(settings=Settings(alpaca_paper_trade=True), store=store)
+    engine._poly_errors = engine.CIRCUIT_THRESHOLD
+    engine._poly_last_error = 10**12  # force cooldown-not-elapsed path
+
+    assert engine.scan() == []
+
+
+def test_scan_deduplicates_kalshi_poly_pairs(tmp_path: Path, monkeypatch) -> None:
+    from apex.core.config import Settings
+    from apex.services.arb_engine import ArbEngine
+    import apex.services.arb_engine as arb_engine_mod
+    import apex.integrations.chromadb_market_store as chroma_mod
+    import apex.integrations.polymarket_gamma_public as poly_gamma
+    import apex.services.settlement_auditor as auditor_mod
+
+    store = SQLiteStore(tmp_path / "dedupe.db")
+    settings = Settings(alpaca_paper_trade=True, arb_min_net_edge=0.01)
+    engine = ArbEngine(settings=settings, store=store)
+
+    fake_kal = SimpleNamespace()
+    fake_kal.get_macro_markets = lambda **_kwargs: [
+        SimpleNamespace(ticker="KX-1", title="Will X happen?", volume_24h=20000, best_ask_yes=0.40)
+    ]
+    fake_pm = [
+        {"id": "pm1", "question": "Will X happen?", "volume24hr": 20000, "bestAsk_no": 0.45},
+    ]
+    fake_chroma = SimpleNamespace(
+        upsert_market=lambda *_args, **_kwargs: None,
+        find_semantic_match=lambda *_args, **_kwargs: [("pm1", 0.9)],
+    )
+    fake_auditor = SimpleNamespace(verify=lambda *_args, **_kwargs: SimpleNamespace(match_score=0.9, flags=[]))
+
+    monkeypatch.setattr(arb_engine_mod, "KalshiEventClient", lambda _s: fake_kal)
+    monkeypatch.setattr(poly_gamma, "fetch_active_liquid_markets", lambda **_kwargs: fake_pm)
+    monkeypatch.setattr(chroma_mod, "ChromaMarketStore", lambda _path: fake_chroma)
+    monkeypatch.setattr(auditor_mod, "SettlementAuditor", lambda **_kwargs: fake_auditor)
+    monkeypatch.setattr(engine, "_combined_match", lambda *_args, **_kwargs: fake_pm[0])
+
+    out = engine.scan()
+    assert len(out) == 1

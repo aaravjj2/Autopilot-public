@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import asyncio
 import json
 from datetime import datetime, timezone
 from typing import Any
@@ -17,6 +18,13 @@ from features.team_features import (
     get_wc_record,
 )
 from ingestion.news_fetcher import fetch_team_news
+
+try:
+    from apex.integrations.brightdata_intelligence import BrightDataIntelligence
+    from apex.core.async_bridge import run_sync
+except Exception:  # pragma: no cover
+    BrightDataIntelligence = Any  # type: ignore[misc,assignment]
+    run_sync = None  # type: ignore[assignment]
 
 
 def hours_until(closes_at: str) -> float:
@@ -43,13 +51,48 @@ def assemble_context(
     bankroll: float,
     open_positions: list[Any],
     db_conn=None,
+    intelligence: BrightDataIntelligence | None = None,
 ) -> dict[str, Any]:
     teams = parse_market_teams(market.get("question") or "")
     home_team = teams[0] or market.get("home_team") or "Unknown"
     away_team = teams[1] or market.get("away_team") or "Unknown"
 
-    home_news_raw = fetch_team_news(home_team) if home_team != "Unknown" else []
-    away_news_raw = fetch_team_news(away_team) if away_team != "Unknown" else []
+    def _run(coro):
+        try:
+            if run_sync is not None:
+                return run_sync(coro)
+            return asyncio.run(coro)
+        except Exception:
+            return []
+
+    def _map_news(items: list[dict[str, Any]]) -> list[dict[str, Any]]:
+        return [
+            {
+                "title": str(i.get("title", "")),
+                "source": "BrightData",
+                "published_at": "",
+                "url": str(i.get("url", "")),
+                "description": str(i.get("snippet", "")),
+            }
+            for i in items
+        ]
+
+    if intelligence is not None:
+        home_news_raw = (
+            _map_news(_run(intelligence.search_breaking_news(f"{home_team} soccer injury news")))
+            if home_team != "Unknown"
+            else []
+        )
+        away_news_raw = (
+            _map_news(_run(intelligence.search_breaking_news(f"{away_team} soccer injury news")))
+            if away_team != "Unknown"
+            else []
+        )
+        live_match_state = _run(intelligence.get_wc_match_live_state(home_team, away_team))
+    else:
+        home_news_raw = fetch_team_news(home_team) if home_team != "Unknown" else []
+        away_news_raw = fetch_team_news(away_team) if away_team != "Unknown" else []
+        live_match_state = None
 
     stats = get_calibration_stats(db_conn)
 
@@ -88,6 +131,7 @@ def assemble_context(
         "open_positions_count": len(open_positions),
         "max_stake": bankroll * 0.05,
         "historical_edge": stats,
+        "live_match_state": live_match_state,
     }
 
 

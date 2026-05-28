@@ -1,0 +1,580 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>APEX Autopilot - Pitch Deck</title>
+  <script>document.documentElement.classList.add("js");</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;900&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ===========================================
+       VIEWPORT FITTING: MANDATORY BASE STYLES
+       =========================================== */
+    html, body {
+      height: 100%;
+      overflow-x: hidden;
+    }
+    html {
+      scroll-snap-type: y mandatory;
+      scroll-behavior: smooth;
+    }
+    body {
+      margin: 0;
+      background: #0b0f17;
+      color: #f7f8fb;
+      font-family: "Space Grotesk", sans-serif;
+    }
+    .slide {
+      width: 100%;
+      height: 100vh;
+      height: 100dvh;
+      overflow: hidden;
+      scroll-snap-align: start;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+    .slide-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      max-height: 100%;
+      overflow: hidden;
+      padding: var(--slide-padding);
+      gap: var(--content-gap);
+      position: relative;
+      z-index: 2;
+    }
+    :root {
+      --title-size: clamp(1.5rem, 5vw, 4rem);
+      --h2-size: clamp(1.25rem, 3.5vw, 2.5rem);
+      --h3-size: clamp(1rem, 2.5vw, 1.75rem);
+      --body-size: clamp(0.75rem, 1.5vw, 1.125rem);
+      --small-size: clamp(0.65rem, 1vw, 0.875rem);
+      --slide-padding: clamp(1rem, 4vw, 4rem);
+      --content-gap: clamp(0.5rem, 2vw, 2rem);
+      --element-gap: clamp(0.25rem, 1vw, 1rem);
+      --bg: #0b0f17;
+      --panel: #101725;
+      --ink: #f7f8fb;
+      --muted: #aab5ca;
+      --accent: #ff6a1a;
+      --accent-2: #2d9dff;
+      --ok: #2fe6a7;
+      --warn: #ffcc54;
+      --danger: #ff5b7a;
+    }
+    .card, .container, .content-box {
+      max-width: min(90vw, 1000px);
+      max-height: min(80vh, 700px);
+    }
+    .feature-list, .bullet-list {
+      gap: clamp(0.4rem, 1vh, 1rem);
+    }
+    .feature-list li, .bullet-list li {
+      font-size: var(--body-size);
+      line-height: 1.4;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
+      gap: clamp(0.5rem, 1.5vw, 1rem);
+    }
+    img, .image-container {
+      max-width: 100%;
+      max-height: min(50vh, 400px);
+      object-fit: contain;
+    }
+    @media (max-height: 700px) {
+      :root {
+        --slide-padding: clamp(0.75rem, 3vw, 2rem);
+        --content-gap: clamp(0.4rem, 1.5vw, 1rem);
+        --title-size: clamp(1.25rem, 4.5vw, 2.5rem);
+        --h2-size: clamp(1rem, 3vw, 1.75rem);
+      }
+    }
+    @media (max-height: 600px) {
+      :root {
+        --slide-padding: clamp(0.5rem, 2.5vw, 1.5rem);
+        --content-gap: clamp(0.3rem, 1vw, 0.75rem);
+        --title-size: clamp(1.1rem, 4vw, 2rem);
+        --body-size: clamp(0.7rem, 1.2vw, 0.95rem);
+      }
+      .keyboard-hint, .decorative {
+        display: none;
+      }
+    }
+    @media (max-height: 500px) {
+      :root {
+        --slide-padding: clamp(0.4rem, 2vw, 1rem);
+        --title-size: clamp(1rem, 3.5vw, 1.5rem);
+        --h2-size: clamp(0.9rem, 2.5vw, 1.25rem);
+        --body-size: clamp(0.65rem, 1vw, 0.85rem);
+      }
+    }
+    @media (max-width: 600px) {
+      :root {
+        --title-size: clamp(1.25rem, 7vw, 2.5rem);
+      }
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    @media (max-width: 768px) {
+      .timeline {
+        grid-template-columns: 1fr 1fr;
+      }
+      .table-lite {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+    @media (max-width: 480px) {
+      .timeline,
+      .table-lite {
+        grid-template-columns: 1fr;
+      }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.2s !important;
+      }
+      html {
+        scroll-behavior: auto;
+      }
+      html.js [data-reveal],
+      html.js .is-visible [data-reveal] {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    .bg-grid::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px);
+      background-size: 40px 40px;
+      mask-image: radial-gradient(circle at 50% 45%, #000 30%, transparent 80%);
+      z-index: 0;
+    }
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(55px);
+      opacity: 0.45;
+      z-index: 1;
+      pointer-events: none;
+    }
+    .orb.one { width: 42vw; height: 42vw; background: var(--accent); top: -8vw; left: -10vw; }
+    .orb.two { width: 36vw; height: 36vw; background: var(--accent-2); bottom: -10vw; right: -6vw; }
+
+    h1, h2, h3 {
+      margin: 0;
+      font-family: "Archivo", sans-serif;
+      letter-spacing: -0.02em;
+      line-height: 1.05;
+    }
+    h1 { font-size: var(--title-size); }
+    h2 { font-size: var(--h2-size); }
+    h3 { font-size: var(--h3-size); }
+    p, li { margin: 0; font-size: var(--body-size); color: var(--muted); line-height: 1.45; }
+    .eyebrow {
+      text-transform: uppercase;
+      font-size: var(--small-size);
+      letter-spacing: 0.14em;
+      color: var(--warn);
+      font-weight: 700;
+    }
+    .lead {
+      font-size: clamp(0.92rem, 1.9vw, 1.35rem);
+      color: #dce3f4;
+      max-width: 72ch;
+    }
+    .kpi {
+      background: linear-gradient(160deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 16px;
+      padding: clamp(0.7rem, 1.2vw, 1rem);
+      min-height: clamp(82px, 11vh, 128px);
+      display: grid;
+      gap: 0.35rem;
+      align-content: center;
+    }
+    .kpi strong {
+      font-family: "Archivo", sans-serif;
+      color: #fff;
+      font-size: clamp(1.1rem, 2.7vw, 2rem);
+      line-height: 1;
+    }
+    .panel {
+      background: linear-gradient(165deg, rgba(16,23,37,0.97), rgba(12,18,30,0.86));
+      border: 1px solid rgba(255,255,255,0.13);
+      border-radius: 18px;
+      padding: clamp(0.8rem, 1.5vw, 1.2rem);
+      backdrop-filter: blur(10px);
+    }
+    .timeline {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: clamp(0.6rem, 1.2vw, 0.95rem);
+    }
+    .timeline .panel h3 { color: #fff; margin-bottom: 0.35rem; font-size: clamp(0.92rem, 1.5vw, 1.2rem); }
+    .tiny { font-size: var(--small-size); color: #c6d1e8; }
+    .big-number {
+      font-family: "Archivo", sans-serif;
+      font-weight: 900;
+      font-size: clamp(2.4rem, 8vw, 7rem);
+      color: rgba(255,255,255,0.08);
+      position: absolute;
+      right: clamp(0.6rem, 3vw, 2rem);
+      top: clamp(0.4rem, 1vw, 1rem);
+      z-index: 0;
+      pointer-events: none;
+    }
+    .table-lite {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr 1fr 1fr;
+      gap: 1px;
+      background: rgba(255,255,255,0.12);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .table-lite > div {
+      background: rgba(13,18,29,0.96);
+      padding: clamp(0.5rem, 1vw, 0.8rem);
+      font-size: var(--small-size);
+      color: #d7e0f4;
+    }
+    .table-lite .head {
+      color: #fff;
+      font-weight: 700;
+      background: rgba(24,34,52,1);
+    }
+    .accent { color: var(--accent); }
+    .accent2 { color: var(--accent-2); }
+    .ok { color: var(--ok); }
+    .warn { color: var(--warn); }
+    .risk { color: var(--danger); }
+
+    .progress {
+      position: fixed;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 4px;
+      z-index: 50;
+      background: rgba(255,255,255,0.1);
+    }
+    .progress > span {
+      display: block;
+      width: 0%;
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      transition: width 280ms ease;
+    }
+    .hud {
+      position: fixed;
+      top: 12px;
+      right: 14px;
+      z-index: 50;
+      font-size: var(--small-size);
+      color: #dce5fa;
+      background: rgba(7,11,20,0.72);
+      border: 1px solid rgba(255,255,255,0.16);
+      border-radius: 99px;
+      padding: 6px 10px;
+      backdrop-filter: blur(10px);
+    }
+    .keyboard-hint {
+      position: fixed;
+      left: 14px;
+      bottom: 12px;
+      z-index: 50;
+      font-size: var(--small-size);
+      color: #d5e0f8;
+      background: rgba(7,11,20,0.7);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 99px;
+      padding: 6px 10px;
+    }
+
+    /* Keep text visible — no hide-on-load (was mistaken for strikethrough in some viewers) */
+    [data-reveal] {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+  <main id="deck" aria-label="APEX Autopilot pitch deck">
+    <section class="slide bg-grid" id="s1" aria-label="Title">
+      <div class="orb one"></div><div class="orb two"></div>
+      <div class="slide-content">
+        <span class="eyebrow" data-reveal>Institutional Paper Trading Platform</span>
+        <h1 data-reveal style="--delay:90ms;">APEX Autopilot</h1>
+        <p class="lead" data-reveal style="--delay:180ms;">
+          Autonomous prediction-market intelligence and execution for Kalshi + Polymarket with risk gates, operator controls, and full auditability.
+        </p>
+        <div class="grid" data-reveal style="--delay:260ms;">
+          <div class="kpi"><strong>100+</strong><span>Live Arb Opportunities surfaced</span></div>
+          <div class="kpi"><strong>L0-L4</strong><span>Layered architecture in production test mode</span></div>
+          <div class="kpi"><strong>260 Days</strong><span>Execution runbook with measurable milestones</span></div>
+        </div>
+      </div>
+      <span class="big-number">01</span>
+    </section>
+
+    <section class="slide" id="s2" aria-label="Problem">
+      <div class="slide-content">
+        <span class="eyebrow" data-reveal>The Problem</span>
+        <h2 data-reveal style="--delay:90ms;">Human traders miss speed, context, and discipline.</h2>
+        <div class="grid" data-reveal style="--delay:180ms;">
+          <div class="panel"><h3>Fragmented Data</h3><p>Kalshi, Polymarket, macro feeds, and settlement sources are disconnected and slow to reconcile.</p></div>
+          <div class="panel"><h3>Execution Lag</h3><p>Arbitrage windows can collapse in seconds while manual workflows still evaluate assumptions.</p></div>
+          <div class="panel"><h3>Inconsistent Risk</h3><p>Without deterministic gating, teams drift from policy and post-trade forensics become weak.</p></div>
+        </div>
+        <p class="tiny" data-reveal style="--delay:260ms;">Result: alpha decay, avoidable risk, and poor reproducibility.</p>
+      </div>
+      <span class="big-number">02</span>
+    </section>
+
+    <section class="slide" id="s3" aria-label="Solution">
+      <div class="slide-content">
+        <span class="eyebrow" data-reveal>Our Solution</span>
+        <h2 data-reveal style="--delay:90ms;">A controlled autonomous trading engine, not a black box bot.</h2>
+        <div class="timeline" data-reveal style="--delay:180ms;">
+          <div class="panel"><h3>L0 Ingestion</h3><p>Market + external intelligence ingestion with retries, health checks, and cache hydration.</p></div>
+          <div class="panel"><h3>L1 Finance Brain</h3><p>Scoring, spread modeling, confidence calibration, and signal composition.</p></div>
+          <div class="panel"><h3>L2 Agent Panel</h3><p>Multi-agent thesis and intelligence verdicts (BUY/SKIP/WAIT) with bounded budgets.</p></div>
+          <div class="panel"><h3>L3/L4 Control</h3><p>Risk-check execution + complete telemetry, events, and operator-grade audit stream.</p></div>
+        </div>
+      </div>
+      <span class="big-number">03</span>
+    </section>
+
+    <section class="slide" id="s4" aria-label="Product">
+      <div class="slide-content">
+        <span class="eyebrow" data-reveal>Product Experience</span>
+        <h2 data-reveal style="--delay:90ms;">Bloomberg-style terminal for autonomous decision support.</h2>
+        <div class="grid" data-reveal style="--delay:180ms;">
+          <div class="panel"><h3>Arb Radar</h3><p>Ranked opportunities with net edge, confidence, and settlement alignment.</p></div>
+          <div class="panel"><h3>Autopilot Console</h3><p>Live proposals, execution lifecycle, and synchronized backend status.</p></div>
+          <div class="panel"><h3>Intelligence Layer</h3><p>Bright Data-backed source checks, news risk, and consensus overlays.</p></div>
+          <div class="panel"><h3>Operator Controls</h3><p>Paper-only enforcement, token-gated actions, and deterministic fallback modes.</p></div>
+        </div>
+      </div>
+      <span class="big-number">04</span>
+    </section>
+
+    <section class="slide" id="s5" aria-label="Traction">
+      <div class="slide-content">
+        <span class="eyebrow" data-reveal>Execution Snapshot</span>
+        <h2 data-reveal style="--delay:90ms;">Already running with real-time data pathways and strict safety defaults.</h2>
+        <div class="table-lite" data-reveal style="--delay:180ms;">
+          <div class="head">Capability</div><div class="head">Status</div><div class="head">Signal</div><div class="head">Evidence</div>
+          <div>Arb opportunity generation</div><div class="ok">Live</div><div>100 rows returned</div><div>/api/arb/opportunities</div>
+          <div>Proposal generation</div><div class="ok">Live</div><div>18+ proposals active</div><div>/proposals endpoint</div>
+          <div>Risk gates (paper mode first)</div><div class="ok">Enforced</div><div>M01-first path</div><div>risk check engine</div>
+          <div>Frontend operator terminal</div><div class="ok">Live</div><div>Dashboard routes green</div><div>Playwright verified</div>
+          <div>BrightData intelligence wiring</div><div class="warn">Active / tuning</div><div>verdict pipeline integrated</div><div>agent + cron flow</div>
+        </div>
+      </div>
+      <span class="big-number">05</span>
+    </section>
+
+    <section class="slide" id="s6" aria-label="Moat">
+      <div class="slide-content">
+        <span class="eyebrow" data-reveal>Why We Win</span>
+        <h2 data-reveal style="--delay:90ms;">Compound moat from architecture, controls, and learning loops.</h2>
+        <div class="grid" data-reveal style="--delay:180ms;">
+          <div class="panel"><h3>Safety-First by Design</h3><p>Paper-only defaults + explicit gate ordering prevent accidental live exposure.</p></div>
+          <div class="panel"><h3>Cross-Market Intelligence</h3><p>Structured context combines market microstructure with verified external signals.</p></div>
+          <div class="panel"><h3>Operator Trust</h3><p>Transparent logs, deterministic fallbacks, and visible rationale per action.</p></div>
+          <div class="panel"><h3>Data Flywheel</h3><p>Historical calibration and model scoring continuously improve quality over time.</p></div>
+        </div>
+      </div>
+      <span class="big-number">06</span>
+    </section>
+
+    <section class="slide" id="s7" aria-label="Roadmap">
+      <div class="slide-content">
+        <span class="eyebrow" data-reveal>Roadmap</span>
+        <h2 data-reveal style="--delay:90ms;">260-day plan from robust paper alpha to production-ready autonomy.</h2>
+        <div class="timeline" data-reveal style="--delay:180ms;">
+          <div class="panel"><h3>Phase 1</h3><p>Reliability + CI hardening, unified startup, regression prevention.</p></div>
+          <div class="panel"><h3>Phase 2</h3><p>Observability, operator workflows, and deeper decision explainability.</p></div>
+          <div class="panel"><h3>Phase 3</h3><p>Signal quality, settlement precision, stricter risk calibration.</p></div>
+          <div class="panel"><h3>Phase 4/5</h3><p>Scale architecture, auth, deployment hardening, staged autonomy controls.</p></div>
+        </div>
+        <p class="tiny" data-reveal style="--delay:260ms;">Theme tracks: WC2026 brain, cron architecture, scheduled agents, trading upgrades, historical calibration seed.</p>
+      </div>
+      <span class="big-number">07</span>
+    </section>
+
+    <section class="slide" id="s8" aria-label="Business">
+      <div class="slide-content">
+        <span class="eyebrow" data-reveal>Business Model</span>
+        <h2 data-reveal style="--delay:90ms;">From high-value operator tooling to fund-grade platform economics.</h2>
+        <div class="grid" data-reveal style="--delay:180ms;">
+          <div class="panel"><h3>Tier 1: Pro Terminal</h3><p>Subscription for autonomous radar, intelligence overlays, and simulation analytics.</p></div>
+          <div class="panel"><h3>Tier 2: Team Ops</h3><p>Collaboration, policy controls, audit exports, and strategy workspaces.</p></div>
+          <div class="panel"><h3>Tier 3: Institutional</h3><p>Dedicated deployments, custom integrations, risk policy frameworks.</p></div>
+          <div class="panel"><h3>Long-Term</h3><p>Performance-linked products once live capital and compliance tracks are complete.</p></div>
+        </div>
+      </div>
+      <span class="big-number">08</span>
+    </section>
+
+    <section class="slide" id="s9" aria-label="Ask">
+      <div class="slide-content">
+        <span class="eyebrow" data-reveal>The Ask</span>
+        <h2 data-reveal style="--delay:90ms;">Partner with us to accelerate from strong engine to category-defining platform.</h2>
+        <div class="grid" data-reveal style="--delay:180ms;">
+          <div class="kpi"><strong>$X</strong><span>Funding target for 12-month build + go-to-market</span></div>
+          <div class="kpi"><strong>3 hires</strong><span>Infra, quant modeling, and product ops</span></div>
+          <div class="kpi"><strong>2 pilots</strong><span>Design partners for institutional validation</span></div>
+        </div>
+        <div class="panel" data-reveal style="--delay:250ms;">
+          <p class="lead">Use of funds: reliability and compliance infrastructure, alpha refinement, and scalable hosted deployments.</p>
+        </div>
+      </div>
+      <span class="big-number">09</span>
+    </section>
+
+    <section class="slide bg-grid" id="s10" aria-label="Closing">
+      <div class="orb one"></div><div class="orb two"></div>
+      <div class="slide-content">
+        <span class="eyebrow" data-reveal>Closing</span>
+        <h1 data-reveal style="--delay:90ms;">Autonomy with discipline wins this market.</h1>
+        <p class="lead" data-reveal style="--delay:180ms;">
+          APEX Autopilot is building the operating system for intelligent prediction-market execution.
+        </p>
+        <div class="panel" data-reveal style="--delay:260ms;">
+          <h3>Contact</h3>
+          <p>Team Autopilot · Ready for product demo, technical diligence, and pilot planning.</p>
+        </div>
+      </div>
+      <span class="big-number">10</span>
+    </section>
+  </main>
+
+  <nav class="hud" aria-label="Slide index"><span id="slideLabel" aria-live="polite" aria-atomic="true">1 / 10</span></nav>
+  <div class="keyboard-hint">Use ↑ ↓ / PgUp PgDn / Space / Swipe</div>
+  <div class="progress" aria-hidden="true"><span id="progressFill"></span></div>
+
+  <script>
+    class DeckController {
+      constructor() {
+        this.slides = Array.from(document.querySelectorAll(".slide"));
+        this.index = 0;
+        this.locked = false;
+        this.progressEl = document.getElementById("progressFill");
+        this.labelEl = document.getElementById("slideLabel");
+        this.revealObserver = null;
+      }
+
+      init() {
+        this.bindEvents();
+        this.setupReveals();
+        this.syncFromScroll();
+        this.updateUi();
+      }
+
+      bindEvents() {
+        window.addEventListener("keydown", (e) => {
+          if (e.target.closest("a, button, input, textarea, select, [contenteditable]")) return;
+          const down = ["ArrowDown", "PageDown", " "];
+          const up = ["ArrowUp", "PageUp"];
+          if (down.includes(e.key)) {
+            e.preventDefault();
+            this.goTo(this.index + 1);
+          } else if (up.includes(e.key)) {
+            e.preventDefault();
+            this.goTo(this.index - 1);
+          } else if (e.key === "Home") {
+            e.preventDefault();
+            this.goTo(0);
+          } else if (e.key === "End") {
+            e.preventDefault();
+            this.goTo(this.slides.length - 1);
+          }
+        }, { passive: false });
+
+        let wheelTimeout = null;
+        window.addEventListener("wheel", (e) => {
+          if (this.locked) return;
+          if (Math.abs(e.deltaY) < 24) return;
+          e.preventDefault();
+          if (wheelTimeout) return;
+          wheelTimeout = setTimeout(() => { wheelTimeout = null; }, 160);
+          this.goTo(this.index + (e.deltaY > 0 ? 1 : -1));
+        }, { passive: false });
+
+        document.addEventListener("scroll", () => {
+          if (this.locked) return;
+          this.syncFromScroll();
+        }, { passive: true });
+        window.addEventListener("resize", () => this.syncFromScroll(), { passive: true });
+      }
+
+      setupReveals() {
+        this.revealObserver = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+            } else {
+              entry.target.classList.remove("is-visible");
+            }
+          });
+        }, { threshold: 0.6 });
+
+        this.slides.forEach((slide) => this.revealObserver.observe(slide));
+      }
+
+      syncFromScroll() {
+        const h = window.innerHeight || 1;
+        const i = Math.round(window.scrollY / h);
+        const bounded = Math.max(0, Math.min(this.slides.length - 1, i));
+        if (bounded !== this.index) {
+          this.index = bounded;
+          this.updateUi();
+        } else {
+          this.updateUi();
+        }
+      }
+
+      goTo(index) {
+        const next = Math.max(0, Math.min(this.slides.length - 1, index));
+        if (next === this.index || this.locked) return;
+        this.index = next;
+        this.locked = true;
+        const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        this.slides[next].scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
+        this.updateUi();
+        setTimeout(() => { this.locked = false; }, 420);
+      }
+
+      updateUi() {
+        const current = this.index + 1;
+        const total = this.slides.length;
+        const pct = (current / total) * 100;
+        this.progressEl.style.width = `${pct}%`;
+        this.labelEl.textContent = `${current} / ${total}`;
+        this.slides.forEach((slide, i) => {
+          if (i === this.index) slide.setAttribute("aria-current", "true");
+          else slide.removeAttribute("aria-current");
+        });
+      }
+    }
+
+    const deck = new DeckController();
+    deck.init();
+  </script>
+</body>
+</html>

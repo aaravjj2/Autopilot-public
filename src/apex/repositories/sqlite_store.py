@@ -620,14 +620,15 @@ class SQLiteStore:
 
     def list_active_arb_opportunities(self, limit: int = 100) -> list[dict]:
         from apex.services.arb_row_utils import normalize_arb_rows
+        safe_limit = max(1, min(int(limit), 1000))
 
         with self._conn() as conn:
             rows = conn.execute(
                 """SELECT * FROM arb_opportunities
                    WHERE outcome IS NULL OR TRIM(COALESCE(outcome, '')) = ''
-                   ORDER BY net_edge DESC
+                   ORDER BY net_edge DESC, detected_at DESC
                    LIMIT ?""",
-                (limit,),
+                (safe_limit,),
             ).fetchall()
         return normalize_arb_rows([dict(r) for r in rows])
 

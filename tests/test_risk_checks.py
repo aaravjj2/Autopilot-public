@@ -164,3 +164,28 @@ def test_m08(monkeypatch) -> None:
     assert "M08" in res.failed
     assert "M08_SPREAD_WIDTH: 0.2000 > 0.15" in res.rejection_reason
 
+
+def test_run_arb_paper_rejects_missing_ids() -> None:
+    from apex.domain.models import ArbOpportunity
+
+    settings = make_settings(ALPACA_PAPER_TRADE=True, POLYMARKET_PAPER_TRADING_ENABLED=True)
+    engine = RiskCheckEngine(settings)
+    opp = ArbOpportunity(
+        kalshi_ticker="",
+        poly_market_id="",
+        question="Q",
+        kalshi_title="Q",
+        poly_title="Q",
+        gross_spread=0.06,
+        net_edge=0.05,
+        volume_kalshi=2000.0,
+        volume_poly=2000.0,
+        kalshi_yes_ask=0.5,
+        poly_no_ask=0.45,
+        settlement_match_score=0.9,
+        settlement_flags=[],
+    )
+    res = engine.run_arb_paper(opp)
+    assert res.all_passed is False
+    assert res.rejection_reason.startswith("M00_INVALID_OPP")
+

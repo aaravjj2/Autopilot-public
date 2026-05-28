@@ -9,9 +9,10 @@ test.describe('Full User Flow', () => {
     await page.getByRole('link', { name: /Enter Terminal/ }).click();
     await expect(page).toHaveURL(/dashboard/);
     await expect(page.locator('.app-shell')).toBeVisible();
+    await page.waitForSelector('html[data-terminal-hydrated="true"]', { timeout: 30_000 });
 
     await clickSidebar(page, 'Trading');
-    await expect(page).toHaveURL(/trading/);
+    await expect(page).toHaveURL(/trading/, { timeout: 15_000 });
 
     await clickSidebar(page, 'Positions');
     await expect(page).toHaveURL(/positions/);

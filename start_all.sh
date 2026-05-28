@@ -19,6 +19,23 @@ log() { echo -e "${GREEN}[APEX]${NC} $1"; }
 warn() { echo -e "${YELLOW}[WARN]${NC} $1"; }
 error() { echo -e "${RED}[ERROR]${NC} $1"; }
 
+resolve_python() {
+    if command -v python >/dev/null 2>&1 && python -c "import uvicorn" >/dev/null 2>&1; then
+        echo "python"
+        return
+    fi
+    if command -v python3 >/dev/null 2>&1 && python3 -c "import uvicorn" >/dev/null 2>&1; then
+        echo "python3"
+        return
+    fi
+    if [[ -x "$APEX_DIR/.venv/bin/python" ]] && "$APEX_DIR/.venv/bin/python" -c "import uvicorn" >/dev/null 2>&1; then
+        echo "$APEX_DIR/.venv/bin/python"
+        return
+    fi
+    error "Could not find a Python interpreter with uvicorn installed."
+    exit 1
+}
+
 # Kill existing instances
 log "Stopping existing services..."
 pkill -f "uvicorn backend_api" 2>/dev/null || true
@@ -31,12 +48,13 @@ sleep 2
 # Load environment (keys.env + .env via Python bootstrap)
 log "Loading environment..."
 cd "$APEX_DIR"
-python3 -c "import sys; sys.path.insert(0,'src'); from apex.core.env_bootstrap import bootstrap_environment; bootstrap_environment(force=True)" 2>/dev/null || true
+PYTHON_BIN="$(resolve_python)"
+"$PYTHON_BIN" -c "import sys; sys.path.insert(0,'src'); from apex.core.env_bootstrap import bootstrap_environment; bootstrap_environment(force=True)" 2>/dev/null || true
 
 # 1. Start Backend API
 log "Starting Backend API (port 8000)..."
 cd "$APEX_DIR"
-nohup python3 -m uvicorn backend_api:app --host 0.0.0.0 --port 8000 > "$LOG_DIR/backend.log" 2>&1 &
+nohup "$PYTHON_BIN" -m uvicorn backend_api:app --host 0.0.0.0 --port 8000 > "$LOG_DIR/backend.log" 2>&1 &
 BACKEND_PID=$!
 echo $BACKEND_PID > "$LOG_DIR/backend.pid"
 log "  Backend PID: $BACKEND_PID"
@@ -101,7 +119,7 @@ done
 # 3. Start APEX Scheduler
 log "Starting APEX Scheduler..."
 cd "$APEX_DIR"
-nohup python3 -c "from apex.main import run_scheduler; run_scheduler()" > "$LOG_DIR/scheduler.log" 2>&1 &
+nohup "$PYTHON_BIN" -c "from apex.main import run_scheduler; run_scheduler()" > "$LOG_DIR/scheduler.log" 2>&1 &
 SCHEDULER_PID=$!
 echo $SCHEDULER_PID > "$LOG_DIR/scheduler.pid"
 log "  Scheduler PID: $SCHEDULER_PID"

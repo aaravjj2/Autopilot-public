@@ -107,6 +107,14 @@ class RiskCheckEngine:
         All checks are paper-only — no real money path exists.
         """
         result = ArbRiskCheckResult()
+        if not str(getattr(opp, "kalshi_ticker", "") or "").strip():
+            result.failed.append("M00_INVALID_OPP")
+            result.rejection_reason = "M00_INVALID_OPP: missing kalshi_ticker"
+            return result
+        if not str(getattr(opp, "poly_market_id", "") or "").strip():
+            result.failed.append("M00_INVALID_OPP")
+            result.rejection_reason = "M00_INVALID_OPP: missing poly_market_id"
+            return result
         
         _kalshi_ob_cache: dict | None = None
         

@@ -67,7 +67,7 @@ export default function PositionsPage() {
       </div>
 
       <Card>
-        <Tabs items={["Open", "Closed"]} active={tab} onChange={setTab} />
+        <Tabs items={["Open", "Closed"]} active={tab} onChange={setTab} testId="positions-tabs" />
         <div className="table-wrap" style={{ maxHeight: "65vh" }}>
           <table>
             <thead>

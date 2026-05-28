@@ -18,6 +18,7 @@ from apex.services.pm_trading import (
     place_kalshi_paper_leg,
     place_polymarket_paper_leg,
     pm_agents_status,
+    run_polymarket_agent_cycle,
     run_kalshi_arb_agent_cycle,
 )
 
@@ -221,3 +222,32 @@ def test_build_engine_has_pm_brokers(tmp_path: Path, monkeypatch: pytest.MonkeyP
     broker = engine.execution.broker
     assert getattr(broker, "kalshi_paper", None) is not None
     assert getattr(broker, "polymarket_paper", None) is not None
+
+
+def test_run_polymarket_agent_cycle_returns_error_on_discovery_failure(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    cfg = _settings(tmp_path, monkeypatch)
+    cfg = cfg.model_copy(update={"polymarket_automated_events_enabled": True})
+    engine = SimpleNamespace(settings=cfg)
+    engine.polymarket_event_discovery = lambda: (_ for _ in ()).throw(RuntimeError("boom"))  # type: ignore[attr-defined]
+    engine.polymarket_paper_order_submission = lambda proposals: []  # type: ignore[attr-defined]
+
+    out = run_polymarket_agent_cycle(engine)  # type: ignore[arg-type]
+    assert out["status"] == "error"
+    assert out["detail"].startswith("discovery_failed:")
+
+
+def test_run_polymarket_agent_cycle_returns_error_on_submission_failure(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    cfg = _settings(tmp_path, monkeypatch)
+    cfg = cfg.model_copy(update={"polymarket_automated_events_enabled": True})
+    engine = SimpleNamespace(settings=cfg)
+    engine.polymarket_event_discovery = lambda: [{"id": "mkt"}]  # type: ignore[attr-defined]
+    engine.polymarket_paper_order_submission = lambda proposals: (_ for _ in ()).throw(RuntimeError("submit"))  # type: ignore[attr-defined]
+
+    out = run_polymarket_agent_cycle(engine)  # type: ignore[arg-type]
+    assert out["status"] == "error"
+    assert out["discovery_count"] == 1
+    assert out["detail"].startswith("submission_failed:")

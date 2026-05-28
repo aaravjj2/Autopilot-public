@@ -46,3 +46,10 @@ def test_resolution_time_match() -> None:
     
     assert "RESOLUTION_TIME_MISMATCH" not in verdict.flags
     assert verdict.match_score == 1.0
+
+
+def test_verify_handles_empty_titles_without_crash() -> None:
+    auditor = SettlementAuditor()
+    verdict = auditor.verify("", "")
+    assert verdict.match_score == 1.0
+    assert verdict.recommendation == "SAFE"

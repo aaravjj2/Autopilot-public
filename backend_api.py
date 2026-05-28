@@ -7,6 +7,7 @@ import json
 import asyncio
 import subprocess
 import math
+import re
 import requests
 import threading
 from concurrent.futures import ThreadPoolExecutor, as_completed
@@ -22,13 +23,15 @@ bootstrap_environment(force=True)
 
 from contextlib import asynccontextmanager
 
-from fastapi import FastAPI, HTTPException, WebSocket, WebSocketDisconnect
+from fastapi import FastAPI, Header, HTTPException, WebSocket, WebSocketDisconnect
 from fastapi.responses import StreamingResponse
 from fastapi.middleware.cors import CORSMiddleware
 
 from apex.core.config import get_settings
 from apex.repositories.sqlite_store import SQLiteStore
 from apex.services.thesis_client import ThesisClient
+from apex.integrations.brightdata_intelligence import BrightDataIntelligence
+from apex.agents.arb_intelligence_agent import ArbitrageIntelligenceAgent
 
 # Initialize real engine components
 settings = get_settings()
@@ -66,6 +69,12 @@ class ConnectionManager:
             self.disconnect(conn)
 
 manager = ConnectionManager()
+_INTEL_REPORT_DIR = Path("data/intelligence_reports").resolve()
+_INTEL_REPORT_DIR.mkdir(parents=True, exist_ok=True)
+_INTEL_TICKER_RE = re.compile(r"^[A-Za-z0-9._-]+$")
+_INTEL_IN_FLIGHT: set[str] = set()
+_INTEL_SEMAPHORE = asyncio.Semaphore(2)
+_INTEL_IN_FLIGHT_LOCK = asyncio.Lock()
 
 # Cache with freshness tracking
 _ALPACA_POOL = ThreadPoolExecutor(max_workers=4, thread_name_prefix="apex-alpaca")
@@ -779,6 +788,92 @@ def list_arb_opportunities(limit: int = 100):
     rows = store.list_arb_opportunities(limit=limit)
     return apply_model_scores(rows)
 
+
+def _latest_intelligence_report(ticker: str) -> Path | None:
+    if not _INTEL_TICKER_RE.match(ticker):
+        return None
+    matches = sorted(_INTEL_REPORT_DIR.glob(f"{ticker}_*.json"), reverse=True)
+    return matches[0] if matches else None
+
+
+async def _run_intelligence_for_ticker(ticker: str) -> None:
+    async with _INTEL_SEMAPHORE:
+        try:
+            rows = store.list_arb_opportunities(limit=500)
+            row = next((r for r in rows if str(r.get("kalshi_ticker")) == ticker), None)
+            if row is None:
+                return
+            from apex.domain.models import ArbOpportunity
+
+            flags_raw = row.get("settlement_flags") or []
+            if isinstance(flags_raw, str):
+                try:
+                    flags_raw = json.loads(flags_raw)
+                except Exception:
+                    flags_raw = [flags_raw]
+            opp = ArbOpportunity(
+                id=str(row.get("id")),
+                kalshi_ticker=str(row.get("kalshi_ticker")),
+                poly_market_id=str(row.get("poly_market_id")),
+                question=str(row.get("question")),
+                kalshi_title=str(row.get("kalshi_title")),
+                poly_title=str(row.get("poly_title")),
+                kalshi_yes_ask=float(row.get("kalshi_yes_ask") or 0.0),
+                poly_no_ask=float(row.get("poly_no_ask") or 0.0),
+                gross_spread=float(row.get("gross_spread") or 0.0),
+                net_edge=float(row.get("net_edge") or 0.0),
+                settlement_match_score=float(row.get("settlement_match_score") or 0.0),
+                settlement_flags=list(flags_raw),
+                volume_kalshi=float(row.get("volume_kalshi") or 0.0),
+                volume_poly=float(row.get("volume_poly") or 0.0),
+                category=str(row.get("category") or "UNKNOWN"),
+                kelly_fraction=float(row.get("kelly_fraction") or 0.0),
+            )
+            intel = BrightDataIntelligence(settings)
+            agent = ArbitrageIntelligenceAgent(settings, intel)
+            await agent.run(opp)
+        finally:
+            _INTEL_IN_FLIGHT.discard(ticker)
+
+
+@app.get("/api/intelligence/report/{ticker}")
+def get_intelligence_report(ticker: str):
+    latest = _latest_intelligence_report(ticker)
+    if latest is None:
+        raise HTTPException(status_code=404, detail="No report found for ticker")
+    return json.loads(latest.read_text(encoding="utf-8"))
+
+
+@app.post("/api/intelligence/run/{ticker}", status_code=202)
+async def run_intelligence_report(
+    ticker: str,
+    x_intelligence_override: str | None = Header(default=None),
+    x_intelligence_token: str | None = Header(default=None),
+):
+    ticker = ticker.strip().upper()
+    if not _INTEL_TICKER_RE.match(ticker):
+        raise HTTPException(status_code=400, detail="Invalid ticker format")
+    expected_token = (os.getenv("INTELLIGENCE_RUN_TOKEN") or "").strip()
+    if expected_token:
+        if x_intelligence_token != expected_token:
+            raise HTTPException(status_code=403, detail="Missing or invalid intelligence token")
+    elif not settings.demo_mode:
+        raise HTTPException(
+            status_code=403,
+            detail="INTELLIGENCE_RUN_TOKEN must be configured for non-demo runs.",
+        )
+    if settings.demo_mode and x_intelligence_override != "allow-demo-credits":
+        raise HTTPException(
+            status_code=403,
+            detail="Blocked in DEMO_MODE. Send x-intelligence-override=allow-demo-credits to proceed.",
+        )
+    async with _INTEL_IN_FLIGHT_LOCK:
+        if ticker in _INTEL_IN_FLIGHT:
+            raise HTTPException(status_code=409, detail="Intelligence run already in progress for ticker")
+        _INTEL_IN_FLIGHT.add(ticker)
+    asyncio.create_task(_run_intelligence_for_ticker(ticker))
+    return {"accepted": True, "ticker": ticker}
+
 @app.get("/api/risk/metrics")
 def get_risk_metrics():
     """Week 6: VIX, Monte Carlo VaR, CFTC limits, Kelly samples."""
@@ -1052,7 +1147,10 @@ def polymarket_book():
 def pm_agents_status():
     from apex.services.pm_trading import pm_agents_status as _status
 
-    return _status(get_cached_engine(), store)
+    try:
+        return _status(get_cached_engine(), store)
+    except Exception as exc:
+        raise HTTPException(status_code=503, detail=f"PM agent status unavailable: {exc}") from exc
 
 
 @app.post("/api/pm/polymarket/run-agents")

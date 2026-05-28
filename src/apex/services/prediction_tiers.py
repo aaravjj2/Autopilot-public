@@ -8,6 +8,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from enum import Enum
+import math
 
 from apex.core.config import Settings, get_settings
 
@@ -108,12 +109,19 @@ def build_prediction_signal(
     settings = settings or get_settings()
     edge = float(row.get("model_edge") or 0)
     fair_prob = float(row.get("fair_prob") or 0.5)
+    if not math.isfinite(edge) or not math.isfinite(fair_prob):
+        return None
     market_prob = float(
         row.get("market_yes_ask")
         or row.get("market_implied")
         or (fair_prob - edge)
     )
+    if not math.isfinite(market_prob):
+        return None
+    market_prob = max(0.01, min(0.99, market_prob))
     model_confidence = float(row.get("model_confidence") or 0)
+    if not math.isfinite(model_confidence):
+        return None
     tier = classify_confidence(model_confidence)
 
     min_e = float(min_edge if min_edge is not None else settings.world_cup_min_model_edge)

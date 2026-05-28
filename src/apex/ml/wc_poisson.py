@@ -163,6 +163,9 @@ def score_match_poisson(
         return _uniform_result(teams_resolved=None)
 
     home_name, away_name = parsed
+    if home_name.strip().lower() == away_name.strip().lower():
+        LOGGER.debug("wc_poisson: home and away teams identical (%s)", home_name)
+        return _uniform_result(teams_resolved=[home_name, away_name])
     home_hit = _find_team(home_name, teams)
     away_hit = _find_team(away_name, teams)
     if not home_hit or not away_hit:

@@ -4,16 +4,20 @@ import re
 import httpx
 import time
 from dataclasses import dataclass
+from apex.core.async_bridge import run_sync
 from apex.core.config import Settings
 from apex.core.logging import get_logger
 from apex.domain.exceptions import BrokerCircuitOpenError
 from apex.domain.models import ArbOpportunity
 from apex.integrations.kalshi_adapter import KalshiEventClient
+from apex.integrations.brightdata_intelligence import BrightDataIntelligence
 from apex.repositories.sqlite_store import SQLiteStore
 
 LOGGER = get_logger(__name__)
 FUZZY_THRESHOLD = 0.72      # Legacy default; prefer settings.arb_match_min_combined_score
 MIN_VOLUME_USD   = 10_000   # Both platforms must exceed this
+_INTELLIGENCE_TTL_SEC = 300.0
+_intelligence_cache: dict[str, tuple[float, dict]] = {}
 
 _TOPIC_KEYWORDS: dict[str, tuple[str, ...]] = {
     "crypto": ("bitcoin", "btc", "ethereum", "eth", "crypto", "solana", "doge"),
@@ -69,6 +73,7 @@ def _match_score(
 class ArbEngine:
     settings: Settings
     store: SQLiteStore
+    intelligence: BrightDataIntelligence | None = None
     _kalshi_errors: int = 0
     _poly_errors: int = 0
     _kalshi_last_error: float = 0.0
@@ -128,7 +133,8 @@ class ArbEngine:
                 LOGGER.info("Polymarket circuit breaker attempting auto-resume.")
                 self._poly_errors = self.CIRCUIT_THRESHOLD - 1
             else:
-                raise BrokerCircuitOpenError("polymarket")
+                LOGGER.critical("Polymarket circuit breaker open. Skipping Polymarket fetch.")
+                return []
         
         try:
             if self._poly_errors < self.CIRCUIT_THRESHOLD:
@@ -157,6 +163,7 @@ class ArbEngine:
             LOGGER.error("Polymarket request error: %s", e)
 
         opportunities = []
+        seen_pairs: set[tuple[str, str]] = set()
         if not kalshi_markets or not poly_markets:
             return opportunities
             
@@ -180,8 +187,14 @@ class ArbEngine:
                 continue
 
             from apex.services.settlement_auditor import SettlementAuditor
-            auditor = SettlementAuditor()
-            verdict = auditor.verify(k.title, poly.get("question", ""), kalshi_market=k, poly_market=poly)
+            auditor = SettlementAuditor(settings=self.settings)
+            verdict = auditor.verify(
+                k.title,
+                poly.get("question", ""),
+                kalshi_market=k,
+                poly_market=poly,
+                intelligence=self.intelligence,
+            )
 
             opp = ArbOpportunity(
                 kalshi_ticker=k.ticker,
@@ -199,14 +212,68 @@ class ArbEngine:
                 volume_poly=float(poly.get("volume24hr", 0)),
                 kelly_fraction=min(round(net * 10.0, 3), 0.5), # Scale edge to sizing cap
             )
+            pair = (opp.kalshi_ticker, opp.poly_market_id)
+            if pair in seen_pairs:
+                continue
+            seen_pairs.add(pair)
             opportunities.append(opp)
             LOGGER.info(
                 "Arb found: %s | net_edge=%.3f | settlement=%.2f",
                 k.ticker, net, verdict.match_score
             )
 
+        self._apply_intelligence_context(opportunities)
         LOGGER.info("ArbEngine.scan(): found %d opportunities", len(opportunities))
         return opportunities
+
+    def _apply_intelligence_context(self, opportunities: list[ArbOpportunity]) -> None:
+        if not opportunities or self.intelligence is None:
+            return
+        try:
+            budget = run_sync(self.intelligence.check_session_budget())
+        except Exception as exc:
+            LOGGER.warning("BrightData budget check failed: %s", exc)
+            return
+        if not budget.get("ok", False):
+            LOGGER.warning("BrightData budget exhausted; skipping intelligence context")
+            return
+        seen: set[str] = set()
+        now = time.time()
+        for opp in opportunities:
+            if opp.net_edge <= 0.03:
+                continue
+            if opp.kalshi_ticker in seen:
+                continue
+            seen.add(opp.kalshi_ticker)
+            cached = _intelligence_cache.get(opp.kalshi_ticker)
+            if cached and (now - cached[0]) < _INTELLIGENCE_TTL_SEC:
+                context = cached[1]
+            else:
+                try:
+                    context = run_sync(
+                        self.intelligence.get_market_context(
+                            opp.kalshi_title,
+                            opp.poly_title,
+                            self._hours_to_resolution(opp),
+                        )
+                    )
+                except Exception as exc:
+                    LOGGER.warning("BrightData market context failed for %s: %s", opp.kalshi_ticker, exc)
+                    context = {}
+                _intelligence_cache[opp.kalshi_ticker] = (now, context)
+            opp.web_context = context or None
+            risk_signals = list((context or {}).get("risk_signals") or [])
+            for signal in risk_signals:
+                opp.settlement_flags.append(signal)
+                LOGGER.info("BrightData risk signal on %s: %s", opp.kalshi_ticker, signal)
+            reduction = min(0.005 * len(risk_signals), 0.02)
+            opp.net_edge = max(0.0, round(opp.net_edge - reduction, 4))
+
+    @staticmethod
+    def _hours_to_resolution(opp: ArbOpportunity) -> float:
+        if opp.resolution_ts is None:
+            return 24.0
+        return max(0.0, (opp.resolution_ts.timestamp() - time.time()) / 3600.0)
 
     def _combined_match(self, kalshi_title: str, poly_markets: list[dict], chroma_store) -> dict | None:
         """Combine fuzzy, token, and semantic match to find best pair."""

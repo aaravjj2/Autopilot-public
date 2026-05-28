@@ -4,7 +4,12 @@ from dataclasses import dataclass, field
 from datetime import datetime
 from typing import Any
 
+from apex.core.config import Settings, get_settings
+from apex.core.async_bridge import run_sync
+from apex.core.logging import get_logger
 from apex.domain.models import SettlementVerdict
+from apex.integrations.brightdata_intelligence import BrightDataIntelligence
+LOGGER = get_logger(__name__)
 
 TIMING_PATTERNS  = [r"\d{4}-\d{2}-\d{2}", r"end of \w+", r"by \w+ \d+"]
 SOURCE_KEYWORDS  = ["BLS", "BEA", "Fed", "FOMC", "CME", "CoinGecko", "Binance"]
@@ -12,6 +17,7 @@ ROUND_PATTERNS   = [r"\d+\.\d+ ?%", r"rounded to"]
 
 @dataclass
 class SettlementAuditor:
+    settings: Settings = field(default_factory=get_settings)
 
     def _parse_ts(self, ts_str: str | None) -> float | None:
         if not ts_str:
@@ -28,8 +34,11 @@ class SettlementAuditor:
         kalshi_title: str, 
         poly_question: str,
         kalshi_market: Any = None,
-        poly_market: dict[str, Any] | None = None
+        poly_market: dict[str, Any] | None = None,
+        intelligence: BrightDataIntelligence | None = None,
     ) -> SettlementVerdict:
+        kalshi_title = str(kalshi_title or "").strip()
+        poly_question = str(poly_question or "").strip()
         flags = []
         score = 1.0
 
@@ -79,7 +88,26 @@ class SettlementAuditor:
                 flags.append("RESOLUTION_TIME_MISMATCH")
                 score -= 0.20
 
-        score = max(0.0, round(score, 2))
+        if intelligence is not None and self.settings.brightdata_enabled:
+            try:
+                live_source = run_sync(
+                    intelligence.get_settlement_source(
+                        kalshi_title,
+                        [kw for kw in SOURCE_KEYWORDS if kw.lower() in kalshi_title.lower()] or SOURCE_KEYWORDS,
+                    )
+                )
+                if live_source.get("found") and float(live_source.get("confidence", 0.0)) >= 0.7:
+                    flags.append("source_verified_live")
+                    score += 0.10
+                if live_source.get("found"):
+                    excerpt = str(live_source.get("excerpt", ""))
+                    k_thresholds = set(re.findall(r"\d+\.?\d*\s?%", kalshi_title))
+                    if k_thresholds and not any(token in excerpt for token in k_thresholds):
+                        flags.append("source_conflict")
+            except Exception as exc:
+                LOGGER.warning("Settlement intelligence enhancement failed: %s", exc)
+
+        score = min(1.0, max(0.0, round(score, 2)))
 
         if score >= 0.75:
             recommendation = "SAFE"

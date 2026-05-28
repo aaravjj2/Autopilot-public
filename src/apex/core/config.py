@@ -356,6 +356,10 @@ class Settings(BaseSettings):
     self_improvement_loop_interval_sec: int = Field(
         default=86400, ge=3600, le=604800, alias="SELF_IMPROVEMENT_LOOP_INTERVAL_SEC"
     )
+    brightdata_api_key: str | None = Field(default=None, alias="BRIGHTDATA_API_KEY")
+    brightdata_max_requests_per_run: int = Field(
+        default=50, ge=1, le=500, alias="BRIGHTDATA_MAX_REQUESTS_PER_RUN"
+    )
     postgres_url: str = Field(default="", alias="POSTGRES_URL")
 
     # ---- Additional LLM provider keys ------------------------------------------
@@ -374,14 +378,36 @@ class Settings(BaseSettings):
 
         route = resolve_llm_route(self)
         if route is None:
+            LOGGER.warning(
+                "get_llm_client: no LLM route resolved; check GROQ/GEMINI/OPENROUTER keys or Ollama availability"
+            )
+            return None
+        if not route.base_url.strip():
+            LOGGER.warning("get_llm_client: route %s has empty base_url", route.label)
+            return None
+        if route.provider != "ollama" and not route.api_key.strip():
+            LOGGER.warning("get_llm_client: route %s has empty api_key", route.label)
             return None
         try:
             from openai import OpenAI  # type: ignore[import-untyped]
 
             return OpenAI(api_key=route.api_key, base_url=route.base_url)
+        except ImportError:
+            LOGGER.warning("get_llm_client: openai package not installed; run `pip install openai`")
+            return None
         except Exception as exc:
             LOGGER.warning("get_llm_client: init failed for %s: %s", route.label, exc)
             return None
+
+    @property
+    def brightdata_enabled(self) -> bool:
+        key = (self.brightdata_api_key or "").strip()
+        if not key:
+            return False
+        if key.lower() in {"changeme", "your_api_key_here", "none", "null"}:
+            LOGGER.warning("brightdata_enabled: placeholder BRIGHTDATA_API_KEY detected; disabling integration")
+            return False
+        return True
 
     # ---- Validators -------------------------------------------------------------
     @field_validator("chromadb_path", "sqlite_path", mode="after")

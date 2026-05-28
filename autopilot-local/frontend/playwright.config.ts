@@ -16,6 +16,7 @@ export default defineConfig({
   testDir: './tests/e2e',
   timeout: 30_000,
   retries: 2,
+  workers: process.env.CI ? 2 : 3,
   use: {
     baseURL: 'http://127.0.0.1:3000',
     headless: true,

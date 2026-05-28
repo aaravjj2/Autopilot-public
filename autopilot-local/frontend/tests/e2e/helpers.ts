@@ -35,6 +35,41 @@ export async function expectSidebarNav(page: Page) {
   await expect(sidebar.getByRole('link', { name: 'Marketplace' })).toBeVisible();
 }
 
+export async function waitForTerminalHydration(page: Page) {
+  await page.waitForSelector('html[data-terminal-hydrated="true"]', { timeout: 30_000 });
+}
+
+/** Sidebar hrefs — use attribute selectors so nav badges do not break exact name matching. */
+const SIDEBAR_HREFS: Record<string, string> = {
+  Overview: '/dashboard',
+  Trading: '/dashboard/trading',
+  Positions: '/dashboard/positions',
+  Signals: '/dashboard/opportunities',
+  Autopilot: '/dashboard/autopilot',
+  'Arb Radar': '/dashboard/arb-radar',
+  Risk: '/dashboard/risk-management',
+  'Hive-Mind': '/dashboard/ai-hivemind',
+  Analytics: '/dashboard/analytics',
+  'Live Feed': '/dashboard/live',
+  Marketplace: '/dashboard/marketplace',
+  Kalshi: '/dashboard/kalshi',
+  Polymarket: '/dashboard/polymarket',
+  DeFi: '/dashboard/defi-treasury',
+  Fund: '/dashboard/fund-admin',
+  Settings: '/dashboard/settings',
+};
+
+export function sidebarLink(page: Page, label: string) {
+  const href = SIDEBAR_HREFS[label];
+  if (href) {
+    return page.locator(`.sidebar a.nav-link[href="${href}"]`);
+  }
+  return page.locator('.sidebar').getByRole('link', { name: label, exact: true });
+}
+
 export async function clickSidebar(page: Page, label: string) {
-  await page.locator('.sidebar').getByRole('link', { name: label, exact: true }).click();
+  await waitForTerminalHydration(page);
+  const link = sidebarLink(page, label);
+  await link.scrollIntoViewIfNeeded();
+  await link.click();
 }

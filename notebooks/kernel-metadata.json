@@ -1,0 +1,12 @@
+{
+  "id": "aaravjain594/autopilot-vllm-server",
+  "title": "Autopilot vLLM Server",
+  "code_file": "vllm_server.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": "true",
+  "enable_gpu": "true",
+  "enable_internet": "true",
+  "enable_tpu": "false",
+  "kernel_data_sources": []
+}

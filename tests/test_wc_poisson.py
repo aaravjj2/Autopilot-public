@@ -79,3 +79,9 @@ def test_score_match_poisson_unknown_teams_uniform_fallback():
     )
     assert result["home_win"] == pytest.approx(1 / 3)
     assert result["teams_resolved"] == ["Zzzland", "Qqqistan"]
+
+
+def test_score_match_poisson_identical_teams_uniform_fallback():
+    result = score_match_poisson({"home_team": "Brazil", "away_team": "Brazil"})
+    assert result["home_win"] == pytest.approx(1 / 3)
+    assert result["teams_resolved"] == ["Brazil", "Brazil"]

@@ -19,6 +19,9 @@ export interface ArbOpportunity {
   resolution_ts?: string;
   outcome?: string;
   pnl?: number;
+  web_context?: Record<string, unknown> | null;
+  intelligence_verdict?: "BUY" | "SKIP" | "WAIT";
+  intelligence_confidence_score?: number;
 }
 
 export interface ArbThesis {

@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import math
 import json
 import math
 import re
@@ -133,6 +134,8 @@ def score_contract(row: dict[str, Any], settings: Settings | None = None) -> Wor
     home_adv = float(data.get("home_advantage_elo", 45))
 
     market_yes = float(row.get("market_yes_ask") or row.get("kalshi_yes_ask") or 0.5)
+    if not math.isfinite(market_yes):
+        market_yes = 0.5
     market_yes = max(0.01, min(0.99, market_yes))
 
     fair = 0.5

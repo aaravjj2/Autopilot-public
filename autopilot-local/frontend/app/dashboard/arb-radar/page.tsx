@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ThesisCard } from "@/components/ThesisCard";
 import { DashboardLayout } from "@/components/layout/DashboardLayout";
 import { PageHeader, Card, CardHeader, Tag, Btn, EmptyState } from "@/components/terminal/ui";
@@ -18,6 +18,8 @@ export default function ArbRadarPage() {
   const lastPatchAt = useArbStore((s) => s.lastPatchAt);
   const [expandedId, setExpandedId] = useState<string | null>(null);
   const [demoMode, setDemoMode] = useState(false);
+  const [intelByTicker, setIntelByTicker] = useState<Record<string, { verdict: string; confidence_score: number } | null>>({});
+  const intelInFlight = useRef<Set<string>>(new Set());
   const loading = !isConnected && opportunities.length === 0;
 
   useEffect(() => {
@@ -26,6 +28,53 @@ export default function ArbRadarPage() {
       .then((d) => setDemoMode(Boolean(d.demo_mode)))
       .catch(() => setDemoMode(false));
   }, []);
+
+  useEffect(() => {
+    const loadIntel = async () => {
+      const tickers = Array.from(
+        new Set(opportunities.map((o) => o.kalshi_ticker).filter(Boolean))
+      );
+      if (tickers.length === 0) {
+        return;
+      }
+      // Avoid hammering backend: fetch only new tickers and cap requests per update.
+      const missing = tickers
+        .filter(
+          (ticker) =>
+            !(ticker in intelByTicker) && !intelInFlight.current.has(ticker)
+        )
+        .slice(0, 8);
+      if (missing.length === 0) {
+        return;
+      }
+      for (const ticker of missing) {
+        intelInFlight.current.add(ticker);
+      }
+      const pairs = await Promise.all(
+        missing.map(async (ticker) => {
+          try {
+            const res = await fetch(`${getApexApiUrl()}/api/intelligence/report/${encodeURIComponent(ticker)}`);
+            if (!res.ok) return null;
+            const json = (await res.json()) as { verdict?: string; confidence_score?: number };
+            if (!json.verdict || typeof json.confidence_score !== "number") return null;
+            return [ticker, { verdict: json.verdict, confidence_score: json.confidence_score }] as const;
+          } catch {
+            return null;
+          } finally {
+            intelInFlight.current.delete(ticker);
+          }
+        })
+      );
+      const next: Record<string, { verdict: string; confidence_score: number } | null> = {};
+      for (const pair of pairs) {
+        if (pair) next[pair[0]] = pair[1];
+      }
+      if (Object.keys(next).length > 0) {
+        setIntelByTicker((prev) => ({ ...prev, ...next }));
+      }
+    };
+    void loadIntel();
+  }, [opportunities, intelByTicker]);
 
   useEffect(() => {
     if ("Notification" in window && Notification.permission === "default") {
@@ -176,6 +225,15 @@ export default function ArbRadarPage() {
                       >
                         {(opp.settlement_match_score * 100).toFixed(0)}%
                       </Tag>
+                      {intelByTicker[opp.kalshi_ticker] && (
+                        <div
+                          data-testid="intelligence-verdict"
+                          className="pill"
+                          style={{ marginTop: 6, display: "inline-block" }}
+                        >
+                          {intelByTicker[opp.kalshi_ticker].verdict} {intelByTicker[opp.kalshi_ticker].confidence_score}%
+                        </div>
+                      )}
                     </td>
                     <td>
                       <Tag
