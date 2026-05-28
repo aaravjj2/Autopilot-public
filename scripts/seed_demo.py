@@ -12,10 +12,10 @@ sys.path.insert(0, str(ROOT / "src"))
 os.environ.setdefault("DEMO_MODE", "true")
 os.environ.setdefault("ALPACA_PAPER_TRADE", "true")
 
-from apex.core.config import get_settings
-from apex.core.env_bootstrap import bootstrap_environment
-from apex.demo.seed_data import seed_demo_database
-from apex.repositories.sqlite_store import SQLiteStore
+from apex.core.config import get_settings  # noqa: E402
+from apex.core.env_bootstrap import bootstrap_environment  # noqa: E402
+from apex.demo.seed_data import seed_demo_database  # noqa: E402
+from apex.repositories.sqlite_store import SQLiteStore  # noqa: E402
 
 
 def main() -> None:

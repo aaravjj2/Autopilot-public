@@ -19,8 +19,8 @@ if discord_keys.exists():
 # Add src to path
 sys.path.insert(0, str(Path(__file__).resolve().parent / "src"))
 
-from apex.integrations.discord_bot import get_discord_integration
-from apex.integrations.discord_exit_manager import get_discord_exit_manager
+from apex.integrations.discord_bot import get_discord_integration  # noqa: E402
+from apex.integrations.discord_exit_manager import get_discord_exit_manager  # noqa: E402
 
 logging.basicConfig(
     level=logging.INFO,

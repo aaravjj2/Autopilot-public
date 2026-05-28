@@ -13,16 +13,16 @@ if str(workspace) not in sys.path:
 if str(workspace / "scripts") not in sys.path:
     sys.path.append(str(workspace / "scripts"))
 
-from loop_modules.models import LoopState
-from loop_modules.context_builder import build_context
-from loop_modules.brainstorm import BrainstormEngine
-from loop_modules.scorer import IdeaScorer
-from loop_modules.planner import IterationPlanner
-from loop_modules.builder import IterationBuilder
-from loop_modules.test_runner import IterationTestRunner
-from loop_modules.artifact_capture import ArtifactCapture
-from loop_modules.doc_writer import IterationDocWriter
-from loop_modules.compactor import LoopCompactor
+from loop_modules.models import LoopState  # noqa: E402
+from loop_modules.context_builder import build_context  # noqa: E402
+from loop_modules.brainstorm import BrainstormEngine  # noqa: E402
+from loop_modules.scorer import IdeaScorer  # noqa: E402
+from loop_modules.planner import IterationPlanner  # noqa: E402
+from loop_modules.builder import IterationBuilder  # noqa: E402
+from loop_modules.test_runner import IterationTestRunner  # noqa: E402
+from loop_modules.artifact_capture import ArtifactCapture  # noqa: E402
+from loop_modules.doc_writer import IterationDocWriter  # noqa: E402
+from loop_modules.compactor import LoopCompactor  # noqa: E402
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 LOGGER = logging.getLogger(__name__)
