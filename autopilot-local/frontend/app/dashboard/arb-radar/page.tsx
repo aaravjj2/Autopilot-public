@@ -231,7 +231,7 @@ export default function ArbRadarPage() {
                           className="pill"
                           style={{ marginTop: 6, display: "inline-block" }}
                         >
-                          {intelByTicker[opp.kalshi_ticker].verdict} {intelByTicker[opp.kalshi_ticker].confidence_score}%
+                          {intelByTicker[opp.kalshi_ticker]!.verdict} {intelByTicker[opp.kalshi_ticker]!.confidence_score}%
                         </div>
                       )}
                     </td>
