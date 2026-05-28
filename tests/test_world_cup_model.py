@@ -4,7 +4,6 @@ from __future__ import annotations
 
 from unittest.mock import patch
 
-import pytest
 
 from apex.core.config import get_settings
 from apex.ml.world_cup_model import (

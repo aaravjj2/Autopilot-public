@@ -5,7 +5,6 @@ import json
 import time
 from unittest.mock import patch
 
-import pytest
 
 from apex.integrations.kalshi_ws import KalshiWsConnectionManager
 

@@ -2,9 +2,8 @@
 
 from __future__ import annotations
 
-from unittest.mock import MagicMock, patch
+from unittest.mock import MagicMock
 
-import pytest
 
 from apex.domain.models import ArbOpportunity
 from apex.integrations.kalshi_adapter import (

@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-from datetime import datetime
 
 from apex.core.config import Settings
 from apex.domain.enums import Direction, PMSignal

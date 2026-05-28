@@ -2,7 +2,6 @@ from __future__ import annotations
 
 from pathlib import Path
 
-import pytest
 
 from apex.core.context import reset_run_id, set_run_id
 from apex.domain.enums import EventType

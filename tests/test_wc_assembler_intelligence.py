@@ -5,7 +5,6 @@ import sys
 import importlib.util
 from pathlib import Path
 
-import pytest
 
 WC_SRC = Path(__file__).resolve().parents[1] / "wc2026_autopilot" / "src"
 if str(WC_SRC) not in sys.path:

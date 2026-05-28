@@ -356,8 +356,7 @@ def test_full_order_lifecycle(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -
     assert pos.avg_entry_price == 200.0
 
     # ---------- Stage 3: Exit via stop-loss ----------
-    from apex.services.exit_monitor import evaluate_position_exit, _hit_settings_stop_tp
-    from datetime import datetime, timezone
+    from apex.services.exit_monitor import evaluate_position_exit
 
     entry_time = pos.entry_time
     decision = evaluate_position_exit(

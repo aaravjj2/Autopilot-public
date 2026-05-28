@@ -2,7 +2,6 @@
 
 from unittest.mock import patch
 
-import pytest
 
 
 def test_polymarket_book_502_returns_failure():

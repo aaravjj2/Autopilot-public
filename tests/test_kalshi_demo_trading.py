@@ -4,7 +4,6 @@ from __future__ import annotations
 
 from unittest.mock import MagicMock, patch
 
-import pytest
 
 from apex.core.config import Settings
 from apex.integrations.kalshi_trading import (

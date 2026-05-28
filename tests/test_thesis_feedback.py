@@ -1,9 +1,5 @@
 from __future__ import annotations
 
-import json
-from datetime import datetime, timezone
-import pytest
-from uuid import uuid4
 
 from apex.domain.models import ArbOpportunity
 from apex.repositories.sqlite_store import SQLiteStore

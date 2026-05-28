@@ -6,7 +6,6 @@ from apex.core.config import Settings
 from apex.domain.models import ArbOpportunity
 from apex.layers.l3.risk_checks import RiskCheckEngine
 from apex.repositories.sqlite_store import SQLiteStore
-from datetime import datetime, timezone
 
 
 def _opp() -> ArbOpportunity:

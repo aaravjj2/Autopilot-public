@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 import logging
-from typing import Any
 
 from loop_modules.models import Idea, LoopContext
 from loop_modules.brainstorm import BrainstormEngine

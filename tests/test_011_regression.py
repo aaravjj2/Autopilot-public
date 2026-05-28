@@ -5,8 +5,6 @@ use get_cached_engine(); _engine_singleton global is present in backend_api.py.
 """
 from __future__ import annotations
 
-import ast
-import re
 from pathlib import Path
 
 REPO = Path(__file__).parents[1]

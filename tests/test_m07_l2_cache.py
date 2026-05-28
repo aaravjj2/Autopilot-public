@@ -2,9 +2,8 @@
 from __future__ import annotations
 
 import threading
-from unittest.mock import MagicMock, patch
+from unittest.mock import MagicMock
 
-import pytest
 
 from apex.core.config import Settings
 from apex.domain.models import ArbOpportunity

@@ -85,7 +85,7 @@ def test_loss_cut_scan_closes_position_exceeding_threshold() -> None:
 
 def test_exit_monitor_invalid_entry_triggers_exit() -> None:
     from apex.domain.models import Position
-    from apex.services.exit_monitor import evaluate_position_exit, ExitDecision
+    from apex.services.exit_monitor import evaluate_position_exit
     from apex.core.config import Settings
 
     pos = Position(symbol="BAD", qty=0, market_value=0, sector="X", avg_entry_price=0, side="long", correlation_to_book=0, entry_time=__import__("datetime").datetime.now())
@@ -103,7 +103,6 @@ def test_exit_monitor_invalid_entry_triggers_exit() -> None:
 
 
 def test_health_endpoint_enriched() -> None:
-    from apex.monitor.health_server import healthz_handler
     from starlette.testclient import TestClient
     from apex.monitor.health_server import app
 
