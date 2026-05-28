@@ -14,6 +14,8 @@ from pathlib import Path
 
 sys.path.append(str(Path(__file__).parent.parent.parent / "src"))
 from apex.integrations.thesis_service import router as thesis_router
+from marketplace_routes import router as marketplace_router
+from marketplace_integration import marketplace_health
 
 logging.basicConfig(level=logging.INFO)
 LOGGER = logging.getLogger(__name__)
@@ -57,9 +59,6 @@ try:
     app.include_router(agent_router)
 except ImportError:
     pass
-
-from marketplace_routes import router as marketplace_router
-from marketplace_integration import marketplace_health
 
 app.include_router(marketplace_router)
 

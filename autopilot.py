@@ -5,7 +5,12 @@ Runs forever. Plans its own tasks. Routes to best available tool.
 Reports everything to Discord.
 """
 
-import json, os, subprocess, time, threading, requests, re
+import json
+import subprocess
+import time
+import threading
+import requests
+import re
 from datetime import datetime, timedelta
 from pathlib import Path
 
@@ -198,7 +203,7 @@ def kaggle_poll_ngrok():
     for attempt in range(40):   # up to ~20 min
         time.sleep(30)
         try:
-            r = subprocess.run(
+            _r = subprocess.run(
                 ["kaggle", "kernels", "output", kernel_id, "-p", "/tmp/kaggle_out"],
                 capture_output=True, text=True, timeout=30
             )
@@ -249,8 +254,9 @@ def tunnel_manager_loop():
                 r = requests.get(f"{ngrok_url}/v1/models",
                                  headers={"Authorization": "Bearer x"}, timeout=10)
                 tunnel_alive = r.status_code in (200, 401)
-            except:
+            except requests.RequestException as e:
                 tunnel_alive = False
+                print(f"[tunnel] health check failed: {e}")
 
         if not tunnel_alive:
             (STATE / "ngrok_url.txt").write_text("")
@@ -327,10 +333,8 @@ def auto_plan() -> list[dict]:
     try:
         if planner == "copilot":
             cmd = ["copilot", "--add-dir", WORKDIR, "--allow-all", "-p", prompt]
-            timeout = 120
         elif planner == "opencode":
             cmd = ["opencode", "run", prompt, "--dir", WORKDIR]
-            timeout = 120
         elif planner == "openrouter":
             # Use OpenRouter API directly (no subprocess needed)
             r_api = requests.post(

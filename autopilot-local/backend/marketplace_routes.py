@@ -53,7 +53,6 @@ def _portfolio_card(session: Session, p: Portfolio, period: str = "1M") -> dict[
 
 @router.get("/api/positions")
 def get_open_positions() -> list[dict[str, Any]]:
-    from apex.core.config import get_settings
     from apex.integrations.hub import get_integration_hub
 
     hub = get_integration_hub()

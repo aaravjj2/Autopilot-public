@@ -4,6 +4,7 @@ from __future__ import annotations
 import os
 import sys
 import json
+import logging
 import asyncio
 import subprocess
 import math
@@ -37,6 +38,7 @@ from apex.agents.arb_intelligence_agent import ArbitrageIntelligenceAgent
 settings = get_settings()
 store = SQLiteStore(settings.sqlite_path)
 thesis_client = ThesisClient()
+logger = logging.getLogger(__name__)
 
 # Use existing Alpaca adapter instead of duplicating logic
 from apex.integrations.market_facade import get_alpaca_client, get_chart_bars, get_options_chain, probe_market_feeds, record_equity_snapshot
@@ -278,7 +280,8 @@ class DataCache:
                 if isinstance(payload, str):
                     try:
                         payload = json.loads(payload)
-                    except:
+                    except json.JSONDecodeError:
+                        logger.debug("Failed to parse event payload as JSON, using empty dict")
                         payload = {}
                 result.append({
                     "id": event.get("event_id", ""),

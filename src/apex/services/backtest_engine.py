@@ -57,7 +57,8 @@ class BacktestEngine:
                 category_stats[cat] = {"n_trades": 0, "n_wins": 0, "total_pnl": 0.0, "total_edge": 0.0}
             c_stat = category_stats[cat]
             c_stat["n_trades"] += 1
-            if pnl > 0: c_stat["n_wins"] += 1
+            if pnl > 0:
+                c_stat["n_wins"] += 1
             c_stat["total_pnl"] += pnl
             c_stat["total_edge"] += opp.net_edge
 
