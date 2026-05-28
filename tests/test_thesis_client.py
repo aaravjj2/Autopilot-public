@@ -14,6 +14,6 @@ def test_mock_streamer_sync():
         async for t in tc.stream_thesis("prompt"):
             tokens.append(t)
 
-    asyncio.get_event_loop().run_until_complete(collect())
+    asyncio.run(collect())
     assert len(tokens) >= 1
     assert "Thesis:" in tokens[0]

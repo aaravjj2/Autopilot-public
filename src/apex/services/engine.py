@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import uuid
 from dataclasses import dataclass, field
-from datetime import date, datetime, time
+from datetime import date, datetime, time, timezone
 from typing import Any
 
 from apex.core.config import Settings
@@ -13,7 +13,7 @@ from apex.domain.watchlist_candidates import DEFAULT_WATCHLIST_CANDIDATES
 from apex.domain.weekly_focus import priority_watchlist_symbols, weekly_focus_symbols
 from apex.domain.errors import BrokerCircuitOpenError, MalformedProposalError, RiskCheckFailedError
 from apex.domain.models import AuditEvent, OpportunityScore, Position, TradeProposal
-from apex.integrations.broker import AlpacaBrokerAdapter, PaperBrokerSimulator, VenueRoutingBroker
+from apex.integrations.broker import AlpacaBrokerAdapter, VenueRoutingBroker
 from apex.integrations.polymarket_events import polymarket_event_proposal_from_market
 from apex.integrations.polymarket_gamma_public import fetch_active_liquid_markets
 from apex.integrations.repo_registry import IntegrationRegistry
@@ -985,7 +985,7 @@ class ApexEngine:
                     else:
                         source = "apex_engine"
                         # Find corresponding buy order from audit log
-                        entry_data = self.store.get_symbol_entry_time(symbol)
+                        self.store.get_symbol_entry_time(symbol)
                         entry_price = filled_avg_price * 0.9  # Rough estimate
                     
                     exit_price = filled_avg_price
@@ -1100,8 +1100,6 @@ class ApexEngine:
 
     def database_backup(self) -> None:
         """Backup SQLite DB to ``data/backups/`` with 30-day retention."""
-        import shutil
-        from pathlib import Path
 
         backup_dir = self.settings.sqlite_path.parent / "backups"
         backup_dir.mkdir(parents=True, exist_ok=True)

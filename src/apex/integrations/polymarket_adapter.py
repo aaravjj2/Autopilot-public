@@ -9,7 +9,7 @@ from pathlib import Path
 from typing import Any
 
 from apex.core.logging import get_logger
-from apex.integrations.polymarket_gamma_public import GAMMA_API, fetch_gamma_markets
+from apex.integrations.polymarket_gamma_public import fetch_gamma_markets
 
 LOGGER = get_logger(__name__)
 

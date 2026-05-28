@@ -1,12 +1,10 @@
 from __future__ import annotations
 
 import time
-from datetime import datetime, timezone
 from typing import Any
 
 from apex.core.config import Settings
 from apex.core.logging import get_logger
-from apex.domain.enums import Direction, Instrument
 from apex.domain.models import AuditEvent, EventType
 
 LOGGER = get_logger(__name__)

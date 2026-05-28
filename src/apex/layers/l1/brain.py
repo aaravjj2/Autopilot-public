@@ -18,7 +18,7 @@ from apex.domain.weekly_focus import (
 from apex.integrations.news_regime_adapters import KronosAdapter
 
 if TYPE_CHECKING:
-    from apex.integrations.tradingagents_adapter import TradingAgentsAdapter
+    pass
 
 LOGGER = get_logger(__name__)
 
@@ -77,7 +77,7 @@ class FinanceBrainService:
             ema12 = sum(closes[-12:]) / 12
             ema26 = sum(closes[-26:]) / 26
             macd = ema12 - ema26
-            macd_hist = macd / (ema26 + 1e-9)
+            macd / (ema26 + 1e-9)
             macd_score = 7.5 if macd > 0 else 3.5 if macd < 0 else 5.0
         else:
             macd_score = 5.0

@@ -3,7 +3,7 @@ from __future__ import annotations
 import time
 from collections.abc import Callable
 from dataclasses import dataclass, field
-from datetime import datetime, timezone, timezone
+from datetime import datetime, timezone
 from statistics import mean
 from typing import Any
 

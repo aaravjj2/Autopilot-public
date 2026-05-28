@@ -7,7 +7,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-from apex.core.config import Settings, get_settings
+from apex.core.config import get_settings
 from apex.core.logging import get_logger
 from apex.domain.enums import EventType
 from apex.domain.models import AuditEvent

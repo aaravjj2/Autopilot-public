@@ -1,10 +1,8 @@
 """APEX Discord Brain - Intelligent signal validation and execution"""
 from __future__ import annotations
 
-import os
 import logging
-import asyncio
-from datetime import datetime, timezone, timezone, timedelta
+from datetime import datetime, timezone
 from typing import Any
 from enum import Enum
 
@@ -281,7 +279,7 @@ class DiscordBrain:
                 risk_score += 30
             elif days_to_exp < 14:
                 risk_score += 15
-        except:
+        except (ValueError, TypeError, KeyError):
             risk_score += 20
         
         # Higher risk for deep OTM options

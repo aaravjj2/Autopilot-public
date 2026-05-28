@@ -9,17 +9,14 @@ If *no* client can be initialised, returns a safe placeholder and never raises.
 from __future__ import annotations
 
 import json
-from dataclasses import dataclass, field
-from datetime import datetime, timezone
 from typing import Any
 from fastapi import APIRouter, HTTPException
 from fastapi.responses import StreamingResponse
-
-router = APIRouter()
-
 from apex.core.config import Settings, get_settings
 from apex.core.logging import get_logger
 from apex.domain.models import ArbOpportunity, ArbThesis
+
+router = APIRouter()
 
 LOGGER = get_logger(__name__)
 
@@ -110,7 +107,6 @@ def _placeholder_thesis(arb_id: str, reason: str = "LLM unavailable — no API k
 
 def _call_openai_compat(client: Any, user_prompt: str) -> str:
     """Call any OpenAI-compatible client (Groq, OpenRouter, Ollama) and return raw text."""
-    import openai  # type: ignore[import-untyped]
 
     # Determine a sensible model name — prefer a fast / cheap one if it's Ollama
     try:
@@ -184,7 +180,6 @@ async def stream_arb_thesis(arb_id: str):
             return
             
         import asyncio
-        from apex.layers.l2.arb_analyst_panel import ArbAnalystPanel
         from apex.domain.models import ArbOpportunity
         
         opp = ArbOpportunity(

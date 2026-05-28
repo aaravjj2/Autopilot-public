@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from datetime import datetime, timezone, timezone
+from datetime import datetime, timezone
 
 from apex.domain.models import AgentSignalAttribution, TradeProposal
 from apex.repositories.sqlite_store import SQLiteStore

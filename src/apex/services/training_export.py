@@ -7,7 +7,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-from apex.core.config import Settings, get_settings
+from apex.core.config import get_settings
 from apex.repositories.sqlite_store import SQLiteStore
 
 
@@ -124,7 +124,6 @@ def collect_training_rows(store: SQLiteStore | None = None) -> list[dict[str, An
         pass
 
     try:
-        from apex.services.polymarket_training_export import export_resolved_markets_to_jsonl
         from apex.integrations.polymarket_gamma_public import (
             fetch_closed_markets_for_training,
             training_row_from_market,

@@ -3,10 +3,7 @@ from __future__ import annotations
 
 import os
 import re
-import json
 import logging
-import sqlite3
-import asyncio
 from datetime import datetime
 from typing import Any
 from pathlib import Path
@@ -142,7 +139,7 @@ class DiscordBullseyeBot:
             async def on_ready(bot_self):
                 logger.info(f"🤖 Discord bot logged in as {bot_self.user}")
                 logger.info(f"🎯 Listening for Bullseye alerts in channel {self.channel_id}")
-                logger.info(f"🧠 Brain active - evaluating signals before execution")
+                logger.info("🧠 Brain active - evaluating signals before execution")
                 
                 try:
                     channel = bot_self.get_channel(self.channel_id)
@@ -177,7 +174,7 @@ class DiscordBullseyeBot:
                 )
                 
                 if "Bullseye Trade Idea" in full_text or "bullseye" in full_text.lower():
-                    logger.info(f"🚨 New Bullseye Signal Detected!")
+                    logger.info("🚨 New Bullseye Signal Detected!")
                     
                     signal_data = self.parser.parse_signal(full_text)
                     if signal_data:

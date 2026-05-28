@@ -8,13 +8,13 @@ import time
 from datetime import datetime, timedelta, timezone
 from typing import Any
 
-from apex.core.config import Settings, get_settings
+from apex.core.config import Settings
 from apex.core.logging import get_logger
 from apex.domain.enums import EventType
 from apex.domain.models import ArbOpportunity, AuditEvent
 from apex.repositories.sqlite_store import SQLiteStore
 from apex.services.engine import ApexEngine
-from apex.integrations.kalshi_trading import kalshi_execution_mode_label, kalshi_execution_venue
+from apex.integrations.kalshi_trading import kalshi_execution_mode_label
 
 LOGGER = get_logger(__name__)
 

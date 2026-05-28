@@ -111,7 +111,7 @@ class ArbEngine:
                 LOGGER.info("Kalshi circuit breaker reset after successful fetch.")
             else:
                 kalshi_markets = []
-        except BrokerCircuitOpenError as e:
+        except BrokerCircuitOpenError:
             LOGGER.critical("Kalshi circuit breaker open. Skipping Kalshi fetch.")
             kalshi_markets = []
         except httpx.HTTPStatusError as e:
@@ -149,7 +149,7 @@ class ArbEngine:
                 LOGGER.info("Polymarket circuit breaker reset after successful fetch.")
             else:
                 poly_markets = []
-        except BrokerCircuitOpenError as e:
+        except BrokerCircuitOpenError:
             LOGGER.critical("Polymarket circuit breaker open. Skipping Polymarket fetch.")
             poly_markets = []
         except httpx.HTTPStatusError as e:

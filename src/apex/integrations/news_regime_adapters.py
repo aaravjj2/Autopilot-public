@@ -7,6 +7,7 @@ from pathlib import Path
 from typing import Any
 
 from apex.core.logging import get_logger
+from apex.integrations.daily_stock_analysis_adapter import DailyStockAnalysisAdapter  # noqa: F401
 
 LOGGER = get_logger(__name__)
 
@@ -81,8 +82,6 @@ class MiroFishAdapter:
             "note": "MiroFish not fully integrated - using stub",
         }
 
-
-from apex.integrations.daily_stock_analysis_adapter import DailyStockAnalysisAdapter  # noqa: F401
 
 @dataclass
 class KronosAdapter:

@@ -4,8 +4,7 @@ from __future__ import annotations
 import math
 import logging
 from dataclasses import dataclass
-from datetime import datetime, timedelta
-from typing import Any
+from datetime import datetime
 
 logger = logging.getLogger(__name__)
 
@@ -98,7 +97,7 @@ class PerformanceAnalyzer:
                     exit = datetime.fromisoformat(trade["exit_time"])
                     hours = (exit - entry).total_seconds() / 3600
                     holding_periods.append(hours)
-                except:
+                except (ValueError, TypeError, KeyError):
                     pass
         
         metrics.total_trades = len(pnls)
@@ -116,7 +115,7 @@ class PerformanceAnalyzer:
         
         # Profit factor
         gross_profit = sum(w for w in wins if w > 0)
-        gross_loss = abs(sum(l for l in losses if l < 0))
+        gross_loss = abs(sum(loss for loss in losses if loss < 0))
         metrics.profit_factor = gross_profit / gross_loss if gross_loss > 0 else float("inf")
         
         # Expectancy
@@ -189,7 +188,7 @@ class PerformanceAnalyzer:
         metrics.by_source = {}
         for source, source_pnls in by_source.items():
             source_wins = [p for p in source_pnls if p > 0]
-            source_losses = [p for p in source_pnls if p < 0]
+            [p for p in source_pnls if p < 0]
             metrics.by_source[source] = {
                 "trades": len(source_pnls),
                 "win_rate": len(source_wins) / len(source_pnls) * 100 if source_pnls else 0,

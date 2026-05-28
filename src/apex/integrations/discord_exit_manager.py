@@ -1,15 +1,13 @@
 """APEX Discord Exit Manager - Monitors and exits Discord-originated trades"""
 from __future__ import annotations
 
-import os
 import time
 import logging
 import asyncio
-from datetime import datetime, timezone, timezone
+from datetime import datetime, timezone
 from typing import Any
 
-from apex.core.config import get_settings
-from apex.integrations.discord_bot import DiscordTradeStore, generate_occ_symbol
+from apex.integrations.discord_bot import DiscordTradeStore
 from apex.integrations.alpaca_adapter import AlpacaDirectIntegration
 from apex.layers.l3.loss_cut_brain import _loss_threshold, _unrealized_pnl_pct
 

@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 import contextvars
-from typing import Any
 
 _run_id: contextvars.ContextVar[str | None] = contextvars.ContextVar("apex_run_id", default=None)
 

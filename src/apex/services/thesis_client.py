@@ -1,10 +1,9 @@
 from __future__ import annotations
 
 import asyncio
-import json
 
 try:
-    asyncio.get_event_loop()
+    asyncio.get_running_loop()
 except RuntimeError:
     asyncio.set_event_loop(asyncio.new_event_loop())
 from typing import AsyncIterator, Callable, Dict, Optional

@@ -6,7 +6,7 @@ import json
 from datetime import datetime, timezone
 from typing import Any
 
-from apex.core.config import Settings, get_settings
+from apex.core.config import get_settings
 from apex.integrations.kalshi_trading import kalshi_execution_mode_label
 from apex.repositories.sqlite_store import SQLiteStore
 from apex.services.pm_brain import build_pm_brain

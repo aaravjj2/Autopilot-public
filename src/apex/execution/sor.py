@@ -41,13 +41,13 @@ def split_notional_across_legs(
 def build_sor_from_payload(payload: dict[str, Any]) -> SorRequest:
     legs = [
         SorLeg(
-            venue=str(l.get("venue", "")),
-            side=str(l.get("side", "")),
-            size_usd=float(l.get("size_usd", 0)),
-            limit_price=float(l.get("limit_price", 0)),
-            gas_strategy=l.get("gas_strategy"),
+            venue=str(leg.get("venue", "")),
+            side=str(leg.get("side", "")),
+            size_usd=float(leg.get("size_usd", 0)),
+            limit_price=float(leg.get("limit_price", 0)),
+            gas_strategy=leg.get("gas_strategy"),
         )
-        for l in payload.get("legs", [])
+        for leg in payload.get("legs", [])
     ]
     return SorRequest(
         arb_id=str(payload.get("arb_id", "")),
@@ -92,5 +92,5 @@ def execute_sor_paper(req: SorRequest) -> dict[str, Any]:
         "strategy": req.strategy,
         "total_notional_usd": total_usd,
         "legs": leg_results,
-        "all_passed": all(l["status"] == "simulated_fill" for l in leg_results),
+        "all_passed": all(leg["status"] == "simulated_fill" for leg in leg_results),
     }

@@ -46,6 +46,14 @@ def test_polymarket_book_502_returns_failure():
             "kelly_lambda": 0.02,
             "cftc_contract_limit_usd": 250_000,
             "arb_paper_relax_orderbook": False,
+            "sqlite_path": "/tmp/test_arb.db",
+            "demo_mode": False,
+            "arb_max_daily_loss_usd": 500.0,
+            "redis_url": "redis://localhost:6379/0",
+            "polymarket_paper_max_order_usd": 500.0,
+            "polymarket_paper_max_open_positions": 10,
+            "alpaca_base_url": "https://paper-api.alpaca.markets",
+            "arb_universe_reset_hour": 0,
         },
     )()
 

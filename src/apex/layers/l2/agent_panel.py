@@ -92,7 +92,7 @@ def _select_expiry_from_chain(
     return fallback
 
 
-def _compute_risk_reward(entry: float, stop_loss: float, direction: Direction) -> float:
+def _compute_risk_reward(entry: float, stop_loss: float, direction: Direction, take_profit: float = 0.0) -> float:
     if direction == Direction.LONG:
         upside = take_profit - entry if 'take_profit' in locals() else (entry * 1.08 - entry)
         downside = entry - stop_loss
@@ -266,7 +266,7 @@ class MultiAgentPanelService:
             stop_loss = market_price * 0.97
             take_profit = market_price * 1.03
 
-        risk_reward = (take_profit - market_price) / (market_price - stop_loss) if market_price > stop_loss else 1.5
+        (take_profit - market_price) / (market_price - stop_loss) if market_price > stop_loss else 1.5
 
         instrument = opportunity.instrument
         sector = market_data.get("sector", "UNKNOWN")

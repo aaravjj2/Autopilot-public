@@ -1,11 +1,10 @@
 from __future__ import annotations
-import json
 from dataclasses import dataclass
 from datetime import datetime, timedelta, timezone
 import statistics
 from apex.core.config import Settings
 from apex.core.logging import get_logger
-from apex.domain.models import ArbOpportunity, BacktestResult
+from apex.domain.models import BacktestResult
 from apex.repositories.sqlite_store import SQLiteStore
 
 LOGGER = get_logger(__name__)
@@ -17,7 +16,7 @@ class BacktestEngine:
 
     def run(self, lookback_days: int = 90) -> BacktestResult:
         """Replay resolved arb opportunities from the last N days."""
-        cutoff = (datetime.now(timezone.utc) - timedelta(days=lookback_days)).isoformat()
+        (datetime.now(timezone.utc) - timedelta(days=lookback_days)).isoformat()
         resolved = self.store.get_resolved_arb_opportunities(limit=1000)
 
         if not resolved:

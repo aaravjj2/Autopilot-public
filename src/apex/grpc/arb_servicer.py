@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import logging
 import time
-from typing import Callable, List
+from typing import Callable
 
 LOGGER = logging.getLogger(__name__)
 
@@ -48,8 +48,8 @@ def register_arb_grpc(server, list_opportunities_fn: Callable[[], list[dict]]) -
     class IngestServicer(arb_pb2_grpc.OrderbookIngestServiceServicer):
         def PushOrderbook(self, request, context):
             book = {
-                "yes": [[l.price, l.qty] for l in request.yes_bids],
-                "no": [[l.price, l.qty] for l in request.no_bids],
+                "yes": [[leg.price, leg.qty] for leg in request.yes_bids],
+                "no": [[leg.price, leg.qty] for leg in request.no_bids],
             }
             ingest_orderbook(request.venue, request.ticker, book)
             return arb_pb2.OrderbookPushAck(

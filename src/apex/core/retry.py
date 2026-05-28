@@ -38,12 +38,10 @@ def call_with_retries(
     """Run ``fn`` up to ``max_attempts`` times; retry only on transient errors."""
 
     attempts = max(1, min(int(max_attempts), 20))
-    last: BaseException | None = None
     for attempt in range(attempts):
         try:
             return fn()
         except Exception as exc:  # noqa: BLE001
-            last = exc
             if attempt < attempts - 1 and is_transient_exception(exc):
                 LOGGER.warning(
                     "Transient error%s (attempt %s/%s): %s — retrying in %.1fs",
