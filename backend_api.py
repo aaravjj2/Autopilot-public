@@ -13,7 +13,7 @@ import requests
 import threading
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
-from datetime import datetime, timedelta, timezone
+from datetime import datetime, timezone
 from typing import Any
 from collections import deque
 sys.path.insert(0, str(Path(__file__).resolve().parent / "src"))
@@ -22,17 +22,17 @@ from apex.core.env_bootstrap import bootstrap_environment
 
 bootstrap_environment(force=True)
 
-from contextlib import asynccontextmanager
+from contextlib import asynccontextmanager  # noqa: E402
 
-from fastapi import FastAPI, Header, HTTPException, WebSocket, WebSocketDisconnect
-from fastapi.responses import StreamingResponse
-from fastapi.middleware.cors import CORSMiddleware
+from fastapi import FastAPI, Header, HTTPException, WebSocket, WebSocketDisconnect  # noqa: E402
+from fastapi.responses import StreamingResponse  # noqa: E402
+from fastapi.middleware.cors import CORSMiddleware  # noqa: E402
 
-from apex.core.config import get_settings
-from apex.repositories.sqlite_store import SQLiteStore
-from apex.services.thesis_client import ThesisClient
-from apex.integrations.brightdata_intelligence import BrightDataIntelligence
-from apex.agents.arb_intelligence_agent import ArbitrageIntelligenceAgent
+from apex.core.config import get_settings  # noqa: E402
+from apex.repositories.sqlite_store import SQLiteStore  # noqa: E402
+from apex.services.thesis_client import ThesisClient  # noqa: E402
+from apex.integrations.brightdata_intelligence import BrightDataIntelligence  # noqa: E402
+from apex.agents.arb_intelligence_agent import ArbitrageIntelligenceAgent  # noqa: E402
 
 # Initialize real engine components
 settings = get_settings()
@@ -41,7 +41,7 @@ thesis_client = ThesisClient()
 logger = logging.getLogger(__name__)
 
 # Use existing Alpaca adapter instead of duplicating logic
-from apex.integrations.market_facade import get_alpaca_client, get_chart_bars, get_options_chain, probe_market_feeds, record_equity_snapshot
+from apex.integrations.market_facade import get_alpaca_client, get_chart_bars, get_options_chain, probe_market_feeds, record_equity_snapshot  # noqa: E402
 
 def _alpaca():
     return get_alpaca_client(settings)
@@ -1832,7 +1832,7 @@ async def refresh_data():
     }
 
 # Prometheus Metrics endpoint
-from fastapi.responses import PlainTextResponse
+from fastapi.responses import PlainTextResponse  # noqa: E402
 
 @app.get("/metrics", response_class=PlainTextResponse)
 def metrics():
@@ -1865,7 +1865,7 @@ def _discord_proxy_get(path: str, params: dict | None = None) -> dict:
     try:
         # local integration exposes the same interface as the external service
         if path.startswith("/discord/brain"):
-            from apex.integrations.discord_brain import get_discord_brain
+            from apex.integrations.discord_brain import get_discord_brain, DiscordBrainConfig
             brain = get_discord_brain()
             if path.endswith("/stats"):
                 return brain.get_brain_stats()
