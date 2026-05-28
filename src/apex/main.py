@@ -133,7 +133,7 @@ def build_engine() -> ApexEngine:
     candidates = build_effective_watchlist_candidates(
         DEFAULT_WATCHLIST_CANDIDATES, settings
     )
-    
+
     arb_engine = ArbEngine(settings=settings, store=store)
 
     return ApexEngine(
@@ -229,14 +229,14 @@ def run_polymarket_agent() -> None:
     client = hub.polymarket
 
     macro = client.get_macro_snapshot()
-    print(json.dumps({"phase": "macro_snapshot", "rows": len(macro), "sample": macro[:6]}, indent=2))
+    LOGGER.info("Polymarket macro snapshot: %d rows, sample=%s", len(macro), json.dumps(macro[:6], indent=2, default=str))
 
     shifts = client.get_intraday_macro_shift()
-    print(json.dumps({"phase": "intraday_macro_shift", "rows": len(shifts), "sample": shifts[:8]}, indent=2))
+    LOGGER.info("Polymarket intraday macro shift: %d rows, sample=%s", len(shifts), json.dumps(shifts[:8], indent=2, default=str))
 
     symbols = sys.argv[1:] if len(sys.argv) > 1 else ["AAPL", "MSFT", "NVDA", "SPY"]
     signals = {sym: client.get_ticker_signal(sym) for sym in symbols}
-    print(json.dumps({"phase": "ticker_signals", "symbols": symbols, "signals": signals}, indent=2, default=str))
+    LOGGER.info("Polymarket ticker signals: symbols=%s, signals=%s", symbols, json.dumps(signals, indent=2, default=str))
 
 
 def run_self_improvement() -> None:
@@ -249,7 +249,7 @@ def run_self_improvement() -> None:
     from apex.services.self_improvement import run_self_improvement_cycle
 
     result = run_self_improvement_cycle(engine)
-    print(json.dumps(result, indent=2, default=str))
+    LOGGER.info("Self-improvement cycle result: %s", json.dumps(result, indent=2, default=str))
 
 
 def run_polymarket_training_export() -> None:
