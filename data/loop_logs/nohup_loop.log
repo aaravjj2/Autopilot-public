@@ -7917,3 +7917,49 @@ Call log:
   - navigating to "http://localhost:3000/dashboard/analytics", waiting until "load"
 
 2026-05-29 03:21:47,889 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+[main 771be5c] loop(iter 628): Log scan_metrics summary each arb cycle
+ 20 files changed, 826 insertions(+), 481 deletions(-)
+ create mode 100644 data/artifacts/iteration_0628/manifest.json
+ create mode 100644 data/artifacts/iteration_0628/metrics.json
+ create mode 100644 data/artifacts/iteration_0628/videos/page@bd7e0cbcce114c30f065b4cb0bbb4480.webm
+ create mode 100644 data/loop_logs/iteration_0628_build.log
+ create mode 100644 data/loop_logs/iteration_0628_tests.json
+ create mode 100644 data/loop_plans/iteration_0628_plan.json
+ create mode 100644 data/models/arb_edge/candidate_20260529T071532Z/model.json
+ create mode 100644 data/models/arb_edge/candidate_20260529T071710Z/model.json
+ create mode 100644 data/models/arb_edge/candidate_20260529T071727Z/model.json
+ create mode 100644 data/models/arb_edge/candidate_20260529T071905Z/model.json
+ create mode 100644 data/models/arb_edge/candidate_20260529T072120Z/model.json
+2026-05-29 03:21:49,281 [INFO] Iteration 628 pushed to origin
+2026-05-29 03:21:49,284 [INFO] Iteration 628 complete. Tests: FAIL
+2026-05-29 03:23:51,409 [INFO] === ITERATION 629 (target 1000) ===
+2026-05-29 03:23:51,675 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-29 03:23:51,676 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-29 03:23:51,676 [WARNING] Using deterministic fallback ideas (LLM unavailable)
+2026-05-29 03:23:51,676 [INFO] --- Idea Scoring Table ---
+2026-05-29 03:23:51,676 [INFO] Idea 1: Log scan_metrics summary each arb cycle
+2026-05-29 03:23:51,676 [INFO]   Score: 0.20 (Impact: 2.0, Comp: 1.0, Novelty: 0.1)
+2026-05-29 03:23:51,676 [WARNING] All ideas were recent/stale. Regenerating...
+2026-05-29 03:23:51,895 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-29 03:23:51,896 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-29 03:23:51,896 [WARNING] Using deterministic fallback ideas (LLM unavailable)
+2026-05-29 03:23:51,896 [INFO] Selected idea: Log scan_metrics summary each arb cycle
+2026-05-29 03:23:52,072 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-29 03:23:52,073 [ERROR] IterationPlanner failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-29 03:23:52,073 [WARNING] Using test-only fallback plan (LLM unavailable)
+2026-05-29 03:23:52,078 [INFO] Step A: Python unit tests
+2026-05-29 03:25:55,173 [INFO] Step B: TypeScript type check
+2026-05-29 03:25:57,466 [INFO] Step C: Playwright E2E tests
+2026-05-29 03:28:16,394 [INFO] Step D: Backend API smoke test
+2026-05-29 03:28:22,140 [INFO] HTTP Request: GET http://localhost:8001/api/opportunities "HTTP/1.1 404 Not Found"
+2026-05-29 03:28:22,147 [INFO] HTTP Request: GET http://localhost:8001/api/arb/backtest "HTTP/1.1 200 OK"
+2026-05-29 03:28:22,148 [INFO] Step E: Backtest regression check
+2026-05-29 03:28:27,579 [WARNING] Failed to screenshot http://localhost:3000/dashboard/arb-radar: Page.goto: Timeout 5000ms exceeded.
+Call log:
+  - navigating to "http://localhost:3000/dashboard/arb-radar", waiting until "load"
+
+2026-05-29 03:28:32,582 [WARNING] Failed to screenshot http://localhost:3000/dashboard/analytics: Page.goto: Timeout 5000ms exceeded.
+Call log:
+  - navigating to "http://localhost:3000/dashboard/analytics", waiting until "load"
+
+2026-05-29 03:28:33,642 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
