@@ -12,6 +12,7 @@ import { useWebSocket } from "@/hooks/useWebSocket";
 import { OrderTicket } from "./OrderTicket";
 import { NetworkLatencyGauge } from "./NetworkLatencyGauge";
 import { DemoBanner } from "@/components/DemoBanner";
+import { AuthBar } from "@/components/terminal/AuthBar";
 import type { LucideIcon } from "lucide-react";
 import {
   LayoutDashboard,
@@ -256,6 +257,7 @@ export function TerminalLayout({
               </span>
             </>
           )}
+          <AuthBar />
           <button type="button" className="icon-btn" title="Alerts" aria-label="Alerts">
             <Bell size={16} />
           </button>

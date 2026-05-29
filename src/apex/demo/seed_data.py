@@ -197,6 +197,12 @@ def _demo_already_seeded(store: SQLiteStore) -> bool:
 
 def seed_demo_database(store: SQLiteStore) -> dict[str, int]:
     """Populate SQLite with demo arb rows and audit events (idempotent)."""
+    from apex.core.config import get_settings
+
+    settings = get_settings()
+    if settings.showcase_mode or settings.demo_mode:
+        return seed_showcase_database(store)
+
     if _demo_already_seeded(store):
         LOGGER.info("Demo seed skipped: database already contains demo rows")
         return {"opportunities": len(DEMO_ARBITRAGE_OPPORTUNITIES) + 6, "audit_events": len(DEMO_AUDIT_EVENTS)}
@@ -277,8 +283,49 @@ def seed_demo_database(store: SQLiteStore) -> dict[str, int]:
     }
 
 
+def seed_showcase_database(store: SQLiteStore) -> dict[str, int]:
+    """Large hackathon-style dataset: N arbs + M proposal audit events."""
+    from apex.core.config import get_settings
+    from apex.demo.bulk_seed import generate_bulk_arb_opportunities, generate_demo_proposal_events
+
+    settings = get_settings()
+    n_arb = int(settings.showcase_arb_count)
+    n_prop = int(settings.showcase_proposal_count)
+
+    existing = store.list_arb_opportunities(limit=5)
+    if any(str(o.get("id", "")).startswith("demo-arb-") for o in existing):
+        LOGGER.info("Showcase seed skipped: bulk demo rows already present")
+        return {"opportunities": n_arb, "audit_events": n_prop + len(DEMO_AUDIT_EVENTS)}
+
+    arbs = generate_bulk_arb_opportunities(n_arb)
+    store.save_arb_opportunities(arbs)
+
+    n_audit = 0
+    for ev in DEMO_AUDIT_EVENTS:
+        store.append_event(ev)
+        n_audit += 1
+    for ev in generate_demo_proposal_events(n_prop):
+        store.append_event(ev)
+        n_audit += 1
+
+    LOGGER.info(
+        "Showcase seed complete: %d arb opportunities, %d audit/proposal events",
+        len(arbs),
+        n_audit,
+    )
+    return {"opportunities": len(arbs), "audit_events": n_audit}
+
+
 def demo_opportunities_list() -> list[ArbOpportunity]:
     """Fresh copy with rotated detection_ts for stream animation."""
+    from apex.core.config import get_settings
+
+    settings = get_settings()
+    if settings.showcase_mode or settings.demo_mode:
+        from apex.demo.bulk_seed import generate_bulk_arb_opportunities
+
+        return generate_bulk_arb_opportunities(int(settings.showcase_arb_count))
+
     out: list[ArbOpportunity] = []
     for i, base in enumerate(DEMO_ARBITRAGE_OPPORTUNITIES):
         o = ArbOpportunity(

@@ -134,6 +134,21 @@ def _run_scan_and_persist(
     engine = ArbEngine(settings=settings, store=store)
     opps = engine.scan()[:limit]
 
+    if not opps and settings.showcase_mode:
+        from apex.demo.seed_data import seed_showcase_database
+
+        seed_showcase_database(store)
+        rows = store.list_arb_opportunities(limit=limit)
+        if rows:
+            from apex.domain.models import ArbOpportunity
+
+            fields = ArbOpportunity.__dataclass_fields__
+            opps = [
+                ArbOpportunity(**{k: row[k] for k in fields if k in row})  # type: ignore[arg-type]
+                for row in rows
+            ]
+            LOGGER.info("scan_and_persist: showcase fallback loaded %d opportunities", len(opps))
+
     try:
         from apex.observability.prometheus_metrics import APEX_ARB_EDGE
 

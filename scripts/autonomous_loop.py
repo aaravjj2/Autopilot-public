@@ -23,6 +23,7 @@ from loop_modules.test_runner import IterationTestRunner  # noqa: E402
 from loop_modules.artifact_capture import ArtifactCapture  # noqa: E402
 from loop_modules.doc_writer import IterationDocWriter  # noqa: E402
 from loop_modules.compactor import LoopCompactor  # noqa: E402
+from loop_modules.git_publisher import git_commit_and_push  # noqa: E402
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 LOGGER = logging.getLogger(__name__)
@@ -94,6 +95,9 @@ def run_loop(start_iteration: int | None = None, max_iterations: int = 500, is_d
                 state.last_compact_summary = summary
                 LOGGER.info(f"Compact summary: {summary[:200]}...")
 
+            commit_msg = f"loop(iter {i}): {idea.title}"
+            git_commit_and_push(i, commit_msg, dry_run=is_dry_run)
+
             # Save state
             state.completed_iterations.append(i)
             state.current_iteration = i + 1
@@ -124,7 +128,7 @@ def run_loop(start_iteration: int | None = None, max_iterations: int = 500, is_d
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Autonomous Improvement Loop")
     parser.add_argument("--start", type=int, help="Starting iteration", default=None)
-    parser.add_argument("--max-iterations", type=int, default=500, help="Max iterations to run")
+    parser.add_argument("--max-iterations", type=int, default=1000, help="Max iterations to run")
     parser.add_argument("--dry-run", action="store_true", help="Run without calling LLM or modifying files")
     args = parser.parse_args()
     

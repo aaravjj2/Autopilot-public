@@ -38,7 +38,8 @@ SECRET_KEYS=(
 # --- Non-secret runtime config (safe to pass as plain env vars) --------------
 PLAIN_ENV="AUTH_ENABLED=true,COOKIE_SECURE=true,COOKIE_SAMESITE=lax,\
 ALLOW_OPEN_REGISTRATION=false,AUTH_RATE_LIMIT_PER_MIN=10,API_RATE_LIMIT_PER_MIN=120,\
-GEMINI_MODEL=gemini-1.5-flash,LOG_LEVEL=INFO,APEX_ARB_SCAN_LOOP=false,\
+GEMINI_MODEL=gemini-1.5-flash,LOG_LEVEL=INFO,APEX_ARB_SCAN_LOOP=true,\
+SHOWCASE_MODE=true,SHOWCASE_ARB_COUNT=100,SHOWCASE_PROPOSAL_COUNT=32,\
 PYTHONPATH=/app/src:/app/autopilot-local/backend:/app"
 
 # 1) Enable required APIs -----------------------------------------------------

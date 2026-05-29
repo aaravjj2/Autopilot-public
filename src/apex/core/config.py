@@ -144,6 +144,15 @@ class Settings(BaseSettings):
     strict_integrations: bool = Field(default=False, alias="STRICT_INTEGRATIONS")
     autotrade_all_approved: bool = Field(default=True, alias="AUTOTRADE_ALL_APPROVED")
     demo_mode: bool = Field(default=False, alias="DEMO_MODE")
+    showcase_mode: bool = Field(
+        default=False,
+        alias="SHOWCASE_MODE",
+        description="Seed bulk demo arbs/proposals when live scan is empty (paper only).",
+    )
+    showcase_arb_count: int = Field(default=100, ge=10, le=500, alias="SHOWCASE_ARB_COUNT")
+    showcase_proposal_count: int = Field(
+        default=32, ge=5, le=200, alias="SHOWCASE_PROPOSAL_COUNT"
+    )
     public_demo_url: str = Field(default="", alias="PUBLIC_DEMO_URL")
     cors_origins: str = Field(
         default="http://localhost:3000,http://127.0.0.1:3000",

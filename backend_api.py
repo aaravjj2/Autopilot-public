@@ -578,13 +578,21 @@ def _scheduler_health() -> dict[str, Any]:
 async def lifespan(app: FastAPI):
     global _kalshi_ws_task, _kalshi_ws_mgr
     from marketplace_lifecycle import shutdown_marketplace, startup_marketplace
+    from apex.core.logging import get_logger
+    from apex.demo.seed_data import seed_demo_database
 
     if settings.demo_mode:
-        from apex.core.logging import get_logger
-        from apex.demo.seed_data import seed_demo_database
-
         await asyncio.to_thread(seed_demo_database, store)
         get_logger(__name__).info("DEMO_MODE: database seeded for hackathon judges")
+    elif settings.showcase_mode:
+        from apex.demo.seed_data import seed_showcase_database
+
+        await asyncio.to_thread(seed_showcase_database, store)
+        get_logger(__name__).info(
+            "SHOWCASE_MODE: seeded %d arbs / %d proposals",
+            settings.showcase_arb_count,
+            settings.showcase_proposal_count,
+        )
     try:
         from apex.repositories.cftc_persistence import hydrate_tracker
         from apex.risk.metrics_service import get_cftc_tracker
@@ -1777,6 +1785,12 @@ def _health_payload() -> dict[str, Any]:
     opportunities_count = len(cache._opportunities or [])
     proposals_count = len(cache._proposals or [])
     events_count = len(cache._events or [])
+    arb_active = 0
+    try:
+        arb_active = len(store.list_arb_opportunities(limit=500))
+        opportunities_count = max(opportunities_count, arb_active)
+    except Exception:
+        pass
     ml_block: dict = {}
     try:
         from apex.services.self_improvement import ml_status
@@ -1817,6 +1831,8 @@ def _health_payload() -> dict[str, Any]:
         "opportunities": opportunities_count,
         "proposals": proposals_count,
         "events": events_count,
+        "arb_opportunities": arb_active,
+        "showcase_mode": settings.showcase_mode,
         "ml": ml_block,
         "kalshi_ws": kalshi_ws_block,
         "scheduler": _scheduler_health(),
