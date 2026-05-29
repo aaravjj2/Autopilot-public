@@ -37,3 +37,10 @@ All notable changes to this project will be documented in this file.
 **Files changed**: None
 **Test results**: pytest 388/388 | TS ✓ | Playwright 0/0 | Sharpe 3.21
 **Summary**: Emit coalesce hits and fetch latency percentiles to structured logs.
+
+## Iteration 591 — Log scan_metrics summary each arb cycle
+**Date**: 2026-05-29 01:36:48 UTC
+**Focus**: Developer Experience
+**Files changed**: None
+**Test results**: pytest 388/388 | TS ✓ | Playwright 0/0 | Sharpe 3.21
+**Summary**: Emit coalesce hits and fetch latency percentiles to structured logs.
