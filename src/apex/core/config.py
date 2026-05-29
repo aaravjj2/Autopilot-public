@@ -381,6 +381,20 @@ class Settings(BaseSettings):
     )
     llm_auto_routing: bool = Field(default=True, alias="LLM_AUTO_ROUTING")
 
+    # ---- Auth + security -------------------------------------------------------
+    auth_enabled: bool = Field(default=True, alias="APEX_AUTH_ENABLED")
+    apex_auth_secret: str = Field(default="", alias="APEX_AUTH_SECRET")
+    apex_secrets_key: str = Field(default="", alias="APEX_SECRETS_KEY")
+    auth_db_path: Path = Field(default=Path("./data/auth.db"), alias="AUTH_DB_PATH")
+    access_token_ttl_min: int = Field(default=30, ge=5, le=1440, alias="ACCESS_TOKEN_TTL_MIN")
+    refresh_token_ttl_days: int = Field(default=14, ge=1, le=90, alias="REFRESH_TOKEN_TTL_DAYS")
+    guest_token_ttl_min: int = Field(default=120, ge=10, le=1440, alias="GUEST_TOKEN_TTL_MIN")
+    cookie_secure: bool = Field(default=True, alias="APEX_COOKIE_SECURE")
+    cookie_samesite: str = Field(default="lax", alias="APEX_COOKIE_SAMESITE")
+    auth_rate_limit_per_min: int = Field(default=10, ge=1, le=240, alias="AUTH_RATE_LIMIT_PER_MIN")
+    api_rate_limit_per_min: int = Field(default=240, ge=10, le=10000, alias="API_RATE_LIMIT_PER_MIN")
+    allow_open_registration: bool = Field(default=True, alias="APEX_ALLOW_OPEN_REGISTRATION")
+
     # ---- LLM client factory ----------------------------------------------------
     def get_llm_client(self) -> object | None:  # noqa: ANN401
         """OpenAI-compatible client for the auto-resolved route (Groq/Gemini/OR/Ollama)."""
@@ -420,7 +434,7 @@ class Settings(BaseSettings):
         return True
 
     # ---- Validators -------------------------------------------------------------
-    @field_validator("chromadb_path", "sqlite_path", mode="after")
+    @field_validator("chromadb_path", "sqlite_path", "auth_db_path", mode="after")
     @classmethod
     def _normalize_paths(cls, value: Path) -> Path:
         return value.expanduser().resolve()

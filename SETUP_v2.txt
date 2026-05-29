@@ -1,0 +1,227 @@
+AUTOPILOT V2.0 — CONTINUOUS IMPROVEMENT WITH MODEL SWITCHING
+═══════════════════════════════════════════════════════════════════
+
+UPGRADE SUMMARY
+───────────────
+
+❌ OLD: Discrete 2-hour cycles (cronjob every 2h → 1 cycle → sleep 2h)
+✅ NEW: Continuous 2-5 min cycles (loop forever → adaptive sleep)
+
+KEY IMPROVEMENTS
+────────────────
+
+1. RUNS FOREVER — No more waiting 2 hours between cycles
+   Instead of: Cron tick @ 14:00 → cycle → sleep 120m
+   Now: Analyze (60s) → Plan (30s) → Execute (90s) → Test (120s) → Commit (10s) → sleep 60s → repeat
+
+2. MODEL SWITCHING PER-PHASE — Each phase uses its optimal model
+   Phase 1 (Analyze):     gpt-4o / openrouter  (128k context for deep audit)
+   Phase 2 (Plan):        deepseek-v4-flash / opencode (fast planning)
+   Phase 3 (Execute):     agy-switch / opencode (+ automatic fallback chain)
+   Phase 4 (Test):        gpt-4o-mini / opencode (cost-optimized)
+   Phase 5 (Commit):      deepseek-v4-flash / opencode (lightweight)
+   Phase 6 (Report):      gpt-4o-mini / opencode (cost-optimized)
+
+3. RATE-LIMIT RECOVERY — agy-switch automatically falls back
+   If rate-limited on deepseek:
+   Attempt 1: deepseek-v4-flash-free (opencode)
+   Attempt 2: gpt-4o-mini (opencode) 
+   Attempt 3: gpt-4o (openrouter)
+   Attempt 4: claude-opus-4 (anthropic)
+   Attempt 5: qwen2.5-72b (openrouter)
+   → No user intervention needed, fully transparent
+
+4. ADAPTIVE CYCLE TIMING
+   No issues found (0 changes):  Sleep 180s (reduce check frequency)
+   Minor issues (1-3 tasks):     Sleep 120s (standard)
+   Major issues (4+ tasks):      Sleep 60s (urgent mode)
+   Test failures:                Sleep 30s (critical)
+
+INSTALLATION & SETUP
+────────────────────
+
+✓ agy-switch wrapper:
+  Location: ~/.local/bin/agy-switch
+  Usage: agy-switch -p "your prompt" --model gpt-4o --provider openrouter
+  Auto-fallback: Yes (transparent)
+
+✓ autopilot-continuous-daemon:
+  Location: ~/.local/bin/autopilot-continuous-daemon
+  Usage: 
+    Foreground: autopilot-continuous-daemon
+    Background: nohup autopilot-continuous-daemon > logs/daemon.log 2>&1 &
+
+✓ Worker profile configuration:
+  Path: ~/.hermes/profiles/autopilot-worker/config.yaml
+  Section: agent.autopilot_phase_models
+  Models: Fully configurable per-phase
+
+✓ MCP Tools:
+  - Playwright: 23 tools (browser automation)
+  - Figma: 73 tools (design/frontend)
+
+RUNTIME BEHAVIOR
+────────────────
+
+Cycle Duration: 5-12 minutes (depending on issues)
+  - Phase 1 (Analyze):   60-120s  [bottleneck]
+  - Phase 2 (Plan):      20-40s
+  - Phase 3 (Execute):   90-180s  [parallelized]
+  - Phase 4 (Test):      60-120s
+  - Phase 5 (Commit):    5-15s
+  - Phase 6 (Report):    2-5s
+  Total:                 240-530s
+
+Sleep Between Cycles: 60-180s (adaptive based on workload)
+
+Logs:
+  Real-time: ~/Aarav/Autopilot/logs/daemon.log
+  Per-cycle: ~/Aarav/Autopilot/logs/cycle-YYYYMMDD_HHMMSS.json
+  Phase logs: ~/Aarav/Autopilot/logs/phase_*.log
+
+Git Integration:
+  - Each cycle commits if changes exist
+  - Conventional commits (fix: / feat: / refactor: / etc.)
+  - Tags: cycle-YYYYMMDD_HHMMSS
+  - Branches: current (respects user's working branch)
+
+Discord Integration:
+  - Webhook URL: (from config.json)
+  - Delivery: One per cycle completion
+  - Format: JSON embed with phases, durations, git status
+
+STARTING THE DAEMON
+───────────────────
+
+OPTION 1: Quick test (foreground)
+  $ autopilot-continuous-daemon
+  [2026-05-28 14:00:32] 🤖 Autopilot Continuous Daemon started
+  [2026-05-28 14:00:32] 🔄 Starting cycle #1...
+  <Ctrl+C to stop>
+
+OPTION 2: Long-running (background)
+  $ nohup autopilot-continuous-daemon > ~/Aarav/Autopilot/logs/daemon.log 2>&1 &
+  $ jobs
+  $ ps aux | grep autopilot-continuous-daemon
+
+OPTION 3: Systemd service (permanent)
+  Create ~/.config/systemd/user/autopilot.service
+  Then: systemctl --user enable autopilot.service
+        systemctl --user start autopilot.service
+
+MONITORING & CONTROL
+────────────────────
+
+Monitor in real-time:
+  $ tail -f ~/Aarav/Autopilot/logs/daemon.log
+
+Check latest cycle:
+  $ jq . ~/Aarav/Autopilot/logs/cycle-*.json | tail -20
+
+View git changes:
+  $ cd ~/Aarav/Autopilot && git log --oneline | head -20
+
+Stop the daemon:
+  Graceful: pkill -TERM autopilot-continuous-daemon
+  Immediate: pkill -9 autopilot-continuous-daemon
+
+Restart:
+  $ pkill -f autopilot-continuous-daemon
+  $ autopilot-continuous-daemon  # or nohup ... &
+
+CONFIGURATION
+──────────────
+
+Edit per-phase models:
+  vi ~/.hermes/profiles/autopilot-worker/config.yaml
+  
+  agent:
+    autopilot_phase_models:
+      analyze:   { model: "gpt-4o", provider: "openrouter" }
+      plan:      { model: "deepseek-v4-flash-free", provider: "opencode" }
+      execute:   { model: "agy-switch", provider: "opencode" }
+      test:      { model: "gpt-4o-mini", provider: "opencode" }
+      commit:    { model: "deepseek-v4-flash-free", provider: "opencode" }
+      report:    { model: "gpt-4o-mini", provider: "opencode" }
+
+Then restart daemon for changes to take effect.
+
+Edit agy-switch fallback chain:
+  vi ~/.local/bin/agy-switch
+  
+  FALLBACK_CHAIN=(
+    "gpt-4o-mini:opencode"
+    "gpt-4o:openrouter"
+    "claude-opus-4:anthropic"
+    "qwen2.5-72b:openrouter"
+  )
+
+TROUBLESHOOTING
+────────────────
+
+Q: Daemon hangs on Phase 1 (Analyze)
+A: gpt-4o might be slow. Check OpenRouter status:
+   $ agy-switch --model gpt-4o --provider openrouter -p "test"
+   Consider switching analyze phase to a faster model.
+
+Q: Phase 3 keeps falling back through all models
+A: All providers rate-limited. Wait 60s or add another provider.
+   Edit FALLBACK_CHAIN in ~/.local/bin/agy-switch
+
+Q: No changes detected (consecutive_no_changes > 5)
+A: Codebase already clean! Reduce cycle frequency to save compute.
+   Edit daemon sleep logic.
+
+Q: Discord webhook failing
+A: Verify webhook URL in config:
+   $ curl -X POST <WEBHOOK_URL> -H "Content-Type: application/json" -d '{"content":"test"}'
+   Should return HTTP 204 No Content.
+
+Q: Git push failing
+A: Requires GitHub auth token:
+   $ gh auth login --with-token < ~/.github-token
+   Or configure remote with embedded token.
+
+FILES CREATED
+───────────────
+
+~/.local/bin/agy-switch
+  Wrapper for agy with automatic model fallback chain
+
+~/.local/bin/autopilot-continuous-daemon
+  Main continuous loop daemon (2-5 min cycles)
+
+~/.hermes/profiles/autopilot-worker/config.yaml (MODIFIED)
+  Added: agent.autopilot_phase_models per-phase model config
+
+~/.hermes/skills/devops/autopilot-continuous-improvement/SKILL.md (UPDATED v2.0)
+  Updated documentation for continuous operation + model switching
+
+~/Aarav/Autopilot/README_v2.md
+  Quick reference guide (this directory)
+
+NEXT STEPS
+──────────
+
+1. Test agy-switch:
+   $ agy-switch -p "respond with: test ok"
+
+2. Run daemon foreground (5 min):
+   $ autopilot-continuous-daemon
+
+3. Monitor logs:
+   $ tail -f ~/Aarav/Autopilot/logs/daemon.log
+
+4. Check cycle report:
+   $ jq . ~/Aarav/Autopilot/logs/cycle-*.json | head -30
+
+5. Review commits:
+   $ cd ~/Aarav/Autopilot && git log --oneline -5
+
+6. Adjust phase models if needed (config.yaml)
+
+7. Deploy as background service:
+   $ nohup autopilot-continuous-daemon > logs/daemon.log 2>&1 &
+
+═══════════════════════════════════════════════════════════════════
+Ready to run | Continuous mode enabled | Model switching active

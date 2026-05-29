@@ -1,0 +1,92 @@
+{
+  "count": 100,
+  "sample": [
+    {
+      "id": "13ba9fef63ab",
+      "kalshi_ticker": "KXMLBTOTAL-26MAY261810WSHCLE-14",
+      "poly_market_id": "0x224e8967a1a6992c0a7525e042b0c6e513157ee1e9ec4bc1111bf292f9f7e189",
+      "question": "Washington vs Cleveland Total Runs?",
+      "kalshi_title": "Washington vs Cleveland Total Runs?",
+      "poly_title": "Washington Nationals vs. Cleveland Guardians",
+      "kalshi_yes_ask": 0.08,
+      "poly_no_ask": 0.095,
+      "gross_spread": 0.825,
+      "net_edge": 0.7606,
+      "settlement_match_score": 0.8,
+      "settlement_flags": [
+        "RESOLUTION_TIME_MISMATCH"
+      ],
+      "volume_kalshi": 9.52,
+      "volume_poly": 382796.717683,
+      "category": "UNKNOWN",
+      "kelly_fraction": 0.5,
+      "detected_at": "2026-05-27T00:34:24.442965+00:00",
+      "resolution_ts": null,
+      "outcome": null,
+      "pnl": null,
+      "thesis_settlement_verdict": null,
+      "vwap_edge": 0,
+      "detection_ts": "2026-05-27T00:34:24.442965+00:00",
+      "model_win_prob": 0.9999910289974239,
+      "model_score": 0.8922650659485831
+    },
+    {
+      "id": "544eacd3f787",
+      "kalshi_ticker": "KXMLBTOTAL-26MAY261810WSHCLE-14",
+      "poly_market_id": "0x224e8967a1a6992c0a7525e042b0c6e513157ee1e9ec4bc1111bf292f9f7e189",
+      "question": "Washington vs Cleveland Total Runs?",
+      "kalshi_title": "Washington vs Cleveland Total Runs?",
+      "poly_title": "Washington Nationals vs. Cleveland Guardians",
+      "kalshi_yes_ask": 0.08,
+      "poly_no_ask": 0.095,
+      "gross_spread": 0.825,
+      "net_edge": 0.7606,
+      "settlement_match_score": 0.8,
+      "settlement_flags": [
+        "RESOLUTION_TIME_MISMATCH"
+      ],
+      "volume_kalshi": 9.52,
+      "volume_poly": 382796.717683,
+      "category": "UNKNOWN",
+      "kelly_fraction": 0.5,
+      "detected_at": "2026-05-27T00:34:24.398768+00:00",
+      "resolution_ts": null,
+      "outcome": null,
+      "pnl": null,
+      "thesis_settlement_verdict": null,
+      "vwap_edge": 0,
+      "detection_ts": "2026-05-27T00:34:24.398768+00:00",
+      "model_win_prob": 0.9999910289974239,
+      "model_score": 0.8922650659485831
+    },
+    {
+      "id": "f6ffcd2526ba",
+      "kalshi_ticker": "KXMLBTOTAL-26MAY261810WSHCLE-14",
+      "poly_market_id": "0x224e8967a1a6992c0a7525e042b0c6e513157ee1e9ec4bc1111bf292f9f7e189",
+      "question": "Washington vs Cleveland Total Runs?",
+      "kalshi_title": "Washington vs Cleveland Total Runs?",
+      "poly_title": "Washington Nationals vs. Cleveland Guardians",
+      "kalshi_yes_ask": 0.08,
+      "poly_no_ask": 0.095,
+      "gross_spread": 0.825,
+      "net_edge": 0.7606,
+      "settlement_match_score": 0.8,
+      "settlement_flags": [
+        "RESOLUTION_TIME_MISMATCH"
+      ],
+      "volume_kalshi": 9.52,
+      "volume_poly": 382796.717683,
+      "category": "UNKNOWN",
+      "kelly_fraction": 0.5,
+      "detected_at": "2026-05-27T00:34:24.357629+00:00",
+      "resolution_ts": null,
+      "outcome": null,
+      "pnl": null,
+      "thesis_settlement_verdict": null,
+      "vwap_edge": 0,
+      "detection_ts": "2026-05-27T00:34:24.357629+00:00",
+      "model_win_prob": 0.9999910289974239,
+      "model_score": 0.8922650659485831
+    }
+  ]
+}

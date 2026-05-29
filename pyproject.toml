@@ -11,6 +11,8 @@ requires-python = ">=3.11"
 dependencies = [
   "apscheduler>=3.10.4,<4",
   "cryptography>=42.0,<43",
+  "bcrypt>=4.1,<6",
+  "pyjwt>=2.8,<3",
   "pydantic>=2.8,<3",
   "pydantic-settings>=2.3,<3",
   "pandas>=2.2,<3",

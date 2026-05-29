@@ -1,0 +1,93 @@
+{
+  "status": "healthy",
+  "timestamp": "2026-05-28T21:27:39.976116+00:00",
+  "last_cache_update": "2026-05-28T21:27:26.506216+00:00",
+  "data_age_seconds": 13.141625,
+  "is_stale": false,
+  "demo_mode": false,
+  "alpaca_connected": true,
+  "yfinance_ok": true,
+  "market_feeds": {
+    "alpaca": {
+      "available": true,
+      "detail": "connected"
+    },
+    "yfinance": {
+      "available": true,
+      "detail": "ok"
+    }
+  },
+  "positions": 1,
+  "orders": 0,
+  "opportunities": 0,
+  "proposals": 32,
+  "events": 100,
+  "ml": {
+    "self_improvement_enabled": true,
+    "active_model": {
+      "version": "20260528T201817Z",
+      "trained_at": "2026-05-28T20:18:17.209643+00:00",
+      "feature_names": [
+        "net_edge",
+        "gross_spread",
+        "settlement_match_score",
+        "volume_kalshi",
+        "volume_poly",
+        "kalshi_yes_ask",
+        "poly_no_ask",
+        "kelly_fraction",
+        "settlement_flag_count"
+      ],
+      "weights": [
+        12.293892161235673,
+        0.2222099707313087,
+        -4.324274207514689,
+        1.4503376310396738,
+        -0.09813564036620716,
+        13.901191118489926,
+        -2.116911953407942,
+        16.521268616871385,
+        -8.396500521263599
+      ],
+      "bias": -5.776245627072715,
+      "metrics": {
+        "n_samples": 104,
+        "accuracy": 0.9231,
+        "mean_pred": 0.7183
+      }
+    },
+    "training_corpus": {
+      "total_rows": 222,
+      "labeled_rows": 104,
+      "resolved_arb_count": 16
+    },
+    "backtest_90d": {
+      "n_trades": 16,
+      "win_rate": 0.5,
+      "sharpe": 3.211,
+      "total_pnl": 18.2
+    },
+    "model_dir": "/home/aarav/Aarav/Autopilot/data/models/arb_edge"
+  },
+  "kalshi_ws": {
+    "connected": true,
+    "stale": false,
+    "seconds_since_message": null,
+    "seconds_since_frame": 16.29041906099974,
+    "reconnects": 0
+  },
+  "scheduler": {
+    "mode": "in_process_loops",
+    "in_process_loops_enabled": true,
+    "loops": {
+      "arb_scan_loop": true,
+      "pm_agents_loop": true,
+      "equity_loop": true,
+      "self_improvement_loop": false
+    },
+    "separate_process_expected": false,
+    "separate_process_running": null,
+    "status": "ok",
+    "probe_error": null
+  }
+}

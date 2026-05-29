@@ -24,7 +24,7 @@ bootstrap_environment(force=True)
 
 from contextlib import asynccontextmanager  # noqa: E402
 
-from fastapi import FastAPI, Header, HTTPException, WebSocket, WebSocketDisconnect  # noqa: E402
+from fastapi import Body, FastAPI, Header, HTTPException, WebSocket, WebSocketDisconnect  # noqa: E402
 from fastapi.responses import StreamingResponse  # noqa: E402
 from fastapi.middleware.cors import CORSMiddleware  # noqa: E402
 
@@ -690,6 +690,71 @@ from marketplace_integration import register_marketplace  # noqa: E402
 app.include_router(agent_router)
 register_marketplace(app)
 
+# ---- Auth + security hardening --------------------------------------------
+from fastapi.responses import JSONResponse  # noqa: E402
+from apex.security.router import router as auth_router  # noqa: E402
+from apex.security.deps import current_principal  # noqa: E402
+from apex.security.ratelimit import SlidingWindowLimiter  # noqa: E402
+
+app.include_router(auth_router)
+
+# Public auth endpoints (no token required); everything else mutating is gated.
+_PUBLIC_AUTH_PATHS = {
+    "/api/auth/login",
+    "/api/auth/register",
+    "/api/auth/guest",
+    "/api/auth/refresh",
+    "/api/auth/logout",
+}
+# Sensitive prefixes require a real (non-guest) user.
+_SENSITIVE_PREFIXES = ("/api/execute", "/api/ml", "/orders", "/api/orders")
+_MUTATING_METHODS = {"POST", "PUT", "PATCH", "DELETE"}
+_api_limiter = SlidingWindowLimiter(
+    max_events=int(settings.api_rate_limit_per_min), window_seconds=60.0
+)
+
+
+def _request_ip(request) -> str:
+    fwd = request.headers.get("x-forwarded-for")
+    if fwd:
+        return fwd.split(",")[0].strip()
+    return request.client.host if request.client else "unknown"
+
+
+@app.middleware("http")
+async def security_gate(request, call_next):
+    method = request.method.upper()
+    path = request.url.path
+    if settings.auth_enabled and method in _MUTATING_METHODS:
+        ip = _request_ip(request)
+        _api_limiter.max_events = int(settings.api_rate_limit_per_min)
+        if not _api_limiter.allow(f"api:{ip}"):
+            return JSONResponse(
+                {"detail": "rate limit exceeded"},
+                status_code=429,
+                headers={"Retry-After": "5"},
+            )
+        # /api/auth/* manages its own authz (login/register public; keys via Depends).
+        if path not in _PUBLIC_AUTH_PATHS and not path.startswith("/api/auth"):
+            principal = current_principal(request, settings=settings)
+            if principal is None:
+                return JSONResponse(
+                    {"detail": "authentication required"},
+                    status_code=401,
+                    headers={"WWW-Authenticate": "Bearer"},
+                )
+            if path.startswith(_SENSITIVE_PREFIXES) and principal.role not in {"user", "admin"}:
+                return JSONResponse(
+                    {"detail": "login required for this action"}, status_code=403
+                )
+    response = await call_next(request)
+    response.headers.setdefault("X-Content-Type-Options", "nosniff")
+    response.headers.setdefault("X-Frame-Options", "DENY")
+    response.headers.setdefault("Referrer-Policy", "no-referrer")
+    response.headers.setdefault("X-XSS-Protection", "0")
+    response.headers.setdefault("Cache-Control", "no-store")
+    return response
+
 
 def _normalize_account(raw: dict[str, Any]) -> dict[str, Any]:
     if not raw or raw.get("error"):
@@ -1157,6 +1222,42 @@ def pm_brain(force: bool = False):
     from apex.services.pm_brain import build_pm_brain
 
     return build_pm_brain(store, force=force)
+
+
+@app.get("/api/brain/status")
+def brain_status():
+    """FinanceBrain (autopilot LLM reasoner) status + knowledge metadata."""
+    from apex.brain import get_brain
+
+    return get_brain(settings, refresh=True).status()
+
+
+@app.post("/api/brain/ask")
+def brain_ask(payload: dict = Body(...)):
+    """Ask the finance brain a question grounded in the strategy knowledge base."""
+    from apex.brain import get_brain
+
+    question = str((payload or {}).get("question", "")).strip()
+    if not question:
+        raise HTTPException(status_code=400, detail="question is required")
+    if len(question) > 2000:
+        raise HTTPException(status_code=413, detail="question too long")
+    context = payload.get("context")
+    context = str(context)[:8000] if context else None
+    answer = get_brain(settings).ask(question, context=context)
+    return {"answer": answer, "source": get_brain(settings).route_label}
+
+
+@app.get("/api/brain/analyze/{arb_id}")
+def brain_analyze(arb_id: str):
+    """Structured FinanceBrain verdict for a stored arb opportunity."""
+    from apex.brain import get_brain
+
+    row = store.get_arb_opportunity(arb_id)
+    if not row:
+        raise HTTPException(status_code=404, detail="Arb opportunity not found")
+    verdict = get_brain(settings).analyze_opportunity(row)
+    return {"arb_id": arb_id, **verdict.to_dict()}
 
 
 @app.get("/api/kalshi/book")

@@ -1,0 +1,42 @@
+[
+  {
+    "id": "t-1",
+    "type": "file-edit",
+    "priority": 1,
+    "prompt": "Fix critical bug in backend_api.py:1873 — import DiscordBrainConfig. The class is used at line 1873 but never imported, causing a NameError at runtime. Add the missing import from the appropriate module (likely from a config or brain module in the project). First, search for where DiscordBrainConfig is defined or imported elsewhere to determine the correct import path, then add the import to backend_api.py.",
+    "file": "/home/aarav/Aarav/Autopilot/backend_api.py",
+    "depends_on": []
+  },
+  {
+    "id": "t-2",
+    "type": "file-edit",
+    "priority": 1,
+    "prompt": "Fix critical bug in wc2026_autopilot/autopilot.py:111 — os.getenv(...) is used without 'import os' at the top of the file, causing a NameError at runtime. Add 'import os' to the imports section of autopilot.py.",
+    "file": "/home/aarav/Aarav/Autopilot/wc2026_autopilot/autopilot.py",
+    "depends_on": []
+  },
+  {
+    "id": "t-3",
+    "type": "backend-python",
+    "priority": 2,
+    "prompt": "Run ruff check --fix on the entire codebase to auto-fix bulk lint issues: 17 F401 unused imports, 3 F841 unused variables, 2 F811 redefined-while-unused, 1 F541 f-string without placeholders, and 16 E702 semicolons. Run 'cd /home/aarav/Aarav/Autopilot && ruff check --fix .' from the project root. Verify with 'ruff check .' that no fixable issues remain.",
+    "file": "/home/aarav/Aarav/Autopilot",
+    "depends_on": ["t-1", "t-2"]
+  },
+  {
+    "id": "t-4",
+    "type": "multi-file-refactor",
+    "priority": 3,
+    "prompt": "Fix 28 E402 module-import-not-at-top-of-file warnings (mostly in backend_api.py after bootstrap_environment()). These cannot be auto-fixed by ruff because they're intentionally placed after bootstrap_environment() calls. Review each occurrence and either: (a) move conditional imports to the top with lazy loading/type-checking guards, or (b) add '# noqa: E402' comments to suppress the warning where the late import is intentional (e.g., imports that depend on environment setup). Run 'cd /home/aarav/Aarav/Autopilot && ruff check --select E402 .' to list current occurrences after fixing.",
+    "file": "/home/aarav/Aarav/Autopilot/backend_api.py",
+    "depends_on": ["t-3"]
+  },
+  {
+    "id": "t-5",
+    "type": "file-edit",
+    "priority": 4,
+    "prompt": "Add a missing __init__.py file to the tests/ directory. Create /home/aarav/Aarav/Autopilot/tests/__init__.py with a minimal docstring and any necessary test discovery imports. This ensures pytest can properly discover tests in the directory.",
+    "file": "/home/aarav/Aarav/Autopilot/tests/__init__.py",
+    "depends_on": []
+  }
+]

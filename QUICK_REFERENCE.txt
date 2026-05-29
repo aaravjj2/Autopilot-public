@@ -1,0 +1,330 @@
+AUTOPILOT V2.0 QUICK REFERENCE
+═══════════════════════════════════════════════════════════════════════════════
+
+WHAT YOU ASKED FOR:
+─────────────────
+"why are we making it every 2 hours instead of it working the whole time with 
+model switch? also make sure to integrate model switch inside agy as well"
+
+WHAT WE BUILT:
+──────────────
+✅ Continuous operation (not 2-hour cronjobs)
+✅ Per-phase model switching (Analyze→gpt-4o, Execute→agy-switch, etc.)
+✅ agy-switch wrapper with integrated model switching + fallback chain
+✅ Discord webhooks for cycle reports
+✅ Adaptive sleep (60-180s between cycles based on workload)
+✅ 5-12 minute cycle time forever (no 2-hour waits)
+
+═══════════════════════════════════════════════════════════════════════════════
+
+FILES TO USE
+────────────
+
+1. START DAEMON:
+   ~/.local/bin/autopilot-continuous-daemon
+   
+   Command:
+   nohup autopilot-continuous-daemon > logs/daemon.log 2>&1 &
+   
+   What it does:
+   - Loops forever running 6-phase cycles (Analyze→Plan→Execute→Test→Commit→Report)
+   - Each phase uses optimal model (configurable)
+   - Sleeps 60-180s between cycles (adaptive)
+   - Posts to Discord webhook after each cycle
+   - Commits to git with conventional messages
+
+2. MODEL SWITCHING:
+   ~/.local/bin/agy-switch
+   
+   Command:
+   agy-switch -p "refactor this function" --model gpt-4o --provider openrouter
+   
+   What it does:
+   - Wraps agy with explicit model/provider selection
+   - Falls back transparently if rate-limited
+   - Fallback chain: deepseek → gpt-4o-mini → gpt-4o → claude → qwen2.5-72b
+   - Used in Phase 3 (Execute) of the daemon
+
+3. PHASE MODEL CONFIG:
+   ~/.hermes/profiles/autopilot-worker/config.yaml
+   
+   Section: agent.autopilot_phase_models
+   
+   Current setup:
+   - analyze:   gpt-4o / openrouter       (128k context, deep audit)
+   - plan:      deepseek-v4-flash / opencode (fast, cheap)
+   - execute:   agy-switch / opencode     (auto-fallback to 4 other models)
+   - test:      gpt-4o-mini / opencode    (cost-optimized)
+   - commit:    deepseek-v4-flash / opencode (lightweight)
+   - report:    gpt-4o-mini / opencode    (cost-optimized)
+
+═══════════════════════════════════════════════════════════════════════════════
+
+CYCLE TIMING
+────────────
+
+TOTAL CYCLE DURATION: 5-12 minutes (depends on workload)
+
+Breakdown:
+  Phase 0 (Bootstrap):  30-60s   (setup, check git status)
+  Phase 1 (Analyze):    60-120s  (scan codebase with gpt-4o)
+  Phase 2 (Plan):       20-40s   (fast planning with deepseek)
+  Phase 3 (Execute):    90-180s  (code edits via agy-switch)
+  Phase 4 (Test):       60-120s  (pytest + ruff linting)
+  Phase 5 (Commit):     5-15s    (conventional commit)
+  Phase 6 (Report):     2-5s     (summary + Discord)
+
+SLEEP BETWEEN CYCLES (adaptive):
+  - 0 changes found:    180s (reduce frequency, codebase clean)
+  - 1-3 changes:        120s (standard, minor fixes)
+  - 4+ changes:         60s  (urgent mode, many issues)
+  - Test failures:      30s  (critical, retry fast)
+
+EFFECTIVE RATE: One complete cycle every 5-12 minutes (forever)
+
+═══════════════════════════════════════════════════════════════════════════════
+
+AGY-SWITCH FALLBACK MECHANISM
+──────────────────────────────
+
+When agy-switch (Phase 3) receives a rate-limit error:
+
+  Attempt 1: deepseek-v4-flash-free / opencode
+    ↓ (if rate-limited)
+  Attempt 2: gpt-4o-mini / opencode
+    ↓ (if rate-limited)
+  Attempt 3: gpt-4o / openrouter
+    ↓ (if rate-limited)
+  Attempt 4: claude-opus-4 / anthropic
+    ↓ (if rate-limited)
+  Attempt 5: qwen2.5-72b / openrouter
+    ↓ (if rate-limited)
+  FAIL: All models exhausted
+
+USER EXPERIENCE: Silent retry. User sees one log line per retry.
+              No manual intervention needed.
+
+EDIT FALLBACK CHAIN:
+  vi ~/.local/bin/agy-switch
+  Search: FALLBACK_CHAIN=(
+  Edit the array to add/remove providers
+
+═══════════════════════════════════════════════════════════════════════════════
+
+DISCORD INTEGRATION
+───────────────────
+
+Webhook URL: Loaded from ~/.hermes/profiles/autopilot-worker/.state/config.json
+            (discord_webhook field)
+
+Per-cycle notification:
+  - Title: ✅ Autopilot Cycle #N Complete
+  - Fields: Cycle ID, duration, per-phase duration + model, git status
+  - Delivered: 1 per cycle completion
+  - Format: JSON embed (Discord native)
+
+Discord embed includes:
+  • Cycle #
+  • Total duration (e.g., "487s (~8m")
+  • Each phase: duration + model used
+  • Git commit message
+  • Files changed / pending
+
+TESTING WEBHOOK:
+  curl -X POST https://discord.com/api/webhooks/YOUR_WEBHOOK \
+    -H "Content-Type: application/json" \
+    -d '{"content":"test"}'
+
+  Should return: HTTP 204 No Content
+
+═══════════════════════════════════════════════════════════════════════════════
+
+HOW TO LAUNCH
+──────────────
+
+FASTEST (foreground, test 1-2 cycles):
+  $ autopilot-continuous-daemon
+  [2026-05-28 14:00:32] 🤖 Autopilot Continuous Daemon started
+  [2026-05-28 14:00:32] 🔄 Starting cycle #1 [cycle-20260528_140032]
+  [2026-05-28 14:00:38] ℹ️  [Phase 0] Bootstrap & setup...
+  Ctrl+C to stop
+
+PRODUCTION (background, runs forever):
+  $ nohup autopilot-continuous-daemon > ~/Aarav/Autopilot/logs/daemon.log 2>&1 &
+  [1] 12345
+  $ ps aux | grep autopilot-continuous-daemon
+  (verify running)
+
+PERMANENT (systemd, survives reboots):
+  $ mkdir -p ~/.config/systemd/user/
+  $ cat > ~/.config/systemd/user/autopilot.service << 'EOF'
+  [Unit]
+  Description=Autopilot Continuous Improvement Daemon
+  After=network.target
+
+  [Service]
+  Type=simple
+  ExecStart=%h/.local/bin/autopilot-continuous-daemon
+  Restart=always
+  RestartSec=10
+  StandardOutput=append:%h/Aarav/Autopilot/logs/daemon.log
+  StandardError=append:%h/Aarav/Autopilot/logs/daemon.log
+
+  [Install]
+  WantedBy=default.target
+  EOF
+  
+  $ systemctl --user daemon-reload
+  $ systemctl --user enable autopilot.service
+  $ systemctl --user start autopilot.service
+
+═══════════════════════════════════════════════════════════════════════════════
+
+MONITORING
+───────────
+
+LIVE LOG (streaming):
+  tail -f ~/Aarav/Autopilot/logs/daemon.log
+
+LATEST CYCLE (JSON):
+  jq . ~/Aarav/Autopilot/logs/cycle-*.json | tail -30
+
+ALL CYCLES (sorted by time):
+  ls -lt ~/Aarav/Autopilot/logs/cycle-*.json | head -5
+
+GIT LOG (commits from autopilot):
+  cd ~/Aarav/Autopilot && git log --oneline | head -20
+
+CHECK PROCESS:
+  ps aux | grep autopilot-continuous-daemon
+  pgrep -f autopilot-continuous-daemon
+
+STOP DAEMON:
+  pkill -f autopilot-continuous-daemon  (graceful)
+  pkill -9 -f autopilot-continuous-daemon (immediate)
+
+═══════════════════════════════════════════════════════════════════════════════
+
+CONFIGURATION
+───────────────
+
+CHANGE PHASE MODELS:
+  1. Open config: vi ~/.hermes/profiles/autopilot-worker/config.yaml
+  2. Find: agent.autopilot_phase_models
+  3. Edit models/providers for each phase
+  4. Save
+  5. Restart daemon: pkill -f autopilot-continuous-daemon
+  6. Start new daemon: nohup autopilot-continuous-daemon > logs/daemon.log 2>&1 &
+
+CHANGE FALLBACK CHAIN:
+  1. Open: vi ~/.local/bin/agy-switch
+  2. Find: FALLBACK_CHAIN=(
+  3. Edit model:provider pairs
+  4. Save
+  5. Next execution of agy-switch uses new chain (no restart needed)
+
+CHANGE DISCORD WEBHOOK:
+  1. Open: vi ~/.hermes/profiles/autopilot-worker/.state/config.json
+  2. Edit: "discord_webhook": "https://discord.com/api/webhooks/YOUR/URL"
+  3. Save
+  4. Restart daemon for next cycle to use new URL
+
+CHANGE CYCLE SLEEP TIMING:
+  1. Open: vi ~/.local/bin/autopilot-continuous-daemon
+  2. Find: sleep calculation logic (search "adaptive")
+  3. Edit thresholds/durations
+  4. Save
+  5. Restart daemon
+
+═══════════════════════════════════════════════════════════════════════════════
+
+TROUBLESHOOTING
+────────────────
+
+Q: Daemon exits immediately
+A: Check logs: tail -f ~/Aarav/Autopilot/logs/daemon.log
+   Common: DISCORD_WEBHOOK not set, Hermes not installed, PATH issues
+
+Q: agy-switch always falls back to qwen2.5-72b
+A: All providers rate-limited. Options:
+   1. Wait (most providers reset every hour)
+   2. Add another provider to FALLBACK_CHAIN
+   3. Reduce cycle frequency (increase sleep duration)
+   4. Run daemon foreground and check errors: autopilot-continuous-daemon
+
+Q: Discord webhook gets HTTP 401/403
+A: Invalid webhook URL. Verify:
+   curl -X POST "https://discord.com/api/webhooks/YOUR/URL" \
+     -H "Content-Type: application/json" \
+     -d '{"content":"test"}'
+   Should return 204. If 401/403, URL is wrong or expired.
+
+Q: Phase 1 (Analyze) takes >2 minutes
+A: gpt-4o might be slow. Options:
+   1. Switch to faster model: vi config.yaml → change analyze model
+   2. Reduce context: edit daemon to send smaller code snippets
+   3. Check OpenRouter quota: agy-switch -p "test" --model gpt-4o
+
+Q: No commits appearing in git
+A: Check daemon logs for git errors:
+   grep -i "git\|commit" ~/Aarav/Autopilot/logs/daemon.log
+   Verify git repo is clean: cd ~/Aarav/Autopilot && git status
+
+Q: Daemon uses too much CPU
+A: Phases running too fast. Options:
+   1. Increase sleep duration between cycles
+   2. Reduce number of tasks planned per cycle
+   3. Use cheaper/faster models in config.yaml
+
+═══════════════════════════════════════════════════════════════════════════════
+
+KEY ENVIRONMENT VARIABLES
+──────────────────────────
+
+AUTOPILOT_HOME (default: ~/Aarav/Autopilot)
+  export AUTOPILOT_HOME=/custom/path/to/autopilot
+  autopilot-continuous-daemon
+
+AGY_MODEL (default: deepseek-v4-flash-free)
+  export AGY_MODEL=gpt-4o
+  agy-switch -p "your prompt"
+
+AGY_PROVIDER (default: opencode)
+  export AGY_PROVIDER=openrouter
+  agy-switch -p "your prompt"
+
+═══════════════════════════════════════════════════════════════════════════════
+
+FILES & LOCATIONS
+──────────────────
+
+Executable: ~/.local/bin/agy-switch
+Executable: ~/.local/bin/autopilot-continuous-daemon
+Config:     ~/.hermes/profiles/autopilot-worker/config.yaml
+Working:    ~/Aarav/Autopilot/ (git repo)
+Logs:       ~/Aarav/Autopilot/logs/daemon.log (realtime)
+Cycles:     ~/Aarav/Autopilot/logs/cycle-YYYYMMDD_HHMMSS.json (per cycle)
+Skill:      ~/.hermes/skills/devops/autopilot-continuous-improvement/
+
+═══════════════════════════════════════════════════════════════════════════════
+
+VERSION HISTORY
+────────────────
+
+v1.0 (old):
+  - Cronjob every 120 minutes
+  - Discrete cycles
+  - Waits 2 hours between runs
+  - Limited model switching
+
+v2.0 (current):
+  - Continuous daemon (runs forever)
+  - Adaptive 2-5 min cycles
+  - Per-phase model switching
+  - Automatic fallback chain
+  - Discord integration
+  - 5-12 min time-to-action
+
+═══════════════════════════════════════════════════════════════════════════════
+Ready to run: nohup autopilot-continuous-daemon > logs/daemon.log 2>&1 &
+═══════════════════════════════════════════════════════════════════════════════

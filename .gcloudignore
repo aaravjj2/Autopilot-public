@@ -1,0 +1,63 @@
+# Keep the Cloud Build context small and SECRET-FREE.
+# Anything matched here is NOT uploaded to Cloud Build / baked into the image.
+
+# --- Secrets & local state (NEVER ship) ---
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+secrets/
+**/secrets/
+data/
+**/*.db
+**/*.db-wal
+**/*.db-shm
+*.sqlite
+*.sqlite3
+
+# --- VCS / tooling ---
+.git/
+.gitignore
+.github/
+.vscode/
+.idea/
+.cursor/
+.agent/
+.agents/
+
+# --- Python caches / venvs ---
+__pycache__/
+**/__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+env/
+*.egg-info/
+build/
+dist/
+
+# --- Frontend (deployed separately) ---
+autopilot-local/frontend/
+**/node_modules/
+
+# --- Tests & dev-only material not needed at runtime ---
+tests/
+artifacts/
+docs/
+*.md
+!SECURITY.md
+wc2026_autopilot/
+
+# --- Misc large/irrelevant ---
+*.zip
+*.mp4
+*.mov
+*.png
+*.jpg
+*.pdf
+scratch.py

@@ -1,0 +1,126 @@
+════════════════════════════════════════════════════════════════════════════════
+                              SUMMARY OF CHANGES
+════════════════════════════════════════════════════════════════════════════════
+
+🔄 SWITCHED FROM DISCRETE CYCLES TO CONTINUOUS OPERATION
+
+  OLD MODEL (v1.0):
+    - Cronjob every 120 minutes
+    - One cycle at 14:00, sleep until 16:00
+    - Inefficient: 2 hours of idle waiting
+    - Discrete: No overlap between cycles
+
+  NEW MODEL (v2.0):
+    - Runs forever (daemon loop)
+    - Adaptive cycles: 2-5 min per cycle + sleep 60-180s
+    - Always available: 5-12 min time-to-action
+    - Continuous: Next cycle begins immediately after sleep
+
+────────────────────────────────────────────────────────────────────────────────
+
+📦 FILES CREATED / MODIFIED
+
+  ~/.local/bin/agy-switch
+    ✓ New: Model-switching wrapper for agy with auto-fallback chain
+    ✓ Fallback: deepseek → gpt-4o-mini → gpt-4o → claude → qwen2.5-72b
+    ✓ Transparent: Handles retries without user intervention
+
+  ~/.local/bin/autopilot-continuous-daemon
+    ✓ New: Main continuous improvement loop (replaces cronjob)
+    ✓ Phases: 6-phase cycle with per-phase model switching
+    ✓ Discord: Direct webhook integration for cycle reports
+    ✓ Adaptive: Sleep duration based on workload
+
+  ~/.hermes/profiles/autopilot-worker/config.yaml
+    ✓ Modified: Added agent.autopilot_phase_models section
+    ✓ Per-phase: Model/provider config for each phase
+    ✓ Switchable: Change models without restarting daemon
+
+  ~/.hermes/skills/devops/autopilot-continuous-improvement/SKILL.md
+    ✓ Updated: Documentation for v2.0 continuous operation
+
+────────────────────────────────────────────────────────────────────────────────
+
+🎯 PHASE MODEL SWITCHING
+
+  Phase 1: ANALYZE        gpt-4o / openrouter       (deep context audit)
+  Phase 2: PLAN           deepseek-v4-flash / opencode (fast planning)
+  Phase 3: EXECUTE        agy-switch / opencode     (with fallback chain)
+  Phase 4: TEST           gpt-4o-mini / opencode    (cost-optimized)
+  Phase 5: COMMIT         deepseek-v4-flash / opencode (lightweight)
+  Phase 6: REPORT         gpt-4o-mini / opencode    (cost-optimized)
+
+  Total Cycle Time: 240-530 seconds (4-9 minutes)
+  Adaptive Sleep:   60-180 seconds (based on issues found)
+  Actual Interval:  5-12 minutes (one cycle every 5-12 min, forever)
+
+────────────────────────────────────────────────────────────────────────────────
+
+⚡ RATE-LIMIT RECOVERY (agy-switch)
+
+  When Phase 3 hits rate limit:
+
+    Attempt 1: deepseek-v4-flash-free (opencode)  ← primary
+         ↓ RATE LIMITED
+    Attempt 2: gpt-4o-mini (opencode)             ← fallback 1
+         ↓ RATE LIMITED
+    Attempt 3: gpt-4o (openrouter)                ← fallback 2
+         ↓ RATE LIMITED
+    Attempt 4: claude-opus-4 (anthropic)          ← fallback 3
+         ↓ RATE LIMITED
+    Attempt 5: qwen2.5-72b (openrouter)           ← fallback 4
+         ✅ SUCCESS or final failure
+
+  User sees: None. Fully transparent retry loop.
+
+────────────────────────────────────────────────────────────────────────────────
+
+🚀 HOW TO START
+
+  Option 1: Test run (foreground, Ctrl+C to stop)
+    autopilot-continuous-daemon
+
+  Option 2: Background daemon
+    nohup autopilot-continuous-daemon > logs/daemon.log 2>&1 &
+    (Run from any directory; automatically uses AUTOPILOT_HOME)
+
+  Option 3: Systemd service (permanent)
+    Create ~/.config/systemd/user/autopilot.service
+    systemctl --user enable autopilot.service
+    systemctl --user start autopilot.service
+
+────────────────────────────────────────────────────────────────────────────────
+
+📊 MONITORING
+
+  Real-time logs:
+    tail -f ~/Aarav/Autopilot/logs/daemon.log
+
+  Cycle reports (JSON):
+    jq . ~/Aarav/Autopilot/logs/cycle-*.json
+
+  Git history:
+    cd ~/Aarav/Autopilot && git log --oneline -10
+
+  Discord notifications:
+    Check your Discord server — gets one embed per cycle completion
+
+────────────────────────────────────────────────────────────────────────────────
+
+🛠️  CONFIGURATION
+
+  Edit phase models:
+    vi ~/.hermes/profiles/autopilot-worker/config.yaml
+    [Search for: autopilot_phase_models]
+
+  Edit fallback chain:
+    vi ~/.local/bin/agy-switch
+    [Search for: FALLBACK_CHAIN=(]
+
+  Edit cycle timing:
+    vi ~/.local/bin/autopilot-continuous-daemon
+    [Search for: adaptive sleep logic]
+
+════════════════════════════════════════════════════════════════════════════════
+                          READY FOR DEPLOYMENT
+════════════════════════════════════════════════════════════════════════════════
