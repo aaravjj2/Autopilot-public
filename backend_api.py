@@ -1839,6 +1839,28 @@ def _health_payload() -> dict[str, Any]:
     }
 
 
+@app.get("/")
+def root():
+    """Service index — API has no HTML UI; terminal lives on the frontend service."""
+    links: dict[str, str] = {
+        "health": "/health",
+        "docs": "/docs",
+        "openapi": "/openapi.json",
+        "arb_opportunities": "/api/arb/opportunities",
+    }
+    out: dict[str, object] = {
+        "service": "apex-autopilot-api",
+        "message": "Backend API only. Open the frontend URL for the trading terminal.",
+        "links": links,
+    }
+    frontend_url = os.getenv("FRONTEND_URL", "").strip() or (
+        settings.public_demo_url.strip() if settings.public_demo_url else ""
+    )
+    if frontend_url:
+        out["frontend"] = frontend_url.rstrip("/")
+    return out
+
+
 @app.get("/health")
 def health():
     return _health_payload()

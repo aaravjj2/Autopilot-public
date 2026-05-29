@@ -16,6 +16,8 @@ import httpx
 LOGGER = logging.getLogger(__name__)
 
 URL_FILE = Path("/home/aarav/Aarav/Autopilot/data/cloud_run_url.txt")
+FRONTEND_URL_FILE = Path("/home/aarav/Aarav/Autopilot/data/cloud_run_frontend_url.txt")
+URLS_FILE = Path("/home/aarav/Aarav/Autopilot/data/cloud_run_urls.json")
 
 
 @dataclasses.dataclass
@@ -37,8 +39,33 @@ def read_cloud_run_url() -> str:
     env_url = os.getenv("CLOUD_RUN_URL", "").strip()
     if env_url:
         return env_url.rstrip("/")
+    if URLS_FILE.exists():
+        try:
+            data = json.loads(URLS_FILE.read_text(encoding="utf-8"))
+            backend = str(data.get("backend") or "").strip()
+            if backend:
+                return backend.rstrip("/")
+        except Exception:
+            pass
     if URL_FILE.exists():
         return URL_FILE.read_text(encoding="utf-8").strip().rstrip("/")
+    return ""
+
+
+def read_cloud_run_frontend_url() -> str:
+    env_url = os.getenv("CLOUD_RUN_FRONTEND_URL", "").strip()
+    if env_url:
+        return env_url.rstrip("/")
+    if URLS_FILE.exists():
+        try:
+            data = json.loads(URLS_FILE.read_text(encoding="utf-8"))
+            frontend = str(data.get("frontend") or "").strip()
+            if frontend:
+                return frontend.rstrip("/")
+        except Exception:
+            pass
+    if FRONTEND_URL_FILE.exists():
+        return FRONTEND_URL_FILE.read_text(encoding="utf-8").strip().rstrip("/")
     return ""
 
 

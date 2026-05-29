@@ -1,0 +1,21 @@
+# Builds the Next.js terminal image (Dockerfile.cloudrun.frontend).
+# Invoked after backend URL is known:
+#   gcloud builds submit --config cloudbuild.frontend.yaml \
+#     --substitutions=_IMAGE=...,_APEX_BACKEND_URL=https://...
+steps:
+  - name: gcr.io/cloud-builders/docker
+    args:
+      - build
+      - -f
+      - Dockerfile.cloudrun.frontend
+      - --build-arg
+      - APEX_BACKEND_URL=${_APEX_BACKEND_URL}
+      - --build-arg
+      - NEXT_PUBLIC_APEX_API_URL=${_APEX_BACKEND_URL}
+      - -t
+      - ${_IMAGE}
+      - .
+images:
+  - ${_IMAGE}
+options:
+  logging: CLOUD_LOGGING_ONLY
