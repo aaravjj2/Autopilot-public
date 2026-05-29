@@ -1,0 +1,128 @@
+{
+  "cycle_id": 10,
+  "timestamp": "20260529_062908",
+  "tag": "cycle-20260529-062908",
+  "head_commit": "ea5105e",
+  "head_message": "loop(iter 620): Expose risk gate rejection reasons in API / feat(autopilot): iteration 620 — arb edge model promotion, corpus regeneration, all 364 tests passing",
+  "iterations_completed": 620,
+  "range_start": "2026-05-28T11:39:00Z",
+  "range_end": "2026-05-29T06:29:00Z",
+  "duration_hours": 18.8,
+  "total_commits": 70,
+  "phases": {
+    "bootstrap": "SUCCESS",
+    "analyze": "FAIL (Groq org restricted since iter 446)",
+    "plan": "DEGRADED (deterministic fallback — same idea repeated)",
+    "execute": "DEGRADED (test-only / config-only iterations)",
+    "test": "SUCCESS (364/364 backend, 1 skipped)",
+    "commit": "PARTIAL (committed locally, HTTPS push blocked — no TTY)",
+    "report": "SUCCESS"
+  },
+  "test_metrics": {
+    "backend_unit": {
+      "status": "ALL PASSING",
+      "passed": 364,
+      "skipped": 1,
+      "failed": 0,
+      "test_files": 73,
+      "duration_seconds": 123,
+      "pass_rate_pct": 100.0
+    },
+    "frontend_e2e": {
+      "status": "REGRESSION — UNRESOLVED",
+      "passed": 38,
+      "total": 107,
+      "rate_pct": 35.5,
+      "root_cause": "Risk gate API response schema changes in iterations 611-614 broke Playwright assertions"
+    },
+    "api_smoke": {
+      "status": "DEGRADED",
+      "issues": "/api/opportunities endpoint returns 404"
+    },
+    "backtest": {
+      "sharpe_ratio": 3.211,
+      "win_rate": 0.5,
+      "active_model_accuracy": 0.9231,
+      "active_model_samples": 104
+    }
+  },
+  "fixes_this_sprint": [
+    {
+      "commit": "b789ef5",
+      "area": "frontend-e2e",
+      "description": "Cache APEX health check in gotoTerminal to avoid redundant waits (module-level _healthChecked boolean)"
+    },
+    {
+      "commit": "2d5446c",
+      "area": "backend-api-smoke",
+      "description": "Force-override env vars in test_runner to avoid stale parent env values (SHOWCASE_MODE, AUTH_ENABLED, APEX_ARB_SCAN_LOOP)"
+    },
+    {
+      "commit": "dc0d9b2",
+      "area": "data-ml",
+      "description": "Arb edge model promotion, corpus regeneration — 188 candidate models, active model at 92.3% accuracy"
+    },
+    {
+      "commit": "b789ef5",
+      "area": "backend-market-data",
+      "description": "Add _safe_get_info and _safe_get_calendar wrapping yfinance .info/.calendar in try/except for symbols that 404 on fundamentals"
+    },
+    {
+      "commit": "b789ef5",
+      "area": "backend-scheduler",
+      "description": "Restore original non-idempotent intraday cron job IDs maintaining separate job identity from SCHEDULE entries"
+    }
+  ],
+  "data_artifacts": {
+    "arb_edge_candidate_models": 188,
+    "training_corpus_lines": 440,
+    "kalshi_ticks_lines": 113,
+    "active_model_path": "data/models/arb_edge/candidate_20260529T062733Z/model.json",
+    "active_model_accuracy": 0.9231,
+    "active_model_samples": 104,
+    "disk_usage_models": "1.5M",
+    "disk_usage_training": "172K",
+    "disk_usage_kalshi": "300K"
+  },
+  "blockers": {
+    "critical": [
+      "Groq API blocked (org restricted) — no LLM intelligence since iteration 446; ALL 175 subsequent iterations ran on deterministic fallback",
+      "Git push broken — HTTPS remote without credential helper; 'fatal: could not read Username for https://github.com: No such device or address'",
+      "Playwright E2E regression 99.0% -> 35.5% — risk gate API changes in iter 611-614 broke test assertions"
+    ],
+    "high": [
+      "OpenCode Zen 404 (minimax/m2.7 model) — secondary LLM routing path broken",
+      "Copilot rate limit (429 weekly quota) — tertiary routing path exhausted",
+      "Ollama not running on :11434 — TradingAgents adapter health check fails every startup",
+      "API smoke tests: /api/opportunities endpoint returns 404"
+    ],
+    "medium": [
+      "datetime.utcnow() deprecation warnings (84 occurrences in autopilot.log)",
+      "Scheduler job duplication — 'Adding job tentatively' spam during scheduler startup",
+      "SQLModel Pydantic v2 ConfigDict deprecation",
+      "ChromaDB Pydantic v2.11 model_fields deprecation"
+    ]
+  },
+  "ideas_this_sprint": [
+    "Expose risk gate rejection reasons in API (deterministic fallback — repeated 175 iterations)"
+  ],
+  "repository_topology": {
+    "branch": "main",
+    "remote": "origin -> https://github.com/aaravjj2/Autopilot-public.git",
+    "total_commits": 70,
+    "cycle_tags": 10,
+    "source_files_py": 167,
+    "test_files_py": 75,
+    "submodules": 8,
+    "modified_submodules": ["external/Kronos", "external/MiroFish", "external/PolyMarket-MCP", "external/polymarket-mcp-server"]
+  },
+  "summary": "620 iterations completed across 18.8 hours. Backend unit tests fully passing (364/364, 100%). Arb edge model promoted at 92.3% accuracy from 188 candidates. Three critical blockers persist: (1) Groq API organization restricted since iteration 446, locking the loop in deterministic fallback; (2) Git HTTPS push disabled due to no TTY for credential prompt; (3) Playwright E2E regression from 99% to 35.5% caused by risk gate API schema changes. Active loop daemon continues running on nohup at iteration 620+.",
+  "recommendations": [
+    "Fix git push: set up SSH key or gh auth login to enable remote commits",
+    "Restore LLM intelligence: start ollama service with llama3.2:3b, or deploy a model via ngrok/vLLM on Colab Pro (V100 available)",
+    "Fix Playwright E2E: revert risk gate API response schema changes or update Playwright assertions to match new schema",
+    "Fix /api/opportunities: register missing route in FastAPI router",
+    "Convert print() statements to get_logger(__name__) across 50+ locations",
+    "De-duplicate scheduler jobs: add id + replace_existing=True to add_job calls"
+  ]
+}
