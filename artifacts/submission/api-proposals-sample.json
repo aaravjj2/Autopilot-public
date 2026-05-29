@@ -1,8 +1,20 @@
 {
-  "count": 26,
+  "count": 21,
   "sample": [
     {
-      "id": "75ddcca0-f051-4a7a-b223-3e89f42ca566",
+      "id": "0bec97a9-6b4a-4828-94c6-105e7f49140d",
+      "symbol": "PM-EVT-nba-okc-sas-2026-05-28-spread-home-3pt5",
+      "direction": "LONG",
+      "instrument": "POLYMARKET_EVENT",
+      "entry_price": 0.615,
+      "stop_loss": 0.01,
+      "take_profit": 0.99,
+      "conviction": 7,
+      "status": "EXECUTED",
+      "created_at": "2026-05-29T01:15:18.847390+00:00"
+    },
+    {
+      "id": "3eded67b-7532-4efa-bc0e-48db73676c97",
       "symbol": "PM-EVT-us-announces-new-iran-agreementceasefire-extension-by-may-31-665-831-238",
       "direction": "LONG",
       "instrument": "POLYMARKET_EVENT",
@@ -11,31 +23,19 @@
       "take_profit": 0.99,
       "conviction": 7,
       "status": "EXECUTED",
-      "created_at": "2026-05-29T01:02:58.576294+00:00"
+      "created_at": "2026-05-29T01:15:18.847109+00:00"
     },
     {
-      "id": "e1c96169-40e6-44c5-9d96-113f55e29654",
+      "id": "1955fedb-d1d9-486c-9b81-68acafcd93fc",
       "symbol": "PM-EVT-us-x-iran-permanent-peace-deal-by-june-7-2026",
       "direction": "LONG",
       "instrument": "POLYMARKET_EVENT",
-      "entry_price": 0.21,
+      "entry_price": 0.215,
       "stop_loss": 0.01,
       "take_profit": 0.99,
       "conviction": 7,
       "status": "EXECUTED",
-      "created_at": "2026-05-29T01:02:58.561578+00:00"
-    },
-    {
-      "id": "925308a9-8684-41e3-9581-702656846181",
-      "symbol": "PM-EVT-us-iran-nuclear-deal-by-may-31-974",
-      "direction": "LONG",
-      "instrument": "POLYMARKET_EVENT",
-      "entry_price": 0.1505,
-      "stop_loss": 0.01,
-      "take_profit": 0.99,
-      "conviction": 7,
-      "status": "EXECUTED",
-      "created_at": "2026-05-29T01:02:58.539333+00:00"
+      "created_at": "2026-05-29T01:15:18.846759+00:00"
     }
   ]
 }
