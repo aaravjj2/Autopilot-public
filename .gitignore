@@ -69,3 +69,8 @@ node_modules/
 .pytest_cache/
 .ruff_cache/
 .mypy_cache/
+
+# --- Playwright test artifacts ---
+test-results/
+*.trace.zip
+*.zip
