@@ -7377,3 +7377,83 @@ Call log:
   - navigating to "http://localhost:3000/dashboard/analytics", waiting until "load"
 
 2026-05-29 02:14:15,697 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+[main a7882d4] loop(iter 618): Expose risk gate rejection reasons in API
+ 100 files changed, 3627 insertions(+), 4020 deletions(-)
+ rename .coverage => .coverage.EFCO2L6US4A2K.pid1097507.Xbg6YiNx.HNQIp837rWOh (61%)
+ rewrite artifacts/submission/api-arb-sample.json (75%)
+ rewrite autopilot-local/frontend/test-results/ai-hivemind-AI-Hive-Mind-consensus-vote-chromium/test-failed-1.png (93%)
+ rewrite autopilot-local/frontend/test-results/full-flow-Full-User-Flow-complete-navigation-flow-chromium-retry1/trace.zip (77%)
+ rewrite autopilot-local/frontend/test-results/full-flow-Full-User-Flow-complete-navigation-flow-chromium/test-failed-1.png (97%)
+ rewrite autopilot-local/frontend/test-results/full-flow-Full-User-Flow-no-critical-page-errors-chromium-retry1/error-context.md (95%)
+ delete mode 100644 autopilot-local/frontend/test-results/full-flow-Full-User-Flow-no-critical-page-errors-chromium-retry1/test-failed-1.png
+ rewrite autopilot-local/frontend/test-results/full-flow-Full-User-Flow-no-critical-page-errors-chromium-retry1/trace.zip (99%)
+ rewrite autopilot-local/frontend/test-results/full-flow-Full-User-Flow-no-critical-page-errors-chromium-retry2/error-context.md (96%)
+ rename autopilot-local/frontend/test-results/{full-terminal-Every-sideba-c4f33-very-tab-via-sidebar-clicks-chromium-retry1 => full-flow-Full-User-Flow-no-critical-page-errors-chromium-retry2}/test-failed-1.png (100%)
+ rewrite autopilot-local/frontend/test-results/full-flow-Full-User-Flow-no-critical-page-errors-chromium/test-failed-1.png (98%)
+ rewrite autopilot-local/frontend/test-results/full-terminal-Analytics-fe-c6953-e-Arb-Backtest-Signals-tabs-chromium-retry1/error-context.md (96%)
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Analytics-fe-c6953-e-Arb-Backtest-Signals-tabs-chromium-retry1/test-failed-1.png
+ rewrite autopilot-local/frontend/test-results/full-terminal-Analytics-fe-c6953-e-Arb-Backtest-Signals-tabs-chromium-retry1/trace.zip (99%)
+ rewrite autopilot-local/frontend/test-results/full-terminal-Analytics-fe-c6953-e-Arb-Backtest-Signals-tabs-chromium-retry2/error-context.md (96%)
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Analytics-fe-c6953-e-Arb-Backtest-Signals-tabs-chromium-retry2/test-failed-1.png
+ rewrite autopilot-local/frontend/test-results/full-terminal-Analytics-fe-c6953-e-Arb-Backtest-Signals-tabs-chromium/error-context.md (96%)
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Analytics-fe-c6953-e-Arb-Backtest-Signals-tabs-chromium/test-failed-1.png
+ rewrite autopilot-local/frontend/test-results/full-terminal-Every-sideba-c4f33-very-tab-via-sidebar-clicks-chromium-retry1/trace.zip (100%)
+ rewrite autopilot-local/frontend/test-results/full-terminal-Every-sideba-c4f33-very-tab-via-sidebar-clicks-chromium-retry2/error-context.md (97%)
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Every-sideba-c4f33-very-tab-via-sidebar-clicks-chromium-retry2/test-failed-1.png
+ rewrite autopilot-local/frontend/test-results/full-terminal-Every-sideba-c4f33-very-tab-via-sidebar-clicks-chromium/error-context.md (97%)
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Every-sideba-c4f33-very-tab-via-sidebar-clicks-chromium/test-failed-1.png
+ rewrite autopilot-local/frontend/test-results/full-terminal-Overview-fea-60252-palette-opens-and-navigates-chromium-retry1/trace.zip (99%)
+ rewrite autopilot-local/frontend/test-results/full-terminal-Overview-fea-60252-palette-opens-and-navigates-chromium/error-context.md (96%)
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Overview-fea-60252-palette-opens-and-navigates-chromium/test-failed-1.png
+ rewrite autopilot-local/frontend/test-results/full-terminal-Positions-features-Open-and-Closed-tabs-chromium-retry1/error-context.md (96%)
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Positions-features-Open-and-Closed-tabs-chromium-retry1/test-failed-1.png
+ rewrite autopilot-local/frontend/test-results/full-terminal-Positions-features-Open-and-Closed-tabs-chromium-retry1/trace.zip (99%)
+ rewrite autopilot-local/frontend/test-results/full-terminal-Positions-features-Open-and-Closed-tabs-chromium-retry2/error-context.md (96%)
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Positions-features-Open-and-Closed-tabs-chromium-retry2/test-failed-1.png
+ rewrite autopilot-local/frontend/test-results/full-terminal-Positions-features-Open-and-Closed-tabs-chromium/error-context.md (96%)
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Positions-features-Open-and-Closed-tabs-chromium/test-failed-1.png
+ rewrite autopilot-local/frontend/test-results/real-data-WebSocket-Real-t-13fa0-al-websocket-console-errors-chromium-retry1/trace.zip (99%)
+ delete mode 100644 autopilot-local/frontend/test-results/real-data-WebSocket-Real-t-13fa0-al-websocket-console-errors-chromium/test-failed-1.png
+ rewrite autopilot-local/frontend/test-results/submission-demo-APEX-Autopilot-full-product-demo-chromium-retry1/trace.zip (99%)
+ rewrite autopilot-local/frontend/test-results/submission-demo-APEX-Autopilot-full-product-demo-chromium/error-context.md (79%)
+ delete mode 100644 autopilot-local/frontend/test-results/submission-demo-APEX-Autopilot-full-product-demo-chromium/test-failed-1.png
+ rewrite autopilot-local/frontend/tsconfig.tsbuildinfo (71%)
+ create mode 100644 data/artifacts/iteration_0618/manifest.json
+ create mode 100644 data/artifacts/iteration_0618/metrics.json
+ create mode 100644 data/artifacts/iteration_0618/videos/page@1d34017209e8b560d81fe0e19bdee09f.webm
+ rewrite data/chromadb/42bf98fe-cf1a-4b6f-a7d3-8e9d88a47112/index_metadata.pickle (97%)
+ create mode 100644 data/loop_logs/iteration_0618_build.log
+ create mode 100644 data/loop_logs/iteration_0618_tests.json
+ create mode 100644 data/loop_plans/iteration_0618_plan.json
+ create mode 100644 data/models/arb_edge/candidate_20260529T045444Z/model.json
+ create mode 100644 data/models/arb_edge/candidate_20260529T045557Z/model.json
+ create mode 100644 data/models/arb_edge/candidate_20260529T045746Z/model.json
+ create mode 100644 data/models/arb_edge/candidate_20260529T051316Z/model.json
+ create mode 100644 data/models/arb_edge/candidate_20260529T051506Z/model.json
+ create mode 100644 data/models/arb_edge/candidate_20260529T054716Z/model.json
+ create mode 100644 data/models/arb_edge/candidate_20260529T054820Z/model.json
+ create mode 100644 data/models/arb_edge/candidate_20260529T055011Z/model.json
+ create mode 100644 data/models/arb_edge/candidate_20260529T055024Z/model.json
+ create mode 100644 data/models/arb_edge/candidate_20260529T055216Z/model.json
+ create mode 100644 data/models/arb_edge/candidate_20260529T055228Z/model.json
+ create mode 100644 data/models/arb_edge/candidate_20260529T055419Z/model.json
+ create mode 100644 data/models/arb_edge/candidate_20260529T055433Z/model.json
+ create mode 100644 data/models/arb_edge/candidate_20260529T055611Z/model.json
+ create mode 100644 data/models/arb_edge/candidate_20260529T055649Z/model.json
+ create mode 100644 data/models/arb_edge/candidate_20260529T055841Z/model.json
+ create mode 100644 data/models/arb_edge/candidate_20260529T055908Z/model.json
+ create mode 100644 data/models/arb_edge/candidate_20260529T055925Z/model.json
+ create mode 100644 data/models/arb_edge/candidate_20260529T060116Z/model.json
+ create mode 100644 data/models/arb_edge/candidate_20260529T060238Z/model.json
+ create mode 100644 data/models/arb_edge/candidate_20260529T060335Z/model.json
+ create mode 100644 data/models/arb_edge/candidate_20260529T060525Z/model.json
+ create mode 100644 data/models/arb_edge/candidate_20260529T060610Z/model.json
+ create mode 100644 data/models/arb_edge/candidate_20260529T061203Z/model.json
+ create mode 100644 data/models/arb_edge/candidate_20260529T061354Z/model.json
+ create mode 100644 logs/cycle_20260529_002421.json
+ create mode 100644 logs/cycle_20260529_050426.json
+ rewrite logs/cycle_final_report.md (78%)
+ create mode 100644 logs/error_plan_20260529_020918.txt
+2026-05-29 02:14:16,744 [WARNING] git push failed: fatal: could not read Username for 'https://github.com': No such device or address
+
+2026-05-29 02:14:16,752 [INFO] Iteration 618 complete. Tests: FAIL

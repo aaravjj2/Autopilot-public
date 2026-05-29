@@ -1,16 +1,21 @@
 import { Page, expect } from '@playwright/test';
 
 const APEX_HEALTH = process.env.APEX_HEALTH_URL || 'http://127.0.0.1:8000/health';
+let _healthChecked = false;
 
-/** Ensure APEX responds before UI tests (Phase 1). */
+/** Ensure APEX responds before UI tests (Phase 1).  Cached after first successful check. */
 export async function waitForApexHealth(timeoutMs = 30_000) {
+  if (_healthChecked) return;
   const deadline = Date.now() + timeoutMs;
   while (Date.now() < deadline) {
     try {
       const res = await fetch(APEX_HEALTH);
       if (res.ok) {
         const body = await res.json();
-        if (body && typeof body === 'object') return;
+        if (body && typeof body === 'object') {
+          _healthChecked = true;
+          return;
+        }
       }
     } catch {
       /* retry */
