@@ -107,3 +107,10 @@ All notable changes to this project will be documented in this file.
 **Files changed**: None
 **Test results**: pytest 388/388 | TS ✓ | Playwright 0/0 | Sharpe 3.21
 **Summary**: Emit coalesce hits and fetch latency percentiles to structured logs.
+
+## Iteration 601 — Cache Kalshi category fetches
+**Date**: 2026-05-29 02:17:10 UTC
+**Focus**: Arb Detection Quality
+**Files changed**: None
+**Test results**: pytest 388/388 | TS ✓ | Playwright 0/0 | Sharpe 3.21
+**Summary**: Reduce 429 rate limits by caching category market lists for 60s.
