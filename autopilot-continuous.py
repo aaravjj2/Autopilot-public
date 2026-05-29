@@ -123,20 +123,16 @@ def run_phase(phase: str, prompt: str) -> tuple[bool, str]:
             tool_key = "agy"
             timeout = 600
         else:
-            # Use cbm (codebuff-mod) for all other phases
-            # cbm expects: cbm [options] [prompt...]
-            # Working directory is set via --cwd, not changing subprocess cwd
+            # Use hermes chat -q for non-interactive execution
+            # This works reliably in subprocess mode without TUI interference
             cmd = [
-                "cbm",
-                "--cwd", WORKDIR,
-                prompt
+                "hermes",
+                "chat",
+                "-q", prompt,
+                "-t", "terminal,file,code_execution"  # Minimal safe toolset for phases
             ]
-            if provider == "hermes":
-                tool_key = "agy"
-                timeout = 600
-            else:
-                tool_key = provider if provider != "opencode-zen" else "opencode"
-                timeout = 300
+            tool_key = provider if provider != "opencode-zen" else "opencode"
+            timeout = 300
         
         # Check rate limit
         if not is_available(tool_key):
