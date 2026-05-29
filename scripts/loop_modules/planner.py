@@ -100,7 +100,15 @@ Return ONLY valid JSON matching this schema:
 
         except Exception as e:
             LOGGER.error(f"IterationPlanner failed: {e}")
-            raise
+            plan = ImplementationPlan(
+                steps=[],
+                test_commands=["python -m pytest tests/ -q --tb=no"],
+                rollback_steps=[],
+                expected_artifacts=[],
+            )
+            self._save_plan(context.iteration, plan)
+            LOGGER.warning("Using test-only fallback plan (LLM unavailable)")
+            return plan
 
     def _save_plan(self, iteration: int, plan: ImplementationPlan):
         import dataclasses

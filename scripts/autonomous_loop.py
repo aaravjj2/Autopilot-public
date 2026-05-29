@@ -3,6 +3,8 @@ from __future__ import annotations
 import argparse
 import json
 import logging
+import os
+import time
 from pathlib import Path
 import sys
 
@@ -60,9 +62,10 @@ def save_state(state: LoopState):
 def run_loop(start_iteration: int | None = None, max_iterations: int = 500, is_dry_run: bool = False):
     state = load_or_init_state()
     start = start_iteration or state.current_iteration
+    sleep_sec = float(os.getenv("LOOP_ITERATION_SLEEP_SEC", "45"))
 
     for i in range(start, start + max_iterations):
-        LOGGER.info(f"=== ITERATION {i}/500 ===")
+        LOGGER.info(f"=== ITERATION {i} (target {start + max_iterations - 1}) ===")
         context = build_context(state, i)
         idea = None
 
@@ -123,7 +126,8 @@ def run_loop(start_iteration: int | None = None, max_iterations: int = 500, is_d
             state.failed_iterations.append({"iteration": i, "idea": idea.title if idea else "unknown", "error": str(exc)})
             state.current_iteration = i + 1
             save_state(state)
-            continue
+        if sleep_sec > 0:
+            time.sleep(sleep_sec)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Autonomous Improvement Loop")

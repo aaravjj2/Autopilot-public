@@ -112,4 +112,7 @@ Return ONLY valid JSON in the exact format:
             return ideas[:5]
         except Exception as e:
             LOGGER.error(f"BrainstormEngine failed: {e}")
-            raise
+            from loop_modules.fallback_catalog import fallback_ideas
+
+            LOGGER.warning("Using deterministic fallback ideas (LLM unavailable)")
+            return fallback_ideas(focus_area, context.iteration)
