@@ -7696,3 +7696,46 @@ Call log:
   - navigating to "http://localhost:3000/dashboard/analytics", waiting until "load"
 
 2026-05-29 02:47:59,344 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+[main f04f054] loop(iter 623): Log scan_metrics summary each arb cycle
+ 14 files changed, 656 insertions(+), 447 deletions(-)
+ create mode 100644 data/artifacts/iteration_0623/manifest.json
+ create mode 100644 data/artifacts/iteration_0623/metrics.json
+ create mode 100644 data/artifacts/iteration_0623/videos/page@d4d5a4ba882628298c2ebb4ae2bee01e.webm
+ create mode 100644 data/loop_logs/iteration_0623_build.log
+ create mode 100644 data/loop_logs/iteration_0623_tests.json
+ create mode 100644 data/loop_plans/iteration_0623_plan.json
+ create mode 100644 data/models/arb_edge/candidate_20260529T064329Z/model.json
+ create mode 100644 data/models/arb_edge/candidate_20260529T064519Z/model.json
+2026-05-29 02:48:00,742 [INFO] Iteration 623 pushed to origin
+2026-05-29 02:48:00,745 [INFO] Iteration 623 complete. Tests: FAIL
+2026-05-29 02:50:03,371 [INFO] === ITERATION 624 (target 1000) ===
+2026-05-29 02:50:03,712 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-29 02:50:03,712 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-29 02:50:03,712 [WARNING] Using deterministic fallback ideas (LLM unavailable)
+2026-05-29 02:50:03,713 [INFO] --- Idea Scoring Table ---
+2026-05-29 02:50:03,713 [INFO] Idea 1: Log scan_metrics summary each arb cycle
+2026-05-29 02:50:03,713 [INFO]   Score: 0.20 (Impact: 2.0, Comp: 1.0, Novelty: 0.1)
+2026-05-29 02:50:03,713 [WARNING] All ideas were recent/stale. Regenerating...
+2026-05-29 02:50:03,919 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-29 02:50:03,920 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-29 02:50:03,920 [WARNING] Using deterministic fallback ideas (LLM unavailable)
+2026-05-29 02:50:03,920 [INFO] Selected idea: Log scan_metrics summary each arb cycle
+2026-05-29 02:50:04,095 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-29 02:50:04,095 [ERROR] IterationPlanner failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-29 02:50:04,095 [WARNING] Using test-only fallback plan (LLM unavailable)
+2026-05-29 02:50:04,100 [INFO] Step A: Python unit tests
+2026-05-29 02:52:07,890 [INFO] Step B: TypeScript type check
+2026-05-29 02:52:09,984 [INFO] Step C: Playwright E2E tests
+2026-05-29 02:54:28,175 [INFO] Step D: Backend API smoke test
+2026-05-29 02:54:33,207 [INFO] HTTP Request: GET http://localhost:8001/api/opportunities "HTTP/1.1 404 Not Found"
+2026-05-29 02:54:33,214 [INFO] HTTP Request: GET http://localhost:8001/api/arb/backtest "HTTP/1.1 200 OK"
+2026-05-29 02:54:33,214 [INFO] Step E: Backtest regression check
+2026-05-29 02:54:38,583 [WARNING] Failed to screenshot http://localhost:3000/dashboard/arb-radar: Page.goto: Timeout 5000ms exceeded.
+Call log:
+  - navigating to "http://localhost:3000/dashboard/arb-radar", waiting until "load"
+
+2026-05-29 02:54:43,586 [WARNING] Failed to screenshot http://localhost:3000/dashboard/analytics: Page.goto: Timeout 5000ms exceeded.
+Call log:
+  - navigating to "http://localhost:3000/dashboard/analytics", waiting until "load"
+
+2026-05-29 02:54:44,486 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"

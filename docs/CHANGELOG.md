@@ -268,3 +268,10 @@ All notable changes to this project will be documented in this file.
 **Files changed**: None
 **Test results**: pytest 406/406 | TS ✓ | Playwright 0/0 | Sharpe 3.21
 **Summary**: Emit coalesce hits and fetch latency percentiles to structured logs.
+
+## Iteration 624 — Log scan_metrics summary each arb cycle
+**Date**: 2026-05-29 06:54:44 UTC
+**Focus**: Thesis Quality
+**Files changed**: None
+**Test results**: pytest 406/406 | TS ✓ | Playwright 0/0 | Sharpe 3.21
+**Summary**: Emit coalesce hits and fetch latency percentiles to structured logs.
