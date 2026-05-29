@@ -8039,3 +8039,18 @@ Call log:
 2026-05-29 03:37:22,594 [ERROR] IterationPlanner failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
 2026-05-29 03:37:22,595 [WARNING] Using test-only fallback plan (LLM unavailable)
 2026-05-29 03:37:22,602 [INFO] Step A: Python unit tests
+2026-05-29 03:39:29,481 [INFO] Step B: TypeScript type check
+2026-05-29 03:39:32,035 [INFO] Step C: Playwright E2E tests
+2026-05-29 03:46:36,082 [INFO] Step D: Backend API smoke test
+2026-05-29 03:46:41,112 [INFO] HTTP Request: GET http://localhost:8001/api/opportunities "HTTP/1.1 200 OK"
+2026-05-29 03:46:41,143 [INFO] HTTP Request: GET http://localhost:8001/api/arb/backtest "HTTP/1.1 200 OK"
+2026-05-29 03:46:41,144 [INFO] Step E: Backtest regression check
+2026-05-29 03:46:41,423 [WARNING] Failed to screenshot http://localhost:3000/dashboard/arb-radar: Page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3000/dashboard/arb-radar
+Call log:
+  - navigating to "http://localhost:3000/dashboard/arb-radar", waiting until "load"
+
+2026-05-29 03:46:41,460 [WARNING] Failed to screenshot http://localhost:3000/dashboard/analytics: Page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3000/dashboard/analytics
+Call log:
+  - navigating to "http://localhost:3000/dashboard/analytics", waiting until "load"
+
+2026-05-29 03:46:41,820 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"

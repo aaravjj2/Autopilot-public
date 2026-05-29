@@ -1,0 +1,115 @@
+Phase: report
+Tool: opencode
+Error Type: TTY not available
+
+  ┊ review diff
+a/logs/cycle_final_report_v2.md → b/logs/cycle_final_report_v2.md
+@@ -0,0 +1,249 @@
++# APEX Autopilot Engine — Final Cycle Report (v2)
++
++**Report generated**: 2026-05-29 07:39 UTC
++**Cycle range**: 2026-05-28 11:39 → 2026-05-29 07:39 UTC (~20 hours)
++**Total iterations**: 631 completed (target 1000)
++**Latest tag**: `cycle-20260529-073857`
++**Latest HEAD**: `dbcd5d2` — loop(iter 631): autopilot cycle completion artifacts
++**Total commits**: 74 | **Cycle tags**: 11 | **Source files**: 167 | **Test files**: 73
++
++---
++
++## 1. System Overview
++
++### L0-L4 Pipeline Status
++
++| Layer | Component | Status | Notes |
++|-------|-----------|--------|-------|
++| L0 Ingestion | Kalshi polling | ACTIVE | 300K tick data, caching mitigates 429 rate limits |
++| L0 Ingestion | Polymarket adapter | ACTIVE | Via polymarket-mcp-server |
++| L1 Brain | FinanceBrain probe | ACTIVE | Probe response enhanced with live/mode/provider/model/fallback |
++| L2 Agent Panel | TradingAgents | DEGRADED | Ollama not running — health-check fails on every startup |
++| L3 Execution | Risk gate (14 checks) | ACTIVE | Rejection reasons exposed in API (iter 611+) |
++| L3 Execution | Paper-trade enforcement | ACTIVE | M01_PAPER_REQUIRED gate enforced |
++| L4 Observability | Audit log / SSE | ACTIVE | scan_metrics logged each cycle, iteration artifacts captured |
++| Frontend | Next.js terminal | REGRESSED | Playwright E2E: 35.5% passing (unchanged) |
++| Backend API | FastAPI :8000 | DEGRADED | /api/opportunities fixed in iter 629, smoke tests still flaky |
++| ML Pipeline | Arb edge model training | ACTIVE | 50+ candidate models, active at 92.3% accuracy |
++
++### Environment
++- **Backend**: FastAPI on :8000 (unified)
++- **Database**: SQLite via `data/audit.db`
++- **LLM routing**: Groq (blocked since iter 446) → deterministic fallback
++- **External adapters**: Kalshi (live), Polymarket (via MCP), Alpaca (paper)
++- **Git remote**: `origin` → `https://github.com/aaravjj2/Autopilot-public.git` (HTTPS, NO credential helper — pushes blocked)
++- **Loop daemon**: `nohup` running `autopilot-continuous.py` via `agy`
++- **Evidence artifacts**: Iteration webm recordings + failed test screenshots captured each cycle
++
++### Critical Blockers
++1. **Groq API organization restricted** — ALL LLM calls to `api.groq.com` return 400 since iteration 446. The loop has run 185+ iterations on deterministic fallback.
++2. **Git push broken** — `fatal: could not read Username for 'https://github.com': No such device or address` — no TTY available for credential prompt. Last successful push pre-dates this cycle.
++3. **Playwright E2E regression** — 38/107 passing (35.5%), unchanged since iter 614. Risk gate API response schema changes broke test assertions.
++
++---
++
++## 2. Iteration History (586 — 631)
++
++### Phase 1: Iterations 586-600 — Log scan_metrics summary
++- **Idea**: `Log scan_metrics summary each arb cycle`
++- **Pattern**: 15 iterations; all PARTIAL — logging emitted but Playwright inconsistent
++- **Sharpe**: 3.211 (stable)
++
++### Phase 2: Iterations 601-610 — Caching & edge tuning
++- **Idea (odd iterations)**: `Cache Kalshi category fetches` — 60s TTL cache reduced 429s
++- **Idea (even iterations)**: `Tune arb_min_net_edge from scan metrics` — dynamic edge lowering
++- **Impact**: Rate limit errors dropped; adaptive edge tuning when zero arb rows detected
++
++### Phase 3: Iterations 611-620 — Risk gate API exposure (REGRESSION triggered)
++- **Idea**: `Expose risk gate rejection reasons in API` (deterministic fallback)
++- **Duration**: 10 iterations on same idea (Groq outage, fallback stuck)
++- **Playwright pass rate collapse**: 99.0% → 35.5%
++
++### Phase 4: Iterations 621-631 — Scan metrics loop + substantive fix
++- **Iterations 621-628**: Deterministic `Log scan_metrics summary` (8 iterations)
++- **Iteration 629 (commit `b55ed04`)**: **SUBSTANTIVE FIX** — manually intervened:
++  1. Deduplicated `/api/opportunities` (now delegates to `/api/arb/opportunities`)
++  2. Fixed `/proposals/history` (was returning same data as `/proposals`)
++  3. Added LLM circuit breaker — 1-hour cooldown on auth errors for permanently-broken providers
++- **Iteration 630-631**: Scan metrics loop continued
++
++### What Was Built (substantive changes despite fallback)
++
++| Commit | Type | What Changed |
++|--------|------|-------------|
++| `b55ed04` | fix | Deduplicate /api/opportunities, fix /proposals/history, add LLM circuit breaker |
++| `2d5446c` | fix | Force-override env vars in test_runner to avoid stale parent values |
++| `b789ef5` | fix | Cache APEX health check in gotoTerminal; safe yfinance fallbacks; scheduler job ID fix |
++| `2534ac1` | feat | Update arb training corpus + Kalshi tick data + promote arb-edge model |
++| `dc0d9b2` | feat | Iteration 620 — model promotion, corpus regeneration, all 364 tests passing |
+… omitted 171 diff line(s) across 1 additional file(s)/section(s)
+**Final cycle report generated and saved.**
+
+`/home/aarav/Aarav/Autopilot/logs/cycle_final_report_v2.md` — 249 lines, covering all 631 iterations across ~20 hours of continuous autopilot operation.
+
+### Key numbers at a glance
+
+| Metric | Value |
+|--------|-------|
+| **Iterations** | 631 of 1000 target |
+| **Backend tests** | 364/364 passing (100%) |
+| **Frontend E2E** | 38/107 (35.5%, regressed) |
+| **Arb model accuracy** | 92.3% (Sharpe 3.211) |
+| **Candidate models** | 50+ this session |
+| **Cycle tags** | 11 |
+| **Commits** | 74 |
+| **Open blockers** | 5 (3 P0, 2 P1) |
+
+### Substantive fixes landed this sprint
+
+1. **LLM circuit breaker** (iter 629) — 1-hour cooldown on permanently-broken providers, prevents wasted retries
+2. **/api/opportunities deduplicated** — now delegates to correct route
+3. **/proposals/history fixed** — was returning same data as /proposals
+4. **APEX health check cached** in Playwright helpers — redundant 30s waits eliminated
+5. **Environment override fix** — test runner now force-overrides stale parent env vars
+6. **9 gemini_native.py test failures resolved** — `call_with_retries` signature + case sensitivity
+
+The loop daemon is still running on nohup. The three critical blockers (Groq, git push, Playwright E2E) remain unresolved and are fully documented in the report with remediation steps.
+
+session_id: 20260529_033910_a38068
