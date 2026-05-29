@@ -7457,3 +7457,34 @@ Call log:
 2026-05-29 02:14:16,744 [WARNING] git push failed: fatal: could not read Username for 'https://github.com': No such device or address
 
 2026-05-29 02:14:16,752 [INFO] Iteration 618 complete. Tests: FAIL
+2026-05-29 02:16:18,771 [INFO] === ITERATION 619 (target 1000) ===
+2026-05-29 02:16:19,045 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-29 02:16:19,046 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-29 02:16:19,046 [WARNING] Using deterministic fallback ideas (LLM unavailable)
+2026-05-29 02:16:19,046 [INFO] --- Idea Scoring Table ---
+2026-05-29 02:16:19,046 [INFO] Idea 1: Expose risk gate rejection reasons in API
+2026-05-29 02:16:19,046 [INFO]   Score: 0.20 (Impact: 2.0, Comp: 1.0, Novelty: 0.1)
+2026-05-29 02:16:19,046 [WARNING] All ideas were recent/stale. Regenerating...
+2026-05-29 02:16:19,263 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-29 02:16:19,263 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-29 02:16:19,263 [WARNING] Using deterministic fallback ideas (LLM unavailable)
+2026-05-29 02:16:19,263 [INFO] Selected idea: Expose risk gate rejection reasons in API
+2026-05-29 02:16:19,458 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-29 02:16:19,458 [ERROR] IterationPlanner failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-29 02:16:19,459 [WARNING] Using test-only fallback plan (LLM unavailable)
+2026-05-29 02:16:19,466 [INFO] Step A: Python unit tests
+2026-05-29 02:18:25,902 [INFO] Step B: TypeScript type check
+2026-05-29 02:18:28,469 [INFO] Step C: Playwright E2E tests
+2026-05-29 02:20:48,373 [INFO] Step D: Backend API smoke test
+2026-05-29 02:20:53,406 [INFO] HTTP Request: GET http://localhost:8001/api/opportunities "HTTP/1.1 404 Not Found"
+2026-05-29 02:20:53,413 [INFO] HTTP Request: GET http://localhost:8001/api/arb/backtest "HTTP/1.1 200 OK"
+2026-05-29 02:20:53,413 [INFO] Step E: Backtest regression check
+2026-05-29 02:20:59,309 [WARNING] Failed to screenshot http://localhost:3000/dashboard/arb-radar: Page.goto: Timeout 5000ms exceeded.
+Call log:
+  - navigating to "http://localhost:3000/dashboard/arb-radar", waiting until "load"
+
+2026-05-29 02:21:04,312 [WARNING] Failed to screenshot http://localhost:3000/dashboard/analytics: Page.goto: Timeout 5000ms exceeded.
+Call log:
+  - navigating to "http://localhost:3000/dashboard/analytics", waiting until "load"
+
+2026-05-29 02:21:05,204 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"

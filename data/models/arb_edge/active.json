@@ -1,6 +1,6 @@
 {
-  "model_path": "/home/aarav/Aarav/Autopilot/data/models/arb_edge/candidate_20260529T061354Z/model.json",
-  "promoted_at": "2026-05-29T06:13:54.809670+00:00",
+  "model_path": "/home/aarav/Aarav/Autopilot/data/models/arb_edge/candidate_20260529T061822Z/model.json",
+  "promoted_at": "2026-05-29T06:18:22.795312+00:00",
   "metrics": {
     "n_samples": 104,
     "accuracy": 0.9231,
