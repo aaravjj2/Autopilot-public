@@ -211,9 +211,12 @@ class IterationTestRunner:
         port = int(os.getenv("LOOP_API_SMOKE_PORT", "8010"))
         env = os.environ.copy()
         env["PYTHONPATH"] = f"{self.workspace / 'src'}:{self.workspace / 'autopilot-local' / 'backend'}"
-        env.setdefault("SHOWCASE_MODE", "true")
-        env.setdefault("AUTH_ENABLED", "true")
-        env.setdefault("APEX_ARB_SCAN_LOOP", "false")
+        # Force-override: parent env may carry stale/invalid values (e.g. secrets
+        # masked as "***") that break Pydantic bool parsing. Always inject correct
+        # test-mode values so the backend subprocess starts reliably.
+        env["SHOWCASE_MODE"] = "true"
+        env["AUTH_ENABLED"] = "true"
+        env["APEX_ARB_SCAN_LOOP"] = "false"
         proc = None
         base = f"http://127.0.0.1:{port}"
         try:
