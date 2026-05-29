@@ -177,3 +177,10 @@ All notable changes to this project will be documented in this file.
 **Files changed**: None
 **Test results**: pytest 388/388 | TS ✓ | Playwright 0/0 | Sharpe 3.21
 **Summary**: Lower net-edge floor when scan returns zero rows for 3 consecutive cycles.
+
+## Iteration 611 — Expose risk gate rejection reasons in API
+**Date**: 2026-05-29 02:57:29 UTC
+**Focus**: Risk & Execution
+**Files changed**: None
+**Test results**: pytest 388/388 | TS ✓ | Playwright 0/0 | Sharpe 3.21
+**Summary**: Return structured rejection codes from /api/execute for operator UX.
