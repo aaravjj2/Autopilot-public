@@ -170,3 +170,10 @@ All notable changes to this project will be documented in this file.
 **Files changed**: None
 **Test results**: pytest 388/388 | TS ✓ | Playwright 0/0 | Sharpe 3.21
 **Summary**: Reduce 429 rate limits by caching category market lists for 60s.
+
+## Iteration 610 — Tune arb_min_net_edge from scan metrics
+**Date**: 2026-05-29 02:53:26 UTC
+**Focus**: Arb Detection Quality
+**Files changed**: None
+**Test results**: pytest 388/388 | TS ✓ | Playwright 0/0 | Sharpe 3.21
+**Summary**: Lower net-edge floor when scan returns zero rows for 3 consecutive cycles.

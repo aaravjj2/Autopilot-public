@@ -1,0 +1,101 @@
+QUICK START CHECKLIST
+=====================
+
+STATUS: ✓ Environment ready for development
+
+VERIFY SETUP (Run these)
+------------------------
+□ pytest --version
+  → Expected: pytest 8.3.4
+
+□ python -c "import sys; sys.path.insert(0, 'src'); from apex.core.config import get_settings; print(f'✓ Config OK: {get_settings().llm_provider}')"
+  → Expected: ✓ Config OK: groq
+
+□ make test-full
+  → Expected: 346 tests collected, all pass
+
+OPTIONAL ENVIRONMENT SETUP
+---------------------------
+□ Create .env.local for local overrides (copy .env first)
+
+□ Configure backend/.env if needed:
+  ln -s ../.env autopilot-local/backend/.env
+
+□ Ensure Ollama running for local inference (optional):
+  ollama serve
+
+API STARTUP
+-----------
+Backend:
+  python -m uvicorn autopilot-local.backend.main:app --reload
+  → Server: http://localhost:8000
+  → Docs:   http://localhost:8000/docs
+
+Frontend:
+  cd autopilot-local/frontend && npm run dev
+  → Frontend: http://localhost:3000
+
+COMMON TASKS
+-----------
+□ Code quality check:
+  make lint typecheck
+
+□ Auto-fix formatting:
+  make lint-fix
+
+□ Run specific test:
+  pytest tests/test_arb_engine.py -v
+
+□ Check imports:
+  python -c "import sys; sys.path.insert(0, 'src'); from apex.layers.l2.agent_panel import *; print('✓ L2 imports OK')"
+
+DATABASES
+---------
+Active:
+  • data/audit.db (main audit log)
+  • data/marketmind.db (market data)
+  • data/discord_trades.db (trade notifications)
+  • data/chromadb/chroma.sqlite3 (embeddings)
+
+Backups: data/backups/ (automatic rotation)
+
+CONFIGURATION
+--------------
+Primary: .env (144 lines)
+  • LLM_PROVIDER=groq
+  • LLM_MODEL=llama-3.3-70b-versatile
+  • ALPACA_PAPER_TRADE=true (enforced)
+
+Rules: .agent/rules/ (3 files)
+  • apex-conventions.md (code standards)
+  • paper-only.md (trading mode enforcement)
+  • streaming.md (observability patterns)
+
+KNOWN LIMITATIONS
+-----------------
+⚠ No requirements.txt (dependencies in pyproject.toml)
+⚠ .env.local not present (customize if needed)
+⚠ yfinance returns 404 for SMH, SOXX, XSD, SPY (known)
+⚠ Ollama 11434 fails when service not running (non-blocking)
+
+PAPER TRADING GUARANTEE
+-----------------------
+✓ M01_PAPER_REQUIRED active (first risk check)
+✓ ALPACA_PAPER_TRADE=true
+✓ All market interactions via paper trading APIs
+✓ Enforced by apex.layers.l3.risk_checks
+
+NEXT STEPS
+----------
+1. Verify setup: pytest --version && make test-full
+2. Start backend: python -m uvicorn autopilot-local.backend.main:app --reload
+3. Start frontend: cd autopilot-local/frontend && npm run dev
+4. Open http://localhost:3000
+5. Review HEALTH_REPORT.md for full status
+
+SUPPORT
+-------
+Test suite docs:   tests/README.md (if exists)
+Architecture:      AGENTS.md (project context)
+Config reference:  src/apex/core/config.py
+Health check:      python src/apex/main.py --health
