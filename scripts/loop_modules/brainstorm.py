@@ -46,10 +46,13 @@ class BrainstormEngine:
             ]
 
         from apex.core.config import get_settings
+        from loop_modules.fallback_catalog import fallback_ideas
+
         settings = get_settings()
         client = settings.get_llm_client()
         if not client:
-            raise RuntimeError("No LLM client configured for BrainstormEngine")
+            LOGGER.warning("No LLM client — using deterministic fallback ideas")
+            return fallback_ideas(focus_area, context.iteration)
 
         prompt = f"""You are the master brain of the MarketMind x APEX autonomous loop.
 Current Iteration: {context.iteration}

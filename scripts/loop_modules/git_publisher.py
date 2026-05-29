@@ -34,11 +34,25 @@ def git_commit_and_push(iteration: int, message: str, *, dry_run: bool = False) 
             check=True,
         )
         push = subprocess.run(
-            ["git", "push", "origin", "HEAD"],
+            [
+                "git",
+                "-c",
+                "credential.helper=!gh auth git-credential",
+                "push",
+                "origin",
+                "HEAD",
+            ],
             cwd=workspace,
             capture_output=True,
             text=True,
         )
+        if push.returncode != 0:
+            push = subprocess.run(
+                ["git", "push", "origin", "HEAD"],
+                cwd=workspace,
+                capture_output=True,
+                text=True,
+            )
         if push.returncode != 0:
             LOGGER.warning("git push failed: %s", push.stderr)
             return False

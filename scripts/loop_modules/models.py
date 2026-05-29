@@ -44,10 +44,12 @@ class TestResult:
     playwright_failed: int
     playwright_screenshots: list[str]
     api_smoke_passed: bool
-    backtest_sharpe: float
-    backtest_win_rate: float
-    regression_passed: bool
-    overall_passed: bool
+    cloud_smoke_passed: bool = True
+    cloud_run_url: str = ""
+    backtest_sharpe: float = 0.0
+    backtest_win_rate: float = 0.0
+    regression_passed: bool = False
+    overall_passed: bool = False
 
 @dataclass
 class Artifact:
@@ -73,3 +75,6 @@ class LoopContext:
     backtest_metrics: dict[str, Any]
     changed_files: list[str]
     compact_summary: str
+    cloud_run_url: str = ""
+    cloud_health: dict[str, Any] = field(default_factory=dict)
+    last_test_failures: list[str] = field(default_factory=list)

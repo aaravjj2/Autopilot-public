@@ -1,3 +1,5 @@
+![Tests](https://img.shields.io/badge/tests-490/493-green)
+
 # APEX Autopilot
 
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)

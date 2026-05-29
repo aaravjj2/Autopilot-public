@@ -112,25 +112,36 @@ def run_phase(phase: str, prompt: str) -> tuple[bool, str]:
     
     try:
         if phase == "execute" and provider == "hermes":
-            # Use agy with model switching
+            # Use agy with model switching (--workdir is not valid, use --add-dir instead)
             cmd = [
                 "agy",
                 "--dangerously-skip-permissions",
                 "-p", prompt,
-                "--workdir", WORKDIR,
-                "--model", "gpt-5.2-codex",  # agy can switch models
-                "--model-switching"
+                "--add-dir", WORKDIR,
+                "--model", "gpt-5.2-codex"
             ]
             tool_key = "agy"
             timeout = 600
         elif provider == "copilot":
-            # Use Copilot CLI
-            cmd = ["copilot", "run", prompt, "--dir", WORKDIR]
+            # Use Copilot CLI (copilot doesn't support --dir, use -d or COPILOT_* env vars)
+            # Fallback to opencode instead since copilot CLI has limited options
+            cmd = [
+                "cbm",
+                "-p", prompt,
+                "--preset", "opencode",
+                "--model", model
+            ]
             tool_key = "copilot-gpt52"
             timeout = 300
         else:
-            # Use opencode/hermes
-            cmd = ["hermes", "-z", prompt, "-m", model, "--provider", provider]
+            # Use opencode directly (hermes -z has subprocess communication issues)
+            # Use codebuff-mod instead for more reliable execution
+            cmd = [
+                "cbm",
+                "-p", prompt,
+                "--preset", "opencode",
+                "--model", model
+            ]
             tool_key = "opencode"
             timeout = 300
         
@@ -149,6 +160,29 @@ def run_phase(phase: str, prompt: str) -> tuple[bool, str]:
         )
         
         output = result.stdout + result.stderr
+        
+        # Check for critical errors
+        if result.returncode != 0:
+            error_patterns = {
+                "unknown option": "CLI flag not recognized",
+                "flags provided but not defined": "Invalid flag passed to tool",
+                "traceback": "Python exception in tool",
+                "not found": "Tool binary not found",
+                "permission denied": "Permission error"
+            }
+            
+            error_type = "Unknown error"
+            for pattern, desc in error_patterns.items():
+                if pattern in output.lower():
+                    error_type = desc
+                    break
+            
+            # Log the full error for debugging
+            error_log = LOGS / f"error_{phase}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.txt"
+            error_log.write_text(f"Phase: {phase}\nTool: {tool_key}\nError Type: {error_type}\n\n{output}")
+            
+            post_phase_error(phase, f"❌ {error_type}\\nCheck: {error_log.name}")
+            return False, output[:500]
         
         # Check for rate limit patterns
         if any(p in output.lower() for p in 

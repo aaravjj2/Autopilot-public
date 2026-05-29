@@ -53,7 +53,11 @@ class IterationBuilder:
         settings = get_settings()
         client = settings.get_llm_client()
         if not client:
-            LOGGER.warning("No LLM client — skipping build phase (test-only iteration)")
+            if plan.steps:
+                msg = "No LLM client but plan has steps — cannot apply changes"
+                LOGGER.error(msg)
+                return BuildResult(success=False, files_changed=[], errors=[msg], duration_seconds=0.0)
+            LOGGER.warning("No LLM client — test-only iteration (empty plan)")
             return BuildResult(success=True, files_changed=[], errors=[], duration_seconds=0.0)
 
         errors = []
