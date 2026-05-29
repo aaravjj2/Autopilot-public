@@ -8007,3 +8007,35 @@ Call log:
 2026-05-29 03:35:18,064 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
 2026-05-29 03:35:18,064 [ERROR] Failed to compact state: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
 2026-05-29 03:35:18,064 [INFO] Compact summary: ...
+[main 4545e41] loop(iter 630): Log scan_metrics summary each arb cycle
+ 17 files changed, 734 insertions(+), 456 deletions(-)
+ create mode 100644 data/artifacts/iteration_0630/manifest.json
+ create mode 100644 data/artifacts/iteration_0630/metrics.json
+ create mode 100644 data/artifacts/iteration_0630/screenshots/dashboard_arb-radar.png
+ create mode 100644 data/artifacts/iteration_0630/videos/page@614fbab9e7978694a6daf8740b9e14d0.webm
+ create mode 100644 data/audit.db-shm
+ create mode 100644 data/loop_logs/iteration_0630_build.log
+ create mode 100644 data/loop_logs/iteration_0630_tests.json
+ create mode 100644 data/loop_plans/iteration_0630_plan.json
+ create mode 100644 data/models/arb_edge/candidate_20260529T073024Z/model.json
+ create mode 100644 data/models/arb_edge/candidate_20260529T073044Z/model.json
+ create mode 100644 data/models/arb_edge/candidate_20260529T073232Z/model.json
+ create mode 100644 logs/cycle-20260529-073057.txt
+2026-05-29 03:35:19,823 [INFO] Iteration 630 pushed to origin
+2026-05-29 03:35:19,829 [INFO] Iteration 630 complete. Tests: FAIL
+2026-05-29 03:37:21,795 [INFO] === ITERATION 631 (target 1000) ===
+2026-05-29 03:37:22,109 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-29 03:37:22,109 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-29 03:37:22,109 [WARNING] Using deterministic fallback ideas (LLM unavailable)
+2026-05-29 03:37:22,109 [INFO] --- Idea Scoring Table ---
+2026-05-29 03:37:22,109 [INFO] Idea 1: Log scan_metrics summary each arb cycle
+2026-05-29 03:37:22,109 [INFO]   Score: 0.20 (Impact: 2.0, Comp: 1.0, Novelty: 0.1)
+2026-05-29 03:37:22,109 [WARNING] All ideas were recent/stale. Regenerating...
+2026-05-29 03:37:22,353 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-29 03:37:22,354 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-29 03:37:22,354 [WARNING] Using deterministic fallback ideas (LLM unavailable)
+2026-05-29 03:37:22,354 [INFO] Selected idea: Log scan_metrics summary each arb cycle
+2026-05-29 03:37:22,594 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-29 03:37:22,594 [ERROR] IterationPlanner failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-29 03:37:22,595 [WARNING] Using test-only fallback plan (LLM unavailable)
+2026-05-29 03:37:22,602 [INFO] Step A: Python unit tests
