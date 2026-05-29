@@ -3158,3 +3158,8 @@
 {"ticker":"KXTEMPNYCH-26MAY2903-T68.99","orderbook":{"yes":[],"no":[]},"source":"rest"}
 {"ticker":"KXTEMPNYCH-26MAY2903-T69.99","orderbook":{"yes":[],"no":[]},"source":"rest"}
 {"ticker":"KXTEMPNYCH-26MAY2903-T70.99","orderbook":{"yes":[[0.91,1.0]],"no":[]},"source":"rest"}
+{"ticker":"KXTEMPNYCH-26MAY2903-T70.99","orderbook":{"yes":[],"no":[]},"source":"rest"}
+{"ticker":"KXTEMPNYCH-26MAY2903-T70.99","orderbook":{"yes":[],"no":[]},"source":"rest"}
+{"ticker":"KXTEMPNYCH-26MAY2903-T70.99","orderbook":{"yes":[],"no":[]},"source":"rest"}
+{"ticker":"KXTEMPNYCH-26MAY2903-T69.99","orderbook":{"yes":[],"no":[]},"source":"rest"}
+{"ticker":"KXTEMPNYCH-26MAY2903-T68.99","orderbook":{"yes":[[0.91,5.0]],"no":[]},"source":"rest"}
