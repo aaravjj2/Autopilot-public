@@ -12,258 +12,226 @@
 # Error details
 
 ```
-TimeoutError: page.waitForSelector: Timeout 20000ms exceeded.
+Error: expect(locator).toHaveClass(expected) failed
+
+Locator: getByRole('button', { name: 'Closed', exact: true }).first()
+Expected pattern: /active/
+Timeout: 5000ms
+Error: element(s) not found
+
 Call log:
-  - waiting for locator('html[data-terminal-hydrated="true"]') to be visible
+  - Expect "toHaveClass" with timeout 5000ms
+  - waiting for getByRole('button', { name: 'Closed', exact: true }).first()
 
 ```
 
-# Page snapshot
-
 ```yaml
-- generic [ref=e2]:
-  - complementary [ref=e3]:
-    - generic [ref=e4]:
-      - generic [ref=e5]: AX
-      - generic [ref=e6]:
-        - heading "APEX Terminal" [level=1] [ref=e7]
-        - paragraph [ref=e8]: Paper · Live data
-    - navigation [ref=e9]:
-      - generic [ref=e10]: Trade
-      - link "Overview" [ref=e11] [cursor=pointer]:
-        - /url: /dashboard
-        - img [ref=e12]
-        - text: Overview
-      - link "Trading" [ref=e17] [cursor=pointer]:
-        - /url: /dashboard/trading
-        - img [ref=e18]
-        - text: Trading
-      - link "Positions" [ref=e21] [cursor=pointer]:
-        - /url: /dashboard/positions
-        - img [ref=e22]
-        - text: Positions
-      - link "Signals" [ref=e25] [cursor=pointer]:
-        - /url: /dashboard/opportunities
-        - img [ref=e26]
-        - text: Signals
-    - navigation [ref=e30]:
-      - generic [ref=e31]: Intel
-      - link "Autopilot" [ref=e32] [cursor=pointer]:
-        - /url: /dashboard/autopilot
-        - img [ref=e33]
-        - text: Autopilot
-      - link "Arb Radar" [ref=e35] [cursor=pointer]:
-        - /url: /dashboard/arb-radar
-        - img [ref=e36]
-        - text: Arb Radar
-      - link "Risk" [ref=e38] [cursor=pointer]:
-        - /url: /dashboard/risk-management
-        - img [ref=e39]
-        - text: Risk
-      - link "Hive-Mind" [ref=e41] [cursor=pointer]:
-        - /url: /dashboard/ai-hivemind
-        - img [ref=e42]
-        - text: Hive-Mind
-      - link "Analytics" [ref=e52] [cursor=pointer]:
-        - /url: /dashboard/analytics
-        - img [ref=e53]
-        - text: Analytics
-      - link "Live Feed" [ref=e56] [cursor=pointer]:
-        - /url: /dashboard/live
-        - img [ref=e57]
-        - text: Live Feed
-    - navigation [ref=e63]:
-      - generic [ref=e64]: Copy Trading
-      - link "Marketplace" [ref=e65] [cursor=pointer]:
-        - /url: /dashboard/marketplace
-        - img [ref=e66]
-        - text: Marketplace
-    - navigation [ref=e71]:
-      - generic [ref=e72]: Prediction Markets
-      - link "Kalshi" [ref=e73] [cursor=pointer]:
-        - /url: /dashboard/kalshi
-        - img [ref=e74]
-        - text: Kalshi
-      - link "Polymarket" [ref=e80] [cursor=pointer]:
-        - /url: /dashboard/polymarket
-        - img [ref=e81]
-        - text: Polymarket
-      - link "World Cup" [ref=e86] [cursor=pointer]:
-        - /url: /dashboard/world-cup
-        - img [ref=e87]
-        - text: World Cup
-    - navigation [ref=e93]:
-      - generic [ref=e94]: Ops
-      - link "DeFi" [ref=e95] [cursor=pointer]:
-        - /url: /dashboard/defi-treasury
-        - img [ref=e96]
-        - text: DeFi
-      - link "Fund" [ref=e98] [cursor=pointer]:
-        - /url: /dashboard/fund-admin
-        - img [ref=e99]
-        - text: Fund
-    - navigation [ref=e102]:
-      - generic [ref=e103]: System
-      - link "Settings" [ref=e104] [cursor=pointer]:
-        - /url: /dashboard/settings
-        - img [ref=e105]
-        - text: Settings
-    - generic [ref=e108]:
-      - generic [ref=e109]:
-        - generic [ref=e110]: API —
-        - generic [ref=e111]: WS —
-        - generic [ref=e112]: Arb —
-      - text: Polling
-  - banner [ref=e113]:
-    - button "⌕Search symbol, command…⌘K" [ref=e114] [cursor=pointer]
-    - text: NYSE · Regular
-    - generic [ref=e115]:
-      - img [ref=e116]
-      - text: Offline
-    - generic [ref=e123]:
-      - textbox "email" [ref=e124]
-      - textbox "password" [ref=e125]
-      - button "Login" [ref=e126]
-      - button "Guest" [ref=e127]
-    - button "Alerts" [ref=e128]:
-      - img [ref=e129]
-    - link "Quick Order" [ref=e132] [cursor=pointer]:
-      - /url: /dashboard/trading
-  - main [ref=e133]:
-    - generic [ref=e135]:
-      - heading "Positions" [level=2] [ref=e136]
-      - generic [ref=e137]: Unrealized $0.00
-    - generic [ref=e138]:
-      - generic [ref=e139]:
-        - generic [ref=e140]: Open
-        - generic [ref=e141]: "0"
-      - generic [ref=e142]:
-        - generic [ref=e143]: Closed
-        - generic [ref=e144]: "0"
-      - generic [ref=e145]:
-        - generic [ref=e146]: Market value
-        - generic [ref=e147]: $0.00
-    - generic [ref=e148]:
-      - generic [ref=e149]:
-        - button "Open" [ref=e150]
-        - button "Closed" [ref=e151]
-      - table [ref=e153]:
-        - rowgroup [ref=e154]:
-          - row "Symbol Side Qty Avg Price P&L %" [ref=e155]:
-            - columnheader "Symbol" [ref=e156]
-            - columnheader "Side" [ref=e157]
-            - columnheader "Qty" [ref=e158]
-            - columnheader "Avg" [ref=e159]
-            - columnheader "Price" [ref=e160]
-            - columnheader "P&L" [ref=e161]
-            - columnheader "%" [ref=e162]
-            - columnheader [ref=e163]
-        - rowgroup
-  - complementary [ref=e164]:
-    - generic [ref=e165]:
-      - generic [ref=e166]: Order Ticket
-      - generic [ref=e167]:
-        - text: Symbol
-        - textbox [ref=e168]: NVDA
-        - generic [ref=e169]:
-          - button "Buy" [ref=e170]
-          - button "Sell" [ref=e171]
-        - text: Qty
-        - spinbutton [ref=e172]: "10"
-        - text: Type
-        - combobox [ref=e173]:
-          - option "Market" [selected]
-          - option "Limit"
-        - button "Submit Paper Order" [ref=e174]
-    - generic [ref=e175]:
-      - generic [ref=e176]: Alerts
-      - list [ref=e177]:
-        - listitem [ref=e178]: Engine cache auto-refresh 30s
-  - contentinfo [ref=e179]:
-    - generic [ref=e180]: "WS: disconnected"
-    - generic [ref=e181]: "API: —"
-    - generic [ref=e182]: "Data age: 0s"
-    - text: APEX Terminal
+- 'heading "Application error: a client-side exception has occurred while loading 127.0.0.1 (see the browser console for more information)." [level=2]'
 ```
 
 # Test source
 
 ```ts
-  1  | import { Page, expect } from '@playwright/test';
-  2  | 
-  3  | const APEX_HEALTH = process.env.APEX_HEALTH_URL || 'http://127.0.0.1:8000/health';
-  4  | 
-  5  | /** Ensure APEX responds before UI tests (Phase 1). */
-  6  | export async function waitForApexHealth(timeoutMs = 30_000) {
-  7  |   const deadline = Date.now() + timeoutMs;
-  8  |   while (Date.now() < deadline) {
-  9  |     try {
-  10 |       const res = await fetch(APEX_HEALTH);
-  11 |       if (res.ok) {
-  12 |         const body = await res.json();
-  13 |         if (body && typeof body === 'object') return;
-  14 |       }
-  15 |     } catch {
-  16 |       /* retry */
-  17 |     }
-  18 |     await new Promise((r) => setTimeout(r, 1000));
-  19 |   }
-  20 |   throw new Error(`APEX health check failed: ${APEX_HEALTH}`);
-  21 | }
-  22 | 
-  23 | /** Navigate and wait for terminal shell (avoids networkidle hangs from WS/polling). */
-  24 | export async function gotoTerminal(page: Page, path: string) {
-  25 |   await waitForApexHealth();
-  26 |   await page.goto(path, { waitUntil: 'load', timeout: 45_000 });
-  27 |   await expect(page.locator('.app-shell')).toBeVisible({ timeout: 20_000 });
-> 28 |   await page.waitForSelector('html[data-terminal-hydrated="true"]', { timeout: 20_000 });
-     |              ^ TimeoutError: page.waitForSelector: Timeout 20000ms exceeded.
-  29 | }
-  30 | 
-  31 | export async function expectSidebarNav(page: Page) {
-  32 |   const sidebar = page.locator('.sidebar');
-  33 |   await expect(sidebar.getByRole('link', { name: 'Overview' })).toBeVisible();
-  34 |   await expect(sidebar.getByRole('link', { name: 'Trading' })).toBeVisible();
-  35 |   await expect(sidebar.getByRole('link', { name: 'Marketplace' })).toBeVisible();
-  36 | }
-  37 | 
-  38 | export async function waitForTerminalHydration(page: Page) {
-  39 |   await page.waitForSelector('html[data-terminal-hydrated="true"]', { timeout: 30_000 });
-  40 | }
-  41 | 
-  42 | /** Sidebar hrefs — use attribute selectors so nav badges do not break exact name matching. */
-  43 | const SIDEBAR_HREFS: Record<string, string> = {
-  44 |   Overview: '/dashboard',
-  45 |   Trading: '/dashboard/trading',
-  46 |   Positions: '/dashboard/positions',
-  47 |   Signals: '/dashboard/opportunities',
-  48 |   Autopilot: '/dashboard/autopilot',
-  49 |   'Arb Radar': '/dashboard/arb-radar',
-  50 |   Risk: '/dashboard/risk-management',
-  51 |   'Hive-Mind': '/dashboard/ai-hivemind',
-  52 |   Analytics: '/dashboard/analytics',
-  53 |   'Live Feed': '/dashboard/live',
-  54 |   Marketplace: '/dashboard/marketplace',
-  55 |   Kalshi: '/dashboard/kalshi',
-  56 |   Polymarket: '/dashboard/polymarket',
-  57 |   DeFi: '/dashboard/defi-treasury',
-  58 |   Fund: '/dashboard/fund-admin',
-  59 |   Settings: '/dashboard/settings',
-  60 | };
-  61 | 
-  62 | export function sidebarLink(page: Page, label: string) {
-  63 |   const href = SIDEBAR_HREFS[label];
-  64 |   if (href) {
-  65 |     return page.locator(`.sidebar a.nav-link[href="${href}"]`);
-  66 |   }
-  67 |   return page.locator('.sidebar').getByRole('link', { name: label, exact: true });
-  68 | }
-  69 | 
-  70 | export async function clickSidebar(page: Page, label: string) {
-  71 |   await waitForTerminalHydration(page);
-  72 |   const link = sidebarLink(page, label);
-  73 |   await link.scrollIntoViewIfNeeded();
-  74 |   await link.click();
-  75 | }
-  76 | 
+  16  |   { label: 'Kalshi', path: '/dashboard/kalshi', heading: /Kalshi Book/ },
+  17  |   { label: 'Polymarket', path: '/dashboard/polymarket', heading: /Polymarket Book/ },
+  18  |   { label: 'DeFi', path: '/dashboard/defi-treasury', heading: /DeFi Treasury/ },
+  19  |   { label: 'Fund', path: '/dashboard/fund-admin', heading: /Fund Admin/ },
+  20  |   { label: 'Hive-Mind', path: '/dashboard/ai-hivemind', heading: /AI Hive-Mind/ },
+  21  |   { label: 'Settings', path: '/dashboard/settings', heading: /Settings/ },
+  22  | ] as const;
+  23  | 
+  24  | test.describe('Every sidebar tab', () => {
+  25  |   for (const tab of TABS) {
+  26  |     test(`${tab.label} loads via direct URL`, async ({ page }) => {
+  27  |       await gotoTerminal(page, tab.path);
+  28  |       await expect(page.getByRole('heading', { name: tab.heading })).toBeVisible();
+  29  |       await expect(sidebarLink(page, tab.label)).toHaveClass(/active/);
+  30  |     });
+  31  |   }
+  32  | 
+  33  |   test('navigate every tab via sidebar clicks', async ({ page }) => {
+  34  |     test.setTimeout(180_000);
+  35  |     await gotoTerminal(page, '/dashboard');
+  36  |     for (const tab of TABS) {
+  37  |       const link = sidebarLink(page, tab.label);
+  38  |       await link.scrollIntoViewIfNeeded();
+  39  |       await Promise.all([
+  40  |         page.waitForURL(new RegExp(tab.path.replace('/', '\\/') + '(\\/)?$'), { timeout: 20_000 }),
+  41  |         link.click(),
+  42  |       ]);
+  43  |       await expect(page.getByRole('heading', { name: tab.heading })).toBeVisible();
+  44  |     }
+  45  |   });
+  46  | });
+  47  | 
+  48  | test.describe('Overview features', () => {
+  49  |   test('Refresh Cache button', async ({ page }) => {
+  50  |     test.setTimeout(120_000);
+  51  |     await gotoTerminal(page, '/dashboard');
+  52  |     const btn = page.getByRole('button', { name: /Refresh Cache/i });
+  53  |     await expect(btn).toBeVisible();
+  54  |     await btn.click();
+  55  |     await expect(page.getByRole('heading', { name: /Command Center/i })).toBeVisible();
+  56  |     await expect(btn).toBeEnabled({ timeout: 90_000 });
+  57  |   });
+  58  | 
+  59  |   test('View all signals link', async ({ page }) => {
+  60  |     await gotoTerminal(page, '/dashboard');
+  61  |     await page.getByRole('link', { name: /View all/i }).click();
+  62  |     await expect(page).toHaveURL(/opportunities/);
+  63  |   });
+  64  | 
+  65  |   test('order ticket in right panel', async ({ page }) => {
+  66  |     await gotoTerminal(page, '/dashboard');
+  67  |     await expect(page.locator('.right-panel')).toBeVisible();
+  68  |     await expect(page.getByText('Order Ticket')).toBeVisible();
+  69  |     await expect(page.getByRole('button', { name: /Submit Paper Order/i })).toBeVisible();
+  70  |   });
+  71  | 
+  72  |   test('command palette opens and navigates', async ({ page }) => {
+  73  |     await gotoTerminal(page, '/dashboard');
+  74  |     await page.getByTestId('cmd-trigger').click();
+  75  |     await expect(page.getByTestId('cmd-dialog')).toBeVisible({ timeout: 10_000 });
+  76  |     await page.getByTestId('cmd-input').fill('settings');
+  77  |     await page.locator('.cmd-item').filter({ hasText: 'Settings' }).click();
+  78  |     await expect(page).toHaveURL(/settings/);
+  79  |   });
+  80  | 
+  81  |   test('Quick Order topbar navigates to trading', async ({ page }) => {
+  82  |     await gotoTerminal(page, '/dashboard');
+  83  |     await page.getByTestId('quick-order').click();
+  84  |     await expect(page).toHaveURL(/trading/, { timeout: 15_000 });
+  85  |   });
+  86  | });
+  87  | 
+  88  | test.describe('Trading features', () => {
+  89  |   test('timeframe tabs switch', async ({ page }) => {
+  90  |     await gotoTerminal(page, '/dashboard/trading');
+  91  |     await page.getByTestId('tf-1h').click();
+  92  |     await expect(page.getByTestId('chart-timeframe')).toHaveText('1h', { timeout: 5_000 });
+  93  |   });
+  94  | 
+  95  |   test('options Calls/Puts tabs', async ({ page }) => {
+  96  |     await gotoTerminal(page, '/dashboard/trading');
+  97  |     const putsTab = page.getByRole('button', { name: 'Puts', exact: true });
+  98  |     if (await putsTab.isVisible().catch(() => false)) {
+  99  |       await putsTab.click();
+  100 |       await expect(putsTab).toHaveClass(/active/);
+  101 |     }
+  102 |   });
+  103 | 
+  104 |   test('symbol selector present', async ({ page }) => {
+  105 |     await gotoTerminal(page, '/dashboard/trading');
+  106 |     await expect(page.locator('select').first()).toBeVisible();
+  107 |   });
+  108 | });
+  109 | 
+  110 | test.describe('Positions features', () => {
+  111 |   test('Open and Closed tabs', async ({ page }) => {
+  112 |     await gotoTerminal(page, '/dashboard/positions');
+  113 |     const closedTab = page.getByRole('button', { name: 'Closed', exact: true }).first();
+  114 |     const openTab = page.getByRole('button', { name: 'Open', exact: true }).first();
+  115 |     await closedTab.click();
+> 116 |     await expect(closedTab).toHaveClass(/active/);
+      |                             ^ Error: expect(locator).toHaveClass(expected) failed
+  117 |     await openTab.click();
+  118 |     await expect(page.getByRole('columnheader', { name: 'Symbol' })).toBeVisible();
+  119 |   });
+  120 | });
+  121 | 
+  122 | test.describe('Signals features', () => {
+  123 |   test('symbol filter input', async ({ page }) => {
+  124 |     await gotoTerminal(page, '/dashboard/opportunities');
+  125 |     const filter = page.getByPlaceholder(/Filter symbol/i);
+  126 |     await filter.fill('A');
+  127 |     await expect(filter).toHaveValue('A');
+  128 |   });
+  129 | 
+  130 |   test('min conviction filter', async ({ page }) => {
+  131 |     await gotoTerminal(page, '/dashboard/opportunities');
+  132 |     const conv = page.locator('input[type="number"]').first();
+  133 |     await conv.fill('5');
+  134 |     await expect(conv).toHaveValue('5');
+  135 |   });
+  136 | });
+  137 | 
+  138 | test.describe('Analytics features', () => {
+  139 |   test('Performance / Arb Backtest / Signals tabs', async ({ page }) => {
+  140 |     await gotoTerminal(page, '/dashboard/analytics');
+  141 |     const tabs = page.getByTestId('analytics-tabs');
+  142 |     await tabs.getByRole('button', { name: 'Arb Backtest', exact: true }).click();
+  143 |     await expect(page.getByTestId('backtest-panel')).toBeVisible({ timeout: 60_000 });
+  144 |     await tabs.getByRole('button', { name: 'Signals', exact: true }).click();
+  145 |     await expect(page.locator('.card-title', { hasText: 'Signal quality' })).toBeVisible();
+  146 |     await tabs.getByRole('button', { name: 'Performance', exact: true }).click();
+  147 |     await expect(page.getByText(/Equity|Sharpe/i).first()).toBeVisible();
+  148 |   });
+  149 | });
+  150 | 
+  151 | test.describe('Live Feed features', () => {
+  152 |   test('filter input and limit select', async ({ page }) => {
+  153 |     await gotoTerminal(page, '/dashboard/live');
+  154 |     await page.getByPlaceholder(/Filter type/i).fill('SYSTEM');
+  155 |     await page.locator('select').selectOption('50');
+  156 |     await expect(page.getByPlaceholder(/Filter type/i)).toHaveValue('SYSTEM');
+  157 |   });
+  158 | });
+  159 | 
+  160 | test.describe('Marketplace features', () => {
+  161 |   test('period and sort tabs', async ({ page }) => {
+  162 |     await gotoTerminal(page, '/dashboard/marketplace');
+  163 |     await page.getByRole('button', { name: '3M', exact: true }).click();
+  164 |     await page.getByRole('button', { name: 'name', exact: true }).click();
+  165 |   });
+  166 | 
+  167 |   test('Refresh all button', async ({ page }) => {
+  168 |     await gotoTerminal(page, '/dashboard/marketplace');
+  169 |     const btn = page.getByRole('button', { name: /Refresh all/i });
+  170 |     await btn.click();
+  171 |     await expect(btn).toBeEnabled({ timeout: 60_000 });
+  172 |   });
+  173 | 
+  174 |   test('portfolio detail page when pilots exist', async ({ page }) => {
+  175 |     await gotoTerminal(page, '/dashboard/marketplace');
+  176 |     const link = page.locator('.card a').first();
+  177 |     if (await link.count() > 0) {
+  178 |       await link.click();
+  179 |       await expect(page).toHaveURL(/\/dashboard\/marketplace\//);
+  180 |       await expect(page.getByRole('button', { name: /Follow|Unfollow/i })).toBeVisible();
+  181 |     }
+  182 |   });
+  183 | });
+  184 | 
+  185 | test.describe('Polymarket features', () => {
+  186 |   test('Sync from engine button', async ({ page }) => {
+  187 |     await gotoTerminal(page, '/dashboard/polymarket');
+  188 |     const btn = page.getByRole('button', { name: /Sync copy-trading DB/i });
+  189 |     await btn.click();
+  190 |     await expect(btn).toBeEnabled({ timeout: 30_000 });
+  191 |   });
+  192 | });
+  193 | 
+  194 | test.describe('Settings features', () => {
+  195 |   test('Refresh integrations', async ({ page }) => {
+  196 |     await gotoTerminal(page, '/dashboard/settings');
+  197 |     const btn = page.getByRole('button', { name: /Refresh/i }).first();
+  198 |     await btn.click();
+  199 |     await expect(btn).toBeEnabled({ timeout: 90_000 });
+  200 |   });
+  201 | 
+  202 |   test('dual backend cards visible', async ({ page }) => {
+  203 |     await gotoTerminal(page, '/dashboard/settings');
+  204 |     await expect(page.getByText('APEX Engine')).toBeVisible();
+  205 |     await expect(page.getByText(/Copy-trading API/i)).toBeVisible();
+  206 |     await expect(page.getByText('Integrations (APEX)')).toBeVisible();
+  207 |   });
+  208 | });
+  209 | 
+  210 | test.describe('Arb Radar features', () => {
+  211 |   test('page loads with opportunities or empty state', async ({ page }) => {
+  212 |     await gotoTerminal(page, '/dashboard/arb-radar');
+  213 |     const hasTable = await page.locator('.table-wrap tbody tr').count();
+  214 |     const hasEmpty = await page.getByText(/No arbitrage|Connecting/i).isVisible().catch(() => false);
+  215 |     expect(hasTable > 0 || hasEmpty).toBeTruthy();
+  216 |   });
 ```

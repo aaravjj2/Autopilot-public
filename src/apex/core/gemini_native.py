@@ -19,7 +19,7 @@ _GEMINI_BASE = "https://generativelanguage.googleapis.com/v1beta"
 
 
 def uses_query_key_auth(api_key: str) -> bool:
-    return api_key.strip().startswith("AQ.")
+    return api_key.strip().upper().startswith("AQ.")
 
 
 def generate_content(
@@ -58,7 +58,7 @@ def generate_content(
             raise ValueError("unexpected Gemini response shape")
         return data
 
-    data = call_with_retries("gemini.generateContent", _post, max_attempts=3)
+    data = call_with_retries(_post, max_attempts=3, backoff_seconds=2.0, log_label="gemini.generateContent")
     candidates = data.get("candidates") or []
     if not candidates:
         block = (data.get("promptFeedback") or {}).get("blockReason")

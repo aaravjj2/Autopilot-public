@@ -18,15 +18,15 @@
       "volume_poly": 20000,
       "category": "macro",
       "kelly_fraction": 0.1,
-      "detected_at": "2026-05-29T03:27:39.523315+00:00",
+      "detected_at": "2026-05-29T04:22:19.625463+00:00",
       "resolution_ts": null,
       "outcome": null,
       "pnl": null,
       "thesis_settlement_verdict": null,
       "vwap_edge": 0,
-      "detection_ts": "2026-05-29T03:27:39.523315+00:00",
-      "model_win_prob": 0.9999842397019738,
-      "model_score": 0.5724913318360856
+      "detection_ts": "2026-05-29T04:22:19.625463+00:00",
+      "model_win_prob": 0.9999845073893447,
+      "model_score": 0.5724914790641397
     },
     {
       "id": "arb-8",
@@ -45,15 +45,15 @@
       "volume_poly": 7200,
       "category": "macro",
       "kelly_fraction": 0.1,
-      "detected_at": "2026-05-29T03:27:42.659587+00:00",
+      "detected_at": "2026-05-29T04:22:22.827736+00:00",
       "resolution_ts": null,
       "outcome": "WIN",
       "pnl": 5,
       "thesis_settlement_verdict": null,
       "vwap_edge": 0,
-      "detection_ts": "2026-05-29T03:27:42.659587+00:00",
-      "model_win_prob": 0.9999545592216521,
-      "model_score": 0.5724750075719086
+      "detection_ts": "2026-05-29T04:22:22.827736+00:00",
+      "model_win_prob": 0.999955248663223,
+      "model_score": 0.5724753867647727
     },
     {
       "id": "arb-6",
@@ -72,15 +72,15 @@
       "volume_poly": 5600,
       "category": "macro",
       "kelly_fraction": 0.1,
-      "detected_at": "2026-05-29T03:27:42.659584+00:00",
+      "detected_at": "2026-05-29T04:22:22.827733+00:00",
       "resolution_ts": null,
       "outcome": "WIN",
       "pnl": 5,
       "thesis_settlement_verdict": null,
       "vwap_edge": 0,
-      "detection_ts": "2026-05-29T03:27:42.659584+00:00",
-      "model_win_prob": 0.9999361507633949,
-      "model_score": 0.5724648829198672
+      "detection_ts": "2026-05-29T04:22:22.827733+00:00",
+      "model_win_prob": 0.9999370856350159,
+      "model_score": 0.5724653970992588
     }
   ]
 }

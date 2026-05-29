@@ -1,4 +1,4 @@
-![Tests](https://img.shields.io/badge/tests-426/495-yellow)
+![Tests](https://img.shields.io/badge/tests-555/590-green)
 
 # APEX Autopilot
 

@@ -1,8 +1,8 @@
 {
   "status": "healthy",
-  "timestamp": "2026-05-29T03:51:58.710723+00:00",
-  "last_cache_update": "2026-05-29T03:51:47.613906+00:00",
-  "data_age_seconds": 10.855253,
+  "timestamp": "2026-05-29T04:26:43.309697+00:00",
+  "last_cache_update": "2026-05-29T04:26:31.439213+00:00",
+  "data_age_seconds": 11.654586,
   "is_stale": false,
   "demo_mode": false,
   "alpaca_connected": true,
@@ -19,16 +19,16 @@
   },
   "positions": 1,
   "orders": 0,
-  "opportunities": 278,
-  "proposals": 24,
+  "opportunities": 282,
+  "proposals": 20,
   "events": 100,
-  "arb_opportunities": 278,
+  "arb_opportunities": 282,
   "showcase_mode": false,
   "ml": {
     "self_improvement_enabled": true,
     "active_model": {
-      "version": "20260529T032743Z",
-      "trained_at": "2026-05-29T03:27:43.435860+00:00",
+      "version": "20260529T042223Z",
+      "trained_at": "2026-05-29T04:22:23.629692+00:00",
       "feature_names": [
         "net_edge",
         "gross_spread",
@@ -41,17 +41,17 @@
         "settlement_flag_count"
       ],
       "weights": [
-        12.29379564104672,
-        0.22134829421536276,
-        -4.325460578752495,
-        1.4513784243492753,
-        -0.09779389564056461,
-        13.898951715206266,
-        -2.116739088444789,
-        16.520068560351145,
-        -8.397729803175707
+        12.293870387578666,
+        0.22104563111915837,
+        -4.326603509945215,
+        1.4529306721066524,
+        -0.09720419059779808,
+        13.895830961402668,
+        -2.117193023234417,
+        16.520069832666188,
+        -8.401017086747702
       ],
-      "bias": -5.776562373521762,
+      "bias": -5.778123754314695,
       "metrics": {
         "n_samples": 104,
         "accuracy": 0.9231,
@@ -59,7 +59,7 @@
       }
     },
     "training_corpus": {
-      "total_rows": 419,
+      "total_rows": 424,
       "labeled_rows": 104,
       "resolved_arb_count": 16
     },
@@ -75,7 +75,7 @@
     "connected": true,
     "stale": false,
     "seconds_since_message": null,
-    "seconds_since_frame": 10.530711785002495,
+    "seconds_since_frame": 9.135505672998988,
     "reconnects": 0
   },
   "scheduler": {

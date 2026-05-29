@@ -20,10 +20,10 @@ Timeout: 15000ms
 
 Call log:
   - Expect "toHaveURL" with timeout 15000ms
-    24 × unexpected value "http://127.0.0.1:3000/dashboard"
+    19 × unexpected value "http://127.0.0.1:3000/dashboard"
     - waiting for" http://127.0.0.1:3000/dashboard" navigation to finish...
     - navigated to "http://127.0.0.1:3000/dashboard"
-    9 × unexpected value "http://127.0.0.1:3000/dashboard"
+    14 × unexpected value "http://127.0.0.1:3000/dashboard"
 
 ```
 
@@ -31,7 +31,7 @@ Call log:
 - complementary:
   - text: AX
   - heading "APEX Terminal" [level=1]
-  - paragraph: $146,874.37 · Paper
+  - paragraph: $146,873.97 · Paper
   - navigation:
     - text: Trade
     - link "Overview":
@@ -56,10 +56,10 @@ Call log:
       - /url: /dashboard/autopilot
       - img
       - text: Autopilot
-    - link "Arb Radar 278":
+    - link "Arb Radar 282":
       - /url: /dashboard/arb-radar
       - img
-      - text: Arb Radar 278
+      - text: Arb Radar 282
     - link "Risk":
       - /url: /dashboard/risk-management
       - img
@@ -128,9 +128,9 @@ Call log:
     - /url: /dashboard/trading
 - main:
   - heading "Command Center" [level=2]
-  - text: Real-time portfolio · Engine RUNNING · 11:28:42 PM
+  - text: Real-time portfolio · Engine RUNNING · 12:23:29 AM
   - button "Refresh Cache"
-  - text: LIVE Portfolio $146,874.37 0.01% today Buying Power $585,001.00 Cash $144,818.18 Positions 1 1 profitable Signals 0 0 high conviction Arb Active 0 — Real-time P&L Unrealized $39.93 Daily P&L $10.38 Position value $2,056.19 Cash $144,818.18 Equity Curve · 30D Risk snapshot 0.0% Daily 1 Open Watchlist
+  - text: LIVE Portfolio $146,873.97 0.01% today Buying Power $585,001.00 Cash $144,818.18 Positions 1 1 profitable Signals 0 0 high conviction Arb Active 0 — Real-time P&L Unrealized $39.53 Daily P&L $9.98 Position value $2,055.79 Cash $144,818.18 Equity Curve · 30D Risk snapshot 0.0% Daily 1 Open Watchlist
   - button "+ Add"
   - table:
     - rowgroup:
@@ -140,10 +140,10 @@ Call log:
         - columnheader "P&L"
         - columnheader "Conv"
     - rowgroup:
-      - row "MU long $39.93 —":
+      - row "MU long $39.53 —":
         - cell "MU"
         - cell "long"
-        - cell "$39.93"
+        - cell "$39.53"
         - cell "—"
   - text: Agent Pipeline
   - strong: L0
@@ -161,21 +161,21 @@ Call log:
   - paragraph: No opportunities yet
   - text: Recent Activity
   - img
-  - text: SYSTEM_ALERT 11:27:43 PM
+  - text: ORDER_SUBMITTED · PM-EVT-us-announces-new-iran-agreementceasefire-extension-by-may-31-665-831-238 12:23:08 AM
   - img
-  - text: SYSTEM_ALERT 11:27:39 PM
+  - text: ORDER_FILLED · PM-EVT-us-x-iran-permanent-peace-deal-by-june-7-2026 12:23:08 AM
   - img
-  - text: SYSTEM_ALERT 11:27:39 PM
+  - text: ORDER_SUBMITTED · PM-EVT-us-x-iran-permanent-peace-deal-by-june-7-2026 12:22:58 AM
   - img
-  - text: SYSTEM_ALERT 11:27:39 PM
+  - text: ORDER_FILLED · PM-EVT-us-iran-nuclear-deal-by-may-31-974 12:22:58 AM
   - img
-  - text: ORDER_FILLED · PM:mkt-test-1 11:27:39 PM
+  - text: ORDER_SUBMITTED · PM-EVT-us-iran-nuclear-deal-by-may-31-974 12:22:48 AM
   - img
-  - text: ORDER_FILLED · KX-TEST 11:27:39 PM
+  - text: ORDER_FILLED · PM-EVT-us-x-iran-permanent-peace-deal-by-may-31-2026-333-871-241-192-799-449-125 12:22:48 AM
   - img
-  - text: SYSTEM_ALERT 11:27:25 PM
+  - text: ORDER_SUBMITTED · PM-EVT-us-x-iran-permanent-peace-deal-by-may-31-2026-333-871-241-192-799-449-125 12:22:38 AM
   - img
-  - text: SYSTEM_ALERT 11:27:25 PM
+  - text: SYSTEM_ALERT 12:22:38 AM
 - complementary:
   - text: Order Ticket Symbol
   - textbox: MU
@@ -191,7 +191,7 @@ Call log:
   - text: Alerts
   - list:
     - listitem: Engine cache auto-refresh 30s
-- contentinfo: "WS: connected API: — Data age: 0s Updated: 11:28:42 PM APEX Terminal"
+- contentinfo: "WS: connected API: — Data age: 0s Updated: 12:23:29 AM APEX Terminal"
 - alert
 ```
 

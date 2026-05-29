@@ -1,0 +1,34 @@
+{
+  "cycle": 1,
+  "timestamp": "20260529_000150",
+  "phases": {
+    "bootstrap": {
+      "success": false,
+      "output": ""
+    },
+    "analyze": {
+      "success": false,
+      "output": ""
+    },
+    "plan": {
+      "success": true,
+      "output": "Now I have a thorough picture of the codebase. Here's my analysis with **10 improvement tasks** prioritized by impact:\n\n---\n\n## Improvement Tasks (Priority Order)\n\n### \ud83d\udd34 P0 \u2014 Bugs Causing Test Failures\n\n**1. Fix API smoke test (consistently failing)**  \n`/health` endpoint likely returns wrong shape or connection fails entirely. All iteration logs show `api_smoke_passed: false`. E2E tests in `api-integration.spec.ts` depend on this. Need to check `backend_api.py` health route returns `{status: \"h"
+    },
+    "execute": {
+      "success": true,
+      "output": "CLI error: bubbletea: error opening TTY: bubbletea: could not open TTY: open /dev/tty: no such device or address\n"
+    },
+    "test": {
+      "success": false,
+      "output": ""
+    },
+    "commit": {
+      "success": true,
+      "output": "Committed and tagged.\n\n```\nea995e6 \u2014 feat(brain): add live/mode/provider/model/fallback fields to probe response\nTag: cycle-20260529-001915\nFiles: 4 changed (+5220, -2)\n```\n\n**What was auto-committed:**\n\n| File | Change |\n|---|---|\n| `src/apex/brain/finance_brain.py` | Probe now returns `live`, `mode`, `provider`, `model`, `fallback` fields |\n| `data/loop_state.json` | Iteration 614 completed, bumped to iter 615 |\n| `autopilot.log` | 2 lines: `utcnow()` deprecation warning |\n| `data/loop_logs/no"
+    },
+    "report": {
+      "success": false,
+      "output": "  \u250a review diff\na/logs/cycle_final_report.md \u2192 b/logs/cycle_final_report.md\n@@ -0,0 +1,166 @@\n+# APEX Autopilot Engine \u2014 Final Cycle Report\n+\n+**Report generated**: 2026-05-29 04:35 UTC\n+**Cycle range**: 2026-05-28 11:39 \u2192 2026-05-29 04:20 UTC (~16.7 hours)\n+**Total iterations**: 614 completed across 18 discrete cycles\n+**Latest tag**: `cycle-20260529-001915`\n+**Latest HEAD**: `ea995e6` \u2014 feat(brain): add live/mode/provider/model/fallback fields to probe response\n+\n+---\n+\n+## 1. System Overview\n"
+    }
+  }
+}

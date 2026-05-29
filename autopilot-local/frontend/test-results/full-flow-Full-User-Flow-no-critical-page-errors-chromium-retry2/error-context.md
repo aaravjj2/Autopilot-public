@@ -12,97 +12,202 @@
 # Error details
 
 ```
-Error: expect(locator).toBeVisible() failed
-
-Locator: locator('.app-shell')
-Expected: visible
-Timeout: 20000ms
-Error: element(s) not found
-
-Call log:
-  - Expect "toBeVisible" with timeout 20000ms
-  - waiting for locator('.app-shell')
-
+Test timeout of 30000ms exceeded.
 ```
 
-# Test source
+# Page snapshot
 
-```ts
-  1  | import { Page, expect } from '@playwright/test';
-  2  | 
-  3  | const APEX_HEALTH = process.env.APEX_HEALTH_URL || 'http://127.0.0.1:8000/health';
-  4  | 
-  5  | /** Ensure APEX responds before UI tests (Phase 1). */
-  6  | export async function waitForApexHealth(timeoutMs = 30_000) {
-  7  |   const deadline = Date.now() + timeoutMs;
-  8  |   while (Date.now() < deadline) {
-  9  |     try {
-  10 |       const res = await fetch(APEX_HEALTH);
-  11 |       if (res.ok) {
-  12 |         const body = await res.json();
-  13 |         if (body && typeof body === 'object') return;
-  14 |       }
-  15 |     } catch {
-  16 |       /* retry */
-  17 |     }
-  18 |     await new Promise((r) => setTimeout(r, 1000));
-  19 |   }
-  20 |   throw new Error(`APEX health check failed: ${APEX_HEALTH}`);
-  21 | }
-  22 | 
-  23 | /** Navigate and wait for terminal shell (avoids networkidle hangs from WS/polling). */
-  24 | export async function gotoTerminal(page: Page, path: string) {
-  25 |   await waitForApexHealth();
-  26 |   await page.goto(path, { waitUntil: 'load', timeout: 45_000 });
-> 27 |   await expect(page.locator('.app-shell')).toBeVisible({ timeout: 20_000 });
-     |                                            ^ Error: expect(locator).toBeVisible() failed
-  28 |   await page.waitForSelector('html[data-terminal-hydrated="true"]', { timeout: 20_000 });
-  29 | }
-  30 | 
-  31 | export async function expectSidebarNav(page: Page) {
-  32 |   const sidebar = page.locator('.sidebar');
-  33 |   await expect(sidebar.getByRole('link', { name: 'Overview' })).toBeVisible();
-  34 |   await expect(sidebar.getByRole('link', { name: 'Trading' })).toBeVisible();
-  35 |   await expect(sidebar.getByRole('link', { name: 'Marketplace' })).toBeVisible();
-  36 | }
-  37 | 
-  38 | export async function waitForTerminalHydration(page: Page) {
-  39 |   await page.waitForSelector('html[data-terminal-hydrated="true"]', { timeout: 30_000 });
-  40 | }
-  41 | 
-  42 | /** Sidebar hrefs — use attribute selectors so nav badges do not break exact name matching. */
-  43 | const SIDEBAR_HREFS: Record<string, string> = {
-  44 |   Overview: '/dashboard',
-  45 |   Trading: '/dashboard/trading',
-  46 |   Positions: '/dashboard/positions',
-  47 |   Signals: '/dashboard/opportunities',
-  48 |   Autopilot: '/dashboard/autopilot',
-  49 |   'Arb Radar': '/dashboard/arb-radar',
-  50 |   Risk: '/dashboard/risk-management',
-  51 |   'Hive-Mind': '/dashboard/ai-hivemind',
-  52 |   Analytics: '/dashboard/analytics',
-  53 |   'Live Feed': '/dashboard/live',
-  54 |   Marketplace: '/dashboard/marketplace',
-  55 |   Kalshi: '/dashboard/kalshi',
-  56 |   Polymarket: '/dashboard/polymarket',
-  57 |   DeFi: '/dashboard/defi-treasury',
-  58 |   Fund: '/dashboard/fund-admin',
-  59 |   Settings: '/dashboard/settings',
-  60 | };
-  61 | 
-  62 | export function sidebarLink(page: Page, label: string) {
-  63 |   const href = SIDEBAR_HREFS[label];
-  64 |   if (href) {
-  65 |     return page.locator(`.sidebar a.nav-link[href="${href}"]`);
-  66 |   }
-  67 |   return page.locator('.sidebar').getByRole('link', { name: label, exact: true });
-  68 | }
-  69 | 
-  70 | export async function clickSidebar(page: Page, label: string) {
-  71 |   await waitForTerminalHydration(page);
-  72 |   const link = sidebarLink(page, label);
-  73 |   await link.scrollIntoViewIfNeeded();
-  74 |   await link.click();
-  75 | }
-  76 | 
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - complementary [ref=e3]:
+      - generic [ref=e4]:
+        - generic [ref=e5]: AX
+        - generic [ref=e6]:
+          - heading "APEX Terminal" [level=1] [ref=e7]
+          - paragraph [ref=e8]: $146,873.24 · Paper
+      - navigation [ref=e9]:
+        - generic [ref=e10]: Trade
+        - link "Overview" [ref=e11] [cursor=pointer]:
+          - /url: /dashboard
+          - img [ref=e12]
+          - text: Overview
+        - link "Trading" [ref=e17] [cursor=pointer]:
+          - /url: /dashboard/trading
+          - img [ref=e18]
+          - text: Trading
+        - link "Positions" [ref=e21] [cursor=pointer]:
+          - /url: /dashboard/positions
+          - img [ref=e22]
+          - text: Positions
+        - link "Signals" [ref=e25] [cursor=pointer]:
+          - /url: /dashboard/opportunities
+          - img [ref=e26]
+          - text: Signals
+      - navigation [ref=e30]:
+        - generic [ref=e31]: Intel
+        - link "Autopilot" [ref=e32] [cursor=pointer]:
+          - /url: /dashboard/autopilot
+          - img [ref=e33]
+          - text: Autopilot
+        - link "Arb Radar" [ref=e35] [cursor=pointer]:
+          - /url: /dashboard/arb-radar
+          - img [ref=e36]
+          - text: Arb Radar
+        - link "Risk" [ref=e38] [cursor=pointer]:
+          - /url: /dashboard/risk-management
+          - img [ref=e39]
+          - text: Risk
+        - link "Hive-Mind" [ref=e41] [cursor=pointer]:
+          - /url: /dashboard/ai-hivemind
+          - img [ref=e42]
+          - text: Hive-Mind
+        - link "Analytics" [ref=e52] [cursor=pointer]:
+          - /url: /dashboard/analytics
+          - img [ref=e53]
+          - text: Analytics
+        - link "Live Feed" [ref=e56] [cursor=pointer]:
+          - /url: /dashboard/live
+          - img [ref=e57]
+          - text: Live Feed
+      - navigation [ref=e63]:
+        - generic [ref=e64]: Copy Trading
+        - link "Marketplace" [ref=e65] [cursor=pointer]:
+          - /url: /dashboard/marketplace
+          - img [ref=e66]
+          - text: Marketplace
+      - navigation [ref=e71]:
+        - generic [ref=e72]: Prediction Markets
+        - link "Kalshi" [ref=e73] [cursor=pointer]:
+          - /url: /dashboard/kalshi
+          - img [ref=e74]
+          - text: Kalshi
+        - link "Polymarket" [ref=e80] [cursor=pointer]:
+          - /url: /dashboard/polymarket
+          - img [ref=e81]
+          - text: Polymarket
+        - link "World Cup" [ref=e86] [cursor=pointer]:
+          - /url: /dashboard/world-cup
+          - img [ref=e87]
+          - text: World Cup
+      - navigation [ref=e93]:
+        - generic [ref=e94]: Ops
+        - link "DeFi" [ref=e95] [cursor=pointer]:
+          - /url: /dashboard/defi-treasury
+          - img [ref=e96]
+          - text: DeFi
+        - link "Fund" [ref=e98] [cursor=pointer]:
+          - /url: /dashboard/fund-admin
+          - img [ref=e99]
+          - text: Fund
+      - navigation [ref=e102]:
+        - generic [ref=e103]: System
+        - link "Settings" [ref=e104] [cursor=pointer]:
+          - /url: /dashboard/settings
+          - img [ref=e105]
+          - text: Settings
+      - generic [ref=e108]:
+        - generic [ref=e109]:
+          - generic [ref=e110]: API —
+          - generic [ref=e111]: WS —
+          - generic [ref=e112]: Arb —
+        - generic [ref=e113]: WS live
+    - banner [ref=e114]:
+      - button "⌕ Search symbol, command… ⌘K" [ref=e115] [cursor=pointer]:
+        - generic [ref=e116]: ⌕
+        - generic [ref=e117]: Search symbol, command…
+        - generic [ref=e118]: ⌘K
+      - generic [ref=e119]: NYSE · Regular
+      - generic [ref=e120]:
+        - img [ref=e121]
+        - text: Live
+      - generic [ref=e125]:
+        - textbox "email" [ref=e126]
+        - textbox "password" [ref=e127]
+        - button "Login" [ref=e128] [cursor=pointer]
+        - button "Guest" [ref=e129] [cursor=pointer]
+      - button "Alerts" [ref=e130] [cursor=pointer]:
+        - img [ref=e131]
+      - link "Quick Order" [ref=e134] [cursor=pointer]:
+        - /url: /dashboard/trading
+    - main [ref=e135]:
+      - generic [ref=e136]:
+        - generic [ref=e137]:
+          - heading "Trading" [level=2] [ref=e138]
+          - generic [ref=e139]:
+            - combobox [ref=e140]:
+              - option "MU" [selected]
+            - generic [ref=e141]:
+              - text: $923.52
+              - generic [ref=e142]: Live
+        - generic [ref=e144]:
+          - button "1m" [ref=e145] [cursor=pointer]
+          - button "5m" [ref=e146] [cursor=pointer]
+          - button "15m" [ref=e147] [cursor=pointer]
+          - button "1h" [ref=e148] [cursor=pointer]
+          - button "4h" [ref=e149] [cursor=pointer]
+          - button "1D" [ref=e150] [cursor=pointer]
+          - button "1W" [ref=e151] [cursor=pointer]
+      - generic [ref=e152]:
+        - generic [ref=e153]:
+          - generic [ref=e154]:
+            - generic [ref=e155]:
+              - generic [ref=e156]: Price · MU
+              - generic [ref=e157]: 1D
+            - generic [ref=e158]: Loading chart…
+            - generic [ref=e160]: Bars 252
+          - generic [ref=e161]:
+            - generic [ref=e162]:
+              - generic [ref=e163]: Last
+              - generic [ref=e164]: $923.52
+            - generic [ref=e165]:
+              - generic [ref=e166]: High
+              - generic [ref=e167]: $956.16
+            - generic [ref=e168]:
+              - generic [ref=e169]: Low
+              - generic [ref=e170]: $435.90
+            - generic [ref=e171]:
+              - generic [ref=e172]: Volume
+              - generic [ref=e173]: 49,398,000.00
+        - generic [ref=e174]:
+          - generic [ref=e176]: Options chain
+          - paragraph [ref=e177]: No options data
+    - complementary [ref=e178]:
+      - generic [ref=e179]:
+        - generic [ref=e180]: Order Ticket
+        - generic [ref=e181]:
+          - generic [ref=e182]: Symbol
+          - textbox [ref=e183]: MU
+          - generic [ref=e184]:
+            - button "Buy" [ref=e185] [cursor=pointer]
+            - button "Sell" [ref=e186] [cursor=pointer]
+          - generic [ref=e187]: Qty
+          - spinbutton [ref=e188]: "10"
+          - generic [ref=e189]: Type
+          - combobox [ref=e190]:
+            - option "Market" [selected]
+            - option "Limit"
+          - button "Submit Paper Order" [ref=e191] [cursor=pointer]
+      - generic [ref=e192]:
+        - generic [ref=e193]: Alerts
+        - list [ref=e194]:
+          - listitem [ref=e195]: Engine cache auto-refresh 30s
+    - contentinfo [ref=e196]:
+      - generic [ref=e197]: "WS: connected"
+      - generic [ref=e198]: "API: —"
+      - generic [ref=e199]: "Data age: 0s"
+      - generic [ref=e200]: "Updated: 12:25:25 AM"
+      - generic [ref=e201]: APEX Terminal
+  - generic [ref=e206] [cursor=pointer]:
+    - button "Open Next.js Dev Tools" [ref=e207]:
+      - img [ref=e208]
+    - generic [ref=e211]:
+      - button "Open issues overlay" [ref=e212]:
+        - generic [ref=e213]:
+          - generic [ref=e214]: "0"
+          - generic [ref=e215]: "1"
+        - generic [ref=e216]: Issue
+      - button "Collapse issues badge" [ref=e217]:
+        - img [ref=e218]
+  - alert [ref=e220]
 ```

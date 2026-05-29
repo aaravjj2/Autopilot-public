@@ -20,16 +20,18 @@ Timeout: 15000ms
 
 Call log:
   - Expect "toHaveURL" with timeout 15000ms
-    34 × unexpected value "http://127.0.0.1:3000/dashboard"
+    28 × unexpected value "http://127.0.0.1:3000/dashboard"
+    - waiting for" http://127.0.0.1:3000/dashboard" navigation to finish...
+    - navigated to "http://127.0.0.1:3000/dashboard"
+    3 × unexpected value "http://127.0.0.1:3000/dashboard"
 
 ```
 
 ```yaml
-- alert
 - complementary:
   - text: AX
   - heading "APEX Terminal" [level=1]
-  - paragraph: $146,874.43 · Paper
+  - paragraph: $146,873.71 · Paper
   - navigation:
     - text: Trade
     - link "Overview":
@@ -54,10 +56,10 @@ Call log:
       - /url: /dashboard/autopilot
       - img
       - text: Autopilot
-    - link "Arb Radar 278":
+    - link "Arb Radar":
       - /url: /dashboard/arb-radar
       - img
-      - text: Arb Radar 278
+      - text: Arb Radar
     - link "Risk":
       - /url: /dashboard/risk-management
       - img
@@ -126,54 +128,9 @@ Call log:
     - /url: /dashboard/trading
 - main:
   - heading "Command Center" [level=2]
-  - text: Real-time portfolio · Engine RUNNING · 11:28:26 PM
+  - text: Real-time portfolio · Engine RUNNING · 12:23:13 AM
   - button "Refresh Cache"
-  - text: LIVE Portfolio $146,874.43 0.01% today Buying Power $585,001.00 Cash $144,818.18 Positions 1 1 profitable Signals 0 0 high conviction Arb Active 278 50.00% win rate Real-time P&L Unrealized $39.99 Daily P&L $10.44 Position value $2,056.25 Cash $144,818.18 Prediction Market Brain
-  - link "Arb Radar →":
-    - /url: /dashboard/arb-radar
-  - paragraph: "Arb strategy: buy Kalshi YES + Polymarket NO when net_edge ≥ 2% after Kalshi 7% fee. All execution paths are paper-only."
-  - text: Kalshi ok 25 cached pairs Polymarket ok 25 cached pairs Arb cache 25 pairs · top 5.0%
-  - table:
-    - rowgroup:
-      - row "Ticker Edge Settle":
-        - columnheader "Ticker"
-        - columnheader "Edge"
-        - columnheader "Settle"
-    - rowgroup:
-      - row "KX8 5.0% 85%":
-        - cell "KX8"
-        - cell "5.0%"
-        - cell "85%"
-      - row "KX6 5.0% 85%":
-        - cell "KX6"
-        - cell "5.0%"
-        - cell "85%"
-      - row "KX4 5.0% 85%":
-        - cell "KX4"
-        - cell "5.0%"
-        - cell "85%"
-      - row "KX2 5.0% 85%":
-        - cell "KX2"
-        - cell "5.0%"
-        - cell "85%"
-      - row "KX0 5.0% 85%":
-        - cell "KX0"
-        - cell "5.0%"
-        - cell "85%"
-  - text: Equity Curve · 30D
-  - table:
-    - row:
-      - cell
-      - cell:
-        - link "Charting by TradingView":
-          - /url: https://www.tradingview.com/?utm_medium=lwc-link&utm_campaign=lwc-chart&utm_source=127.0.0.1/dashboard
-          - img
-      - cell
-    - row:
-      - cell
-      - cell
-      - cell
-  - text: Risk snapshot 0.0% Daily 1 Open Watchlist
+  - text: LIVE Portfolio $146,873.71 0.01% today Buying Power $585,001.00 Cash $144,818.18 Positions 1 1 profitable Signals 0 0 high conviction Arb Active 0 — Real-time P&L Unrealized $39.27 Daily P&L $9.72 Position value $2,055.53 Cash $144,818.18 Equity Curve · 30D Risk snapshot 0.0% Daily 1 Open Watchlist
   - button "+ Add"
   - table:
     - rowgroup:
@@ -183,10 +140,10 @@ Call log:
         - columnheader "P&L"
         - columnheader "Conv"
     - rowgroup:
-      - row "MU long $39.99 —":
+      - row "MU long $39.27 —":
         - cell "MU"
         - cell "long"
-        - cell "$39.99"
+        - cell "$39.27"
         - cell "—"
   - text: Agent Pipeline
   - strong: L0
@@ -204,21 +161,21 @@ Call log:
   - paragraph: No opportunities yet
   - text: Recent Activity
   - img
-  - text: SYSTEM_ALERT 11:27:43 PM
+  - text: ORDER_SUBMITTED · PM-EVT-us-x-iran-permanent-peace-deal-by-june-7-2026 12:22:58 AM
   - img
-  - text: SYSTEM_ALERT 11:27:39 PM
+  - text: ORDER_FILLED · PM-EVT-us-iran-nuclear-deal-by-may-31-974 12:22:58 AM
   - img
-  - text: SYSTEM_ALERT 11:27:39 PM
+  - text: ORDER_SUBMITTED · PM-EVT-us-iran-nuclear-deal-by-may-31-974 12:22:48 AM
   - img
-  - text: SYSTEM_ALERT 11:27:39 PM
+  - text: ORDER_FILLED · PM-EVT-us-x-iran-permanent-peace-deal-by-may-31-2026-333-871-241-192-799-449-125 12:22:48 AM
   - img
-  - text: ORDER_FILLED · PM:mkt-test-1 11:27:39 PM
+  - text: ORDER_SUBMITTED · PM-EVT-us-x-iran-permanent-peace-deal-by-may-31-2026-333-871-241-192-799-449-125 12:22:38 AM
   - img
-  - text: ORDER_FILLED · KX-TEST 11:27:39 PM
+  - text: SYSTEM_ALERT 12:22:38 AM
   - img
-  - text: SYSTEM_ALERT 11:27:25 PM
+  - text: PROPOSAL_CREATED · PM-EVT-us-announces-new-iran-agreementceasefire-extension-by-may-31-665-831-238 12:22:38 AM
   - img
-  - text: SYSTEM_ALERT 11:27:25 PM
+  - text: PROPOSAL_CREATED · PM-EVT-us-x-iran-permanent-peace-deal-by-june-7-2026 12:22:38 AM
 - complementary:
   - text: Order Ticket Symbol
   - textbox: MU
@@ -234,7 +191,8 @@ Call log:
   - text: Alerts
   - list:
     - listitem: Engine cache auto-refresh 30s
-- contentinfo: "WS: connected API: — Data age: 0s Updated: 11:28:26 PM APEX Terminal"
+- contentinfo: "WS: connected API: — Data age: 0s Updated: 12:23:13 AM APEX Terminal"
+- alert
 ```
 
 # Test source

@@ -32,7 +32,7 @@ def call_with_retries(
     fn: Callable[[], T],
     *,
     max_attempts: int,
-    backoff_seconds: float,
+    backoff_seconds: float = 2.0,
     log_label: str = "",
 ) -> T:
     """Run ``fn`` up to ``max_attempts`` times; retry only on transient errors."""
