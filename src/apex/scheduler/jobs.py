@@ -2,8 +2,10 @@ from __future__ import annotations
 
 import time
 import uuid
+import weakref
 from collections.abc import Callable
 from datetime import datetime
+from typing import TYPE_CHECKING
 from zoneinfo import ZoneInfo
 
 from apex.core.context import reset_run_id, set_run_id
@@ -12,11 +14,16 @@ from apex.core.retry import is_transient_exception
 from apex.domain.enums import EventType
 from apex.domain.models import AuditEvent
 from apex.scheduler.alerts import post_json_webhook
-from apex.services.engine import ApexEngine
+
+if TYPE_CHECKING:
+    from apscheduler.schedulers.base import BaseScheduler
+    from apex.services.engine import ApexEngine
 
 LOGGER = get_logger(__name__)
 ET = ZoneInfo("America/New_York")
-_REGISTERED_SCHEDULER_IDS: set[int] = set()
+# Track which schedulers have already registered jobs.
+# Uses uuid4 + weakref.ref to avoid memory-address-reuse collisions from id().
+_REGISTERED_SCHEDULER_IDS: dict[str, weakref.ref[object]] = {}
 
 # (job_name, hour, minute, day_of_week) — day_of_week None = every day
 SCHEDULE: list[tuple[str, int, int, int | None]] = [
@@ -128,12 +135,34 @@ def idempotent_job(engine: ApexEngine, job_name: str, func: Callable[[], None]) 
         engine.store.finish_job(job_name, run_date, status, details)
 
 
-def register_jobs(scheduler, engine: ApexEngine) -> None:
-    sched_id = id(scheduler)
-    if sched_id in _REGISTERED_SCHEDULER_IDS:
-        LOGGER.debug("APEX jobs already registered on scheduler id=%s", sched_id)
+def register_jobs(scheduler: BaseScheduler, engine: ApexEngine) -> None:
+    sched_id = str(uuid.uuid4())
+    # Clean up stale weakrefs and check if this scheduler is already registered.
+    stale = [k for k, v in list(_REGISTERED_SCHEDULER_IDS.items()) if v() is None]
+    for k in stale:
+        del _REGISTERED_SCHEDULER_IDS[k]
+    if stale:
+        LOGGER.debug("Cleaned %d stale scheduler weakrefs from registry", len(stale))
+
+    # Check existing registrations.  We can't tell whether a new scheduler object
+    # at the same id() is "the same" as a live one, so we only guard against
+    # the pathological case of register_jobs being called twice on the same object.
+    already = [k for k, v in _REGISTERED_SCHEDULER_IDS.items() if v() is scheduler]
+    if already:
+        LOGGER.debug(
+            "APEX jobs already registered on scheduler id=%s (key=%s), skipping",
+            id(scheduler),
+            already[0],
+        )
         return
-    _REGISTERED_SCHEDULER_IDS.add(sched_id)
+
+    _REGISTERED_SCHEDULER_IDS[sched_id] = weakref.ref(scheduler)
+    LOGGER.info(
+        "Registering %d APEX scheduler jobs (sched_id=%s, id=%s)",
+        len(SCHEDULE) + 4,
+        sched_id,
+        id(scheduler),
+    )
 
     def _options_chain() -> None:
         engine.options_chain_snapshot(engine.todays_watchlist or engine.watchlist_refresh())
