@@ -31,12 +31,12 @@ RATE_LIMITS = {
 
 PHASE_MODELS = {
     "bootstrap":  ("deepseek-v4-flash-free", "opencode-zen"),
-    "analyze":    ("gpt-5.2-codex", "copilot"),
+    "analyze":    ("gpt-5.2-codex", "opencode-zen"),  # Changed from copilot to opencode-zen
     "plan":       ("deepseek-v4-flash-free", "opencode-zen"),
     "execute":    ("agy-switch", "hermes"),  # agy with model switching
     "test":       ("deepseek-v4-flash-free", "opencode-zen"),
     "commit":     ("deepseek-v4-flash-free", "opencode-zen"),
-    "report":     ("gpt-5.2-codex", "copilot"),
+    "report":     ("gpt-5.2-codex", "opencode-zen"),  # Changed from copilot to opencode-zen
 }
 
 # ── Discord Streaming ────────────────────────────────────────────────────────
@@ -112,38 +112,31 @@ def run_phase(phase: str, prompt: str) -> tuple[bool, str]:
     
     try:
         if phase == "execute" and provider == "hermes":
-            # Use agy with model switching (--workdir is not valid, use --add-dir instead)
+            # Use agy with model switching
             cmd = [
                 "agy",
                 "--dangerously-skip-permissions",
-                "-p", prompt,
                 "--add-dir", WORKDIR,
-                "--model", "gpt-5.2-codex"
+                "--model", "gpt-5.2-codex",
+                prompt
             ]
             tool_key = "agy"
             timeout = 600
-        elif provider == "copilot":
-            # Use Copilot CLI (copilot doesn't support --dir, use -d or COPILOT_* env vars)
-            # Fallback to opencode instead since copilot CLI has limited options
-            cmd = [
-                "cbm",
-                "-p", prompt,
-                "--preset", "opencode",
-                "--model", model
-            ]
-            tool_key = "copilot-gpt52"
-            timeout = 300
         else:
-            # Use opencode directly (hermes -z has subprocess communication issues)
-            # Use codebuff-mod instead for more reliable execution
+            # Use cbm (codebuff-mod) for all other phases
+            # cbm expects: cbm [options] [prompt...]
+            # Working directory is set via --cwd, not changing subprocess cwd
             cmd = [
                 "cbm",
-                "-p", prompt,
-                "--preset", "opencode",
-                "--model", model
+                "--cwd", WORKDIR,
+                prompt
             ]
-            tool_key = "opencode"
-            timeout = 300
+            if provider == "hermes":
+                tool_key = "agy"
+                timeout = 600
+            else:
+                tool_key = provider if provider != "opencode-zen" else "opencode"
+                timeout = 300
         
         # Check rate limit
         if not is_available(tool_key):
@@ -155,8 +148,7 @@ def run_phase(phase: str, prompt: str) -> tuple[bool, str]:
             cmd,
             capture_output=True,
             text=True,
-            timeout=timeout,
-            cwd=WORKDIR
+            timeout=timeout
         )
         
         output = result.stdout + result.stderr
@@ -254,6 +246,55 @@ def run_cycle(cycle_num: int):
     (LOGS / f"cycle_{ts}.json").write_text(json.dumps(cycle_log, indent=2))
     return cycle_log
 
+# ── Git Commit Tracking ──────────────────────────────────────────────────────
+def get_git_commit_info() -> str:
+    """Get git commit info: total commits, recent commits, branches, and stats."""
+    try:
+        # Get total commits
+        total = subprocess.run(
+            ["git", "rev-list", "--count", "HEAD"],
+            capture_output=True, text=True, cwd=WORKDIR, timeout=10
+        ).stdout.strip()
+        
+        # Get recent 5 commits with shortened hashes
+        recent = subprocess.run(
+            ["git", "log", "-5", "--oneline"],
+            capture_output=True, text=True, cwd=WORKDIR, timeout=10
+        ).stdout.strip()
+        
+        # Get current branch
+        branch = subprocess.run(
+            ["git", "rev-parse", "--abbrev-ref", "HEAD"],
+            capture_output=True, text=True, cwd=WORKDIR, timeout=10
+        ).stdout.strip()
+        
+        # Get commits ahead of origin
+        ahead = subprocess.run(
+            ["git", "rev-list", "--count", "origin/main..HEAD"],
+            capture_output=True, text=True, cwd=WORKDIR, timeout=10
+        ).stdout.strip()
+        
+        # Get last commit author
+        author = subprocess.run(
+            ["git", "log", "-1", "--pretty=format:%an"],
+            capture_output=True, text=True, cwd=WORKDIR, timeout=10
+        ).stdout.strip()
+        
+        report = f"""
+Total Commits: **{total}**
+Current Branch: **{branch}**
+Commits Ahead of origin/main: **{ahead}**
+Last Commit Author: **{author}**
+
+**Recent Commits:**
+```
+{recent}
+```
+"""
+        return report.strip()
+    except Exception as e:
+        return f"Error fetching git info: {str(e)[:200]}"
+
 # ── Main Loop ────────────────────────────────────────────────────────────────
 def main():
     post_to_discord("STARTUP",
@@ -264,11 +305,20 @@ def main():
         0x5865F2, "⚙️")
     
     cycle_num = 1
+    last_git_report = datetime.now()  # Track last git commit info report
     
     while True:
         try:
             run_cycle(cycle_num)
             cycle_num += 1
+            
+            # Check if 24 hours have passed for git commit info report
+            if (datetime.now() - last_git_report).total_seconds() >= 86400:  # 24 hours
+                git_report = get_git_commit_info()
+                post_to_discord("GIT_STATUS",
+                    f"📊 **Git Commit Info (24h Report)**\\n{git_report}",
+                    0xFFA500, "📈")
+                last_git_report = datetime.now()
             
             # Wait before next cycle (configurable: 30 min default)
             post_to_discord("CYCLE_SLEEP",

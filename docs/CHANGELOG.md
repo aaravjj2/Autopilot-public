@@ -149,3 +149,10 @@ All notable changes to this project will be documented in this file.
 **Files changed**: None
 **Test results**: pytest 388/388 | TS ✓ | Playwright 0/0 | Sharpe 3.21
 **Summary**: Lower net-edge floor when scan returns zero rows for 3 consecutive cycles.
+
+## Iteration 607 — Cache Kalshi category fetches
+**Date**: 2026-05-29 02:41:22 UTC
+**Focus**: Arb Detection Quality
+**Files changed**: None
+**Test results**: pytest 388/388 | TS ✓ | Playwright 0/0 | Sharpe 3.21
+**Summary**: Reduce 429 rate limits by caching category market lists for 60s.
