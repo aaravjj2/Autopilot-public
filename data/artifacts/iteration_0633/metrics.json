@@ -1,0 +1,42 @@
+{
+  "n_trades": 16,
+  "n_wins": 8,
+  "n_losses": 8,
+  "n_pushes": 0,
+  "win_rate": 0.5,
+  "avg_net_edge": 0.0225,
+  "total_pnl": 18.2,
+  "sharpe": 3.211,
+  "edge_per_day": [
+    [
+      "2026-05-27",
+      8.2
+    ],
+    [
+      "2026-05-29",
+      18.2
+    ]
+  ],
+  "avg_hold_days": -7.0,
+  "best_trade": "demo-resolved-win",
+  "worst_trade": "demo-resolved-loss",
+  "annualized_roc": 0.0,
+  "slippage_adjusted_sharpe": -8.044,
+  "max_drawdown": 0.0,
+  "per_category_stats": [
+    {
+      "category": "KXDEMO",
+      "n_trades": 6,
+      "win_rate": 0.5,
+      "avg_edge": 0.01,
+      "total_pnl": 8.2
+    },
+    {
+      "category": "UNKNOWN",
+      "n_trades": 10,
+      "win_rate": 0.5,
+      "avg_edge": 0.03,
+      "total_pnl": 10.0
+    }
+  ]
+}
