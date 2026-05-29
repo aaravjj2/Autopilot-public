@@ -2,10 +2,39 @@ from __future__ import annotations
 
 import json
 import logging
+import os
+import time
 
 from loop_modules.models import Idea, LoopContext
 
 LOGGER = logging.getLogger(__name__)
+
+# Circuit breaker: skip LLM calls entirely when the primary provider
+# is known-broken (e.g. "organization_restricted"). The var is set by
+# the exception handler below and cleared when LLM_CONFIG_REV changes.
+_LLM_BROKEN_MARKER = "APEX_LLM_PERMANENTLY_DISABLED"
+_LLM_DISABLED_TTL: int = 3600  # 1 hour before retrying
+
+
+def _llm_is_broken() -> bool:
+    """Check if the LLM circuit breaker is active."""
+    expiry = os.environ.get(_LLM_BROKEN_MARKER, "")
+    if not expiry:
+        return False
+    try:
+        return time.time() < float(expiry)
+    except (ValueError, TypeError):
+        return False
+
+
+def _mark_llm_broken() -> None:
+    """Permanently disable LLM calls when the provider returns auth/permission errors."""
+    os.environ[_LLM_BROKEN_MARKER] = str(time.time() + _LLM_DISABLED_TTL)
+    LOGGER.warning(
+        "LLM circuit breaker engaged — skipping LLM calls for %d seconds. "
+        "Set LLM_CONFIG_REV or restart to retry.",
+        _LLM_DISABLED_TTL,
+    )
 
 class BrainstormEngine:
     def __init__(self, is_dry_run: bool = False):
@@ -45,8 +74,15 @@ class BrainstormEngine:
                 ) for i in range(1, 6)
             ]
 
+        # Circuit breaker: skip LLM if provider is known-broken
+        if _llm_is_broken():
+            LOGGER.info("LLM circuit breaker active — using fallback ideas")
+            from loop_modules.fallback_catalog import fallback_ideas
+            return fallback_ideas(focus_area, context.iteration)
+
         from apex.core.config import get_settings
         from loop_modules.fallback_catalog import fallback_ideas
+        from apex.core.llm_routing import llm_error_disables_route
 
         settings = get_settings()
         client = settings.get_llm_client()
@@ -115,7 +151,9 @@ Return ONLY valid JSON in the exact format:
             return ideas[:5]
         except Exception as e:
             LOGGER.error(f"BrainstormEngine failed: {e}")
-            from loop_modules.fallback_catalog import fallback_ideas
+            # Engage circuit breaker for permanent auth/permission errors
+            if llm_error_disables_route(e):
+                _mark_llm_broken()
 
             LOGGER.warning("Using deterministic fallback ideas (LLM unavailable)")
             return fallback_ideas(focus_area, context.iteration)

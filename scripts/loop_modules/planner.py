@@ -2,12 +2,38 @@ from __future__ import annotations
 
 import json
 import logging
+import os
+import time
 from pathlib import Path
 
 from loop_modules.models import Idea, LoopContext, ImplementationPlan, PlanStep
 from loop_modules.plan_templates import plan_for_idea
 
 LOGGER = logging.getLogger(__name__)
+
+# Circuit breaker: skip LLM calls entirely when the primary provider
+# is known-broken (e.g. "organization_restricted").
+_LLM_BROKEN_MARKER = "APEX_LLM_PERMANENTLY_DISABLED"
+_LLM_DISABLED_TTL: int = 3600
+
+
+def _llm_is_broken() -> bool:
+    expiry = os.environ.get(_LLM_BROKEN_MARKER, "")
+    if not expiry:
+        return False
+    try:
+        return time.time() < float(expiry)
+    except (ValueError, TypeError):
+        return False
+
+
+def _mark_llm_broken() -> None:
+    os.environ[_LLM_BROKEN_MARKER] = str(time.time() + _LLM_DISABLED_TTL)
+    LOGGER.warning(
+        "LLM circuit breaker engaged — skipping LLM calls for %d seconds. "
+        "Set LLM_CONFIG_REV or restart to retry.",
+        _LLM_DISABLED_TTL,
+    )
 
 
 class IterationPlanner:
@@ -33,6 +59,18 @@ class IterationPlanner:
             return rule_plan
 
         from apex.core.config import get_settings
+
+        # Circuit breaker: skip LLM if provider is known-broken
+        if _llm_is_broken():
+            LOGGER.info("LLM circuit breaker active — using fallback plan for %s", idea.title)
+            fallback = plan_for_idea(idea) or ImplementationPlan(
+                steps=[],
+                test_commands=["python -m pytest tests/ -q --tb=short"],
+                rollback_steps=["git restore ."],
+                expected_artifacts=[],
+            )
+            self._save_plan(context.iteration, fallback)
+            return fallback
 
         settings = get_settings()
         client = settings.get_llm_client()
@@ -118,6 +156,11 @@ Return ONLY valid JSON:
 
         except Exception as exc:
             LOGGER.error("IterationPlanner LLM failed: %s", exc)
+            # Engage circuit breaker for permanent auth/permission errors
+            from apex.core.llm_routing import llm_error_disables_route as _check_broken
+
+            if _check_broken(exc):
+                _mark_llm_broken()
             fallback = plan_for_idea(idea) or ImplementationPlan(
                 steps=[],
                 test_commands=["python -m pytest tests/ -q --tb=short"],
