@@ -29,7 +29,7 @@ Call log:
 - complementary:
   - text: AX
   - heading "APEX Terminal" [level=1]
-  - paragraph: $146,873.71 · Paper
+  - paragraph: $146,874.83 · Paper
   - navigation:
     - text: Trade
     - link "Overview":
@@ -54,10 +54,10 @@ Call log:
       - /url: /dashboard/autopilot
       - img
       - text: Autopilot
-    - link "Arb Radar 282":
+    - link "Arb Radar 285":
       - /url: /dashboard/arb-radar
       - img
-      - text: Arb Radar 282
+      - text: Arb Radar 285
     - link "Risk":
       - /url: /dashboard/risk-management
       - img
@@ -110,7 +110,7 @@ Call log:
       - /url: /dashboard/settings
       - img
       - text: Settings
-  - text: API 2085msWS 8msArb 26ms WS live
+  - text: API 3211msWS 5msArb 20ms WS live
 - banner:
   - button "⌕ Search symbol, command… ⌘K"
   - text: NYSE · Regular
@@ -130,7 +130,7 @@ Call log:
   - button "Run vote"
   - text: Active proposal KX8 Q8 Edge 5.00% · Settlement 85% Committee log
   - paragraph: Run consensus on the selected arb proposal
-- contentinfo: "WS: connected API: — Data age: 0s Updated: 12:22:51 AM APEX Terminal"
+- contentinfo: "WS: connected API: — Data age: 0s Updated: 12:35:16 AM APEX Terminal"
 - alert
 ```
 

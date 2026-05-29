@@ -6651,3 +6651,543 @@ Call log:
   - navigating to "http://localhost:3000/dashboard/analytics", waiting until "load"
 
 2026-05-29 00:30:53,796 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+[main a93f6c8] loop(iter 615): Expose risk gate rejection reasons in API
+ 520 files changed, 4159 insertions(+), 51369 deletions(-)
+ rewrite artifacts/submission/screenshots/01-overview.png (97%)
+ rewrite artifacts/submission/screenshots/02-arb-radar.png (98%)
+ rewrite artifacts/submission/screenshots/03-signals.png (97%)
+ rewrite artifacts/submission/screenshots/04-autopilot.png (97%)
+ rewrite artifacts/submission/screenshots/05-risk.png (97%)
+ rewrite artifacts/submission/screenshots/06-hivemind.png (98%)
+ rewrite artifacts/submission/screenshots/07-live-feed.png (98%)
+ rewrite artifacts/submission/screenshots/08-settings.png (98%)
+ rewrite autopilot-local/frontend/test-results/.last-run.json (92%)
+ create mode 100644 autopilot-local/frontend/test-results/ai-hivemind-AI-Hive-Mind-consensus-vote-chromium-retry1/trace.zip
+ create mode 100644 autopilot-local/frontend/test-results/ai-hivemind-AI-Hive-Mind-consensus-vote-chromium/error-context.md
+ create mode 100644 autopilot-local/frontend/test-results/ai-hivemind-AI-Hive-Mind-consensus-vote-chromium/test-failed-1.png
+ rewrite autopilot-local/frontend/test-results/full-flow-Full-User-Flow-complete-navigation-flow-chromium-retry1/test-failed-1.png (97%)
+ rewrite autopilot-local/frontend/test-results/full-flow-Full-User-Flow-complete-navigation-flow-chromium-retry1/trace.zip (79%)
+ rewrite autopilot-local/frontend/test-results/full-flow-Full-User-Flow-complete-navigation-flow-chromium-retry2/test-failed-1.png (97%)
+ rewrite autopilot-local/frontend/test-results/full-flow-Full-User-Flow-complete-navigation-flow-chromium/error-context.md (60%)
+ rewrite autopilot-local/frontend/test-results/full-flow-Full-User-Flow-complete-navigation-flow-chromium/test-failed-1.png (98%)
+ rewrite autopilot-local/frontend/test-results/full-flow-Full-User-Flow-no-critical-page-errors-chromium-retry1/error-context.md (90%)
+ rewrite autopilot-local/frontend/test-results/full-flow-Full-User-Flow-no-critical-page-errors-chromium-retry1/test-failed-1.png (99%)
+ rewrite autopilot-local/frontend/test-results/full-flow-Full-User-Flow-no-critical-page-errors-chromium-retry1/trace.zip (77%)
+ rewrite autopilot-local/frontend/test-results/full-flow-Full-User-Flow-no-critical-page-errors-chromium-retry2/error-context.md (91%)
+ rewrite autopilot-local/frontend/test-results/full-flow-Full-User-Flow-no-critical-page-errors-chromium-retry2/test-failed-1.png (99%)
+ rewrite autopilot-local/frontend/test-results/full-flow-Full-User-Flow-no-critical-page-errors-chromium/error-context.md (95%)
+ rewrite autopilot-local/frontend/test-results/full-flow-Full-User-Flow-no-critical-page-errors-chromium/test-failed-1.png (98%)
+ rename autopilot-local/frontend/test-results/{full-terminal-Landing-page-b75a2-ture-cards-and-launch-links-chromium-retry2 => full-terminal-Analytics-fe-c6953-e-Arb-Backtest-Signals-tabs-chromium-retry1}/error-context.md (58%)
+ rewrite autopilot-local/frontend/test-results/full-terminal-Analytics-fe-c6953-e-Arb-Backtest-Signals-tabs-chromium-retry1/test-failed-1.png (99%)
+ rewrite autopilot-local/frontend/test-results/full-terminal-Analytics-fe-c6953-e-Arb-Backtest-Signals-tabs-chromium-retry1/trace.zip (60%)
+ rename autopilot-local/frontend/test-results/{full-terminal-Landing-page-b75a2-ture-cards-and-launch-links-chromium-retry1 => full-terminal-Analytics-fe-c6953-e-Arb-Backtest-Signals-tabs-chromium-retry2}/error-context.md (58%)
+ rewrite autopilot-local/frontend/test-results/full-terminal-Analytics-fe-c6953-e-Arb-Backtest-Signals-tabs-chromium-retry2/test-failed-1.png (99%)
+ rename autopilot-local/frontend/test-results/{full-terminal-Landing-page-b75a2-ture-cards-and-launch-links-chromium => full-terminal-Analytics-fe-c6953-e-Arb-Backtest-Signals-tabs-chromium}/error-context.md (58%)
+ rewrite autopilot-local/frontend/test-results/full-terminal-Analytics-fe-c6953-e-Arb-Backtest-Signals-tabs-chromium/test-failed-1.png (99%)
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Arb-Radar-fe-8e7b3-pportunities-or-empty-state-chromium-retry1/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Arb-Radar-fe-8e7b3-pportunities-or-empty-state-chromium-retry1/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Arb-Radar-fe-8e7b3-pportunities-or-empty-state-chromium-retry1/trace.zip
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Arb-Radar-fe-8e7b3-pportunities-or-empty-state-chromium-retry2/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Arb-Radar-fe-8e7b3-pportunities-or-empty-state-chromium-retry2/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Arb-Radar-fe-8e7b3-pportunities-or-empty-state-chromium/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Arb-Radar-fe-8e7b3-pportunities-or-empty-state-chromium/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Arb-Radar-features-Reload-button-chromium-retry1/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Arb-Radar-features-Reload-button-chromium-retry1/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Arb-Radar-features-Reload-button-chromium-retry1/trace.zip
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Arb-Radar-features-Reload-button-chromium-retry2/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Arb-Radar-features-Reload-button-chromium-retry2/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Arb-Radar-features-Reload-button-chromium/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Arb-Radar-features-Reload-button-chromium/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Every-sideba-03be8-tplace-loads-via-direct-URL-chromium-retry1/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Every-sideba-03be8-tplace-loads-via-direct-URL-chromium-retry1/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Every-sideba-03be8-tplace-loads-via-direct-URL-chromium-retry1/trace.zip
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Every-sideba-03be8-tplace-loads-via-direct-URL-chromium-retry2/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Every-sideba-03be8-tplace-loads-via-direct-URL-chromium-retry2/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Every-sideba-03be8-tplace-loads-via-direct-URL-chromium/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Every-sideba-03be8-tplace-loads-via-direct-URL-chromium/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Every-sideba-44672-market-loads-via-direct-URL-chromium-retry1/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Every-sideba-44672-market-loads-via-direct-URL-chromium-retry1/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Every-sideba-44672-market-loads-via-direct-URL-chromium-retry1/trace.zip
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Every-sideba-44672-market-loads-via-direct-URL-chromium-retry2/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Every-sideba-44672-market-loads-via-direct-URL-chromium-retry2/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Every-sideba-44672-market-loads-via-direct-URL-chromium/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Every-sideba-44672-market-loads-via-direct-URL-chromium/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Every-sideba-59e07-e-Mind-loads-via-direct-URL-chromium-retry1/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Every-sideba-59e07-e-Mind-loads-via-direct-URL-chromium-retry1/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Every-sideba-59e07-e-Mind-loads-via-direct-URL-chromium-retry1/trace.zip
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Every-sideba-59e07-e-Mind-loads-via-direct-URL-chromium-retry2/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Every-sideba-59e07-e-Mind-loads-via-direct-URL-chromium-retry2/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Every-sideba-59e07-e-Mind-loads-via-direct-URL-chromium/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Every-sideba-59e07-e-Mind-loads-via-direct-URL-chromium/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Every-sideba-a1b9c-ttings-loads-via-direct-URL-chromium-retry1/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Every-sideba-a1b9c-ttings-loads-via-direct-URL-chromium-retry1/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Every-sideba-a1b9c-ttings-loads-via-direct-URL-chromium-retry1/trace.zip
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Every-sideba-a1b9c-ttings-loads-via-direct-URL-chromium-retry2/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Every-sideba-a1b9c-ttings-loads-via-direct-URL-chromium-retry2/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Every-sideba-a1b9c-ttings-loads-via-direct-URL-chromium/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Every-sideba-a1b9c-ttings-loads-via-direct-URL-chromium/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Every-sideba-ba4c1--Radar-loads-via-direct-URL-chromium-retry1/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Every-sideba-ba4c1--Radar-loads-via-direct-URL-chromium-retry1/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Every-sideba-ba4c1--Radar-loads-via-direct-URL-chromium-retry1/trace.zip
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Every-sideba-ba4c1--Radar-loads-via-direct-URL-chromium-retry2/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Every-sideba-ba4c1--Radar-loads-via-direct-URL-chromium-retry2/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Every-sideba-ba4c1--Radar-loads-via-direct-URL-chromium/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Every-sideba-ba4c1--Radar-loads-via-direct-URL-chromium/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Every-sideba-bbd80-e-Feed-loads-via-direct-URL-chromium-retry1/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Every-sideba-bbd80-e-Feed-loads-via-direct-URL-chromium-retry1/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Every-sideba-bbd80-e-Feed-loads-via-direct-URL-chromium-retry1/trace.zip
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Every-sideba-bbd80-e-Feed-loads-via-direct-URL-chromium-retry2/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Every-sideba-bbd80-e-Feed-loads-via-direct-URL-chromium-retry2/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Every-sideba-bbd80-e-Feed-loads-via-direct-URL-chromium/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Every-sideba-bbd80-e-Feed-loads-via-direct-URL-chromium/test-failed-1.png
+ rewrite autopilot-local/frontend/test-results/full-terminal-Every-sideba-c4f33-very-tab-via-sidebar-clicks-chromium-retry1/error-context.md (94%)
+ rewrite autopilot-local/frontend/test-results/full-terminal-Every-sideba-c4f33-very-tab-via-sidebar-clicks-chromium-retry1/test-failed-1.png (98%)
+ rewrite autopilot-local/frontend/test-results/full-terminal-Every-sideba-c4f33-very-tab-via-sidebar-clicks-chromium-retry2/error-context.md (94%)
+ rewrite autopilot-local/frontend/test-results/full-terminal-Every-sideba-c4f33-very-tab-via-sidebar-clicks-chromium-retry2/test-failed-1.png (98%)
+ rewrite autopilot-local/frontend/test-results/full-terminal-Every-sideba-c4f33-very-tab-via-sidebar-clicks-chromium/error-context.md (94%)
+ rewrite autopilot-local/frontend/test-results/full-terminal-Every-sideba-c4f33-very-tab-via-sidebar-clicks-chromium/test-failed-1.png (98%)
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Every-sideba-d715d-lytics-loads-via-direct-URL-chromium-retry1/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Every-sideba-d715d-lytics-loads-via-direct-URL-chromium-retry1/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Every-sideba-d715d-lytics-loads-via-direct-URL-chromium-retry1/trace.zip
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Every-sideba-d715d-lytics-loads-via-direct-URL-chromium-retry2/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Every-sideba-d715d-lytics-loads-via-direct-URL-chromium-retry2/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Every-sideba-d715d-lytics-loads-via-direct-URL-chromium/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Every-sideba-d715d-lytics-loads-via-direct-URL-chromium/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Every-sidebar-tab-DeFi-loads-via-direct-URL-chromium-retry1/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Every-sidebar-tab-DeFi-loads-via-direct-URL-chromium-retry1/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Every-sidebar-tab-DeFi-loads-via-direct-URL-chromium-retry1/trace.zip
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Every-sidebar-tab-DeFi-loads-via-direct-URL-chromium-retry2/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Every-sidebar-tab-DeFi-loads-via-direct-URL-chromium-retry2/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Every-sidebar-tab-DeFi-loads-via-direct-URL-chromium/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Every-sidebar-tab-DeFi-loads-via-direct-URL-chromium/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Every-sidebar-tab-Fund-loads-via-direct-URL-chromium-retry1/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Every-sidebar-tab-Fund-loads-via-direct-URL-chromium-retry1/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Every-sidebar-tab-Fund-loads-via-direct-URL-chromium-retry1/trace.zip
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Every-sidebar-tab-Fund-loads-via-direct-URL-chromium-retry2/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Every-sidebar-tab-Fund-loads-via-direct-URL-chromium-retry2/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Every-sidebar-tab-Fund-loads-via-direct-URL-chromium/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Every-sidebar-tab-Fund-loads-via-direct-URL-chromium/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Every-sidebar-tab-Kalshi-loads-via-direct-URL-chromium-retry1/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Every-sidebar-tab-Kalshi-loads-via-direct-URL-chromium-retry1/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Every-sidebar-tab-Kalshi-loads-via-direct-URL-chromium-retry1/trace.zip
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Every-sidebar-tab-Kalshi-loads-via-direct-URL-chromium-retry2/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Every-sidebar-tab-Kalshi-loads-via-direct-URL-chromium-retry2/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Every-sidebar-tab-Kalshi-loads-via-direct-URL-chromium/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Every-sidebar-tab-Kalshi-loads-via-direct-URL-chromium/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Every-sidebar-tab-Risk-loads-via-direct-URL-chromium-retry1/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Every-sidebar-tab-Risk-loads-via-direct-URL-chromium-retry1/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Every-sidebar-tab-Risk-loads-via-direct-URL-chromium-retry1/trace.zip
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Every-sidebar-tab-Risk-loads-via-direct-URL-chromium-retry2/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Every-sidebar-tab-Risk-loads-via-direct-URL-chromium-retry2/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Every-sidebar-tab-Risk-loads-via-direct-URL-chromium/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Every-sidebar-tab-Risk-loads-via-direct-URL-chromium/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Landing-page-b75a2-ture-cards-and-launch-links-chromium-retry1/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Landing-page-b75a2-ture-cards-and-launch-links-chromium-retry1/trace.zip
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Landing-page-b75a2-ture-cards-and-launch-links-chromium-retry2/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Landing-page-b75a2-ture-cards-and-launch-links-chromium/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Live-Feed-fe-59a6c-lter-input-and-limit-select-chromium-retry1/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Live-Feed-fe-59a6c-lter-input-and-limit-select-chromium-retry1/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Live-Feed-fe-59a6c-lter-input-and-limit-select-chromium-retry1/trace.zip
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Live-Feed-fe-59a6c-lter-input-and-limit-select-chromium-retry2/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Live-Feed-fe-59a6c-lter-input-and-limit-select-chromium-retry2/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Live-Feed-fe-59a6c-lter-input-and-limit-select-chromium/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Live-Feed-fe-59a6c-lter-input-and-limit-select-chromium/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Marketplace--2a20d-tail-page-when-pilots-exist-chromium-retry1/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Marketplace--2a20d-tail-page-when-pilots-exist-chromium-retry1/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Marketplace--2a20d-tail-page-when-pilots-exist-chromium-retry1/trace.zip
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Marketplace--2a20d-tail-page-when-pilots-exist-chromium-retry2/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Marketplace--2a20d-tail-page-when-pilots-exist-chromium-retry2/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Marketplace--2a20d-tail-page-when-pilots-exist-chromium/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Marketplace--2a20d-tail-page-when-pilots-exist-chromium/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Marketplace-features-Refresh-all-button-chromium-retry1/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Marketplace-features-Refresh-all-button-chromium-retry1/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Marketplace-features-Refresh-all-button-chromium-retry1/trace.zip
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Marketplace-features-Refresh-all-button-chromium-retry2/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Marketplace-features-Refresh-all-button-chromium-retry2/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Marketplace-features-Refresh-all-button-chromium/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Marketplace-features-Refresh-all-button-chromium/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Marketplace-features-period-and-sort-tabs-chromium-retry1/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Marketplace-features-period-and-sort-tabs-chromium-retry1/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Marketplace-features-period-and-sort-tabs-chromium-retry1/trace.zip
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Marketplace-features-period-and-sort-tabs-chromium-retry2/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Marketplace-features-period-and-sort-tabs-chromium-retry2/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Marketplace-features-period-and-sort-tabs-chromium/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Marketplace-features-period-and-sort-tabs-chromium/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-No-critical--bf003-on-APEX-or-marketplace-APIs-chromium-retry1/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-No-critical--bf003-on-APEX-or-marketplace-APIs-chromium-retry1/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-No-critical--bf003-on-APEX-or-marketplace-APIs-chromium-retry1/trace.zip
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-No-critical--bf003-on-APEX-or-marketplace-APIs-chromium-retry2/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-No-critical--bf003-on-APEX-or-marketplace-APIs-chromium-retry2/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-No-critical--bf003-on-APEX-or-marketplace-APIs-chromium/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-No-critical--bf003-on-APEX-or-marketplace-APIs-chromium/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Overview-fea-60252-palette-opens-and-navigates-chromium-retry1/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Overview-fea-60252-palette-opens-and-navigates-chromium-retry1/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Overview-fea-60252-palette-opens-and-navigates-chromium-retry1/trace.zip
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Overview-fea-60252-palette-opens-and-navigates-chromium-retry2/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Overview-fea-60252-palette-opens-and-navigates-chromium-retry2/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Overview-fea-60252-palette-opens-and-navigates-chromium/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Overview-fea-60252-palette-opens-and-navigates-chromium/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Overview-fea-fd5cc-topbar-navigates-to-trading-chromium-retry1/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Overview-fea-fd5cc-topbar-navigates-to-trading-chromium-retry1/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Overview-fea-fd5cc-topbar-navigates-to-trading-chromium-retry1/trace.zip
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Overview-fea-fd5cc-topbar-navigates-to-trading-chromium-retry2/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Overview-fea-fd5cc-topbar-navigates-to-trading-chromium-retry2/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Overview-fea-fd5cc-topbar-navigates-to-trading-chromium/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Overview-fea-fd5cc-topbar-navigates-to-trading-chromium/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Overview-features-Refresh-Cache-button-chromium-retry1/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Overview-features-Refresh-Cache-button-chromium-retry1/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Overview-features-Refresh-Cache-button-chromium-retry1/trace.zip
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Overview-features-Refresh-Cache-button-chromium-retry2/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Overview-features-Refresh-Cache-button-chromium-retry2/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Overview-features-Refresh-Cache-button-chromium/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Overview-features-Refresh-Cache-button-chromium/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Overview-features-View-all-signals-link-chromium-retry1/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Overview-features-View-all-signals-link-chromium-retry1/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Overview-features-View-all-signals-link-chromium-retry1/trace.zip
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Overview-features-View-all-signals-link-chromium-retry2/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Overview-features-View-all-signals-link-chromium-retry2/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Overview-features-View-all-signals-link-chromium/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Overview-features-View-all-signals-link-chromium/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Overview-features-order-ticket-in-right-panel-chromium-retry1/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Overview-features-order-ticket-in-right-panel-chromium-retry1/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Overview-features-order-ticket-in-right-panel-chromium-retry1/trace.zip
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Overview-features-order-ticket-in-right-panel-chromium-retry2/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Overview-features-order-ticket-in-right-panel-chromium-retry2/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Overview-features-order-ticket-in-right-panel-chromium/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Overview-features-order-ticket-in-right-panel-chromium/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Polymarket-features-Sync-from-engine-button-chromium-retry1/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Polymarket-features-Sync-from-engine-button-chromium-retry1/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Polymarket-features-Sync-from-engine-button-chromium-retry1/trace.zip
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Polymarket-features-Sync-from-engine-button-chromium-retry2/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Polymarket-features-Sync-from-engine-button-chromium-retry2/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Polymarket-features-Sync-from-engine-button-chromium/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Polymarket-features-Sync-from-engine-button-chromium/test-failed-1.png
+ rewrite autopilot-local/frontend/test-results/full-terminal-Positions-features-Open-and-Closed-tabs-chromium-retry1/error-context.md (95%)
+ rewrite autopilot-local/frontend/test-results/full-terminal-Positions-features-Open-and-Closed-tabs-chromium-retry1/test-failed-1.png (99%)
+ rewrite autopilot-local/frontend/test-results/full-terminal-Positions-features-Open-and-Closed-tabs-chromium-retry1/trace.zip (60%)
+ rewrite autopilot-local/frontend/test-results/full-terminal-Positions-features-Open-and-Closed-tabs-chromium-retry2/error-context.md (95%)
+ rewrite autopilot-local/frontend/test-results/full-terminal-Positions-features-Open-and-Closed-tabs-chromium-retry2/test-failed-1.png (99%)
+ rewrite autopilot-local/frontend/test-results/full-terminal-Positions-features-Open-and-Closed-tabs-chromium/error-context.md (95%)
+ rewrite autopilot-local/frontend/test-results/full-terminal-Positions-features-Open-and-Closed-tabs-chromium/test-failed-1.png (99%)
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Settings-features-Refresh-integrations-chromium-retry1/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Settings-features-Refresh-integrations-chromium-retry1/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Settings-features-Refresh-integrations-chromium-retry1/trace.zip
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Settings-features-Refresh-integrations-chromium-retry2/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Settings-features-Refresh-integrations-chromium-retry2/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Settings-features-Refresh-integrations-chromium/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Settings-features-Refresh-integrations-chromium/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Settings-features-dual-backend-cards-visible-chromium-retry1/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Settings-features-dual-backend-cards-visible-chromium-retry1/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Settings-features-dual-backend-cards-visible-chromium-retry1/trace.zip
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Settings-features-dual-backend-cards-visible-chromium-retry2/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Settings-features-dual-backend-cards-visible-chromium-retry2/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Settings-features-dual-backend-cards-visible-chromium/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Settings-features-dual-backend-cards-visible-chromium/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Signals-features-min-conviction-filter-chromium-retry1/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Signals-features-min-conviction-filter-chromium-retry1/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Signals-features-min-conviction-filter-chromium-retry1/trace.zip
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Signals-features-min-conviction-filter-chromium-retry2/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Signals-features-min-conviction-filter-chromium-retry2/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Signals-features-min-conviction-filter-chromium/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Signals-features-min-conviction-filter-chromium/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Signals-features-symbol-filter-input-chromium-retry1/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Signals-features-symbol-filter-input-chromium-retry1/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Signals-features-symbol-filter-input-chromium-retry1/trace.zip
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Signals-features-symbol-filter-input-chromium-retry2/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Signals-features-symbol-filter-input-chromium-retry2/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Signals-features-symbol-filter-input-chromium/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Signals-features-symbol-filter-input-chromium/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Trading-features-options-Calls-Puts-tabs-chromium-retry1/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Trading-features-options-Calls-Puts-tabs-chromium-retry1/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Trading-features-options-Calls-Puts-tabs-chromium-retry1/trace.zip
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Trading-features-options-Calls-Puts-tabs-chromium-retry2/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Trading-features-options-Calls-Puts-tabs-chromium-retry2/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Trading-features-options-Calls-Puts-tabs-chromium/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Trading-features-options-Calls-Puts-tabs-chromium/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Trading-features-symbol-selector-present-chromium-retry1/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Trading-features-symbol-selector-present-chromium-retry1/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Trading-features-symbol-selector-present-chromium-retry1/trace.zip
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Trading-features-symbol-selector-present-chromium-retry2/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Trading-features-symbol-selector-present-chromium-retry2/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Trading-features-symbol-selector-present-chromium/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Trading-features-symbol-selector-present-chromium/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Trading-features-timeframe-tabs-switch-chromium-retry1/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Trading-features-timeframe-tabs-switch-chromium-retry1/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Trading-features-timeframe-tabs-switch-chromium-retry1/trace.zip
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Trading-features-timeframe-tabs-switch-chromium-retry2/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Trading-features-timeframe-tabs-switch-chromium-retry2/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Trading-features-timeframe-tabs-switch-chromium/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Trading-features-timeframe-tabs-switch-chromium/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/marketplace-ui-Marketplace-UI-settings-shows-dual-backends-chromium-retry1/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/marketplace-ui-Marketplace-UI-settings-shows-dual-backends-chromium-retry1/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/marketplace-ui-Marketplace-UI-settings-shows-dual-backends-chromium-retry1/trace.zip
+ delete mode 100644 autopilot-local/frontend/test-results/marketplace-ui-Marketplace-UI-settings-shows-dual-backends-chromium-retry2/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/marketplace-ui-Marketplace-UI-settings-shows-dual-backends-chromium-retry2/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/marketplace-ui-Marketplace-UI-settings-shows-dual-backends-chromium/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/marketplace-ui-Marketplace-UI-settings-shows-dual-backends-chromium/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/navigation-Navigation-engine-status-visible-on-landing-chromium-retry1/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/navigation-Navigation-engine-status-visible-on-landing-chromium-retry1/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/navigation-Navigation-engine-status-visible-on-landing-chromium-retry1/trace.zip
+ delete mode 100644 autopilot-local/frontend/test-results/navigation-Navigation-engine-status-visible-on-landing-chromium-retry2/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/navigation-Navigation-engine-status-visible-on-landing-chromium-retry2/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/navigation-Navigation-engine-status-visible-on-landing-chromium/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/navigation-Navigation-engine-status-visible-on-landing-chromium/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/navigation-Navigation-enter-terminal-navigates-to-dashboard-chromium-retry1/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/navigation-Navigation-enter-terminal-navigates-to-dashboard-chromium-retry1/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/navigation-Navigation-enter-terminal-navigates-to-dashboard-chromium-retry1/trace.zip
+ delete mode 100644 autopilot-local/frontend/test-results/navigation-Navigation-enter-terminal-navigates-to-dashboard-chromium-retry2/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/navigation-Navigation-enter-terminal-navigates-to-dashboard-chromium-retry2/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/navigation-Navigation-enter-terminal-navigates-to-dashboard-chromium/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/navigation-Navigation-enter-terminal-navigates-to-dashboard-chromium/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/navigation-Navigation-landing-page-has-terminal-button-chromium-retry1/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/navigation-Navigation-landing-page-has-terminal-button-chromium-retry1/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/navigation-Navigation-landing-page-has-terminal-button-chromium-retry1/trace.zip
+ delete mode 100644 autopilot-local/frontend/test-results/navigation-Navigation-landing-page-has-terminal-button-chromium-retry2/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/navigation-Navigation-landing-page-has-terminal-button-chromium-retry2/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/navigation-Navigation-landing-page-has-terminal-button-chromium/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/navigation-Navigation-landing-page-has-terminal-button-chromium/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/navigation-Navigation-landing-page-loads-chromium-retry1/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/navigation-Navigation-landing-page-loads-chromium-retry1/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/navigation-Navigation-landing-page-loads-chromium-retry1/trace.zip
+ delete mode 100644 autopilot-local/frontend/test-results/navigation-Navigation-landing-page-loads-chromium-retry2/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/navigation-Navigation-landing-page-loads-chromium-retry2/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/navigation-Navigation-landing-page-loads-chromium/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/navigation-Navigation-landing-page-loads-chromium/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/navigation-Navigation-marketplace-link-on-landing-chromium-retry1/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/navigation-Navigation-marketplace-link-on-landing-chromium-retry1/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/navigation-Navigation-marketplace-link-on-landing-chromium-retry1/trace.zip
+ delete mode 100644 autopilot-local/frontend/test-results/navigation-Navigation-marketplace-link-on-landing-chromium-retry2/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/navigation-Navigation-marketplace-link-on-landing-chromium-retry2/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/navigation-Navigation-marketplace-link-on-landing-chromium/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/navigation-Navigation-marketplace-link-on-landing-chromium/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/positions-Positions-Page-positions-has-open-closed-tabs-chromium-retry1/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/positions-Positions-Page-positions-has-open-closed-tabs-chromium-retry1/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/positions-Positions-Page-positions-has-open-closed-tabs-chromium-retry1/trace.zip
+ delete mode 100644 autopilot-local/frontend/test-results/positions-Positions-Page-positions-has-open-closed-tabs-chromium-retry2/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/positions-Positions-Page-positions-has-open-closed-tabs-chromium-retry2/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/positions-Positions-Page-positions-has-open-closed-tabs-chromium/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/positions-Positions-Page-positions-has-open-closed-tabs-chromium/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/positions-Positions-Page-positions-has-sidebar-chromium-retry1/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/positions-Positions-Page-positions-has-sidebar-chromium-retry1/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/positions-Positions-Page-positions-has-sidebar-chromium-retry1/trace.zip
+ delete mode 100644 autopilot-local/frontend/test-results/positions-Positions-Page-positions-has-sidebar-chromium-retry2/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/positions-Positions-Page-positions-has-sidebar-chromium-retry2/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/positions-Positions-Page-positions-has-sidebar-chromium/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/positions-Positions-Page-positions-has-sidebar-chromium/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/positions-Positions-Page-positions-page-loads-chromium-retry1/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/positions-Positions-Page-positions-page-loads-chromium-retry1/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/positions-Positions-Page-positions-page-loads-chromium-retry1/trace.zip
+ delete mode 100644 autopilot-local/frontend/test-results/positions-Positions-Page-positions-page-loads-chromium-retry2/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/positions-Positions-Page-positions-page-loads-chromium-retry2/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/positions-Positions-Page-positions-page-loads-chromium/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/positions-Positions-Page-positions-page-loads-chromium/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/real-data-Error-Handling-handles-positions-page-gracefully-chromium-retry1/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/real-data-Error-Handling-handles-positions-page-gracefully-chromium-retry1/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/real-data-Error-Handling-handles-positions-page-gracefully-chromium-retry1/trace.zip
+ delete mode 100644 autopilot-local/frontend/test-results/real-data-Error-Handling-handles-positions-page-gracefully-chromium-retry2/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/real-data-Error-Handling-handles-positions-page-gracefully-chromium-retry2/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/real-data-Error-Handling-handles-positions-page-gracefully-chromium/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/real-data-Error-Handling-handles-positions-page-gracefully-chromium/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/real-data-Error-Handling-handles-trading-page-gracefully-chromium-retry1/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/real-data-Error-Handling-handles-trading-page-gracefully-chromium-retry1/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/real-data-Error-Handling-handles-trading-page-gracefully-chromium-retry1/trace.zip
+ delete mode 100644 autopilot-local/frontend/test-results/real-data-Error-Handling-handles-trading-page-gracefully-chromium-retry2/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/real-data-Error-Handling-handles-trading-page-gracefully-chromium-retry2/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/real-data-Error-Handling-handles-trading-page-gracefully-chromium/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/real-data-Error-Handling-handles-trading-page-gracefully-chromium/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/real-data-Error-Handling-no-console-errors-on-dashboard-chromium-retry1/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/real-data-Error-Handling-no-console-errors-on-dashboard-chromium-retry1/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/real-data-Error-Handling-no-console-errors-on-dashboard-chromium-retry1/trace.zip
+ delete mode 100644 autopilot-local/frontend/test-results/real-data-Error-Handling-no-console-errors-on-dashboard-chromium-retry2/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/real-data-Error-Handling-no-console-errors-on-dashboard-chromium-retry2/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/real-data-Error-Handling-no-console-errors-on-dashboard-chromium/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/real-data-Error-Handling-no-console-errors-on-dashboard-chromium/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/real-data-Real-Data-Displa-0920e-rd-displays-recent-activity-chromium-retry1/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/real-data-Real-Data-Displa-0920e-rd-displays-recent-activity-chromium-retry1/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/real-data-Real-Data-Displa-0920e-rd-displays-recent-activity-chromium-retry1/trace.zip
+ delete mode 100644 autopilot-local/frontend/test-results/real-data-Real-Data-Displa-0920e-rd-displays-recent-activity-chromium-retry2/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/real-data-Real-Data-Displa-0920e-rd-displays-recent-activity-chromium-retry2/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/real-data-Real-Data-Displa-0920e-rd-displays-recent-activity-chromium/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/real-data-Real-Data-Displa-0920e-rd-displays-recent-activity-chromium/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/real-data-Real-Data-Displa-42f81-page-shows-positions-header-chromium-retry1/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/real-data-Real-Data-Displa-42f81-page-shows-positions-header-chromium-retry1/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/real-data-Real-Data-Displa-42f81-page-shows-positions-header-chromium-retry1/trace.zip
+ delete mode 100644 autopilot-local/frontend/test-results/real-data-Real-Data-Displa-42f81-page-shows-positions-header-chromium-retry2/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/real-data-Real-Data-Displa-42f81-page-shows-positions-header-chromium-retry2/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/real-data-Real-Data-Displa-42f81-page-shows-positions-header-chromium/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/real-data-Real-Data-Displa-42f81-page-shows-positions-header-chromium/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/real-data-Real-Data-Displa-6193a-isplays-top-signals-section-chromium-retry1/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/real-data-Real-Data-Displa-6193a-isplays-top-signals-section-chromium-retry1/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/real-data-Real-Data-Displa-6193a-isplays-top-signals-section-chromium-retry1/trace.zip
+ delete mode 100644 autopilot-local/frontend/test-results/real-data-Real-Data-Displa-6193a-isplays-top-signals-section-chromium-retry2/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/real-data-Real-Data-Displa-6193a-isplays-top-signals-section-chromium-retry2/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/real-data-Real-Data-Displa-6193a-isplays-top-signals-section-chromium/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/real-data-Real-Data-Displa-6193a-isplays-top-signals-section-chromium/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/real-data-Real-Data-Displa-f9c60-l-account-data-from-backend-chromium-retry1/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/real-data-Real-Data-Displa-f9c60-l-account-data-from-backend-chromium-retry1/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/real-data-Real-Data-Displa-f9c60-l-account-data-from-backend-chromium-retry1/trace.zip
+ delete mode 100644 autopilot-local/frontend/test-results/real-data-Real-Data-Displa-f9c60-l-account-data-from-backend-chromium-retry2/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/real-data-Real-Data-Displa-f9c60-l-account-data-from-backend-chromium-retry2/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/real-data-Real-Data-Displa-f9c60-l-account-data-from-backend-chromium/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/real-data-Real-Data-Displa-f9c60-l-account-data-from-backend-chromium/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/real-data-Real-Data-Display-analytics-page-loads-chromium-retry1/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/real-data-Real-Data-Display-analytics-page-loads-chromium-retry1/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/real-data-Real-Data-Display-analytics-page-loads-chromium-retry1/trace.zip
+ delete mode 100644 autopilot-local/frontend/test-results/real-data-Real-Data-Display-analytics-page-loads-chromium-retry2/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/real-data-Real-Data-Display-analytics-page-loads-chromium-retry2/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/real-data-Real-Data-Display-analytics-page-loads-chromium/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/real-data-Real-Data-Display-analytics-page-loads-chromium/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/real-data-Real-Data-Display-arb-radar-page-loads-chromium-retry1/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/real-data-Real-Data-Display-arb-radar-page-loads-chromium-retry1/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/real-data-Real-Data-Display-arb-radar-page-loads-chromium-retry1/trace.zip
+ delete mode 100644 autopilot-local/frontend/test-results/real-data-Real-Data-Display-arb-radar-page-loads-chromium-retry2/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/real-data-Real-Data-Display-arb-radar-page-loads-chromium-retry2/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/real-data-Real-Data-Display-arb-radar-page-loads-chromium/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/real-data-Real-Data-Display-arb-radar-page-loads-chromium/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/real-data-Real-Data-Display-autopilot-page-shows-pipeline-chromium-retry1/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/real-data-Real-Data-Display-autopilot-page-shows-pipeline-chromium-retry1/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/real-data-Real-Data-Display-autopilot-page-shows-pipeline-chromium-retry1/trace.zip
+ delete mode 100644 autopilot-local/frontend/test-results/real-data-Real-Data-Display-autopilot-page-shows-pipeline-chromium-retry2/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/real-data-Real-Data-Display-autopilot-page-shows-pipeline-chromium-retry2/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/real-data-Real-Data-Display-autopilot-page-shows-pipeline-chromium/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/real-data-Real-Data-Display-autopilot-page-shows-pipeline-chromium/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/real-data-Real-Data-Display-live-feed-page-loads-chromium-retry1/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/real-data-Real-Data-Display-live-feed-page-loads-chromium-retry1/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/real-data-Real-Data-Display-live-feed-page-loads-chromium-retry1/trace.zip
+ delete mode 100644 autopilot-local/frontend/test-results/real-data-Real-Data-Display-live-feed-page-loads-chromium-retry2/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/real-data-Real-Data-Display-live-feed-page-loads-chromium-retry2/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/real-data-Real-Data-Display-live-feed-page-loads-chromium/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/real-data-Real-Data-Display-live-feed-page-loads-chromium/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/real-data-Real-Data-Display-opportunities-page-shows-signals-chromium-retry1/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/real-data-Real-Data-Display-opportunities-page-shows-signals-chromium-retry1/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/real-data-Real-Data-Display-opportunities-page-shows-signals-chromium-retry1/trace.zip
+ delete mode 100644 autopilot-local/frontend/test-results/real-data-Real-Data-Display-opportunities-page-shows-signals-chromium-retry2/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/real-data-Real-Data-Display-opportunities-page-shows-signals-chromium-retry2/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/real-data-Real-Data-Display-opportunities-page-shows-signals-chromium/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/real-data-Real-Data-Display-opportunities-page-shows-signals-chromium/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/real-data-Real-Data-Display-settings-page-loads-chromium-retry1/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/real-data-Real-Data-Display-settings-page-loads-chromium-retry1/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/real-data-Real-Data-Display-settings-page-loads-chromium-retry1/trace.zip
+ delete mode 100644 autopilot-local/frontend/test-results/real-data-Real-Data-Display-settings-page-loads-chromium-retry2/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/real-data-Real-Data-Display-settings-page-loads-chromium-retry2/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/real-data-Real-Data-Display-settings-page-loads-chromium/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/real-data-Real-Data-Display-settings-page-loads-chromium/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/real-data-Real-Data-Display-trading-page-loads-chart-area-chromium-retry1/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/real-data-Real-Data-Display-trading-page-loads-chart-area-chromium-retry1/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/real-data-Real-Data-Display-trading-page-loads-chart-area-chromium-retry1/trace.zip
+ delete mode 100644 autopilot-local/frontend/test-results/real-data-Real-Data-Display-trading-page-loads-chart-area-chromium-retry2/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/real-data-Real-Data-Display-trading-page-loads-chart-area-chromium-retry2/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/real-data-Real-Data-Display-trading-page-loads-chart-area-chromium/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/real-data-Real-Data-Display-trading-page-loads-chart-area-chromium/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/real-data-WebSocket-Real-t-13fa0-al-websocket-console-errors-chromium-retry1/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/real-data-WebSocket-Real-t-13fa0-al-websocket-console-errors-chromium-retry1/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/real-data-WebSocket-Real-t-13fa0-al-websocket-console-errors-chromium-retry1/trace.zip
+ delete mode 100644 autopilot-local/frontend/test-results/real-data-WebSocket-Real-t-13fa0-al-websocket-console-errors-chromium-retry2/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/real-data-WebSocket-Real-t-13fa0-al-websocket-console-errors-chromium-retry2/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/real-data-WebSocket-Real-t-13fa0-al-websocket-console-errors-chromium/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/real-data-WebSocket-Real-t-13fa0-al-websocket-console-errors-chromium/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/risk-management-Risk-Manag-76584-sidebar-Risk-link-navigates-chromium-retry1/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/risk-management-Risk-Manag-76584-sidebar-Risk-link-navigates-chromium-retry1/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/risk-management-Risk-Manag-76584-sidebar-Risk-link-navigates-chromium-retry1/trace.zip
+ delete mode 100644 autopilot-local/frontend/test-results/risk-management-Risk-Manag-76584-sidebar-Risk-link-navigates-chromium-retry2/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/risk-management-Risk-Manag-76584-sidebar-Risk-link-navigates-chromium-retry2/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/risk-management-Risk-Manag-76584-sidebar-Risk-link-navigates-chromium/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/risk-management-Risk-Manag-76584-sidebar-Risk-link-navigates-chromium/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/risk-management-Risk-Manag-f7a44-sk-page-loads-with-VaR-KPIs-chromium-retry1/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/risk-management-Risk-Manag-f7a44-sk-page-loads-with-VaR-KPIs-chromium-retry1/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/risk-management-Risk-Manag-f7a44-sk-page-loads-with-VaR-KPIs-chromium-retry1/trace.zip
+ delete mode 100644 autopilot-local/frontend/test-results/risk-management-Risk-Manag-f7a44-sk-page-loads-with-VaR-KPIs-chromium-retry2/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/risk-management-Risk-Manag-f7a44-sk-page-loads-with-VaR-KPIs-chromium-retry2/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/risk-management-Risk-Manag-f7a44-sk-page-loads-with-VaR-KPIs-chromium/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/risk-management-Risk-Manag-f7a44-sk-page-loads-with-VaR-KPIs-chromium/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/smoke-Smoke-arb-radar-loads-chromium-retry1/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/smoke-Smoke-arb-radar-loads-chromium-retry1/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/smoke-Smoke-arb-radar-loads-chromium-retry1/trace.zip
+ delete mode 100644 autopilot-local/frontend/test-results/smoke-Smoke-arb-radar-loads-chromium-retry2/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/smoke-Smoke-arb-radar-loads-chromium-retry2/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/smoke-Smoke-arb-radar-loads-chromium/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/smoke-Smoke-arb-radar-loads-chromium/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/smoke-Smoke-dashboard-overview-loads-chromium-retry1/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/smoke-Smoke-dashboard-overview-loads-chromium-retry1/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/smoke-Smoke-dashboard-overview-loads-chromium-retry1/trace.zip
+ delete mode 100644 autopilot-local/frontend/test-results/smoke-Smoke-dashboard-overview-loads-chromium-retry2/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/smoke-Smoke-dashboard-overview-loads-chromium-retry2/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/smoke-Smoke-dashboard-overview-loads-chromium/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/smoke-Smoke-dashboard-overview-loads-chromium/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/submission-demo-APEX-Autopilot-full-product-demo-chromium-retry1/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/submission-demo-APEX-Autopilot-full-product-demo-chromium-retry1/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/submission-demo-APEX-Autopilot-full-product-demo-chromium-retry1/trace.zip
+ delete mode 100644 autopilot-local/frontend/test-results/submission-demo-APEX-Autopilot-full-product-demo-chromium-retry2/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/submission-demo-APEX-Autopilot-full-product-demo-chromium-retry2/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/submission-demo-APEX-Autopilot-full-product-demo-chromium/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/submission-demo-APEX-Autopilot-full-product-demo-chromium/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/trading-Trading-Page-trading-has-sidebar-chromium-retry1/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/trading-Trading-Page-trading-has-sidebar-chromium-retry1/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/trading-Trading-Page-trading-has-sidebar-chromium-retry1/trace.zip
+ delete mode 100644 autopilot-local/frontend/test-results/trading-Trading-Page-trading-has-sidebar-chromium-retry2/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/trading-Trading-Page-trading-has-sidebar-chromium-retry2/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/trading-Trading-Page-trading-has-sidebar-chromium/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/trading-Trading-Page-trading-has-sidebar-chromium/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/trading-Trading-Page-trading-has-timeframe-tabs-chromium-retry1/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/trading-Trading-Page-trading-has-timeframe-tabs-chromium-retry1/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/trading-Trading-Page-trading-has-timeframe-tabs-chromium-retry1/trace.zip
+ delete mode 100644 autopilot-local/frontend/test-results/trading-Trading-Page-trading-has-timeframe-tabs-chromium-retry2/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/trading-Trading-Page-trading-has-timeframe-tabs-chromium-retry2/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/trading-Trading-Page-trading-has-timeframe-tabs-chromium/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/trading-Trading-Page-trading-has-timeframe-tabs-chromium/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/trading-Trading-Page-trading-page-loads-chromium-retry1/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/trading-Trading-Page-trading-page-loads-chromium-retry1/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/trading-Trading-Page-trading-page-loads-chromium-retry1/trace.zip
+ delete mode 100644 autopilot-local/frontend/test-results/trading-Trading-Page-trading-page-loads-chromium-retry2/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/trading-Trading-Page-trading-page-loads-chromium-retry2/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/trading-Trading-Page-trading-page-loads-chromium/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/trading-Trading-Page-trading-page-loads-chromium/test-failed-1.png
+ create mode 100644 data/artifacts/iteration_0615/manifest.json
+ create mode 100644 data/artifacts/iteration_0615/metrics.json
+ create mode 100644 data/artifacts/iteration_0615/videos/page@d40c67c36765421d97c2cc00c5522310.webm
+ create mode 100644 data/loop_logs/iteration_0615_build.log
+ create mode 100644 data/loop_logs/iteration_0615_tests.json
+ create mode 100644 data/loop_plans/iteration_0615_plan.json
+ create mode 100644 data/models/arb_edge/candidate_20260529T041951Z/model.json
+ create mode 100644 data/models/arb_edge/candidate_20260529T042040Z/model.json
+ create mode 100644 data/models/arb_edge/candidate_20260529T042223Z/model.json
+ create mode 100644 data/models/arb_edge/candidate_20260529T042603Z/model.json
+ create mode 100644 data/models/arb_edge/candidate_20260529T042757Z/model.json
+ create mode 100644 data/models/arb_edge/candidate_20260529T042930Z/model.json
+ create mode 100644 logs/cycle_20260529_000150.json
+ create mode 100644 logs/cycle_analysis_2026-05-29.md
+ create mode 100644 logs/cycle_final_report.md
+2026-05-29 00:30:55,385 [WARNING] git push failed: fatal: could not read Username for 'https://github.com': No such device or address
+
+2026-05-29 00:30:55,391 [INFO] Iteration 615 complete. Tests: FAIL
+2026-05-29 00:32:55,391 [INFO] === ITERATION 616 (target 1000) ===
+2026-05-29 00:32:55,708 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-29 00:32:55,708 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-29 00:32:55,708 [WARNING] Using deterministic fallback ideas (LLM unavailable)
+2026-05-29 00:32:55,709 [INFO] --- Idea Scoring Table ---
+2026-05-29 00:32:55,709 [INFO] Idea 1: Expose risk gate rejection reasons in API
+2026-05-29 00:32:55,709 [INFO]   Score: 0.20 (Impact: 2.0, Comp: 1.0, Novelty: 0.1)
+2026-05-29 00:32:55,709 [WARNING] All ideas were recent/stale. Regenerating...
+2026-05-29 00:32:55,923 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-29 00:32:55,923 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-29 00:32:55,923 [WARNING] Using deterministic fallback ideas (LLM unavailable)
+2026-05-29 00:32:55,924 [INFO] Selected idea: Expose risk gate rejection reasons in API
+2026-05-29 00:32:56,156 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-29 00:32:56,157 [ERROR] IterationPlanner failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-29 00:32:56,157 [WARNING] Using test-only fallback plan (LLM unavailable)
+2026-05-29 00:32:56,161 [INFO] Step A: Python unit tests
+2026-05-29 00:34:53,440 [INFO] Step B: TypeScript type check
+2026-05-29 00:34:54,786 [INFO] Step C: Playwright E2E tests
+2026-05-29 00:42:15,222 [INFO] Step D: Backend API smoke test
+2026-05-29 00:42:20,257 [INFO] HTTP Request: GET http://localhost:8001/api/opportunities "HTTP/1.1 404 Not Found"
+2026-05-29 00:42:20,263 [INFO] HTTP Request: GET http://localhost:8001/api/arb/backtest "HTTP/1.1 200 OK"
+2026-05-29 00:42:20,263 [INFO] Step E: Backtest regression check
+2026-05-29 00:42:20,561 [WARNING] Failed to screenshot http://localhost:3000/dashboard/arb-radar: Page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3000/dashboard/arb-radar
+Call log:
+  - navigating to "http://localhost:3000/dashboard/arb-radar", waiting until "load"
+
+2026-05-29 00:42:20,595 [WARNING] Failed to screenshot http://localhost:3000/dashboard/analytics: Page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3000/dashboard/analytics
+Call log:
+  - navigating to "http://localhost:3000/dashboard/analytics", waiting until "load"
+
+2026-05-29 00:42:20,970 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
