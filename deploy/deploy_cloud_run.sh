@@ -92,10 +92,11 @@ for KEY in "${SECRET_KEYS[@]}"; do
 done
 
 # 5) Build image with Cloud Build --------------------------------------------
+# IMPORTANT: use the pinned cloudbuild.yaml so it builds Dockerfile.cloudrun and
+# NOT the dev-only ./Dockerfile (which runs `tail -f /dev/null`).
 echo ">> Building image: ${IMAGE}"
-gcloud builds submit --tag "${IMAGE}" \
-  --project "${PROJECT_ID}" --gcs-log-dir="gs://${PROJECT_ID}_cloudbuild/logs" \
-  . 2>/dev/null || gcloud builds submit --tag "${IMAGE}" --project "${PROJECT_ID}" .
+gcloud builds submit --config cloudbuild.yaml \
+  --substitutions="_IMAGE=${IMAGE}" --project "${PROJECT_ID}" .
 
 # 6) Deploy to Cloud Run ------------------------------------------------------
 echo ">> Deploying to Cloud Run..."
