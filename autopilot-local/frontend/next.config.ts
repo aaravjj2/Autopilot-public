@@ -1,5 +1,4 @@
 import type { NextConfig } from "next";
-import path from "path";
 
 const apexBackend =
   process.env.APEX_BACKEND_URL ||
@@ -9,8 +8,6 @@ const apexBackend =
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   output: "standalone",
-  // Monorepo: trace files from repo root (autopilot-local + frontend)
-  outputFileTracingRoot: path.join(__dirname, "../.."),
   async rewrites() {
     return [
       {

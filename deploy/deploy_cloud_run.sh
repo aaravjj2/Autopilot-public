@@ -112,6 +112,12 @@ gcloud run deploy "${SERVICE_BACKEND}" \
 BACKEND_URL="$(gcloud run services describe "${SERVICE_BACKEND}" --region "${REGION}" \
   --project "${PROJECT_ID}" --format='value(status.url)')"
 BACKEND_URL="${BACKEND_URL%/}"
+# Prefer canonical *.run.app URL when gcloud returns legacy *.a.run.app form
+LEGACY_URL="$(gcloud run services describe "${SERVICE_BACKEND}" --region "${REGION}" \
+  --project "${PROJECT_ID}" --format='value(status.address.url)' 2>/dev/null || true)"
+if [[ -n "${LEGACY_URL}" ]]; then
+  BACKEND_URL="${LEGACY_URL%/}"
+fi
 echo ">> Backend: ${BACKEND_URL}"
 curl -fsS "${BACKEND_URL}/health" >/dev/null && echo "   /health OK" || echo "   WARN: /health failed"
 
