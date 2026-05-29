@@ -144,6 +144,13 @@ class FinanceBrain:
             else:
                 out["authenticated"] = False
                 out["probe"] = "failed"
+        active = self._active_slot()
+        out["live"] = self.is_live
+        out["mode"] = active.label if active else "heuristic"
+        out["provider"] = out["mode"]
+        out["model"] = active.model if active else ""
+        if not self.is_live:
+            out["fallback"] = "heuristic"
         return out
 
     # -- public ops -----------------------------------------------------------

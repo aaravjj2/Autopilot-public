@@ -1,5 +1,5 @@
 {
-  "current_iteration": 614,
+  "current_iteration": 615,
   "completed_iterations": [
     1,
     2,
@@ -37,7 +37,8 @@
     610,
     611,
     612,
-    613
+    613,
+    614
   ],
   "idea_history": [
     {
@@ -312,6 +313,13 @@
     },
     {
       "iteration": 613,
+      "idea": "Expose risk gate rejection reasons in API",
+      "outcome": "PARTIAL",
+      "files_changed": [],
+      "sharpe": 3.211
+    },
+    {
+      "iteration": 614,
       "idea": "Expose risk gate rejection reasons in API",
       "outcome": "PARTIAL",
       "files_changed": [],
@@ -3422,6 +3430,12 @@
       "sharpe": 3.211,
       "win_rate": 0.5,
       "test_pass_rate": 0.8902439024390244
+    },
+    {
+      "iteration": 614,
+      "sharpe": 3.211,
+      "win_rate": 0.5,
+      "test_pass_rate": 0.8606060606060606
     }
   ],
   "last_compact_summary": ""
