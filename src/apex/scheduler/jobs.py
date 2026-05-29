@@ -276,6 +276,7 @@ def register_jobs(scheduler: BaseScheduler, engine: ApexEngine) -> None:
         replace_existing=True,
     )
 
+    # World Cup agent cycle (full pipeline) every 15 minutes 8 AM - 11 PM
     scheduler.add_job(
         engine.world_cup_agent_cycle,
         "cron",

@@ -50,11 +50,27 @@ class YFinanceMarketDataClient:
             for idx, row in hist.iterrows()
         ]
 
-    def get_fundamentals(self, symbol: str) -> dict[str, Any]:
+    def _safe_get_info(self, symbol: str) -> dict[str, Any]:
+        """Gracefully fetch yfinance .info — catches 404 / ConnectionError / ValueError.
+
+        Some symbols (e.g. SMH, SOXX, XSD) return 404 for fundamentals data
+        even when price history is available.  Returns {} on failure.
+        """
         try:
-            info = _ticker(symbol).info or {}
-        except Exception:
-            info = {}
+            info = _ticker(symbol).info
+            return info if isinstance(info, dict) else {}
+        except Exception:  # noqa: BLE001 — yfinance raises raw HTTPError for missing symbols
+            return {}
+
+    def _safe_get_calendar(self, symbol: str):
+        """Gracefully fetch yfinance .calendar — returns None on 404 / errors."""
+        try:
+            return _ticker(symbol).calendar
+        except Exception:  # noqa: BLE001
+            return None
+
+    def get_fundamentals(self, symbol: str) -> dict[str, Any]:
+        info = self._safe_get_info(symbol)
         return {
             "pe": info.get("trailingPE"),
             "ev_to_ebitda": info.get("enterpriseToEbitda"),
@@ -64,20 +80,17 @@ class YFinanceMarketDataClient:
         }
 
     def get_sector(self, symbol: str) -> str:
-        try:
-            return str((_ticker(symbol).info or {}).get("sector", "UNKNOWN"))
-        except Exception:
-            return "UNKNOWN"
+        return str(self._safe_get_info(symbol).get("sector", "UNKNOWN"))
 
     def get_earnings_date(self, symbol: str) -> date | None:
-        calendar = _ticker(symbol).calendar
+        calendar = self._safe_get_calendar(symbol)
         if calendar is None or len(calendar) == 0:
             return None
         try:
             value = calendar.iloc[0, 0]
             if hasattr(value, "date"):
                 return value.date()
-        except Exception:
+        except Exception:  # noqa: BLE001
             return None
         return None
 

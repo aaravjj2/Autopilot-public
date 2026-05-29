@@ -7282,3 +7282,98 @@ Call log:
   - navigating to "http://localhost:3000/dashboard/analytics", waiting until "load"
 
 2026-05-29 00:53:47,859 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+[main ed552e4] loop(iter 617): Expose risk gate rejection reasons in API
+ 75 files changed, 3003 insertions(+), 1518 deletions(-)
+ rewrite artifacts/submission/api-arb-sample.json (80%)
+ rewrite artifacts/submission/screenshots/01-overview.png (97%)
+ rewrite artifacts/submission/screenshots/02-arb-radar.png (97%)
+ rewrite artifacts/submission/screenshots/03-signals.png (98%)
+ rewrite artifacts/submission/screenshots/04-autopilot.png (98%)
+ rewrite artifacts/submission/screenshots/05-risk.png (90%)
+ rewrite artifacts/submission/screenshots/06-hivemind.png (98%)
+ rewrite artifacts/submission/screenshots/07-live-feed.png (97%)
+ rewrite artifacts/submission/screenshots/08-settings.png (97%)
+ rewrite artifacts/submission/screenshots/09-api-docs.png (98%)
+ rewrite autopilot-local/frontend/test-results/ai-hivemind-AI-Hive-Mind-consensus-vote-chromium/test-failed-1.png (98%)
+ delete mode 100644 autopilot-local/frontend/test-results/full-flow-Full-User-Flow-complete-navigation-flow-chromium-retry1/test-failed-1.png
+ rewrite autopilot-local/frontend/test-results/full-flow-Full-User-Flow-complete-navigation-flow-chromium-retry1/trace.zip (71%)
+ delete mode 100644 autopilot-local/frontend/test-results/full-flow-Full-User-Flow-complete-navigation-flow-chromium-retry2/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/full-flow-Full-User-Flow-complete-navigation-flow-chromium-retry2/test-failed-1.png
+ rename autopilot-local/frontend/test-results/{full-flow-Full-User-Flow-complete-navigation-flow-chromium-retry1 => full-flow-Full-User-Flow-complete-navigation-flow-chromium}/error-context.md (96%)
+ rename autopilot-local/frontend/test-results/{full-terminal-Overview-fea-60252-palette-opens-and-navigates-chromium-retry1 => full-flow-Full-User-Flow-complete-navigation-flow-chromium}/test-failed-1.png (76%)
+ create mode 100644 autopilot-local/frontend/test-results/full-flow-Full-User-Flow-no-critical-page-errors-chromium-retry1/error-context.md
+ create mode 100644 autopilot-local/frontend/test-results/full-flow-Full-User-Flow-no-critical-page-errors-chromium-retry1/test-failed-1.png
+ create mode 100644 autopilot-local/frontend/test-results/full-flow-Full-User-Flow-no-critical-page-errors-chromium-retry1/trace.zip
+ create mode 100644 autopilot-local/frontend/test-results/full-flow-Full-User-Flow-no-critical-page-errors-chromium-retry2/error-context.md
+ create mode 100644 autopilot-local/frontend/test-results/full-flow-Full-User-Flow-no-critical-page-errors-chromium-retry2/test-failed-1.png
+ create mode 100644 autopilot-local/frontend/test-results/full-flow-Full-User-Flow-no-critical-page-errors-chromium/error-context.md
+ create mode 100644 autopilot-local/frontend/test-results/full-flow-Full-User-Flow-no-critical-page-errors-chromium/test-failed-1.png
+ rename autopilot-local/frontend/test-results/{full-terminal-Overview-fea-60252-palette-opens-and-navigates-chromium-retry1 => full-terminal-Analytics-fe-c6953-e-Arb-Backtest-Signals-tabs-chromium-retry2}/error-context.md (63%)
+ create mode 100644 autopilot-local/frontend/test-results/full-terminal-Analytics-fe-c6953-e-Arb-Backtest-Signals-tabs-chromium-retry2/test-failed-1.png
+ create mode 100644 autopilot-local/frontend/test-results/full-terminal-Every-sideba-c4f33-very-tab-via-sidebar-clicks-chromium-retry1/error-context.md
+ rename autopilot-local/frontend/test-results/{trading-Trading-Page-trading-has-sidebar-chromium => full-terminal-Every-sideba-c4f33-very-tab-via-sidebar-clicks-chromium-retry1}/test-failed-1.png (100%)
+ create mode 100644 autopilot-local/frontend/test-results/full-terminal-Every-sideba-c4f33-very-tab-via-sidebar-clicks-chromium-retry1/trace.zip
+ create mode 100644 autopilot-local/frontend/test-results/full-terminal-Every-sideba-c4f33-very-tab-via-sidebar-clicks-chromium-retry2/error-context.md
+ create mode 100644 autopilot-local/frontend/test-results/full-terminal-Every-sideba-c4f33-very-tab-via-sidebar-clicks-chromium-retry2/test-failed-1.png
+ create mode 100644 autopilot-local/frontend/test-results/full-terminal-Every-sideba-c4f33-very-tab-via-sidebar-clicks-chromium/error-context.md
+ create mode 100644 autopilot-local/frontend/test-results/full-terminal-Every-sideba-c4f33-very-tab-via-sidebar-clicks-chromium/test-failed-1.png
+ rewrite autopilot-local/frontend/test-results/full-terminal-Overview-fea-60252-palette-opens-and-navigates-chromium-retry1/trace.zip (76%)
+ rewrite autopilot-local/frontend/test-results/full-terminal-Overview-fea-60252-palette-opens-and-navigates-chromium/test-failed-1.png (99%)
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Overview-features-View-all-signals-link-chromium-retry1/trace.zip
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Overview-features-View-all-signals-link-chromium/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Overview-features-View-all-signals-link-chromium/test-failed-1.png
+ create mode 100644 autopilot-local/frontend/test-results/real-data-WebSocket-Real-t-13fa0-al-websocket-console-errors-chromium-retry1/trace.zip
+ rename autopilot-local/frontend/test-results/{trading-Trading-Page-trading-has-sidebar-chromium => real-data-WebSocket-Real-t-13fa0-al-websocket-console-errors-chromium}/error-context.md (59%)
+ create mode 100644 autopilot-local/frontend/test-results/real-data-WebSocket-Real-t-13fa0-al-websocket-console-errors-chromium/test-failed-1.png
+ create mode 100644 autopilot-local/frontend/test-results/submission-demo-APEX-Autopilot-full-product-demo-chromium-retry1/trace.zip
+ create mode 100644 autopilot-local/frontend/test-results/submission-demo-APEX-Autopilot-full-product-demo-chromium/error-context.md
+ create mode 100644 autopilot-local/frontend/test-results/submission-demo-APEX-Autopilot-full-product-demo-chromium/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/trading-Trading-Page-trading-has-sidebar-chromium-retry1/trace.zip
+ create mode 100644 data/artifacts/iteration_0617/manifest.json
+ create mode 100644 data/artifacts/iteration_0617/metrics.json
+ create mode 100644 data/artifacts/iteration_0617/videos/page@9e3392509f243989f8c2edc21e840573.webm
+ create mode 100644 data/loop_logs/iteration_0617_build.log
+ create mode 100644 data/loop_logs/iteration_0617_tests.json
+ create mode 100644 data/loop_plans/iteration_0617_plan.json
+ create mode 100644 data/models/arb_edge/candidate_20260529T044316Z/model.json
+ create mode 100644 data/models/arb_edge/candidate_20260529T044429Z/model.json
+ create mode 100644 data/models/arb_edge/candidate_20260529T044500Z/model.json
+ create mode 100644 data/models/arb_edge/candidate_20260529T044613Z/model.json
+ create mode 100644 data/models/arb_edge/candidate_20260529T045001Z/model.json
+ create mode 100644 data/models/arb_edge/candidate_20260529T045023Z/model.json
+ create mode 100644 data/models/arb_edge/candidate_20260529T045215Z/model.json
+ create mode 100644 data/models/arb_edge/candidate_20260529T045258Z/model.json
+2026-05-29 00:53:48,682 [WARNING] git push failed: fatal: could not read Username for 'https://github.com': No such device or address
+
+2026-05-29 00:53:48,686 [INFO] Iteration 617 complete. Tests: FAIL
+2026-05-29 00:55:48,686 [INFO] === ITERATION 618 (target 1000) ===
+2026-05-29 00:55:49,012 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-29 00:55:49,013 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-29 00:55:49,013 [WARNING] Using deterministic fallback ideas (LLM unavailable)
+2026-05-29 00:55:49,013 [INFO] --- Idea Scoring Table ---
+2026-05-29 00:55:49,013 [INFO] Idea 1: Expose risk gate rejection reasons in API
+2026-05-29 00:55:49,013 [INFO]   Score: 0.20 (Impact: 2.0, Comp: 1.0, Novelty: 0.1)
+2026-05-29 00:55:49,013 [WARNING] All ideas were recent/stale. Regenerating...
+2026-05-29 00:55:49,247 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-29 00:55:49,247 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-29 00:55:49,247 [WARNING] Using deterministic fallback ideas (LLM unavailable)
+2026-05-29 00:55:49,247 [INFO] Selected idea: Expose risk gate rejection reasons in API
+2026-05-29 00:55:49,468 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-29 00:55:49,468 [ERROR] IterationPlanner failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-29 00:55:49,469 [WARNING] Using test-only fallback plan (LLM unavailable)
+2026-05-29 00:55:49,475 [INFO] Step A: Python unit tests
+2026-05-29 00:57:50,083 [INFO] Step B: TypeScript type check
+2026-05-29 00:57:52,571 [INFO] Step C: Playwright E2E tests
+2026-05-29 02:13:58,976 [INFO] Step D: Backend API smoke test
+2026-05-29 02:14:04,024 [INFO] HTTP Request: GET http://localhost:8001/api/opportunities "HTTP/1.1 404 Not Found"
+2026-05-29 02:14:04,039 [INFO] HTTP Request: GET http://localhost:8001/api/arb/backtest "HTTP/1.1 200 OK"
+2026-05-29 02:14:04,039 [INFO] Step E: Backtest regression check
+2026-05-29 02:14:09,608 [WARNING] Failed to screenshot http://localhost:3000/dashboard/arb-radar: Page.goto: Timeout 5000ms exceeded.
+Call log:
+  - navigating to "http://localhost:3000/dashboard/arb-radar", waiting until "load"
+
+2026-05-29 02:14:14,610 [WARNING] Failed to screenshot http://localhost:3000/dashboard/analytics: Page.goto: Timeout 5000ms exceeded.
+Call log:
+  - navigating to "http://localhost:3000/dashboard/analytics", waiting until "load"
+
+2026-05-29 02:14:15,697 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"

@@ -12,7 +12,10 @@
 # Error details
 
 ```
-Error: APEX health check failed: http://127.0.0.1:8000/health
+TimeoutError: page.goto: Timeout 45000ms exceeded.
+Call log:
+  - navigating to "http://127.0.0.1:3000/dashboard", waiting until "load"
+
 ```
 
 # Test source
@@ -37,14 +40,14 @@ Error: APEX health check failed: http://127.0.0.1:8000/health
   17 |     }
   18 |     await new Promise((r) => setTimeout(r, 1000));
   19 |   }
-> 20 |   throw new Error(`APEX health check failed: ${APEX_HEALTH}`);
-     |         ^ Error: APEX health check failed: http://127.0.0.1:8000/health
+  20 |   throw new Error(`APEX health check failed: ${APEX_HEALTH}`);
   21 | }
   22 | 
   23 | /** Navigate and wait for terminal shell (avoids networkidle hangs from WS/polling). */
   24 | export async function gotoTerminal(page: Page, path: string) {
   25 |   await waitForApexHealth();
-  26 |   await page.goto(path, { waitUntil: 'load', timeout: 45_000 });
+> 26 |   await page.goto(path, { waitUntil: 'load', timeout: 45_000 });
+     |              ^ TimeoutError: page.goto: Timeout 45000ms exceeded.
   27 |   await expect(page.locator('.app-shell')).toBeVisible({ timeout: 20_000 });
   28 |   await page.waitForSelector('html[data-terminal-hydrated="true"]', { timeout: 20_000 });
   29 | }

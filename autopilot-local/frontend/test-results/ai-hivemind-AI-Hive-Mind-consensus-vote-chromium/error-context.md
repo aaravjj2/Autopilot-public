@@ -12,11 +12,14 @@
 # Error details
 
 ```
+Test timeout of 30000ms exceeded.
+```
+
+```
 Error: expect(locator).toBeVisible() failed
 
 Locator: getByTestId('consensus-output')
 Expected: visible
-Timeout: 15000ms
 Error: element(s) not found
 
 Call log:
@@ -29,7 +32,7 @@ Call log:
 - complementary:
   - text: AX
   - heading "APEX Terminal" [level=1]
-  - paragraph: $146,880.91 · Paper
+  - paragraph: $146,879.86 · Paper
   - navigation:
     - text: Trade
     - link "Overview":
@@ -54,10 +57,10 @@ Call log:
       - /url: /dashboard/autopilot
       - img
       - text: Autopilot
-    - link "Arb Radar 288":
+    - link "Arb Radar 291":
       - /url: /dashboard/arb-radar
       - img
-      - text: Arb Radar 288
+      - text: Arb Radar 291
     - link "Risk":
       - /url: /dashboard/risk-management
       - img
@@ -110,7 +113,7 @@ Call log:
       - /url: /dashboard/settings
       - img
       - text: Settings
-  - text: API 549msWS 7msArb 894ms WS live
+  - text: API —WS —Arb — WS live
 - banner:
   - button "⌕ Search symbol, command… ⌘K"
   - text: NYSE · Regular
@@ -130,7 +133,7 @@ Call log:
   - button "Run vote"
   - text: Active proposal KX8 Q8 Edge 5.00% · Settlement 85% Committee log
   - paragraph: Run consensus on the selected arb proposal
-- contentinfo: "WS: connected API: — Data age: 0s Updated: 12:46:39 AM APEX Terminal"
+- contentinfo: "WS: connected API: — Data age: 0s Updated: 12:58:26 AM APEX Terminal"
 - alert
 ```
 

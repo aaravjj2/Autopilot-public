@@ -1,8 +1,8 @@
 {
   "status": "healthy",
-  "timestamp": "2026-05-29T04:50:38.715542+00:00",
-  "last_cache_update": "2026-05-29T04:50:31.673749+00:00",
-  "data_age_seconds": 6.95874,
+  "timestamp": "2026-05-29T05:23:29.803040+00:00",
+  "last_cache_update": "2026-05-29T05:23:18.603283+00:00",
+  "data_age_seconds": 11.030586,
   "is_stale": false,
   "demo_mode": false,
   "alpaca_connected": true,
@@ -19,16 +19,16 @@
   },
   "positions": 1,
   "orders": 0,
-  "opportunities": 288,
-  "proposals": 49,
+  "opportunities": 292,
+  "proposals": 24,
   "events": 100,
-  "arb_opportunities": 288,
+  "arb_opportunities": 292,
   "showcase_mode": false,
   "ml": {
     "self_improvement_enabled": true,
     "active_model": {
-      "version": "20260529T044613Z",
-      "trained_at": "2026-05-29T04:46:13.069610+00:00",
+      "version": "20260529T051506Z",
+      "trained_at": "2026-05-29T05:15:06.504955+00:00",
       "feature_names": [
         "net_edge",
         "gross_spread",
@@ -59,7 +59,7 @@
       }
     },
     "training_corpus": {
-      "total_rows": 431,
+      "total_rows": 430,
       "labeled_rows": 104,
       "resolved_arb_count": 16
     },
@@ -73,9 +73,9 @@
   },
   "kalshi_ws": {
     "connected": true,
-    "stale": false,
+    "stale": true,
     "seconds_since_message": null,
-    "seconds_since_frame": 17.696062924002035,
+    "seconds_since_frame": 1093.987225637,
     "reconnects": 0
   },
   "scheduler": {

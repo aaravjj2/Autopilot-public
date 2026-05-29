@@ -1,0 +1,92 @@
+Phase: plan
+Tool: opencode
+Error Type: Python exception
+
+Now I have a comprehensive picture. Here are the **10 highest-priority improvement tasks** for the APEX Autopilot codebase:
+
+---
+
+## Improvement Tasks (Max 10)
+
+### 🔴 1. Fix `except: pass` in `training_export.py` (Security - High)
+**File:** `src/apex/services/training_export.py:154`
+**Issue:** Bare `except Exception: pass` silently swallows all errors — can hide data corruption or API failures.
+**Fix:** Log the exception with `get_logger(__name__)`, re-raise on non-recoverable errors, or at minimum log the traceback.
+**Severity:** Bandit High (B110)
+
+### 🔴 2. Fix `except: continue` in `brightdata_mcp_client.py` (Security - Medium)
+**File:** `src/apex/integrations/brightdata_mcp_client.py:124`
+**Issue:** `except: continue` in a loop silently swallows JSON decode errors from the Brightdata MCP stream, potentially hiding wire-format mismatches.
+**Fix:** Log decode failures and continue only for transient errors; count consecutive failures and reconnect if threshold exceeded.
+**Severity:** Bandit Medium (B112)
+
+### 🟠 3. Remove unused import in `dashboard/health.py`
+**File:** `src/apex/dashboard/health.py:3`
+**Issue:** `import os` is unused (Ruff F401).
+**Fix:** `ruff check --fix` or manual removal.
+**Severity:** Low but trivial fix (one-line), keeps CI lint-clean.
+
+### 🟠 4. Fix type annotations for `arb_engine.py:118` (Mypy Medium)
+**File:** `src/apex/services/arb_engine.py:118`
+**Issue:** `opportunities = []` missing type annotation → mypy `var-annotated` error.
+**Fix:** Change to `opportunities: list[ArbOpp] = []`.
+**Severity:** Low complexity, high signal for code quality.
+
+### 🟠 5. Add `backoff_seconds` default to `retry.py` (API hardening)
+**File:** `src/apex/core/retry.py`
+**Issue:** `backoff_seconds` is a required keyword argument with no default — every caller must specify it. 6 callers all pass `backoff_seconds=2` or similar. A default of `1.0` would simplify usage and prevent the kind of signature-mismatch bug that broke `gemini_native` previously.
+**Fix:** Add `backoff_seconds: float = 1.0` default parameter.
+**Severity:** Medium — reduces future regression risk.
+
+### 🟡 6. Add unit tests for 5 untested apex modules
+**Files (pick top 5 from ~30 uncovered):**
+- `src/apex/services/backtest_engine.py` — core BacktestEngine (no direct unit tests)
+- `src/apex/services/arb_row_utils.py` — utilities used by arb pipeline
+- `src/apex/repositories/sqlite_store.py` — ~600-line persistence layer (no direct unit test)
+- `src/apex/execution/sor.py` — smart order router
+- `src/apex/execution/vwap.py` — VWAP execution algorithm
+**Fix:** Write targeted pytest tests for each module's public API surface.
+**Severity:** Medium — coverage gaps mean regressions go undetected.
+
+### 🟡 7. Fix Playwright E2E test regression
+**Issue:** Previous cycle reports noted Playwright E2E pass rate dropped from 99% → 35.5% after risk gate API changes. 20 spec files exist but likely failing on assertions expecting old API response formats.
+**Fix:** Run Playwright tests, identify failing assertions, update page objects to match the `/api/opportunities` and risk gate rejection endpoint responses.
+**Severity:** Medium — E2E reliability is critical for unattended operation.
+
+### 🟡 8. Update README badges and frontend package.json
+**Issue:**
+- README badge says `504/508 tests` but we have 364 tests (100% pass). Stale badge misrepresents project health.
+- Frontend `package.json` may be missing dev dependencies for Playwright.
+**Fix:** Regenerate badge, update test count in README.
+**Severity:** Low cosmetic, but important for external perception.
+
+### 🟢 9. Clean up root directory (move loose files to organized dirs)
+**Issue:** 30+ files in root: `scratch.py`, `backend_api.py`, `backup_db.py`, `autopilot-local-PRD.md`, `LOOP_ERROR_FIXES.md`, `SETUP_COMPLETE.md`, `HEALTH_REPORT.md`, etc. Root directory is cluttered with historical one-off scripts and docs.
+**Fix:** Create `docs/archive/`, `scripts/legacy/` directories; move stale files; delete truly obsolete ones.
+**Severity:** Low — organization debt only.
+
+### 🟢 10. Fix hardcoded empty password default in `alpaca_adapter.py:497`
+**File:** `src/apex/integrations/alpaca_adapter.py:497`
+**Issue:** `password=""` is passed as a default — Bandit B107 flags this as a possible hardcoded password.
+**Fix:** Use `password: str = ""` but add a comment explaining it's an optional override from the server command; or pull from settings/env.
+**Severity:** Low (Bandit B107 is informational), but keeps security audit clean.
+
+---
+
+### Summary Statistics
+
+| Metric | Value |
+|--------|-------|
+| **Tests passing** | 364/364 (100%) |
+| **Mypy errors** | 50+ across 25 files |
+| **Ruff errors** | 1 (F401 unused import) |
+| **Bandit issues** | 1 High (B110), 5 Medium (B112/B107), 44 Low |
+| **Untested modules** | ~30 apex modules |
+| **Playwright spec files** | 20 (reported regression) |
+| **Root dir clutter** | 33 loose files |
+
+**Priority recommendation:** Tasks 1→2→3→5→7 should be done in the next cycle (blocking regressions + security). Tasks 4→6→8→9→10 are follow-ups.
+
+Do you want me to begin executing these tasks immediately?
+
+session_id: 20260529_020312_963d5a

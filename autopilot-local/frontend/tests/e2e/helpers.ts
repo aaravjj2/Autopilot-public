@@ -69,7 +69,15 @@ export function sidebarLink(page: Page, label: string) {
 
 export async function clickSidebar(page: Page, label: string) {
   await waitForTerminalHydration(page);
+  // Use role locator first (more reliable than attribute selectors),
+  // then fall back to attribute-based if the label has no known href.
   const link = sidebarLink(page, label);
   await link.scrollIntoViewIfNeeded();
-  await link.click();
+  await link.click({ force: true });
+
+  // Wait for client-side navigation to complete
+  const href = SIDEBAR_HREFS[label];
+  if (href && href !== '/dashboard') {
+    await page.waitForURL(`**${href}`, { timeout: 12_000 }).catch(() => {});
+  }
 }

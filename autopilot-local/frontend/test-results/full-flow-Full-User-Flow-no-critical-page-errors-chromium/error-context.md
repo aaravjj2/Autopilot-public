@@ -12,10 +12,7 @@
 # Error details
 
 ```
-Error: expect(received).toBe(expected) // Object.is equality
-
-Expected: 0
-Received: 1
+Test timeout of 30000ms exceeded.
 ```
 
 # Page snapshot
@@ -28,7 +25,7 @@ Received: 1
         - generic [ref=e5]: AX
         - generic [ref=e6]:
           - heading "APEX Terminal" [level=1] [ref=e7]
-          - paragraph [ref=e8]: $146,881.16 · Paper
+          - paragraph [ref=e8]: $146,885.12 · Paper
       - navigation [ref=e9]:
         - generic [ref=e10]: Trade
         - link "Overview" [ref=e11] [cursor=pointer]:
@@ -136,87 +133,164 @@ Received: 1
     - main [ref=e135]:
       - generic [ref=e136]:
         - generic [ref=e137]:
-          - heading "Copy Trading Marketplace" [level=2] [ref=e138]
-          - generic [ref=e139]: Follow Alpaca pilot portfolios · paper mirror trades (equities only)
-        - button "Refresh all" [ref=e141] [cursor=pointer]
-      - generic [ref=e142]:
-        - generic [ref=e143]:
-          - generic [ref=e144]:
-            - button "1W" [ref=e145] [cursor=pointer]
-            - button "1M" [ref=e146] [cursor=pointer]
-            - button "3M" [ref=e147] [cursor=pointer]
-            - button "6M" [ref=e148] [cursor=pointer]
-            - button "1Y" [ref=e149] [cursor=pointer]
-          - generic [ref=e150]:
-            - button "return" [ref=e151] [cursor=pointer]
-            - button "name" [ref=e152] [cursor=pointer]
-            - button "newest" [ref=e153] [cursor=pointer]
-        - paragraph [ref=e154]: Loading portfolios…
-    - contentinfo [ref=e155]:
-      - generic [ref=e156]: "WS: connected"
-      - generic [ref=e157]: "API: —"
-      - generic [ref=e158]: "Data age: 0s"
-      - generic [ref=e159]: "Updated: 12:47:44 AM"
-      - generic [ref=e160]: APEX Terminal
-  - button "Open Next.js Dev Tools" [ref=e166] [cursor=pointer]:
-    - img [ref=e167]
-  - alert [ref=e170]
-```
-
-# Test source
-
-```ts
-  1  | import { test, expect } from '@playwright/test';
-  2  | import { gotoTerminal, clickSidebar } from './helpers';
-  3  | 
-  4  | test.describe('Full User Flow', () => {
-  5  |   test('complete navigation flow', async ({ page }) => {
-  6  |     await page.goto('/');
-  7  |     await expect(page).toHaveTitle(/APEX/);
-  8  | 
-  9  |     await page.getByRole('link', { name: /Enter Terminal/ }).click();
-  10 |     await expect(page).toHaveURL(/dashboard/);
-  11 |     await expect(page.locator('.app-shell')).toBeVisible();
-  12 |     await page.waitForSelector('html[data-terminal-hydrated="true"]', { timeout: 30_000 });
-  13 | 
-  14 |     await clickSidebar(page, 'Trading');
-  15 |     await expect(page).toHaveURL(/trading/, { timeout: 15_000 });
-  16 | 
-  17 |     await clickSidebar(page, 'Positions');
-  18 |     await expect(page).toHaveURL(/positions/);
-  19 | 
-  20 |     await clickSidebar(page, 'Marketplace');
-  21 |     await expect(page).toHaveURL(/marketplace/);
-  22 | 
-  23 |     await clickSidebar(page, 'Autopilot');
-  24 |     await expect(page).toHaveURL(/autopilot/);
-  25 | 
-  26 |     await clickSidebar(page, 'Overview');
-  27 |     await expect(page).toHaveURL(/\/dashboard\/?$/);
-  28 |   });
-  29 | 
-  30 |   test('responsive layout', async ({ page }) => {
-  31 |     await page.setViewportSize({ width: 375, height: 812 });
-  32 |     await gotoTerminal(page, '/dashboard');
-  33 | 
-  34 |     await page.setViewportSize({ width: 1920, height: 1080 });
-  35 |     await gotoTerminal(page, '/dashboard');
-  36 |   });
-  37 | 
-  38 |   test('no critical page errors', async ({ page }) => {
-  39 |     const errors: string[] = [];
-  40 |     page.on('pageerror', (error) => errors.push(error.message));
-  41 | 
-  42 |     await gotoTerminal(page, '/dashboard');
-  43 |     await gotoTerminal(page, '/dashboard/trading');
-  44 |     await gotoTerminal(page, '/dashboard/marketplace');
-  45 | 
-  46 |     const critical = errors.filter(
-  47 |       (e) => !e.includes('favicon') && !e.includes('ResizeObserver')
-  48 |     );
-> 49 |     expect(critical.length).toBe(0);
-     |                             ^ Error: expect(received).toBe(expected) // Object.is equality
-  50 |   });
-  51 | });
-  52 | 
+          - heading "Command Center" [level=2] [ref=e138]
+          - generic [ref=e139]: Real-time portfolio · Engine RUNNING · 1:02:06 AM
+        - generic [ref=e140]:
+          - button "Refresh Cache" [ref=e141] [cursor=pointer]
+          - generic [ref=e142]: LIVE
+      - generic [ref=e143]:
+        - generic [ref=e144]:
+          - generic [ref=e145]: Portfolio
+          - generic [ref=e146]: $146,885.12
+          - generic [ref=e147]: 0.01% today
+        - generic [ref=e148]:
+          - generic [ref=e149]: Buying Power
+          - generic [ref=e150]: $585,001.00
+          - generic [ref=e151]: Cash $144,818.18
+        - generic [ref=e152]:
+          - generic [ref=e153]: Positions
+          - generic [ref=e154]: "1"
+          - generic [ref=e155]: 1 profitable
+        - generic [ref=e156]:
+          - generic [ref=e157]: Signals
+          - generic [ref=e158]: "0"
+          - generic [ref=e159]: 0 high conviction
+        - generic [ref=e160]:
+          - generic [ref=e161]: Arb Active
+          - generic [ref=e162]: "0"
+          - generic [ref=e163]: —
+      - generic [ref=e164]:
+        - generic [ref=e166]: Real-time P&L
+        - generic [ref=e167]:
+          - generic [ref=e168]:
+            - generic [ref=e169]: Unrealized
+            - generic [ref=e170]: $50.68
+          - generic [ref=e171]:
+            - generic [ref=e172]: Daily P&L
+            - generic [ref=e173]: $21.13
+          - generic [ref=e174]:
+            - generic [ref=e175]: Position value
+            - generic [ref=e176]: $2,066.94
+          - generic [ref=e177]:
+            - generic [ref=e178]: Cash
+            - generic [ref=e179]: $144,818.18
+      - generic [ref=e180]:
+        - generic [ref=e183]: Equity Curve · 30D
+        - generic [ref=e185]:
+          - generic [ref=e187]: Risk snapshot
+          - generic [ref=e188]:
+            - generic [ref=e189]:
+              - generic [ref=e190]: 0.0%
+              - text: Daily
+            - generic [ref=e191]:
+              - generic [ref=e192]: "1"
+              - text: Open
+      - generic [ref=e193]:
+        - generic [ref=e194]:
+          - generic [ref=e195]:
+            - generic [ref=e196]: Watchlist
+            - button "+ Add" [ref=e197] [cursor=pointer]
+          - table [ref=e199]:
+            - rowgroup [ref=e200]:
+              - row "Symbol Side P&L Conv" [ref=e201]:
+                - columnheader "Symbol" [ref=e202]
+                - columnheader "Side" [ref=e203]
+                - columnheader "P&L" [ref=e204]
+                - columnheader "Conv" [ref=e205]
+            - rowgroup [ref=e206]:
+              - row "MU long $50.68 —" [ref=e207]:
+                - cell "MU" [ref=e208]
+                - cell "long" [ref=e209]:
+                  - generic [ref=e210]: long
+                - cell "$50.68" [ref=e211]
+                - cell "—" [ref=e212]
+        - generic [ref=e213]:
+          - generic [ref=e215]: Agent Pipeline
+          - generic [ref=e216]:
+            - generic [ref=e217]:
+              - strong [ref=e218]: L0
+              - generic [ref=e219]: Ingest
+            - generic [ref=e220]:
+              - strong [ref=e221]: L1
+              - generic [ref=e222]: Brain
+            - generic [ref=e223]:
+              - strong [ref=e224]: L2
+              - generic [ref=e225]: Agents
+            - generic [ref=e226]:
+              - strong [ref=e227]: L3
+              - generic [ref=e228]: Exec
+            - generic [ref=e229]:
+              - strong [ref=e230]: L4
+              - generic [ref=e231]: Obs
+      - generic [ref=e232]:
+        - generic [ref=e233]:
+          - generic [ref=e234]:
+            - generic [ref=e235]: Top Signals
+            - link "View all" [ref=e236] [cursor=pointer]:
+              - /url: /dashboard/opportunities
+          - paragraph [ref=e237]: No opportunities yet
+        - generic [ref=e238]:
+          - generic [ref=e240]: Recent Activity
+          - generic [ref=e241]:
+            - generic [ref=e242]:
+              - img [ref=e243]
+              - generic [ref=e247]: SYSTEM_ALERT
+              - generic [ref=e248]: 1:01:03 AM
+            - generic [ref=e249]:
+              - img [ref=e250]
+              - generic [ref=e254]: SYSTEM_ALERT
+              - generic [ref=e255]: 1:01:01 AM
+            - generic [ref=e256]:
+              - img [ref=e257]
+              - generic [ref=e261]: ORDER_FILLED · PM-EVT-us-announces-new-iran-agreementceasefire-extension-by-may-31-665-831-238
+              - generic [ref=e262]: 1:01:00 AM
+            - generic [ref=e263]:
+              - img [ref=e264]
+              - generic [ref=e268]: ORDER_SUBMITTED · PM-EVT-us-announces-new-iran-agreementceasefire-extension-by-may-31-665-831-238
+              - generic [ref=e269]: 1:00:50 AM
+            - generic [ref=e270]:
+              - img [ref=e271]
+              - generic [ref=e275]: ORDER_FILLED · PM-EVT-us-x-iran-permanent-peace-deal-by-june-7-2026
+              - generic [ref=e276]: 1:00:50 AM
+            - generic [ref=e277]:
+              - img [ref=e278]
+              - generic [ref=e282]: ORDER_SUBMITTED · PM-EVT-us-x-iran-permanent-peace-deal-by-june-7-2026
+              - generic [ref=e283]: 1:00:39 AM
+            - generic [ref=e284]:
+              - img [ref=e285]
+              - generic [ref=e289]: ORDER_FILLED · PM-EVT-us-iran-nuclear-deal-by-may-31-974
+              - generic [ref=e290]: 1:00:39 AM
+            - generic [ref=e291]:
+              - img [ref=e292]
+              - generic [ref=e296]: ORDER_SUBMITTED · PM-EVT-us-iran-nuclear-deal-by-may-31-974
+              - generic [ref=e297]: 1:00:29 AM
+    - complementary [ref=e298]:
+      - generic [ref=e299]:
+        - generic [ref=e300]: Order Ticket
+        - generic [ref=e301]:
+          - generic [ref=e302]: Symbol
+          - textbox [ref=e303]: MU
+          - generic [ref=e304]:
+            - button "Buy" [ref=e305] [cursor=pointer]
+            - button "Sell" [ref=e306] [cursor=pointer]
+          - generic [ref=e307]: Qty
+          - spinbutton [ref=e308]: "10"
+          - generic [ref=e309]: Type
+          - combobox [ref=e310]:
+            - option "Market" [selected]
+            - option "Limit"
+          - button "Submit Paper Order" [ref=e311] [cursor=pointer]
+      - generic [ref=e312]:
+        - generic [ref=e313]: Alerts
+        - list [ref=e314]:
+          - listitem [ref=e315]: Engine cache auto-refresh 30s
+    - contentinfo [ref=e316]:
+      - generic [ref=e317]: "WS: connected"
+      - generic [ref=e318]: "API: —"
+      - generic [ref=e319]: "Data age: 0s"
+      - generic [ref=e320]: "Updated: 1:02:06 AM"
+      - generic [ref=e321]: APEX Terminal
+  - button "Open Next.js Dev Tools" [ref=e327] [cursor=pointer]:
+    - img [ref=e328]
+  - alert [ref=e331]
 ```

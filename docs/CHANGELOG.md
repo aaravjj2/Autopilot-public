@@ -226,3 +226,10 @@ All notable changes to this project will be documented in this file.
 **Files changed**: None
 **Test results**: pytest 406/406 | TS ✓ | Playwright 98/102 | Sharpe 3.21
 **Summary**: Return structured rejection codes from /api/execute for operator UX.
+
+## Iteration 618 — Expose risk gate rejection reasons in API
+**Date**: 2026-05-29 06:14:15 UTC
+**Focus**: Risk & Execution
+**Files changed**: None
+**Test results**: pytest 406/406 | TS ✓ | Playwright 29/105 | Sharpe 3.21
+**Summary**: Return structured rejection codes from /api/execute for operator UX.

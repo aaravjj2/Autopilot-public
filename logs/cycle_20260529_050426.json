@@ -1,0 +1,49 @@
+{
+  "cycle": 18,
+  "timestamp": "20260529_050426",
+  "tag": "cycle-20260529-050426",
+  "head_commit": "2534ac1",
+  "head_message": "feat(data): update arb training corpus, Kalshi tick data, and promote arb-edge model",
+  "iterations_completed": 618,
+  "range_start": "2026-05-28T11:39:00Z",
+  "range_end": "2026-05-29T05:04:00Z",
+  "duration_hours": 17.4,
+  "phases": {
+    "bootstrap": "FAIL",
+    "analyze": "FAIL",
+    "plan": "FAIL (deterministic fallback)",
+    "execute": "N/A (no code changes)",
+    "test": "FAIL (test-only iterations, LLM unavailable)",
+    "commit": "PARTIAL (committed locally, push failed)",
+    "report": "SUCCESS (this report)"
+  },
+  "test_metrics": {
+    "backend_unit": {
+      "status": "unknown (test timed out at 120s)",
+      "last_known": "355 PASS / 9 FAIL / 1 SKIP (97.5%)",
+      "failing_files": ["tests/test_gemini_native.py"]
+    },
+    "frontend_e2e": {
+      "status": "REGRESSION",
+      "passed": 38,
+      "total": 107,
+      "rate_pct": 35.5
+    },
+    "backtest_sharpe": 3.211,
+    "api_smoke": "FAIL (/api/opportunities 404)"
+  },
+  "blockers": {
+    "critical": [
+      "Groq API blocked (org restricted) — no LLM intelligence since iter 446",
+      "Git push broken — no TTY for HTTPS credential prompt",
+      "Playwright E2E regression 99% → 35.5% (iter 611-614 risk gate changes)"
+    ],
+    "high": [
+      "OpenCode Zen 404 (minimax/m2.7 model)",
+      "Copilot rate limit (429 weekly quota)",
+      "Ollama not running"
+    ]
+  },
+  "ideas_this_cycle": ["Expose risk gate rejection reasons in API (deterministic fallback)"],
+  "summary": "618 iterations completed across 17.4 hours. Loop now running in degraded deterministic mode due to Groq API outage. Playwright E2E tests regressed from 99% to 35.5% due to risk gate API changes. Git push broken. Core trading pipeline functional with Sharpe 3.211."
+}
