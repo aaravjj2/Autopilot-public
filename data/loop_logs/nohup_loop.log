@@ -7488,3 +7488,67 @@ Call log:
   - navigating to "http://localhost:3000/dashboard/analytics", waiting until "load"
 
 2026-05-29 02:21:05,204 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+[main c6a22b1] loop(iter 619): Expose risk gate rejection reasons in API
+ 51 files changed, 983 insertions(+), 2506 deletions(-)
+ rewrite autopilot-local/frontend/test-results/.last-run.json (99%)
+ delete mode 100644 autopilot-local/frontend/test-results/ai-hivemind-AI-Hive-Mind-consensus-vote-chromium-retry1/trace.zip
+ delete mode 100644 autopilot-local/frontend/test-results/ai-hivemind-AI-Hive-Mind-consensus-vote-chromium/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/ai-hivemind-AI-Hive-Mind-consensus-vote-chromium/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/full-flow-Full-User-Flow-complete-navigation-flow-chromium-retry1/trace.zip
+ delete mode 100644 autopilot-local/frontend/test-results/full-flow-Full-User-Flow-complete-navigation-flow-chromium/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/full-flow-Full-User-Flow-complete-navigation-flow-chromium/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/full-flow-Full-User-Flow-no-critical-page-errors-chromium-retry1/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/full-flow-Full-User-Flow-no-critical-page-errors-chromium-retry1/trace.zip
+ delete mode 100644 autopilot-local/frontend/test-results/full-flow-Full-User-Flow-no-critical-page-errors-chromium-retry2/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/full-flow-Full-User-Flow-no-critical-page-errors-chromium-retry2/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/full-flow-Full-User-Flow-no-critical-page-errors-chromium/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/full-flow-Full-User-Flow-no-critical-page-errors-chromium/test-failed-1.png
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Analytics-fe-c6953-e-Arb-Backtest-Signals-tabs-chromium-retry1/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Analytics-fe-c6953-e-Arb-Backtest-Signals-tabs-chromium-retry1/trace.zip
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Analytics-fe-c6953-e-Arb-Backtest-Signals-tabs-chromium-retry2/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Analytics-fe-c6953-e-Arb-Backtest-Signals-tabs-chromium/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Every-sideba-c4f33-very-tab-via-sidebar-clicks-chromium-retry1/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Every-sideba-c4f33-very-tab-via-sidebar-clicks-chromium-retry1/trace.zip
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Every-sideba-c4f33-very-tab-via-sidebar-clicks-chromium-retry2/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Every-sideba-c4f33-very-tab-via-sidebar-clicks-chromium/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Overview-fea-60252-palette-opens-and-navigates-chromium-retry1/trace.zip
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Overview-fea-60252-palette-opens-and-navigates-chromium/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Positions-features-Open-and-Closed-tabs-chromium-retry1/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Positions-features-Open-and-Closed-tabs-chromium-retry1/trace.zip
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Positions-features-Open-and-Closed-tabs-chromium-retry2/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/full-terminal-Positions-features-Open-and-Closed-tabs-chromium/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/real-data-WebSocket-Real-t-13fa0-al-websocket-console-errors-chromium-retry1/trace.zip
+ delete mode 100644 autopilot-local/frontend/test-results/real-data-WebSocket-Real-t-13fa0-al-websocket-console-errors-chromium/error-context.md
+ delete mode 100644 autopilot-local/frontend/test-results/submission-demo-APEX-Autopilot-full-product-demo-chromium-retry1/trace.zip
+ delete mode 100644 autopilot-local/frontend/test-results/submission-demo-APEX-Autopilot-full-product-demo-chromium/error-context.md
+ rewrite autopilot-local/frontend/tsconfig.tsbuildinfo (70%)
+ create mode 100644 data/artifacts/iteration_0619/manifest.json
+ create mode 100644 data/artifacts/iteration_0619/metrics.json
+ create mode 100644 data/artifacts/iteration_0619/videos/page@06cd9fd755445f4c87c00bc653345e05.webm
+ create mode 100644 data/loop_logs/iteration_0619_build.log
+ create mode 100644 data/loop_logs/iteration_0619_tests.json
+ create mode 100644 data/loop_plans/iteration_0619_plan.json
+ create mode 100644 data/models/arb_edge/candidate_20260529T061628Z/model.json
+ create mode 100644 data/models/arb_edge/candidate_20260529T061822Z/model.json
+ create mode 100644 data/models/arb_edge/candidate_20260529T061924Z/model.json
+ create mode 100644 data/models/arb_edge/candidate_20260529T061946Z/model.json
+ create mode 100644 logs/cycle_20260529_021852.json
+ create mode 100644 logs/error_execute_20260529_021903.txt
+2026-05-29 02:21:06,780 [INFO] Iteration 619 pushed to origin
+2026-05-29 02:21:06,784 [INFO] Iteration 619 complete. Tests: FAIL
+2026-05-29 02:23:08,984 [INFO] === ITERATION 620 (target 1000) ===
+2026-05-29 02:23:09,254 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-29 02:23:09,255 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-29 02:23:09,255 [WARNING] Using deterministic fallback ideas (LLM unavailable)
+2026-05-29 02:23:09,255 [INFO] --- Idea Scoring Table ---
+2026-05-29 02:23:09,255 [INFO] Idea 1: Expose risk gate rejection reasons in API
+2026-05-29 02:23:09,255 [INFO]   Score: 0.20 (Impact: 2.0, Comp: 1.0, Novelty: 0.1)
+2026-05-29 02:23:09,255 [WARNING] All ideas were recent/stale. Regenerating...
+2026-05-29 02:23:09,476 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-29 02:23:09,476 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-29 02:23:09,476 [WARNING] Using deterministic fallback ideas (LLM unavailable)
+2026-05-29 02:23:09,477 [INFO] Selected idea: Expose risk gate rejection reasons in API
+2026-05-29 02:23:09,688 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-29 02:23:09,688 [ERROR] IterationPlanner failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-29 02:23:09,688 [WARNING] Using test-only fallback plan (LLM unavailable)
+2026-05-29 02:23:09,712 [INFO] Step A: Python unit tests
