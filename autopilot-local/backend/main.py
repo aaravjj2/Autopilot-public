@@ -21,6 +21,19 @@ logging.basicConfig(level=logging.INFO)
 LOGGER = logging.getLogger(__name__)
 
 
+# Shared SQLiteStore instance — created once, used by all endpoints
+from apex.core.config import get_settings as _get_settings
+from apex.repositories.sqlite_store import SQLiteStore as _SQLiteStore
+_store_instance: _SQLiteStore | None = None
+
+
+def _get_store() -> _SQLiteStore:
+    global _store_instance
+    if _store_instance is None:
+        _store_instance = _SQLiteStore(_get_settings().sqlite_path)
+    return _store_instance
+
+
 # Global queue for SQLite writes (arb stream → APEX audit store)
 arb_write_queue: asyncio.Queue = asyncio.Queue()
 
@@ -65,11 +78,8 @@ app.include_router(marketplace_router)
 
 @app.get("/api/demo/status")
 def demo_status_local():
-    from apex.core.config import get_settings
-    from apex.repositories.sqlite_store import SQLiteStore
-
-    s = get_settings()
-    store = SQLiteStore(s.sqlite_path)
+    s = _get_settings()
+    store = _get_store()
     return {
         "demo_mode": s.demo_mode,
         "paper_only": bool(s.alpaca_paper_trade),
@@ -79,18 +89,12 @@ def demo_status_local():
 
 @app.get("/api/opportunities")
 def get_opportunities():
-    from apex.core.config import get_settings
-    from apex.repositories.sqlite_store import SQLiteStore
-    settings = get_settings()
-    store = SQLiteStore(settings.sqlite_path)
+    store = _get_store()
     return store.list_arb_opportunities()
 
 @app.get("/api/arb/summary")
 def get_arb_summary():
-    from apex.core.config import get_settings
-    from apex.repositories.sqlite_store import SQLiteStore
-    settings = get_settings()
-    store = SQLiteStore(settings.sqlite_path)
+    store = _get_store()
     
     # Simple summary stats
     all_opps = store.list_arb_opportunities()
@@ -109,15 +113,12 @@ def get_arb_summary():
 @app.websocket("/api/arb/stream")
 async def stream_opportunities(websocket: WebSocket):
     await websocket.accept()
-    from apex.core.config import get_settings
-    from apex.repositories.sqlite_store import SQLiteStore
     from apex.services.arb_engine import ArbEngine
     from dataclasses import asdict
     import asyncio
     
-    settings = get_settings()
-    store = SQLiteStore(settings.sqlite_path)
-    engine = ArbEngine(settings=settings, store=store)
+    store = _get_store()
+    engine = ArbEngine(settings=_get_settings(), store=store)
     
     try:
         while True:
@@ -154,13 +155,11 @@ async def stream_opportunities(websocket: WebSocket):
 
 @app.post("/api/arb/{arb_id}/paper-trade")
 async def paper_trade_arb(arb_id: str):
-    from apex.core.config import get_settings
-    from apex.repositories.sqlite_store import SQLiteStore
     from apex.domain.models import ArbOpportunity, AuditEvent
     from apex.domain.enums import EventType
 
-    settings = get_settings()
-    store = SQLiteStore(settings.sqlite_path)
+    settings = _get_settings()
+    store = _get_store()
     opp_dict = store.get_arb_opportunity(arb_id)
     if not opp_dict:
         raise HTTPException(status_code=404, detail="Arb opportunity not found")
@@ -196,12 +195,9 @@ async def paper_trade_arb(arb_id: str):
 @app.post("/api/arb/{arb_id}/thesis/chat")
 async def thesis_chat(arb_id: str, payload: dict):
     from fastapi import HTTPException
-    from apex.core.config import get_settings
-    from apex.repositories.sqlite_store import SQLiteStore
     from apex.services.thesis_client import ThesisClient
 
-    settings = get_settings()
-    store = SQLiteStore(settings.sqlite_path)
+    store = _get_store()
     opp_dict = store.get_arb_opportunity(arb_id)
     if not opp_dict:
         raise HTTPException(status_code=404, detail="Arb opportunity not found")
@@ -224,11 +220,9 @@ async def thesis_chat(arb_id: str, payload: dict):
 @app.get("/api/arb/backtest")
 async def get_backtest(lookback_days: int = 90):
     from apex.services.backtest_engine import BacktestEngine
-    from apex.core.config import get_settings
-    from apex.repositories.sqlite_store import SQLiteStore
     
-    settings = get_settings()
-    store    = SQLiteStore(settings.sqlite_path)
+    settings = _get_settings()
+    store    = _get_store()
     engine   = BacktestEngine(settings=settings, store=store)
     result   = engine.run(lookback_days=lookback_days)
     return {

@@ -873,7 +873,28 @@ def get_proposal_history():
 
 @app.get("/opportunities")
 def get_opportunities():
+    """Legacy endpoint — prefer /api/opportunities for ML-scored results."""
     return cache._opportunities
+
+@app.get("/api/opportunities")
+def list_api_opportunities(limit: int = 100):
+    """ML-scored arb opportunities at the canonical /api/ path."""
+    import time as _time
+
+    from apex.ml.arb_edge_model import apply_model_scores
+
+    now = _time.monotonic()
+    with _arb_opps_lock:
+        cached = _arb_opps_cache.get(limit)
+        if cached and (now - cached[0]) < _ARB_OPPS_TTL_SEC:
+            return cached[1]
+
+    rows = store.list_arb_opportunities(limit=limit)
+    scored = apply_model_scores(rows)
+
+    with _arb_opps_lock:
+        _arb_opps_cache[limit] = (now, scored)
+    return scored
 
 @app.get("/events")
 def get_events(limit: int = 100):
