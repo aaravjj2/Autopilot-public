@@ -1,0 +1,95 @@
+{
+  "cycle_id": "cycle-20260528-130709",
+  "timestamp": "2026-05-28T13:07:09Z",
+  "duration_seconds": 540,
+  "status": "completed",
+  "branch": "main",
+  "commits": [
+    {
+      "hash": "42ee58f",
+      "message": "fix: eliminate code injection vector in polymarket adapter via tempfile execution",
+      "files_changed": 1,
+      "insertions": 17,
+      "deletions": 8
+    },
+    {
+      "hash": "0ee555c",
+      "message": "fix: replace silent exception swallows with proper logging",
+      "files_changed": 2,
+      "insertions": 4,
+      "deletions": 4
+    },
+    {
+      "hash": "6655076",
+      "message": "refactor: replace production assert statements with proper if/raise guards",
+      "files_changed": 2,
+      "insertions": 17,
+      "deletions": 10
+    },
+    {
+      "hash": "3b12ae6",
+      "message": "chore: remove unused variable and import in test_m06_risk.py",
+      "files_changed": 1,
+      "insertions": 0,
+      "deletions": 2
+    },
+    {
+      "hash": "dde6d70",
+      "message": "refactor: replace print() with LOGGER.info() in CLI entry-point functions",
+      "files_changed": 1,
+      "insertions": 5,
+      "deletions": 5
+    }
+  ],
+  "tasks": [
+    {
+      "id": "t1",
+      "priority": 1,
+      "type": "security-fix",
+      "description": "Fix code injection vector in polymarket_adapter.py _mcp_async_eval()",
+      "file": "src/apex/integrations/polymarket_adapter.py",
+      "status": "completed"
+    },
+    {
+      "id": "t2",
+      "priority": 2,
+      "type": "bug-fix",
+      "description": "Fix silent exception swallows in alpaca_adapter.py and brightdata_intelligence.py",
+      "file": "src/apex/integrations/alpaca_adapter.py, src/apex/integrations/brightdata_intelligence.py",
+      "status": "completed"
+    },
+    {
+      "id": "t3",
+      "priority": 3,
+      "type": "code-quality",
+      "description": "Replace production asserts with if/raise in arb_engine.py and brightdata_mcp_client.py",
+      "file": "src/apex/services/arb_engine.py, src/apex/integrations/brightdata_mcp_client.py",
+      "status": "completed"
+    },
+    {
+      "id": "t4",
+      "priority": 4,
+      "type": "cleanup",
+      "description": "Remove unused variable and import in tests/test_m06_risk.py",
+      "file": "tests/test_m06_risk.py",
+      "status": "completed"
+    },
+    {
+      "id": "t5",
+      "priority": 5,
+      "type": "cleanup",
+      "description": "Replace print() with LOGGER.info() in src/apex/main.py",
+      "file": "src/apex/main.py",
+      "status": "completed"
+    }
+  ],
+  "test_results": {
+    "total": 276,
+    "passed": 276,
+    "skipped": 1,
+    "failed": 0,
+    "duration_seconds": 115.92
+  },
+  "tag": "cycle-20260528-130709",
+  "push_status": "blocked — no git credential helper configured for HTTPS remote"
+}

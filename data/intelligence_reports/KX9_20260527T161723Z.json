@@ -1,0 +1,22 @@
+{
+  "ticker": "KX9",
+  "arb_id": "arb-9",
+  "generated_at": "2026-05-27T16:17:23.159678+00:00",
+  "news_risk_level": "LOW",
+  "settlement_source_verified": false,
+  "expert_consensus_direction": "UNCLEAR",
+  "data_sources_used": [],
+  "verdict": "SKIP",
+  "confidence_score": 50,
+  "rationale": "risk=LOW, settlement_verified=False, consensus=UNCLEAR, edge=0.010",
+  "session_stats_before": {
+    "calls_made": 0,
+    "calls_remaining": 50,
+    "ok": true
+  },
+  "session_stats_after": {
+    "calls_made": 3,
+    "calls_remaining": 47,
+    "ok": true
+  }
+}

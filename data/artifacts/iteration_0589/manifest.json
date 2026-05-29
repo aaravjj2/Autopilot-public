@@ -1,0 +1,14 @@
+[
+  {
+    "type": "screenshot",
+    "path": "/home/aarav/Aarav/Autopilot/data/artifacts/iteration_0589/screenshots/dashboard_analytics.png",
+    "iteration": 589,
+    "timestamp": "2026-05-29T01:28:33.727257"
+  },
+  {
+    "type": "metrics",
+    "path": "/home/aarav/Aarav/Autopilot/data/artifacts/iteration_0589/metrics.json",
+    "iteration": 589,
+    "timestamp": "2026-05-29T01:28:33.727257"
+  }
+]

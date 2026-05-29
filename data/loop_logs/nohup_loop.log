@@ -1,0 +1,1427 @@
+2026-05-28 20:53:58,183 [INFO] === ITERATION 446/500 ===
+2026-05-28 20:53:58,251 [INFO] LLM auto-route: groq model=llama-3.3-70b-versatile deep=llama3.2:3b quick=llama3.2:1b
+2026-05-28 20:53:59,300 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:53:59,301 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:53:59,301 [ERROR] Iteration 446 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:53:59,304 [INFO] === ITERATION 447/500 ===
+2026-05-28 20:53:59,675 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:53:59,676 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:53:59,676 [ERROR] Iteration 447 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:53:59,679 [INFO] === ITERATION 448/500 ===
+2026-05-28 20:53:59,914 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:53:59,915 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:53:59,915 [ERROR] Iteration 448 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:53:59,918 [INFO] === ITERATION 449/500 ===
+2026-05-28 20:54:00,231 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:00,232 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:00,232 [ERROR] Iteration 449 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:00,235 [INFO] === ITERATION 450/500 ===
+2026-05-28 20:54:00,488 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:00,489 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:00,489 [ERROR] Iteration 450 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:00,491 [INFO] === ITERATION 451/500 ===
+2026-05-28 20:54:00,754 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:00,754 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:00,754 [ERROR] Iteration 451 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:00,757 [INFO] === ITERATION 452/500 ===
+2026-05-28 20:54:01,025 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:01,026 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:01,026 [ERROR] Iteration 452 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:01,027 [INFO] === ITERATION 453/500 ===
+2026-05-28 20:54:01,310 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:01,311 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:01,311 [ERROR] Iteration 453 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:01,312 [INFO] === ITERATION 454/500 ===
+2026-05-28 20:54:01,620 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:01,622 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:01,622 [ERROR] Iteration 454 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:01,625 [INFO] === ITERATION 455/500 ===
+2026-05-28 20:54:01,872 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:01,873 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:01,873 [ERROR] Iteration 455 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:01,874 [INFO] === ITERATION 456/500 ===
+2026-05-28 20:54:02,118 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:02,118 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:02,118 [ERROR] Iteration 456 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:02,123 [INFO] === ITERATION 457/500 ===
+2026-05-28 20:54:02,493 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:02,493 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:02,494 [ERROR] Iteration 457 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:02,496 [INFO] === ITERATION 458/500 ===
+2026-05-28 20:54:02,715 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:02,715 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:02,715 [ERROR] Iteration 458 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:02,717 [INFO] === ITERATION 459/500 ===
+2026-05-28 20:54:02,943 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:02,944 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:02,944 [ERROR] Iteration 459 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:02,947 [INFO] === ITERATION 460/500 ===
+2026-05-28 20:54:03,212 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:03,212 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:03,212 [ERROR] Iteration 460 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:03,214 [INFO] === ITERATION 461/500 ===
+2026-05-28 20:54:03,560 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:03,560 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:03,560 [ERROR] Iteration 461 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:03,562 [INFO] === ITERATION 462/500 ===
+2026-05-28 20:54:03,804 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:03,805 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:03,805 [ERROR] Iteration 462 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:03,808 [INFO] === ITERATION 463/500 ===
+2026-05-28 20:54:04,085 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:04,086 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:04,086 [ERROR] Iteration 463 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:04,089 [INFO] === ITERATION 464/500 ===
+2026-05-28 20:54:04,328 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:04,328 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:04,328 [ERROR] Iteration 464 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:04,329 [INFO] === ITERATION 465/500 ===
+2026-05-28 20:54:04,572 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:04,573 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:04,573 [ERROR] Iteration 465 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:04,574 [INFO] === ITERATION 466/500 ===
+2026-05-28 20:54:04,824 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:04,825 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:04,825 [ERROR] Iteration 466 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:04,829 [INFO] === ITERATION 467/500 ===
+2026-05-28 20:54:05,083 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:05,083 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:05,083 [ERROR] Iteration 467 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:05,090 [INFO] === ITERATION 468/500 ===
+2026-05-28 20:54:05,395 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:05,395 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:05,395 [ERROR] Iteration 468 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:05,397 [INFO] === ITERATION 469/500 ===
+2026-05-28 20:54:05,658 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:05,659 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:05,659 [ERROR] Iteration 469 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:05,665 [INFO] === ITERATION 470/500 ===
+2026-05-28 20:54:05,975 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:05,976 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:05,976 [ERROR] Iteration 470 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:05,977 [INFO] === ITERATION 471/500 ===
+2026-05-28 20:54:06,262 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:06,263 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:06,263 [ERROR] Iteration 471 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:06,266 [INFO] === ITERATION 472/500 ===
+2026-05-28 20:54:06,523 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:06,524 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:06,524 [ERROR] Iteration 472 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:06,526 [INFO] === ITERATION 473/500 ===
+2026-05-28 20:54:06,802 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:06,803 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:06,803 [ERROR] Iteration 473 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:06,805 [INFO] === ITERATION 474/500 ===
+2026-05-28 20:54:07,067 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:07,067 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:07,067 [ERROR] Iteration 474 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:07,069 [INFO] === ITERATION 475/500 ===
+2026-05-28 20:54:07,358 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:07,359 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:07,359 [ERROR] Iteration 475 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:07,362 [INFO] === ITERATION 476/500 ===
+2026-05-28 20:54:07,649 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:07,650 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:07,650 [ERROR] Iteration 476 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:07,651 [INFO] === ITERATION 477/500 ===
+2026-05-28 20:54:07,921 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:07,921 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:07,921 [ERROR] Iteration 477 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:07,924 [INFO] === ITERATION 478/500 ===
+2026-05-28 20:54:08,180 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:08,180 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:08,181 [ERROR] Iteration 478 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:08,184 [INFO] === ITERATION 479/500 ===
+2026-05-28 20:54:08,442 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:08,443 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:08,443 [ERROR] Iteration 479 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:08,454 [INFO] === ITERATION 480/500 ===
+2026-05-28 20:54:08,814 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:08,814 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:08,814 [ERROR] Iteration 480 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:08,816 [INFO] === ITERATION 481/500 ===
+2026-05-28 20:54:09,084 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:09,085 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:09,085 [ERROR] Iteration 481 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:09,088 [INFO] === ITERATION 482/500 ===
+2026-05-28 20:54:09,413 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:09,414 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:09,414 [ERROR] Iteration 482 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:09,417 [INFO] === ITERATION 483/500 ===
+2026-05-28 20:54:09,684 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:09,684 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:09,685 [ERROR] Iteration 483 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:09,686 [INFO] === ITERATION 484/500 ===
+2026-05-28 20:54:10,023 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:10,023 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:10,023 [ERROR] Iteration 484 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:10,026 [INFO] === ITERATION 485/500 ===
+2026-05-28 20:54:10,344 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:10,345 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:10,345 [ERROR] Iteration 485 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:10,349 [INFO] === ITERATION 486/500 ===
+2026-05-28 20:54:10,578 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:10,579 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:10,579 [ERROR] Iteration 486 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:10,582 [INFO] === ITERATION 487/500 ===
+2026-05-28 20:54:10,830 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:10,830 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:10,830 [ERROR] Iteration 487 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:10,832 [INFO] === ITERATION 488/500 ===
+2026-05-28 20:54:11,056 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:11,057 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:11,057 [ERROR] Iteration 488 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:11,060 [INFO] === ITERATION 489/500 ===
+2026-05-28 20:54:11,294 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:11,295 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:11,295 [ERROR] Iteration 489 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:11,298 [INFO] === ITERATION 490/500 ===
+2026-05-28 20:54:11,552 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:11,552 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:11,552 [ERROR] Iteration 490 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:11,554 [INFO] === ITERATION 491/500 ===
+2026-05-28 20:54:11,804 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:11,804 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:11,804 [ERROR] Iteration 491 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:11,811 [INFO] === ITERATION 492/500 ===
+2026-05-28 20:54:12,117 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:12,117 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:12,128 [ERROR] Iteration 492 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:12,130 [INFO] === ITERATION 493/500 ===
+2026-05-28 20:54:12,362 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:12,362 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:12,362 [ERROR] Iteration 493 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:12,364 [INFO] === ITERATION 494/500 ===
+2026-05-28 20:54:12,599 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:12,600 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:12,600 [ERROR] Iteration 494 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:12,603 [INFO] === ITERATION 495/500 ===
+2026-05-28 20:54:12,854 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:12,854 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:12,854 [ERROR] Iteration 495 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:12,856 [INFO] === ITERATION 496/500 ===
+2026-05-28 20:54:13,133 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:13,133 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:13,133 [ERROR] Iteration 496 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:13,135 [INFO] === ITERATION 497/500 ===
+2026-05-28 20:54:13,477 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:13,478 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:13,478 [ERROR] Iteration 497 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:13,479 [INFO] === ITERATION 498/500 ===
+2026-05-28 20:54:13,714 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:13,714 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:13,715 [ERROR] Iteration 498 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:13,716 [INFO] === ITERATION 499/500 ===
+2026-05-28 20:54:13,967 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:13,968 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:13,968 [ERROR] Iteration 499 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:13,970 [INFO] === ITERATION 500/500 ===
+2026-05-28 20:54:14,193 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:14,194 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:14,194 [ERROR] Iteration 500 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:14,196 [INFO] === ITERATION 501/500 ===
+2026-05-28 20:54:14,470 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:14,470 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:14,470 [ERROR] Iteration 501 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:14,472 [INFO] === ITERATION 502/500 ===
+2026-05-28 20:54:14,715 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:14,716 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:14,716 [ERROR] Iteration 502 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:14,717 [INFO] === ITERATION 503/500 ===
+2026-05-28 20:54:14,998 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:14,998 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:14,998 [ERROR] Iteration 503 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:15,006 [INFO] === ITERATION 504/500 ===
+2026-05-28 20:54:15,262 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:15,263 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:15,263 [ERROR] Iteration 504 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:15,265 [INFO] === ITERATION 505/500 ===
+2026-05-28 20:54:15,517 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:15,518 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:15,518 [ERROR] Iteration 505 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:15,519 [INFO] === ITERATION 506/500 ===
+2026-05-28 20:54:15,807 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:15,808 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:15,808 [ERROR] Iteration 506 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:15,812 [INFO] === ITERATION 507/500 ===
+2026-05-28 20:54:16,060 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:16,060 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:16,060 [ERROR] Iteration 507 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:16,063 [INFO] === ITERATION 508/500 ===
+2026-05-28 20:54:16,292 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:16,293 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:16,293 [ERROR] Iteration 508 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:16,296 [INFO] === ITERATION 509/500 ===
+2026-05-28 20:54:16,562 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:16,563 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:16,563 [ERROR] Iteration 509 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:16,565 [INFO] === ITERATION 510/500 ===
+2026-05-28 20:54:16,848 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:16,848 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:16,848 [ERROR] Iteration 510 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:16,850 [INFO] === ITERATION 511/500 ===
+2026-05-28 20:54:17,142 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:17,142 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:17,142 [ERROR] Iteration 511 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:17,144 [INFO] === ITERATION 512/500 ===
+2026-05-28 20:54:17,438 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:17,438 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:17,438 [ERROR] Iteration 512 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:17,440 [INFO] === ITERATION 513/500 ===
+2026-05-28 20:54:17,859 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:17,859 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:17,859 [ERROR] Iteration 513 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:17,861 [INFO] === ITERATION 514/500 ===
+2026-05-28 20:54:18,353 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:18,354 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:18,354 [ERROR] Iteration 514 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:18,356 [INFO] === ITERATION 515/500 ===
+2026-05-28 20:54:18,652 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:18,652 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:18,652 [ERROR] Iteration 515 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:18,661 [INFO] === ITERATION 516/500 ===
+2026-05-28 20:54:18,942 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:18,942 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:18,942 [ERROR] Iteration 516 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:18,944 [INFO] === ITERATION 517/500 ===
+2026-05-28 20:54:19,426 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:19,426 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:19,426 [ERROR] Iteration 517 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:19,428 [INFO] === ITERATION 518/500 ===
+2026-05-28 20:54:19,772 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:19,773 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:19,773 [ERROR] Iteration 518 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:19,774 [INFO] === ITERATION 519/500 ===
+2026-05-28 20:54:20,074 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:20,074 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:20,074 [ERROR] Iteration 519 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:20,076 [INFO] === ITERATION 520/500 ===
+2026-05-28 20:54:20,436 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:20,437 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:20,437 [ERROR] Iteration 520 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:20,440 [INFO] === ITERATION 521/500 ===
+2026-05-28 20:54:20,703 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:20,703 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:20,703 [ERROR] Iteration 521 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:20,705 [INFO] === ITERATION 522/500 ===
+2026-05-28 20:54:20,982 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:20,982 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:20,983 [ERROR] Iteration 522 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:20,984 [INFO] === ITERATION 523/500 ===
+2026-05-28 20:54:21,243 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:21,243 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:21,243 [ERROR] Iteration 523 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:21,245 [INFO] === ITERATION 524/500 ===
+2026-05-28 20:54:21,494 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:21,495 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:21,495 [ERROR] Iteration 524 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:21,498 [INFO] === ITERATION 525/500 ===
+2026-05-28 20:54:21,759 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:21,759 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:21,759 [ERROR] Iteration 525 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:21,761 [INFO] === ITERATION 526/500 ===
+2026-05-28 20:54:22,059 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:22,060 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:22,060 [ERROR] Iteration 526 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:22,062 [INFO] === ITERATION 527/500 ===
+2026-05-28 20:54:22,336 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:22,337 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:22,337 [ERROR] Iteration 527 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:22,346 [INFO] === ITERATION 528/500 ===
+2026-05-28 20:54:22,589 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:22,589 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:22,589 [ERROR] Iteration 528 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:22,591 [INFO] === ITERATION 529/500 ===
+2026-05-28 20:54:22,828 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:22,828 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:22,828 [ERROR] Iteration 529 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:22,830 [INFO] === ITERATION 530/500 ===
+2026-05-28 20:54:23,165 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:23,166 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:23,166 [ERROR] Iteration 530 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:23,168 [INFO] === ITERATION 531/500 ===
+2026-05-28 20:54:23,419 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:23,419 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:23,419 [ERROR] Iteration 531 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:23,421 [INFO] === ITERATION 532/500 ===
+2026-05-28 20:54:23,726 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:23,726 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:23,726 [ERROR] Iteration 532 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:23,728 [INFO] === ITERATION 533/500 ===
+2026-05-28 20:54:23,971 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:23,971 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:23,971 [ERROR] Iteration 533 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:23,973 [INFO] === ITERATION 534/500 ===
+2026-05-28 20:54:24,260 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:24,261 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:24,261 [ERROR] Iteration 534 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:24,263 [INFO] === ITERATION 535/500 ===
+2026-05-28 20:54:24,493 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:24,494 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:24,494 [ERROR] Iteration 535 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:24,495 [INFO] === ITERATION 536/500 ===
+2026-05-28 20:54:24,762 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:24,763 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:24,763 [ERROR] Iteration 536 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:24,764 [INFO] === ITERATION 537/500 ===
+2026-05-28 20:54:25,047 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:25,047 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:25,047 [ERROR] Iteration 537 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:25,049 [INFO] === ITERATION 538/500 ===
+2026-05-28 20:54:25,268 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:25,268 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:25,268 [ERROR] Iteration 538 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:25,270 [INFO] === ITERATION 539/500 ===
+2026-05-28 20:54:25,522 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:25,523 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:25,523 [ERROR] Iteration 539 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:25,531 [INFO] === ITERATION 540/500 ===
+2026-05-28 20:54:25,777 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:25,778 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:25,778 [ERROR] Iteration 540 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:25,780 [INFO] === ITERATION 541/500 ===
+2026-05-28 20:54:26,038 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:26,038 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:26,038 [ERROR] Iteration 541 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:26,040 [INFO] === ITERATION 542/500 ===
+2026-05-28 20:54:26,360 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:26,360 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:26,360 [ERROR] Iteration 542 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:26,362 [INFO] === ITERATION 543/500 ===
+2026-05-28 20:54:26,623 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:26,623 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:26,623 [ERROR] Iteration 543 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:26,626 [INFO] === ITERATION 544/500 ===
+2026-05-28 20:54:26,852 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:26,853 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:26,853 [ERROR] Iteration 544 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:26,855 [INFO] === ITERATION 545/500 ===
+2026-05-28 20:54:27,127 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:27,128 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:27,128 [ERROR] Iteration 545 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:27,130 [INFO] === ITERATION 546/500 ===
+2026-05-28 20:54:27,354 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:27,354 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:27,354 [ERROR] Iteration 546 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:27,356 [INFO] === ITERATION 547/500 ===
+2026-05-28 20:54:27,619 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:27,620 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:27,620 [ERROR] Iteration 547 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:27,622 [INFO] === ITERATION 548/500 ===
+2026-05-28 20:54:27,879 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:27,879 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:27,879 [ERROR] Iteration 548 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:27,882 [INFO] === ITERATION 549/500 ===
+2026-05-28 20:54:28,143 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:28,143 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:28,143 [ERROR] Iteration 549 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:28,146 [INFO] === ITERATION 550/500 ===
+2026-05-28 20:54:28,400 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:28,400 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:28,400 [ERROR] Iteration 550 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:28,402 [INFO] === ITERATION 551/500 ===
+2026-05-28 20:54:28,673 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:28,673 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:28,673 [ERROR] Iteration 551 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:28,682 [INFO] === ITERATION 552/500 ===
+2026-05-28 20:54:28,927 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:28,928 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:28,928 [ERROR] Iteration 552 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:28,930 [INFO] === ITERATION 553/500 ===
+2026-05-28 20:54:29,195 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:29,195 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:29,195 [ERROR] Iteration 553 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:29,197 [INFO] === ITERATION 554/500 ===
+2026-05-28 20:54:29,442 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:29,443 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:29,443 [ERROR] Iteration 554 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:29,445 [INFO] === ITERATION 555/500 ===
+2026-05-28 20:54:29,702 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:29,703 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:29,703 [ERROR] Iteration 555 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:29,705 [INFO] === ITERATION 556/500 ===
+2026-05-28 20:54:29,959 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:29,960 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:29,960 [ERROR] Iteration 556 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:29,962 [INFO] === ITERATION 557/500 ===
+2026-05-28 20:54:30,234 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:30,235 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:30,235 [ERROR] Iteration 557 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:30,238 [INFO] === ITERATION 558/500 ===
+2026-05-28 20:54:30,477 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:30,477 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:30,477 [ERROR] Iteration 558 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:30,479 [INFO] === ITERATION 559/500 ===
+2026-05-28 20:54:30,717 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:30,718 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:30,718 [ERROR] Iteration 559 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:30,720 [INFO] === ITERATION 560/500 ===
+2026-05-28 20:54:31,040 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:31,041 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:31,041 [ERROR] Iteration 560 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:31,043 [INFO] === ITERATION 561/500 ===
+2026-05-28 20:54:31,263 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:31,264 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:31,264 [ERROR] Iteration 561 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:31,267 [INFO] === ITERATION 562/500 ===
+2026-05-28 20:54:31,497 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:31,497 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:31,497 [ERROR] Iteration 562 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:31,507 [INFO] === ITERATION 563/500 ===
+2026-05-28 20:54:31,833 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:31,833 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:31,833 [ERROR] Iteration 563 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:31,835 [INFO] === ITERATION 564/500 ===
+2026-05-28 20:54:32,077 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:32,077 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:32,077 [ERROR] Iteration 564 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:32,079 [INFO] === ITERATION 565/500 ===
+2026-05-28 20:54:32,417 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:32,418 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:32,418 [ERROR] Iteration 565 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:32,420 [INFO] === ITERATION 566/500 ===
+2026-05-28 20:54:32,693 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:32,694 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:32,694 [ERROR] Iteration 566 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:32,696 [INFO] === ITERATION 567/500 ===
+2026-05-28 20:54:33,014 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:33,014 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:33,014 [ERROR] Iteration 567 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:33,016 [INFO] === ITERATION 568/500 ===
+2026-05-28 20:54:33,277 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:33,277 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:33,277 [ERROR] Iteration 568 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:33,279 [INFO] === ITERATION 569/500 ===
+2026-05-28 20:54:33,592 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:33,592 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:33,592 [ERROR] Iteration 569 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:33,594 [INFO] === ITERATION 570/500 ===
+2026-05-28 20:54:33,872 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:33,872 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:33,872 [ERROR] Iteration 570 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:33,875 [INFO] === ITERATION 571/500 ===
+2026-05-28 20:54:34,142 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:34,142 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:34,142 [ERROR] Iteration 571 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:34,145 [INFO] === ITERATION 572/500 ===
+2026-05-28 20:54:34,364 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:34,365 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:34,365 [ERROR] Iteration 572 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:34,370 [INFO] === ITERATION 573/500 ===
+2026-05-28 20:54:34,648 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:34,649 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:34,649 [ERROR] Iteration 573 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:34,659 [INFO] === ITERATION 574/500 ===
+2026-05-28 20:54:34,937 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:34,937 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:34,937 [ERROR] Iteration 574 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:34,939 [INFO] === ITERATION 575/500 ===
+2026-05-28 20:54:35,214 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:35,214 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:35,214 [ERROR] Iteration 575 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:35,217 [INFO] === ITERATION 576/500 ===
+2026-05-28 20:54:35,493 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:35,493 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:35,494 [ERROR] Iteration 576 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:35,497 [INFO] === ITERATION 577/500 ===
+2026-05-28 20:54:35,756 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:35,756 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:35,756 [ERROR] Iteration 577 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:35,759 [INFO] === ITERATION 578/500 ===
+2026-05-28 20:54:36,094 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:36,094 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:36,094 [ERROR] Iteration 578 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:36,096 [INFO] === ITERATION 579/500 ===
+2026-05-28 20:54:36,362 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:36,362 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:36,363 [ERROR] Iteration 579 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:36,365 [INFO] === ITERATION 580/500 ===
+2026-05-28 20:54:36,612 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:36,612 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:36,612 [ERROR] Iteration 580 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:36,615 [INFO] === ITERATION 581/500 ===
+2026-05-28 20:54:36,859 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:36,859 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:36,859 [ERROR] Iteration 581 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:36,861 [INFO] === ITERATION 582/500 ===
+2026-05-28 20:54:37,110 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:37,110 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:37,110 [ERROR] Iteration 582 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:37,112 [INFO] === ITERATION 583/500 ===
+2026-05-28 20:54:37,362 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:37,362 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:37,362 [ERROR] Iteration 583 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:37,364 [INFO] === ITERATION 584/500 ===
+2026-05-28 20:54:37,655 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:37,655 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:37,655 [ERROR] Iteration 584 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:37,663 [INFO] === ITERATION 585/500 ===
+2026-05-28 20:54:37,919 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:54:37,919 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:37,919 [ERROR] Iteration 585 failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:54:37,921 [INFO] === ITERATION 586/500 ===
+2026-05-28 20:58:20,279 [INFO] === ITERATION 586 (target 1000) ===
+2026-05-28 20:58:20,360 [INFO] LLM auto-route: groq model=llama-3.3-70b-versatile deep=llama3.2:3b quick=llama3.2:1b
+2026-05-28 20:58:21,235 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:58:21,236 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:58:21,237 [WARNING] Using deterministic fallback ideas (LLM unavailable)
+2026-05-28 20:58:21,237 [INFO] --- Idea Scoring Table ---
+2026-05-28 20:58:21,237 [INFO] Idea 1: Log scan_metrics summary each arb cycle
+2026-05-28 20:58:21,237 [INFO]   Score: 2.00 (Impact: 2.0, Comp: 1.0, Novelty: 1.0)
+2026-05-28 20:58:21,237 [INFO] Selected idea: Log scan_metrics summary each arb cycle
+2026-05-28 20:58:21,537 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 20:58:21,537 [ERROR] IterationPlanner failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 20:58:21,538 [WARNING] Using test-only fallback plan (LLM unavailable)
+2026-05-28 20:58:21,542 [INFO] Step A: Python unit tests
+2026-05-28 21:00:18,810 [INFO] Step B: TypeScript type check
+2026-05-28 21:00:21,040 [INFO] Step C: Playwright E2E tests
+2026-05-28 21:09:51,889 [INFO] Step D: Backend API smoke test
+2026-05-28 21:09:56,930 [INFO] HTTP Request: GET http://localhost:8001/api/opportunities "HTTP/1.1 404 Not Found"
+2026-05-28 21:09:56,938 [INFO] HTTP Request: GET http://localhost:8001/api/arb/backtest "HTTP/1.1 200 OK"
+2026-05-28 21:09:56,938 [INFO] Step E: Backtest regression check
+2026-05-28 21:09:59,280 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+[main c6cc330] loop(iter 586): Log scan_metrics summary each arb cycle
+ 27 files changed, 1240 insertions(+), 345 deletions(-)
+ create mode 100644 LOOP_ERROR_FIXES.md
+ rewrite artifacts/submission/api-arb-sample.json (85%)
+ rewrite artifacts/submission/screenshots/00-title.png (91%)
+ rewrite artifacts/submission/screenshots/01-overview.png (97%)
+ rewrite artifacts/submission/screenshots/02-arb-radar.png (97%)
+ rewrite artifacts/submission/screenshots/03-signals.png (99%)
+ rewrite artifacts/submission/screenshots/04-autopilot.png (97%)
+ rewrite artifacts/submission/screenshots/05-risk.png (98%)
+ rewrite artifacts/submission/screenshots/06-hivemind.png (99%)
+ rewrite artifacts/submission/screenshots/07-live-feed.png (98%)
+ rewrite artifacts/submission/screenshots/08-settings.png (98%)
+ rewrite scripts/loop_modules/context_builder.py (61%)
+ create mode 100644 scripts/loop_modules/gcloud_deployer.py
+ create mode 100644 scripts/loop_modules/plan_templates.py
+2026-05-28 21:09:59,777 [WARNING] git push failed: fatal: could not read Username for 'https://github.com': No such device or address
+
+2026-05-28 21:09:59,782 [INFO] Iteration 586 complete. Tests: FAIL
+2026-05-28 21:11:59,783 [INFO] === ITERATION 587 (target 1000) ===
+2026-05-28 21:12:00,070 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 21:12:00,070 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 21:12:00,070 [WARNING] Using deterministic fallback ideas (LLM unavailable)
+2026-05-28 21:12:00,071 [INFO] --- Idea Scoring Table ---
+2026-05-28 21:12:00,071 [INFO] Idea 1: Log scan_metrics summary each arb cycle
+2026-05-28 21:12:00,071 [INFO]   Score: 0.20 (Impact: 2.0, Comp: 1.0, Novelty: 0.1)
+2026-05-28 21:12:00,071 [WARNING] All ideas were recent/stale. Regenerating...
+2026-05-28 21:12:00,348 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 21:12:00,349 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 21:12:00,349 [WARNING] Using deterministic fallback ideas (LLM unavailable)
+2026-05-28 21:12:00,349 [INFO] Selected idea: Log scan_metrics summary each arb cycle
+2026-05-28 21:12:00,652 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 21:12:00,652 [ERROR] IterationPlanner failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 21:12:00,653 [WARNING] Using test-only fallback plan (LLM unavailable)
+2026-05-28 21:12:00,657 [INFO] Step A: Python unit tests
+2026-05-28 21:13:52,267 [INFO] Step B: TypeScript type check
+2026-05-28 21:13:53,656 [INFO] Step C: Playwright E2E tests
+2026-05-28 21:19:40,510 [INFO] Step D: Backend API smoke test
+2026-05-28 21:19:45,547 [INFO] HTTP Request: GET http://localhost:8001/api/opportunities "HTTP/1.1 404 Not Found"
+2026-05-28 21:19:45,552 [INFO] HTTP Request: GET http://localhost:8001/api/arb/backtest "HTTP/1.1 200 OK"
+2026-05-28 21:19:45,552 [INFO] Step E: Backtest regression check
+2026-05-28 21:19:47,687 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+[main de0c597] loop(iter 587): Log scan_metrics summary each arb cycle
+ 13 files changed, 119 insertions(+), 110 deletions(-)
+ rewrite artifacts/submission/api-arb-sample.json (76%)
+ rewrite artifacts/submission/screenshots/01-overview.png (98%)
+ rewrite artifacts/submission/screenshots/02-arb-radar.png (96%)
+ rewrite artifacts/submission/screenshots/03-signals.png (98%)
+ rewrite artifacts/submission/screenshots/04-autopilot.png (97%)
+ rewrite artifacts/submission/screenshots/05-risk.png (98%)
+ rewrite artifacts/submission/screenshots/06-hivemind.png (94%)
+ rewrite artifacts/submission/screenshots/07-live-feed.png (91%)
+ rewrite artifacts/submission/screenshots/08-settings.png (86%)
+2026-05-28 21:19:48,110 [WARNING] git push failed: fatal: could not read Username for 'https://github.com': No such device or address
+
+2026-05-28 21:19:48,112 [INFO] Iteration 587 complete. Tests: FAIL
+2026-05-28 21:21:48,113 [INFO] === ITERATION 588 (target 1000) ===
+2026-05-28 21:21:48,374 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 21:21:48,375 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 21:21:48,375 [WARNING] Using deterministic fallback ideas (LLM unavailable)
+2026-05-28 21:21:48,376 [INFO] --- Idea Scoring Table ---
+2026-05-28 21:21:48,376 [INFO] Idea 1: Log scan_metrics summary each arb cycle
+2026-05-28 21:21:48,376 [INFO]   Score: 0.20 (Impact: 2.0, Comp: 1.0, Novelty: 0.1)
+2026-05-28 21:21:48,376 [WARNING] All ideas were recent/stale. Regenerating...
+2026-05-28 21:21:48,647 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 21:21:48,647 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 21:21:48,647 [WARNING] Using deterministic fallback ideas (LLM unavailable)
+2026-05-28 21:21:48,647 [INFO] Selected idea: Log scan_metrics summary each arb cycle
+2026-05-28 21:21:48,889 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 21:21:48,890 [ERROR] IterationPlanner failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 21:21:48,890 [WARNING] Using test-only fallback plan (LLM unavailable)
+2026-05-28 21:21:48,896 [INFO] Step A: Python unit tests
+2026-05-28 21:23:39,294 [INFO] Step B: TypeScript type check
+2026-05-28 21:23:40,703 [INFO] Step C: Playwright E2E tests
+2026-05-28 21:23:42,552 [INFO] Step D: Backend API smoke test
+2026-05-28 21:23:47,582 [INFO] HTTP Request: GET http://localhost:8001/api/opportunities "HTTP/1.1 404 Not Found"
+2026-05-28 21:23:47,595 [INFO] HTTP Request: GET http://localhost:8001/api/arb/backtest "HTTP/1.1 200 OK"
+2026-05-28 21:23:47,595 [INFO] Step E: Backtest regression check
+2026-05-28 21:23:49,486 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+[main 0126721] loop(iter 588): Log scan_metrics summary each arb cycle
+ 2 files changed, 8 insertions(+), 1 deletion(-)
+2026-05-28 21:23:49,861 [WARNING] git push failed: fatal: could not read Username for 'https://github.com': No such device or address
+
+2026-05-28 21:23:49,864 [INFO] Iteration 588 complete. Tests: FAIL
+2026-05-28 21:25:49,868 [INFO] === ITERATION 589 (target 1000) ===
+2026-05-28 21:25:50,336 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 21:25:50,343 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 21:25:50,343 [WARNING] Using deterministic fallback ideas (LLM unavailable)
+2026-05-28 21:25:50,343 [INFO] --- Idea Scoring Table ---
+2026-05-28 21:25:50,343 [INFO] Idea 1: Log scan_metrics summary each arb cycle
+2026-05-28 21:25:50,343 [INFO]   Score: 0.20 (Impact: 2.0, Comp: 1.0, Novelty: 0.1)
+2026-05-28 21:25:50,343 [WARNING] All ideas were recent/stale. Regenerating...
+2026-05-28 21:25:50,590 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 21:25:50,593 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 21:25:50,593 [WARNING] Using deterministic fallback ideas (LLM unavailable)
+2026-05-28 21:25:50,593 [INFO] Selected idea: Log scan_metrics summary each arb cycle
+2026-05-28 21:25:50,936 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 21:25:50,936 [ERROR] IterationPlanner failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 21:25:50,938 [WARNING] Using test-only fallback plan (LLM unavailable)
+2026-05-28 21:25:50,956 [INFO] Step A: Python unit tests
+2026-05-28 21:28:23,805 [INFO] Step B: TypeScript type check
+2026-05-28 21:28:25,850 [INFO] Step C: Playwright E2E tests
+2026-05-28 21:28:28,419 [INFO] Step D: Backend API smoke test
+2026-05-28 21:28:33,651 [INFO] HTTP Request: GET http://localhost:8001/api/opportunities "HTTP/1.1 404 Not Found"
+2026-05-28 21:28:33,678 [INFO] HTTP Request: GET http://localhost:8001/api/arb/backtest "HTTP/1.1 200 OK"
+2026-05-28 21:28:33,680 [INFO] Step E: Backtest regression check
+2026-05-28 21:28:39,523 [WARNING] Failed to screenshot http://localhost:3000/dashboard/arb-radar: Page.goto: Timeout 5000ms exceeded.
+Call log:
+  - navigating to "http://localhost:3000/dashboard/arb-radar", waiting until "load"
+
+2026-05-28 21:28:44,081 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+[main 386f4d2] loop(iter 589): Log scan_metrics summary each arb cycle
+ 1 file changed, 7 insertions(+)
+2026-05-28 21:28:44,531 [WARNING] git push failed: fatal: could not read Username for 'https://github.com': No such device or address
+
+2026-05-28 21:28:44,538 [INFO] Iteration 589 complete. Tests: FAIL
+2026-05-28 21:30:44,539 [INFO] === ITERATION 590 (target 1000) ===
+2026-05-28 21:30:44,915 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 21:30:44,927 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 21:30:44,930 [WARNING] Using deterministic fallback ideas (LLM unavailable)
+2026-05-28 21:30:44,936 [INFO] --- Idea Scoring Table ---
+2026-05-28 21:30:44,936 [INFO] Idea 1: Log scan_metrics summary each arb cycle
+2026-05-28 21:30:44,936 [INFO]   Score: 0.20 (Impact: 2.0, Comp: 1.0, Novelty: 0.1)
+2026-05-28 21:30:44,936 [WARNING] All ideas were recent/stale. Regenerating...
+2026-05-28 21:30:45,216 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 21:30:45,220 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 21:30:45,220 [WARNING] Using deterministic fallback ideas (LLM unavailable)
+2026-05-28 21:30:45,220 [INFO] Selected idea: Log scan_metrics summary each arb cycle
+2026-05-28 21:30:45,566 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 21:30:45,567 [ERROR] IterationPlanner failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 21:30:45,572 [WARNING] Using test-only fallback plan (LLM unavailable)
+2026-05-28 21:30:45,578 [INFO] Step A: Python unit tests
+2026-05-28 21:32:36,278 [INFO] Step B: TypeScript type check
+2026-05-28 21:32:37,571 [INFO] Step C: Playwright E2E tests
+2026-05-28 21:32:39,391 [INFO] Step D: Backend API smoke test
+2026-05-28 21:32:44,436 [INFO] HTTP Request: GET http://localhost:8001/api/opportunities "HTTP/1.1 404 Not Found"
+2026-05-28 21:32:44,442 [INFO] HTTP Request: GET http://localhost:8001/api/arb/backtest "HTTP/1.1 200 OK"
+2026-05-28 21:32:44,442 [INFO] Step E: Backtest regression check
+2026-05-28 21:32:46,672 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 21:32:46,954 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 21:32:46,955 [ERROR] Failed to compact state: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 21:32:46,955 [INFO] Compact summary: ...
+[main 7dad8c0] loop(iter 590): Log scan_metrics summary each arb cycle
+ 1 file changed, 7 insertions(+)
+2026-05-28 21:32:47,306 [WARNING] git push failed: fatal: could not read Username for 'https://github.com': No such device or address
+
+2026-05-28 21:32:47,311 [INFO] Iteration 590 complete. Tests: FAIL
+2026-05-28 21:34:47,312 [INFO] === ITERATION 591 (target 1000) ===
+2026-05-28 21:34:47,566 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 21:34:47,567 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 21:34:47,567 [WARNING] Using deterministic fallback ideas (LLM unavailable)
+2026-05-28 21:34:47,567 [INFO] --- Idea Scoring Table ---
+2026-05-28 21:34:47,567 [INFO] Idea 1: Log scan_metrics summary each arb cycle
+2026-05-28 21:34:47,567 [INFO]   Score: 0.20 (Impact: 2.0, Comp: 1.0, Novelty: 0.1)
+2026-05-28 21:34:47,567 [WARNING] All ideas were recent/stale. Regenerating...
+2026-05-28 21:34:47,826 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 21:34:47,827 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 21:34:47,827 [WARNING] Using deterministic fallback ideas (LLM unavailable)
+2026-05-28 21:34:47,827 [INFO] Selected idea: Log scan_metrics summary each arb cycle
+2026-05-28 21:34:48,152 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 21:34:48,153 [ERROR] IterationPlanner failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 21:34:48,154 [WARNING] Using test-only fallback plan (LLM unavailable)
+2026-05-28 21:34:48,162 [INFO] Step A: Python unit tests
+2026-05-28 21:36:38,982 [INFO] Step B: TypeScript type check
+2026-05-28 21:36:40,261 [INFO] Step C: Playwright E2E tests
+2026-05-28 21:36:42,147 [INFO] Step D: Backend API smoke test
+2026-05-28 21:36:47,170 [INFO] HTTP Request: GET http://localhost:8001/api/opportunities "HTTP/1.1 404 Not Found"
+2026-05-28 21:36:47,176 [INFO] HTTP Request: GET http://localhost:8001/api/arb/backtest "HTTP/1.1 200 OK"
+2026-05-28 21:36:47,177 [INFO] Step E: Backtest regression check
+2026-05-28 21:36:49,199 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+[main 9503343] loop(iter 591): Log scan_metrics summary each arb cycle
+ 1 file changed, 7 insertions(+)
+2026-05-28 21:36:49,545 [WARNING] git push failed: fatal: could not read Username for 'https://github.com': No such device or address
+
+2026-05-28 21:36:49,548 [INFO] Iteration 591 complete. Tests: FAIL
+2026-05-28 21:38:49,549 [INFO] === ITERATION 592 (target 1000) ===
+2026-05-28 21:38:49,975 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 21:38:49,976 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 21:38:49,976 [WARNING] Using deterministic fallback ideas (LLM unavailable)
+2026-05-28 21:38:49,976 [INFO] --- Idea Scoring Table ---
+2026-05-28 21:38:49,976 [INFO] Idea 1: Log scan_metrics summary each arb cycle
+2026-05-28 21:38:49,976 [INFO]   Score: 0.20 (Impact: 2.0, Comp: 1.0, Novelty: 0.1)
+2026-05-28 21:38:49,976 [WARNING] All ideas were recent/stale. Regenerating...
+2026-05-28 21:38:50,222 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 21:38:50,223 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 21:38:50,223 [WARNING] Using deterministic fallback ideas (LLM unavailable)
+2026-05-28 21:38:50,223 [INFO] Selected idea: Log scan_metrics summary each arb cycle
+2026-05-28 21:38:50,508 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 21:38:50,508 [ERROR] IterationPlanner failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 21:38:50,511 [WARNING] Using test-only fallback plan (LLM unavailable)
+2026-05-28 21:38:50,516 [INFO] Step A: Python unit tests
+2026-05-28 21:40:41,270 [INFO] Step B: TypeScript type check
+2026-05-28 21:40:42,559 [INFO] Step C: Playwright E2E tests
+2026-05-28 21:40:44,315 [INFO] Step D: Backend API smoke test
+2026-05-28 21:40:49,342 [INFO] HTTP Request: GET http://localhost:8001/api/opportunities "HTTP/1.1 404 Not Found"
+2026-05-28 21:40:49,346 [INFO] HTTP Request: GET http://localhost:8001/api/arb/backtest "HTTP/1.1 200 OK"
+2026-05-28 21:40:49,347 [INFO] Step E: Backtest regression check
+2026-05-28 21:40:51,428 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+[main 28d12cc] loop(iter 592): Log scan_metrics summary each arb cycle
+ 1 file changed, 7 insertions(+)
+2026-05-28 21:40:51,747 [WARNING] git push failed: fatal: could not read Username for 'https://github.com': No such device or address
+
+2026-05-28 21:40:51,749 [INFO] Iteration 592 complete. Tests: FAIL
+2026-05-28 21:42:51,750 [INFO] === ITERATION 593 (target 1000) ===
+2026-05-28 21:42:52,044 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 21:42:52,046 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 21:42:52,046 [WARNING] Using deterministic fallback ideas (LLM unavailable)
+2026-05-28 21:42:52,047 [INFO] --- Idea Scoring Table ---
+2026-05-28 21:42:52,047 [INFO] Idea 1: Log scan_metrics summary each arb cycle
+2026-05-28 21:42:52,047 [INFO]   Score: 0.20 (Impact: 2.0, Comp: 1.0, Novelty: 0.1)
+2026-05-28 21:42:52,047 [WARNING] All ideas were recent/stale. Regenerating...
+2026-05-28 21:42:52,366 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 21:42:52,366 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 21:42:52,366 [WARNING] Using deterministic fallback ideas (LLM unavailable)
+2026-05-28 21:42:52,366 [INFO] Selected idea: Log scan_metrics summary each arb cycle
+2026-05-28 21:42:52,622 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 21:42:52,623 [ERROR] IterationPlanner failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 21:42:52,635 [WARNING] Using test-only fallback plan (LLM unavailable)
+2026-05-28 21:42:52,642 [INFO] Step A: Python unit tests
+2026-05-28 21:44:43,216 [INFO] Step B: TypeScript type check
+2026-05-28 21:44:44,476 [INFO] Step C: Playwright E2E tests
+2026-05-28 21:44:46,273 [INFO] Step D: Backend API smoke test
+2026-05-28 21:44:51,305 [INFO] HTTP Request: GET http://localhost:8001/api/opportunities "HTTP/1.1 404 Not Found"
+2026-05-28 21:44:51,311 [INFO] HTTP Request: GET http://localhost:8001/api/arb/backtest "HTTP/1.1 200 OK"
+2026-05-28 21:44:51,312 [INFO] Step E: Backtest regression check
+2026-05-28 21:44:52,810 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+[main 706ae67] loop(iter 593): Log scan_metrics summary each arb cycle
+ 1 file changed, 7 insertions(+)
+2026-05-28 21:44:53,184 [WARNING] git push failed: fatal: could not read Username for 'https://github.com': No such device or address
+
+2026-05-28 21:44:53,188 [INFO] Iteration 593 complete. Tests: FAIL
+2026-05-28 21:46:53,189 [INFO] === ITERATION 594 (target 1000) ===
+2026-05-28 21:46:53,488 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 21:46:53,488 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 21:46:53,488 [WARNING] Using deterministic fallback ideas (LLM unavailable)
+2026-05-28 21:46:53,488 [INFO] --- Idea Scoring Table ---
+2026-05-28 21:46:53,488 [INFO] Idea 1: Log scan_metrics summary each arb cycle
+2026-05-28 21:46:53,488 [INFO]   Score: 0.20 (Impact: 2.0, Comp: 1.0, Novelty: 0.1)
+2026-05-28 21:46:53,488 [WARNING] All ideas were recent/stale. Regenerating...
+2026-05-28 21:46:53,785 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 21:46:53,786 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 21:46:53,786 [WARNING] Using deterministic fallback ideas (LLM unavailable)
+2026-05-28 21:46:53,786 [INFO] Selected idea: Log scan_metrics summary each arb cycle
+2026-05-28 21:46:54,050 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 21:46:54,050 [ERROR] IterationPlanner failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 21:46:54,053 [WARNING] Using test-only fallback plan (LLM unavailable)
+2026-05-28 21:46:54,058 [INFO] Step A: Python unit tests
+2026-05-28 21:48:44,908 [INFO] Step B: TypeScript type check
+2026-05-28 21:48:46,188 [INFO] Step C: Playwright E2E tests
+2026-05-28 21:48:48,108 [INFO] Step D: Backend API smoke test
+2026-05-28 21:48:53,138 [INFO] HTTP Request: GET http://localhost:8001/api/opportunities "HTTP/1.1 404 Not Found"
+2026-05-28 21:48:53,144 [INFO] HTTP Request: GET http://localhost:8001/api/arb/backtest "HTTP/1.1 200 OK"
+2026-05-28 21:48:53,144 [INFO] Step E: Backtest regression check
+2026-05-28 21:48:54,522 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+[main 8f303d0] loop(iter 594): Log scan_metrics summary each arb cycle
+ 1 file changed, 7 insertions(+)
+2026-05-28 21:48:54,907 [WARNING] git push failed: fatal: could not read Username for 'https://github.com': No such device or address
+
+2026-05-28 21:48:54,910 [INFO] Iteration 594 complete. Tests: FAIL
+2026-05-28 21:50:54,910 [INFO] === ITERATION 595 (target 1000) ===
+2026-05-28 21:50:55,324 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 21:50:55,325 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 21:50:55,325 [WARNING] Using deterministic fallback ideas (LLM unavailable)
+2026-05-28 21:50:55,325 [INFO] --- Idea Scoring Table ---
+2026-05-28 21:50:55,325 [INFO] Idea 1: Log scan_metrics summary each arb cycle
+2026-05-28 21:50:55,325 [INFO]   Score: 0.20 (Impact: 2.0, Comp: 1.0, Novelty: 0.1)
+2026-05-28 21:50:55,325 [WARNING] All ideas were recent/stale. Regenerating...
+2026-05-28 21:50:55,583 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 21:50:55,584 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 21:50:55,584 [WARNING] Using deterministic fallback ideas (LLM unavailable)
+2026-05-28 21:50:55,584 [INFO] Selected idea: Log scan_metrics summary each arb cycle
+2026-05-28 21:50:55,871 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 21:50:55,872 [ERROR] IterationPlanner failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 21:50:55,879 [WARNING] Using test-only fallback plan (LLM unavailable)
+2026-05-28 21:50:55,886 [INFO] Step A: Python unit tests
+2026-05-28 21:52:47,221 [INFO] Step B: TypeScript type check
+2026-05-28 21:52:48,561 [INFO] Step C: Playwright E2E tests
+2026-05-28 21:52:50,506 [INFO] Step D: Backend API smoke test
+2026-05-28 21:52:55,539 [INFO] HTTP Request: GET http://localhost:8001/api/opportunities "HTTP/1.1 404 Not Found"
+2026-05-28 21:52:55,544 [INFO] HTTP Request: GET http://localhost:8001/api/arb/backtest "HTTP/1.1 200 OK"
+2026-05-28 21:52:55,545 [INFO] Step E: Backtest regression check
+2026-05-28 21:52:57,567 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+[main 86a4c0c] loop(iter 595): Log scan_metrics summary each arb cycle
+ 1 file changed, 7 insertions(+)
+2026-05-28 21:52:57,970 [WARNING] git push failed: fatal: could not read Username for 'https://github.com': No such device or address
+
+2026-05-28 21:52:57,980 [INFO] Iteration 595 complete. Tests: FAIL
+2026-05-28 21:54:57,981 [INFO] === ITERATION 596 (target 1000) ===
+2026-05-28 21:54:58,320 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 21:54:58,321 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 21:54:58,321 [WARNING] Using deterministic fallback ideas (LLM unavailable)
+2026-05-28 21:54:58,321 [INFO] --- Idea Scoring Table ---
+2026-05-28 21:54:58,321 [INFO] Idea 1: Log scan_metrics summary each arb cycle
+2026-05-28 21:54:58,321 [INFO]   Score: 0.20 (Impact: 2.0, Comp: 1.0, Novelty: 0.1)
+2026-05-28 21:54:58,321 [WARNING] All ideas were recent/stale. Regenerating...
+2026-05-28 21:54:58,561 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 21:54:58,562 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 21:54:58,562 [WARNING] Using deterministic fallback ideas (LLM unavailable)
+2026-05-28 21:54:58,562 [INFO] Selected idea: Log scan_metrics summary each arb cycle
+2026-05-28 21:54:58,844 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 21:54:58,844 [ERROR] IterationPlanner failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 21:54:58,859 [WARNING] Using test-only fallback plan (LLM unavailable)
+2026-05-28 21:54:58,866 [INFO] Step A: Python unit tests
+2026-05-28 21:56:49,993 [INFO] Step B: TypeScript type check
+2026-05-28 21:56:51,253 [INFO] Step C: Playwright E2E tests
+2026-05-28 21:56:53,068 [INFO] Step D: Backend API smoke test
+2026-05-28 21:56:58,089 [INFO] HTTP Request: GET http://localhost:8001/api/opportunities "HTTP/1.1 404 Not Found"
+2026-05-28 21:56:58,094 [INFO] HTTP Request: GET http://localhost:8001/api/arb/backtest "HTTP/1.1 200 OK"
+2026-05-28 21:56:58,095 [INFO] Step E: Backtest regression check
+2026-05-28 21:57:00,295 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+[main 8f0a64d] loop(iter 596): Log scan_metrics summary each arb cycle
+ 1 file changed, 7 insertions(+)
+2026-05-28 21:57:00,641 [WARNING] git push failed: fatal: could not read Username for 'https://github.com': No such device or address
+
+2026-05-28 21:57:00,644 [INFO] Iteration 596 complete. Tests: FAIL
+2026-05-28 21:59:00,644 [INFO] === ITERATION 597 (target 1000) ===
+2026-05-28 21:59:00,925 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 21:59:00,925 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 21:59:00,925 [WARNING] Using deterministic fallback ideas (LLM unavailable)
+2026-05-28 21:59:00,926 [INFO] --- Idea Scoring Table ---
+2026-05-28 21:59:00,926 [INFO] Idea 1: Log scan_metrics summary each arb cycle
+2026-05-28 21:59:00,926 [INFO]   Score: 0.20 (Impact: 2.0, Comp: 1.0, Novelty: 0.1)
+2026-05-28 21:59:00,926 [WARNING] All ideas were recent/stale. Regenerating...
+2026-05-28 21:59:01,172 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 21:59:01,173 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 21:59:01,173 [WARNING] Using deterministic fallback ideas (LLM unavailable)
+2026-05-28 21:59:01,173 [INFO] Selected idea: Log scan_metrics summary each arb cycle
+2026-05-28 21:59:01,407 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 21:59:01,408 [ERROR] IterationPlanner failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 21:59:01,408 [WARNING] Using test-only fallback plan (LLM unavailable)
+2026-05-28 21:59:01,412 [INFO] Step A: Python unit tests
+2026-05-28 22:00:51,708 [INFO] Step B: TypeScript type check
+2026-05-28 22:00:52,983 [INFO] Step C: Playwright E2E tests
+2026-05-28 22:00:54,774 [INFO] Step D: Backend API smoke test
+2026-05-28 22:00:59,818 [INFO] HTTP Request: GET http://localhost:8001/api/opportunities "HTTP/1.1 404 Not Found"
+2026-05-28 22:00:59,823 [INFO] HTTP Request: GET http://localhost:8001/api/arb/backtest "HTTP/1.1 200 OK"
+2026-05-28 22:00:59,823 [INFO] Step E: Backtest regression check
+2026-05-28 22:01:01,554 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+[main 9f58b84] loop(iter 597): Log scan_metrics summary each arb cycle
+ 1 file changed, 7 insertions(+)
+2026-05-28 22:01:01,941 [WARNING] git push failed: fatal: could not read Username for 'https://github.com': No such device or address
+
+2026-05-28 22:01:01,943 [INFO] Iteration 597 complete. Tests: FAIL
+2026-05-28 22:03:01,944 [INFO] === ITERATION 598 (target 1000) ===
+2026-05-28 22:03:02,435 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 22:03:02,435 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 22:03:02,435 [WARNING] Using deterministic fallback ideas (LLM unavailable)
+2026-05-28 22:03:02,435 [INFO] --- Idea Scoring Table ---
+2026-05-28 22:03:02,435 [INFO] Idea 1: Log scan_metrics summary each arb cycle
+2026-05-28 22:03:02,435 [INFO]   Score: 0.20 (Impact: 2.0, Comp: 1.0, Novelty: 0.1)
+2026-05-28 22:03:02,435 [WARNING] All ideas were recent/stale. Regenerating...
+2026-05-28 22:03:02,734 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 22:03:02,735 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 22:03:02,735 [WARNING] Using deterministic fallback ideas (LLM unavailable)
+2026-05-28 22:03:02,735 [INFO] Selected idea: Log scan_metrics summary each arb cycle
+2026-05-28 22:03:02,995 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 22:03:02,996 [ERROR] IterationPlanner failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 22:03:02,996 [WARNING] Using test-only fallback plan (LLM unavailable)
+2026-05-28 22:03:03,016 [INFO] Step A: Python unit tests
+2026-05-28 22:04:54,119 [INFO] Step B: TypeScript type check
+2026-05-28 22:04:55,396 [INFO] Step C: Playwright E2E tests
+2026-05-28 22:04:57,142 [INFO] Step D: Backend API smoke test
+2026-05-28 22:05:02,178 [INFO] HTTP Request: GET http://localhost:8001/api/opportunities "HTTP/1.1 404 Not Found"
+2026-05-28 22:05:02,185 [INFO] HTTP Request: GET http://localhost:8001/api/arb/backtest "HTTP/1.1 200 OK"
+2026-05-28 22:05:02,185 [INFO] Step E: Backtest regression check
+2026-05-28 22:05:03,583 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+[main d906fe2] loop(iter 598): Log scan_metrics summary each arb cycle
+ 1 file changed, 7 insertions(+)
+2026-05-28 22:05:03,894 [WARNING] git push failed: fatal: could not read Username for 'https://github.com': No such device or address
+
+2026-05-28 22:05:03,897 [INFO] Iteration 598 complete. Tests: FAIL
+2026-05-28 22:07:03,897 [INFO] === ITERATION 599 (target 1000) ===
+2026-05-28 22:07:04,184 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 22:07:04,184 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 22:07:04,184 [WARNING] Using deterministic fallback ideas (LLM unavailable)
+2026-05-28 22:07:04,184 [INFO] --- Idea Scoring Table ---
+2026-05-28 22:07:04,184 [INFO] Idea 1: Log scan_metrics summary each arb cycle
+2026-05-28 22:07:04,184 [INFO]   Score: 0.20 (Impact: 2.0, Comp: 1.0, Novelty: 0.1)
+2026-05-28 22:07:04,184 [WARNING] All ideas were recent/stale. Regenerating...
+2026-05-28 22:07:04,438 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 22:07:04,438 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 22:07:04,439 [WARNING] Using deterministic fallback ideas (LLM unavailable)
+2026-05-28 22:07:04,439 [INFO] Selected idea: Log scan_metrics summary each arb cycle
+2026-05-28 22:07:04,691 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 22:07:04,692 [ERROR] IterationPlanner failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 22:07:04,692 [WARNING] Using test-only fallback plan (LLM unavailable)
+2026-05-28 22:07:04,696 [INFO] Step A: Python unit tests
+2026-05-28 22:08:55,516 [INFO] Step B: TypeScript type check
+2026-05-28 22:08:56,806 [INFO] Step C: Playwright E2E tests
+2026-05-28 22:08:58,710 [INFO] Step D: Backend API smoke test
+2026-05-28 22:09:03,751 [INFO] HTTP Request: GET http://localhost:8001/api/opportunities "HTTP/1.1 404 Not Found"
+2026-05-28 22:09:03,757 [INFO] HTTP Request: GET http://localhost:8001/api/arb/backtest "HTTP/1.1 200 OK"
+2026-05-28 22:09:03,757 [INFO] Step E: Backtest regression check
+2026-05-28 22:09:05,868 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+[main ec0d25a] loop(iter 599): Log scan_metrics summary each arb cycle
+ 1 file changed, 7 insertions(+)
+2026-05-28 22:09:06,287 [WARNING] git push failed: fatal: could not read Username for 'https://github.com': No such device or address
+
+2026-05-28 22:09:06,290 [INFO] Iteration 599 complete. Tests: FAIL
+2026-05-28 22:11:06,291 [INFO] === ITERATION 600 (target 1000) ===
+2026-05-28 22:11:06,576 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 22:11:06,576 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 22:11:06,576 [WARNING] Using deterministic fallback ideas (LLM unavailable)
+2026-05-28 22:11:06,577 [INFO] --- Idea Scoring Table ---
+2026-05-28 22:11:06,577 [INFO] Idea 1: Log scan_metrics summary each arb cycle
+2026-05-28 22:11:06,577 [INFO]   Score: 0.20 (Impact: 2.0, Comp: 1.0, Novelty: 0.1)
+2026-05-28 22:11:06,577 [WARNING] All ideas were recent/stale. Regenerating...
+2026-05-28 22:11:06,826 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 22:11:06,827 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 22:11:06,827 [WARNING] Using deterministic fallback ideas (LLM unavailable)
+2026-05-28 22:11:06,827 [INFO] Selected idea: Log scan_metrics summary each arb cycle
+2026-05-28 22:11:07,058 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 22:11:07,058 [ERROR] IterationPlanner failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 22:11:07,058 [WARNING] Using test-only fallback plan (LLM unavailable)
+2026-05-28 22:11:07,063 [INFO] Step A: Python unit tests
+2026-05-28 22:12:58,012 [INFO] Step B: TypeScript type check
+2026-05-28 22:12:59,291 [INFO] Step C: Playwright E2E tests
+2026-05-28 22:13:01,014 [INFO] Step D: Backend API smoke test
+2026-05-28 22:13:06,037 [INFO] HTTP Request: GET http://localhost:8001/api/opportunities "HTTP/1.1 404 Not Found"
+2026-05-28 22:13:06,043 [INFO] HTTP Request: GET http://localhost:8001/api/arb/backtest "HTTP/1.1 200 OK"
+2026-05-28 22:13:06,086 [INFO] Step E: Backtest regression check
+2026-05-28 22:13:07,402 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 22:13:07,645 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 22:13:07,646 [ERROR] Failed to compact state: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 22:13:07,646 [INFO] Compact summary: ...
+[main 46582c4] loop(iter 600): Log scan_metrics summary each arb cycle
+ 4 files changed, 184 insertions(+), 7 deletions(-)
+ create mode 100644 .agent/tasks/IMPROVEMENT_TASKS.md
+ create mode 100644 Makefile
+2026-05-28 22:13:08,044 [WARNING] git push failed: fatal: could not read Username for 'https://github.com': No such device or address
+
+2026-05-28 22:13:08,046 [INFO] Iteration 600 complete. Tests: FAIL
+2026-05-28 22:15:08,046 [INFO] === ITERATION 601 (target 1000) ===
+2026-05-28 22:15:08,493 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 22:15:08,494 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 22:15:08,494 [WARNING] Using deterministic fallback ideas (LLM unavailable)
+2026-05-28 22:15:08,494 [INFO] --- Idea Scoring Table ---
+2026-05-28 22:15:08,494 [INFO] Idea 1: Cache Kalshi category fetches
+2026-05-28 22:15:08,494 [INFO]   Score: 2.40 (Impact: 3.0, Comp: 0.8, Novelty: 1.0)
+2026-05-28 22:15:08,494 [INFO] Selected idea: Cache Kalshi category fetches
+2026-05-28 22:15:08,752 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 22:15:08,752 [ERROR] IterationPlanner failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 22:15:08,752 [WARNING] Using test-only fallback plan (LLM unavailable)
+2026-05-28 22:15:08,757 [INFO] Step A: Python unit tests
+2026-05-28 22:16:59,860 [INFO] Step B: TypeScript type check
+2026-05-28 22:17:01,168 [INFO] Step C: Playwright E2E tests
+2026-05-28 22:17:03,515 [INFO] Step D: Backend API smoke test
+2026-05-28 22:17:08,546 [INFO] HTTP Request: GET http://localhost:8001/api/opportunities "HTTP/1.1 404 Not Found"
+2026-05-28 22:17:08,551 [INFO] HTTP Request: GET http://localhost:8001/api/arb/backtest "HTTP/1.1 200 OK"
+2026-05-28 22:17:08,551 [INFO] Step E: Backtest regression check
+2026-05-28 22:17:10,538 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+[main 51e6eb8] loop(iter 601): Cache Kalshi category fetches
+ 1 file changed, 7 insertions(+)
+2026-05-28 22:17:10,891 [WARNING] git push failed: fatal: could not read Username for 'https://github.com': No such device or address
+
+2026-05-28 22:17:10,893 [INFO] Iteration 601 complete. Tests: FAIL
+2026-05-28 22:19:10,893 [INFO] === ITERATION 602 (target 1000) ===
+2026-05-28 22:19:11,139 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 22:19:11,139 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 22:19:11,139 [WARNING] Using deterministic fallback ideas (LLM unavailable)
+2026-05-28 22:19:11,139 [INFO] --- Idea Scoring Table ---
+2026-05-28 22:19:11,139 [INFO] Idea 1: Tune arb_min_net_edge from scan metrics
+2026-05-28 22:19:11,140 [INFO]   Score: 3.00 (Impact: 3.0, Comp: 1.0, Novelty: 1.0)
+2026-05-28 22:19:11,140 [INFO] Selected idea: Tune arb_min_net_edge from scan metrics
+2026-05-28 22:19:11,375 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 22:19:11,376 [ERROR] IterationPlanner failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 22:19:11,379 [WARNING] Using test-only fallback plan (LLM unavailable)
+2026-05-28 22:19:11,384 [INFO] Step A: Python unit tests
+2026-05-28 22:21:02,528 [INFO] Step B: TypeScript type check
+2026-05-28 22:21:03,891 [INFO] Step C: Playwright E2E tests
+2026-05-28 22:21:05,615 [INFO] Step D: Backend API smoke test
+2026-05-28 22:21:10,639 [INFO] HTTP Request: GET http://localhost:8001/api/opportunities "HTTP/1.1 404 Not Found"
+2026-05-28 22:21:10,644 [INFO] HTTP Request: GET http://localhost:8001/api/arb/backtest "HTTP/1.1 200 OK"
+2026-05-28 22:21:10,644 [INFO] Step E: Backtest regression check
+2026-05-28 22:21:12,780 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+[main e401e3f] loop(iter 602): Tune arb_min_net_edge from scan metrics
+ 1 file changed, 7 insertions(+)
+2026-05-28 22:21:13,230 [WARNING] git push failed: fatal: could not read Username for 'https://github.com': No such device or address
+
+2026-05-28 22:21:13,233 [INFO] Iteration 602 complete. Tests: FAIL
+2026-05-28 22:23:13,233 [INFO] === ITERATION 603 (target 1000) ===
+2026-05-28 22:23:13,502 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 22:23:13,504 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 22:23:13,504 [WARNING] Using deterministic fallback ideas (LLM unavailable)
+2026-05-28 22:23:13,504 [INFO] --- Idea Scoring Table ---
+2026-05-28 22:23:13,504 [INFO] Idea 1: Cache Kalshi category fetches
+2026-05-28 22:23:13,504 [INFO]   Score: 0.24 (Impact: 3.0, Comp: 0.8, Novelty: 0.1)
+2026-05-28 22:23:13,504 [WARNING] All ideas were recent/stale. Regenerating...
+2026-05-28 22:23:13,760 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 22:23:13,760 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 22:23:13,761 [WARNING] Using deterministic fallback ideas (LLM unavailable)
+2026-05-28 22:23:13,761 [INFO] Selected idea: Cache Kalshi category fetches
+2026-05-28 22:23:14,021 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 22:23:14,021 [ERROR] IterationPlanner failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 22:23:14,021 [WARNING] Using test-only fallback plan (LLM unavailable)
+2026-05-28 22:23:14,028 [INFO] Step A: Python unit tests
+2026-05-28 22:25:03,946 [INFO] Step B: TypeScript type check
+2026-05-28 22:25:05,230 [INFO] Step C: Playwright E2E tests
+2026-05-28 22:25:06,973 [INFO] Step D: Backend API smoke test
+2026-05-28 22:25:11,997 [INFO] HTTP Request: GET http://localhost:8001/api/opportunities "HTTP/1.1 404 Not Found"
+2026-05-28 22:25:12,002 [INFO] HTTP Request: GET http://localhost:8001/api/arb/backtest "HTTP/1.1 200 OK"
+2026-05-28 22:25:12,002 [INFO] Step E: Backtest regression check
+2026-05-28 22:25:13,848 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+[main 57e5998] loop(iter 603): Cache Kalshi category fetches
+ 1 file changed, 7 insertions(+)
+2026-05-28 22:25:14,174 [WARNING] git push failed: fatal: could not read Username for 'https://github.com': No such device or address
+
+2026-05-28 22:25:14,177 [INFO] Iteration 603 complete. Tests: FAIL
+2026-05-28 22:27:14,177 [INFO] === ITERATION 604 (target 1000) ===
+2026-05-28 22:27:14,574 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 22:27:14,575 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 22:27:14,575 [WARNING] Using deterministic fallback ideas (LLM unavailable)
+2026-05-28 22:27:14,575 [INFO] --- Idea Scoring Table ---
+2026-05-28 22:27:14,575 [INFO] Idea 1: Tune arb_min_net_edge from scan metrics
+2026-05-28 22:27:14,575 [INFO]   Score: 0.30 (Impact: 3.0, Comp: 1.0, Novelty: 0.1)
+2026-05-28 22:27:14,575 [WARNING] All ideas were recent/stale. Regenerating...
+2026-05-28 22:27:14,813 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 22:27:14,813 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 22:27:14,813 [WARNING] Using deterministic fallback ideas (LLM unavailable)
+2026-05-28 22:27:14,813 [INFO] Selected idea: Tune arb_min_net_edge from scan metrics
+2026-05-28 22:27:15,106 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 22:27:15,107 [ERROR] IterationPlanner failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 22:27:15,108 [WARNING] Using test-only fallback plan (LLM unavailable)
+2026-05-28 22:27:15,112 [INFO] Step A: Python unit tests
+2026-05-28 22:29:06,176 [INFO] Step B: TypeScript type check
+2026-05-28 22:29:07,443 [INFO] Step C: Playwright E2E tests
+2026-05-28 22:29:09,382 [INFO] Step D: Backend API smoke test
+2026-05-28 22:29:14,403 [INFO] HTTP Request: GET http://localhost:8001/api/opportunities "HTTP/1.1 404 Not Found"
+2026-05-28 22:29:14,408 [INFO] HTTP Request: GET http://localhost:8001/api/arb/backtest "HTTP/1.1 200 OK"
+2026-05-28 22:29:14,408 [INFO] Step E: Backtest regression check
+2026-05-28 22:29:15,720 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+[main e96f9d3] loop(iter 604): Tune arb_min_net_edge from scan metrics
+ 1 file changed, 7 insertions(+)
+2026-05-28 22:29:16,051 [WARNING] git push failed: fatal: could not read Username for 'https://github.com': No such device or address
+
+2026-05-28 22:29:16,054 [INFO] Iteration 604 complete. Tests: FAIL
+2026-05-28 22:31:16,054 [INFO] === ITERATION 605 (target 1000) ===
+2026-05-28 22:31:16,358 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 22:31:16,358 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 22:31:16,358 [WARNING] Using deterministic fallback ideas (LLM unavailable)
+2026-05-28 22:31:16,358 [INFO] --- Idea Scoring Table ---
+2026-05-28 22:31:16,358 [INFO] Idea 1: Cache Kalshi category fetches
+2026-05-28 22:31:16,358 [INFO]   Score: 0.24 (Impact: 3.0, Comp: 0.8, Novelty: 0.1)
+2026-05-28 22:31:16,358 [WARNING] All ideas were recent/stale. Regenerating...
+2026-05-28 22:31:16,642 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 22:31:16,644 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 22:31:16,644 [WARNING] Using deterministic fallback ideas (LLM unavailable)
+2026-05-28 22:31:16,644 [INFO] Selected idea: Cache Kalshi category fetches
+2026-05-28 22:31:16,889 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 22:31:16,901 [ERROR] IterationPlanner failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 22:31:16,902 [WARNING] Using test-only fallback plan (LLM unavailable)
+2026-05-28 22:31:16,906 [INFO] Step A: Python unit tests
+2026-05-28 22:33:06,988 [INFO] Step B: TypeScript type check
+2026-05-28 22:33:08,267 [INFO] Step C: Playwright E2E tests
+2026-05-28 22:33:10,190 [INFO] Step D: Backend API smoke test
+2026-05-28 22:33:15,222 [INFO] HTTP Request: GET http://localhost:8001/api/opportunities "HTTP/1.1 404 Not Found"
+2026-05-28 22:33:15,227 [INFO] HTTP Request: GET http://localhost:8001/api/arb/backtest "HTTP/1.1 200 OK"
+2026-05-28 22:33:15,227 [INFO] Step E: Backtest regression check
+2026-05-28 22:33:16,648 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+[main 4638618] loop(iter 605): Cache Kalshi category fetches
+ 1 file changed, 7 insertions(+)
+2026-05-28 22:33:16,972 [WARNING] git push failed: fatal: could not read Username for 'https://github.com': No such device or address
+
+2026-05-28 22:33:16,975 [INFO] Iteration 605 complete. Tests: FAIL
+2026-05-28 22:35:16,977 [INFO] === ITERATION 606 (target 1000) ===
+2026-05-28 22:35:17,232 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 22:35:17,233 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 22:35:17,233 [WARNING] Using deterministic fallback ideas (LLM unavailable)
+2026-05-28 22:35:17,233 [INFO] --- Idea Scoring Table ---
+2026-05-28 22:35:17,233 [INFO] Idea 1: Tune arb_min_net_edge from scan metrics
+2026-05-28 22:35:17,233 [INFO]   Score: 0.30 (Impact: 3.0, Comp: 1.0, Novelty: 0.1)
+2026-05-28 22:35:17,233 [WARNING] All ideas were recent/stale. Regenerating...
+2026-05-28 22:35:17,495 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 22:35:17,495 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 22:35:17,495 [WARNING] Using deterministic fallback ideas (LLM unavailable)
+2026-05-28 22:35:17,495 [INFO] Selected idea: Tune arb_min_net_edge from scan metrics
+2026-05-28 22:35:17,786 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 22:35:17,787 [ERROR] IterationPlanner failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 22:35:17,800 [WARNING] Using test-only fallback plan (LLM unavailable)
+2026-05-28 22:35:17,804 [INFO] Step A: Python unit tests
+2026-05-28 22:37:09,389 [INFO] Step B: TypeScript type check
+2026-05-28 22:37:10,826 [INFO] Step C: Playwright E2E tests
+2026-05-28 22:37:12,858 [INFO] Step D: Backend API smoke test
+2026-05-28 22:37:17,884 [INFO] HTTP Request: GET http://localhost:8001/api/opportunities "HTTP/1.1 404 Not Found"
+2026-05-28 22:37:17,889 [INFO] HTTP Request: GET http://localhost:8001/api/arb/backtest "HTTP/1.1 200 OK"
+2026-05-28 22:37:17,890 [INFO] Step E: Backtest regression check
+2026-05-28 22:37:20,111 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+[main c972ef8] loop(iter 606): Tune arb_min_net_edge from scan metrics
+ 1 file changed, 7 insertions(+)
+2026-05-28 22:37:20,501 [WARNING] git push failed: fatal: could not read Username for 'https://github.com': No such device or address
+
+2026-05-28 22:37:20,504 [INFO] Iteration 606 complete. Tests: FAIL
+2026-05-28 22:39:20,504 [INFO] === ITERATION 607 (target 1000) ===
+2026-05-28 22:39:20,891 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 22:39:20,892 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 22:39:20,892 [WARNING] Using deterministic fallback ideas (LLM unavailable)
+2026-05-28 22:39:20,892 [INFO] --- Idea Scoring Table ---
+2026-05-28 22:39:20,892 [INFO] Idea 1: Cache Kalshi category fetches
+2026-05-28 22:39:20,893 [INFO]   Score: 0.24 (Impact: 3.0, Comp: 0.8, Novelty: 0.1)
+2026-05-28 22:39:20,893 [WARNING] All ideas were recent/stale. Regenerating...
+2026-05-28 22:39:21,156 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 22:39:21,169 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 22:39:21,169 [WARNING] Using deterministic fallback ideas (LLM unavailable)
+2026-05-28 22:39:21,169 [INFO] Selected idea: Cache Kalshi category fetches
+2026-05-28 22:39:21,430 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 22:39:21,431 [ERROR] IterationPlanner failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 22:39:21,431 [WARNING] Using test-only fallback plan (LLM unavailable)
+2026-05-28 22:39:21,435 [INFO] Step A: Python unit tests
+2026-05-28 22:41:12,190 [INFO] Step B: TypeScript type check
+2026-05-28 22:41:13,517 [INFO] Step C: Playwright E2E tests
+2026-05-28 22:41:15,394 [INFO] Step D: Backend API smoke test
+2026-05-28 22:41:20,417 [INFO] HTTP Request: GET http://localhost:8001/api/opportunities "HTTP/1.1 404 Not Found"
+2026-05-28 22:41:20,422 [INFO] HTTP Request: GET http://localhost:8001/api/arb/backtest "HTTP/1.1 200 OK"
+2026-05-28 22:41:20,422 [INFO] Step E: Backtest regression check
+2026-05-28 22:41:22,642 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+[main d3a356f] loop(iter 607): Cache Kalshi category fetches
+ 2 files changed, 82 insertions(+), 25 deletions(-)
+2026-05-28 22:41:23,043 [WARNING] git push failed: fatal: could not read Username for 'https://github.com': No such device or address
+
+2026-05-28 22:41:23,046 [INFO] Iteration 607 complete. Tests: FAIL
+2026-05-28 22:43:23,046 [INFO] === ITERATION 608 (target 1000) ===
+2026-05-28 22:43:23,355 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 22:43:23,355 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 22:43:23,356 [WARNING] Using deterministic fallback ideas (LLM unavailable)
+2026-05-28 22:43:23,356 [INFO] --- Idea Scoring Table ---
+2026-05-28 22:43:23,356 [INFO] Idea 1: Tune arb_min_net_edge from scan metrics
+2026-05-28 22:43:23,356 [INFO]   Score: 0.30 (Impact: 3.0, Comp: 1.0, Novelty: 0.1)
+2026-05-28 22:43:23,356 [WARNING] All ideas were recent/stale. Regenerating...
+2026-05-28 22:43:23,647 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 22:43:23,648 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 22:43:23,649 [WARNING] Using deterministic fallback ideas (LLM unavailable)
+2026-05-28 22:43:23,649 [INFO] Selected idea: Tune arb_min_net_edge from scan metrics
+2026-05-28 22:43:23,906 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 22:43:23,907 [ERROR] IterationPlanner failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 22:43:23,907 [WARNING] Using test-only fallback plan (LLM unavailable)
+2026-05-28 22:43:23,912 [INFO] Step A: Python unit tests
+2026-05-28 22:45:14,139 [INFO] Step B: TypeScript type check
+2026-05-28 22:45:15,433 [INFO] Step C: Playwright E2E tests
+2026-05-28 22:45:17,163 [INFO] Step D: Backend API smoke test
+2026-05-28 22:45:22,196 [INFO] HTTP Request: GET http://localhost:8001/api/opportunities "HTTP/1.1 404 Not Found"
+2026-05-28 22:45:22,201 [INFO] HTTP Request: GET http://localhost:8001/api/arb/backtest "HTTP/1.1 200 OK"
+2026-05-28 22:45:22,201 [INFO] Step E: Backtest regression check
+2026-05-28 22:45:24,175 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+[main b8fd59d] loop(iter 608): Tune arb_min_net_edge from scan metrics
+ 1 file changed, 7 insertions(+)
+2026-05-28 22:45:24,553 [WARNING] git push failed: fatal: could not read Username for 'https://github.com': No such device or address
+
+2026-05-28 22:45:24,556 [INFO] Iteration 608 complete. Tests: FAIL
+2026-05-28 22:47:24,556 [INFO] === ITERATION 609 (target 1000) ===
+2026-05-28 22:47:24,841 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 22:47:24,842 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 22:47:24,842 [WARNING] Using deterministic fallback ideas (LLM unavailable)
+2026-05-28 22:47:24,842 [INFO] --- Idea Scoring Table ---
+2026-05-28 22:47:24,842 [INFO] Idea 1: Cache Kalshi category fetches
+2026-05-28 22:47:24,842 [INFO]   Score: 0.24 (Impact: 3.0, Comp: 0.8, Novelty: 0.1)
+2026-05-28 22:47:24,842 [WARNING] All ideas were recent/stale. Regenerating...
+2026-05-28 22:47:25,109 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 22:47:25,109 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 22:47:25,109 [WARNING] Using deterministic fallback ideas (LLM unavailable)
+2026-05-28 22:47:25,109 [INFO] Selected idea: Cache Kalshi category fetches
+2026-05-28 22:47:25,372 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 22:47:25,373 [ERROR] IterationPlanner failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 22:47:25,384 [WARNING] Using test-only fallback plan (LLM unavailable)
+2026-05-28 22:47:25,388 [INFO] Step A: Python unit tests
+2026-05-28 22:49:16,223 [INFO] Step B: TypeScript type check
+2026-05-28 22:49:17,524 [INFO] Step C: Playwright E2E tests
+2026-05-28 22:49:19,304 [INFO] Step D: Backend API smoke test
+2026-05-28 22:49:24,335 [INFO] HTTP Request: GET http://localhost:8001/api/opportunities "HTTP/1.1 404 Not Found"
+2026-05-28 22:49:24,340 [INFO] HTTP Request: GET http://localhost:8001/api/arb/backtest "HTTP/1.1 200 OK"
+2026-05-28 22:49:24,341 [INFO] Step E: Backtest regression check
+2026-05-28 22:49:25,631 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+[main 7039b8b] loop(iter 609): Cache Kalshi category fetches
+ 2 files changed, 15 insertions(+), 12 deletions(-)
+2026-05-28 22:49:25,968 [WARNING] git push failed: fatal: could not read Username for 'https://github.com': No such device or address
+
+2026-05-28 22:49:25,970 [INFO] Iteration 609 complete. Tests: FAIL
+2026-05-28 22:51:25,971 [INFO] === ITERATION 610 (target 1000) ===
+2026-05-28 22:51:26,381 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 22:51:26,395 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 22:51:26,395 [WARNING] Using deterministic fallback ideas (LLM unavailable)
+2026-05-28 22:51:26,395 [INFO] --- Idea Scoring Table ---
+2026-05-28 22:51:26,395 [INFO] Idea 1: Tune arb_min_net_edge from scan metrics
+2026-05-28 22:51:26,395 [INFO]   Score: 0.30 (Impact: 3.0, Comp: 1.0, Novelty: 0.1)
+2026-05-28 22:51:26,395 [WARNING] All ideas were recent/stale. Regenerating...
+2026-05-28 22:51:26,663 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 22:51:26,664 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 22:51:26,664 [WARNING] Using deterministic fallback ideas (LLM unavailable)
+2026-05-28 22:51:26,664 [INFO] Selected idea: Tune arb_min_net_edge from scan metrics
+2026-05-28 22:51:26,974 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 22:51:26,974 [ERROR] IterationPlanner failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 22:51:26,975 [WARNING] Using test-only fallback plan (LLM unavailable)
+2026-05-28 22:51:26,980 [INFO] Step A: Python unit tests
+2026-05-28 22:53:17,258 [INFO] Step B: TypeScript type check
+2026-05-28 22:53:18,542 [INFO] Step C: Playwright E2E tests
+2026-05-28 22:53:20,305 [INFO] Step D: Backend API smoke test
+2026-05-28 22:53:25,343 [INFO] HTTP Request: GET http://localhost:8001/api/opportunities "HTTP/1.1 404 Not Found"
+2026-05-28 22:53:25,348 [INFO] HTTP Request: GET http://localhost:8001/api/arb/backtest "HTTP/1.1 200 OK"
+2026-05-28 22:53:25,348 [INFO] Step E: Backtest regression check
+2026-05-28 22:53:26,705 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 22:53:26,988 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 22:53:26,988 [ERROR] Failed to compact state: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 22:53:26,988 [INFO] Compact summary: ...
+[main 2119f02] loop(iter 610): Tune arb_min_net_edge from scan metrics
+ 6 files changed, 1299 insertions(+)
+ create mode 100644 DOCUMENTATION_INDEX.md
+ create mode 100644 ENVIRONMENT_STATUS.txt
+ create mode 100644 HEALTH_REPORT.md
+ create mode 100644 LOOP_STATUS_2024-05-28.md
+ create mode 100644 QUICK_START.txt
+2026-05-28 22:53:27,350 [WARNING] git push failed: fatal: could not read Username for 'https://github.com': No such device or address
+
+2026-05-28 22:53:27,354 [INFO] Iteration 610 complete. Tests: FAIL
+2026-05-28 22:55:27,354 [INFO] === ITERATION 611 (target 1000) ===
+2026-05-28 22:55:27,687 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 22:55:27,688 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 22:55:27,689 [WARNING] Using deterministic fallback ideas (LLM unavailable)
+2026-05-28 22:55:27,689 [INFO] --- Idea Scoring Table ---
+2026-05-28 22:55:27,689 [INFO] Idea 1: Expose risk gate rejection reasons in API
+2026-05-28 22:55:27,689 [INFO]   Score: 2.00 (Impact: 2.0, Comp: 1.0, Novelty: 1.0)
+2026-05-28 22:55:27,689 [INFO] Selected idea: Expose risk gate rejection reasons in API
+2026-05-28 22:55:27,937 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 22:55:27,938 [ERROR] IterationPlanner failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 22:55:27,960 [WARNING] Using test-only fallback plan (LLM unavailable)
+2026-05-28 22:55:27,967 [INFO] Step A: Python unit tests
+2026-05-28 22:57:18,608 [INFO] Step B: TypeScript type check
+2026-05-28 22:57:19,974 [INFO] Step C: Playwright E2E tests
+2026-05-28 22:57:21,994 [INFO] Step D: Backend API smoke test
+2026-05-28 22:57:27,026 [INFO] HTTP Request: GET http://localhost:8001/api/opportunities "HTTP/1.1 404 Not Found"
+2026-05-28 22:57:27,034 [INFO] HTTP Request: GET http://localhost:8001/api/arb/backtest "HTTP/1.1 200 OK"
+2026-05-28 22:57:27,035 [INFO] Step E: Backtest regression check
+2026-05-28 22:57:29,639 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+[main 0b382e2] loop(iter 611): Expose risk gate rejection reasons in API
+ 3 files changed, 402 insertions(+)
+ create mode 100644 ACTION_CHECKLIST.md
+ create mode 100644 CODEBASE_ANALYSIS_REPORT.md
+2026-05-28 22:57:30,106 [WARNING] git push failed: fatal: could not read Username for 'https://github.com': No such device or address
+
+2026-05-28 22:57:30,110 [INFO] Iteration 611 complete. Tests: FAIL
+2026-05-28 22:59:30,111 [INFO] === ITERATION 612 (target 1000) ===
+2026-05-28 22:59:30,397 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 22:59:30,397 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 22:59:30,397 [WARNING] Using deterministic fallback ideas (LLM unavailable)
+2026-05-28 22:59:30,397 [INFO] --- Idea Scoring Table ---
+2026-05-28 22:59:30,397 [INFO] Idea 1: Expose risk gate rejection reasons in API
+2026-05-28 22:59:30,397 [INFO]   Score: 0.20 (Impact: 2.0, Comp: 1.0, Novelty: 0.1)
+2026-05-28 22:59:30,397 [WARNING] All ideas were recent/stale. Regenerating...
+2026-05-28 22:59:30,634 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 22:59:30,634 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 22:59:30,634 [WARNING] Using deterministic fallback ideas (LLM unavailable)
+2026-05-28 22:59:30,634 [INFO] Selected idea: Expose risk gate rejection reasons in API
+2026-05-28 22:59:30,867 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 22:59:30,868 [ERROR] IterationPlanner failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 22:59:30,868 [WARNING] Using test-only fallback plan (LLM unavailable)
+2026-05-28 22:59:30,887 [INFO] Step A: Python unit tests
+2026-05-28 23:01:22,090 [INFO] Step B: TypeScript type check
+2026-05-28 23:01:23,469 [INFO] Step C: Playwright E2E tests
+2026-05-28 23:10:33,888 [INFO] Step D: Backend API smoke test
+2026-05-28 23:10:38,914 [INFO] HTTP Request: GET http://localhost:8001/api/opportunities "HTTP/1.1 404 Not Found"
+2026-05-28 23:10:38,920 [INFO] HTTP Request: GET http://localhost:8001/api/arb/backtest "HTTP/1.1 200 OK"
+2026-05-28 23:10:38,920 [INFO] Step E: Backtest regression check
+2026-05-28 23:10:41,282 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+[main e0ce9d8] loop(iter 612): Expose risk gate rejection reasons in API
+ 20 files changed, 378 insertions(+), 159 deletions(-)
+ create mode 100644 Dockerfile.cloudrun.frontend
+ rewrite artifacts/submission/api-arb-sample.json (83%)
+ rewrite artifacts/submission/screenshots/01-overview.png (97%)
+ rewrite artifacts/submission/screenshots/02-arb-radar.png (97%)
+ rewrite artifacts/submission/screenshots/03-signals.png (97%)
+ rewrite artifacts/submission/screenshots/04-autopilot.png (94%)
+ rewrite artifacts/submission/screenshots/05-risk.png (98%)
+ rewrite artifacts/submission/screenshots/06-hivemind.png (98%)
+ rewrite artifacts/submission/screenshots/07-live-feed.png (97%)
+ rewrite artifacts/submission/screenshots/08-settings.png (98%)
+ create mode 100644 cloudbuild.frontend.yaml
+ create mode 100644 deploy/gcloudignore.frontend
+2026-05-28 23:10:41,697 [WARNING] git push failed: fatal: could not read Username for 'https://github.com': No such device or address
+
+2026-05-28 23:10:41,700 [INFO] Iteration 612 complete. Tests: FAIL
+2026-05-28 23:12:41,700 [INFO] === ITERATION 613 (target 1000) ===
+2026-05-28 23:12:42,000 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 23:12:42,001 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 23:12:42,001 [WARNING] Using deterministic fallback ideas (LLM unavailable)
+2026-05-28 23:12:42,001 [INFO] --- Idea Scoring Table ---
+2026-05-28 23:12:42,001 [INFO] Idea 1: Expose risk gate rejection reasons in API
+2026-05-28 23:12:42,001 [INFO]   Score: 0.20 (Impact: 2.0, Comp: 1.0, Novelty: 0.1)
+2026-05-28 23:12:42,001 [WARNING] All ideas were recent/stale. Regenerating...
+2026-05-28 23:12:42,237 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 23:12:42,237 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 23:12:42,237 [WARNING] Using deterministic fallback ideas (LLM unavailable)
+2026-05-28 23:12:42,237 [INFO] Selected idea: Expose risk gate rejection reasons in API
+2026-05-28 23:12:42,512 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 23:12:42,512 [ERROR] IterationPlanner failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 23:12:42,530 [WARNING] Using test-only fallback plan (LLM unavailable)
+2026-05-28 23:12:42,535 [INFO] Step A: Python unit tests
+2026-05-28 23:14:35,824 [INFO] Step B: TypeScript type check
+2026-05-28 23:14:37,365 [INFO] Step C: Playwright E2E tests
+2026-05-28 23:23:47,089 [INFO] Step D: Backend API smoke test
+2026-05-28 23:23:52,113 [INFO] HTTP Request: GET http://localhost:8001/api/opportunities "HTTP/1.1 404 Not Found"
+2026-05-28 23:23:52,119 [INFO] HTTP Request: GET http://localhost:8001/api/arb/backtest "HTTP/1.1 200 OK"
+2026-05-28 23:23:52,120 [INFO] Step E: Backtest regression check
+2026-05-28 23:23:52,415 [WARNING] Failed to screenshot http://localhost:3000/dashboard/arb-radar: Page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3000/dashboard/arb-radar
+Call log:
+  - navigating to "http://localhost:3000/dashboard/arb-radar", waiting until "load"
+
+2026-05-28 23:23:52,455 [WARNING] Failed to screenshot http://localhost:3000/dashboard/analytics: Page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3000/dashboard/analytics
+Call log:
+  - navigating to "http://localhost:3000/dashboard/analytics", waiting until "load"
+
+2026-05-28 23:23:52,962 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+[main 879cb8e] loop(iter 613): Expose risk gate rejection reasons in API
+ 8 files changed, 43 insertions(+), 32 deletions(-)
+2026-05-28 23:23:53,358 [WARNING] git push failed: fatal: could not read Username for 'https://github.com': No such device or address
+
+2026-05-28 23:23:53,362 [INFO] Iteration 613 complete. Tests: FAIL
+2026-05-28 23:25:53,363 [INFO] === ITERATION 614 (target 1000) ===
+2026-05-28 23:25:53,621 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 23:25:53,622 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 23:25:53,622 [WARNING] Using deterministic fallback ideas (LLM unavailable)
+2026-05-28 23:25:53,622 [INFO] --- Idea Scoring Table ---
+2026-05-28 23:25:53,622 [INFO] Idea 1: Expose risk gate rejection reasons in API
+2026-05-28 23:25:53,622 [INFO]   Score: 0.20 (Impact: 2.0, Comp: 1.0, Novelty: 0.1)
+2026-05-28 23:25:53,622 [WARNING] All ideas were recent/stale. Regenerating...
+2026-05-28 23:25:53,876 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 23:25:53,876 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 23:25:53,877 [WARNING] Using deterministic fallback ideas (LLM unavailable)
+2026-05-28 23:25:53,877 [INFO] Selected idea: Expose risk gate rejection reasons in API
+2026-05-28 23:25:54,148 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-28 23:25:54,148 [ERROR] IterationPlanner failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-28 23:25:54,149 [WARNING] Using test-only fallback plan (LLM unavailable)
+2026-05-28 23:25:54,155 [INFO] Step A: Python unit tests
+2026-05-28 23:27:45,977 [INFO] Step B: TypeScript type check
+2026-05-28 23:27:47,375 [INFO] Step C: Playwright E2E tests
+2026-05-29 00:18:22,376 [INFO] Step D: Backend API smoke test
+2026-05-29 00:18:27,419 [INFO] HTTP Request: GET http://localhost:8001/api/opportunities "HTTP/1.1 404 Not Found"
+2026-05-29 00:18:27,428 [INFO] HTTP Request: GET http://localhost:8001/api/arb/backtest "HTTP/1.1 200 OK"
+2026-05-29 00:18:27,428 [INFO] Step E: Backtest regression check
+2026-05-29 00:18:27,817 [WARNING] Failed to screenshot http://localhost:3000/dashboard/arb-radar: Page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3000/dashboard/arb-radar
+Call log:
+  - navigating to "http://localhost:3000/dashboard/arb-radar", waiting until "load"
+
+2026-05-29 00:18:27,859 [WARNING] Failed to screenshot http://localhost:3000/dashboard/analytics: Page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3000/dashboard/analytics
+Call log:
+  - navigating to "http://localhost:3000/dashboard/analytics", waiting until "load"
+
+2026-05-29 00:18:28,388 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"

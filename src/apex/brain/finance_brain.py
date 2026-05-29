@@ -1,15 +1,8 @@
 """FinanceBrain: the autopilot's reasoning layer.
 
-Wraps the auto-resolved LLM route (Groq/Gemini/OpenRouter/Ollama) with a
-curated finance-strategy knowledge base and exposes two operations:
-
-- ``ask(question, context)``        -> free-form analyst answer (str)
-- ``analyze_opportunity(opp)``      -> structured BrainVerdict
-
-If no LLM route is live (no key / blocked key / offline), the brain falls back
-to deterministic, knowledge-consistent heuristics so the autopilot keeps
-making safe, explainable decisions. This makes the brain fully testable
-offline and resilient in production.
+Uses Groq, local Ollama, or OpenRouter when available; otherwise falls back to
+deterministic heuristics grounded in the finance knowledge base so paper-trading
+and the morning chain never stall waiting on a cloud LLM.
 """
 
 from __future__ import annotations
@@ -46,6 +39,15 @@ class BrainVerdict:
         }
 
 
+@dataclass
+class _RouteSlot:
+    label: str
+    model: str
+    client: Any | None = None
+    native_gemini_key: str = ""
+    dead: bool = False
+
+
 class FinanceBrain:
     """LLM-backed finance reasoner with offline heuristic fallback."""
 
@@ -55,54 +57,101 @@ class FinanceBrain:
 
             settings = get_settings()
         self._settings = settings
-        self._client: Any | None = None
-        self._route_label: str = "none"
+        self._routes: list[_RouteSlot] = []
+        self._route_label: str = "heuristic"
         self._model: str = ""
-        self._resolve_route()
+        self._resolve_routes()
 
     # -- route resolution -----------------------------------------------------
-    def _resolve_route(self) -> None:
+    def _resolve_routes(self) -> None:
+        self._routes = []
+        self._route_label = "heuristic"
+        self._model = ""
         try:
-            from apex.core.llm_routing import resolve_llm_route
+            from apex.core.gemini_native import uses_query_key_auth
+            from apex.core.llm_routing import openai_client_from_route, resolve_llm_routes
 
-            route = resolve_llm_route(self._settings)
-            client = self._settings.get_llm_client()
+            for route in resolve_llm_routes(self._settings):
+                slot = _RouteSlot(
+                    label=route.label,
+                    model=route.deep_think_model or route.model,
+                )
+                if route.label == "gemini" and uses_query_key_auth(route.api_key):
+                    slot.native_gemini_key = route.api_key
+                else:
+                    slot.client = openai_client_from_route(route)
+                    if slot.client is None and not slot.native_gemini_key:
+                        continue
+                self._routes.append(slot)
         except Exception as exc:  # pragma: no cover - defensive
             LOGGER.warning("FinanceBrain route resolution failed: %s", exc)
-            route, client = None, None
-        if route is not None and client is not None:
-            self._client = client
-            self._route_label = route.label
-            self._model = route.deep_think_model or route.model
-        else:
-            self._client = None
-            self._route_label = "none"
-            self._model = ""
+
+        if self._routes:
+            self._route_label = self._routes[0].label
+            self._model = self._routes[0].model
 
     @property
     def is_live(self) -> bool:
-        """True when a usable LLM client is available."""
-        return self._client is not None
+        """True when at least one LLM backend is configured and not disabled."""
+        return any(not slot.dead and (slot.client is not None or slot.native_gemini_key) for slot in self._routes)
+
+    @property
+    def operational(self) -> bool:
+        """True when the brain can answer (LLM and/or heuristic/scripts)."""
+        return True
 
     @property
     def route_label(self) -> str:
-        return self._route_label
+        active = self._active_slot()
+        return active.label if active is not None else "heuristic"
 
-    def status(self) -> dict[str, Any]:
-        return {
+    def _active_slot(self) -> _RouteSlot | None:
+        for slot in self._routes:
+            if not slot.dead and (slot.client is not None or slot.native_gemini_key):
+                return slot
+        return None
+
+    def status(self, *, probe: bool = False) -> dict[str, Any]:
+        active = self._active_slot()
+        out: dict[str, Any] = {
+            "operational": True,
             "live": self.is_live,
-            "provider": self._route_label,
-            "model": self._model,
+            "mode": active.label if active else "heuristic",
+            "provider": active.label if active else "heuristic",
+            "model": active.model if active else "",
+            "routes": [s.label for s in self._routes if not s.dead],
             "knowledge_version": kb.KNOWLEDGE_VERSION,
             "knowledge_cards": len(kb.all_cards()),
         }
+        if active is not None and active.native_gemini_key:
+            out["auth_mode"] = "query_key"
+        elif active is not None and active.client is not None:
+            out["auth_mode"] = "bearer"
+        if not self.is_live:
+            out["fallback"] = "heuristic"
+        if probe and self.is_live:
+            text, probe_label, err = self._probe_llm()
+            out["probe_provider"] = probe_label
+            if text and "GEMINI_OK" in text.upper():
+                out["authenticated"] = True
+                out["probe"] = "ok"
+            elif text:
+                out["authenticated"] = True
+                out["probe"] = "degraded"
+                out["probe_detail"] = text[:120]
+            elif err:
+                out.update(_classify_probe_error(err))
+            else:
+                out["authenticated"] = False
+                out["probe"] = "failed"
+        return out
 
     # -- public ops -----------------------------------------------------------
     def ask(self, question: str, *, context: str | None = None) -> str:
         """Free-form analyst answer grounded in the strategy knowledge base."""
         system = kb.build_system_prompt(question)
         user = question if not context else f"Context:\n{context}\n\nQuestion: {question}"
-        text = self._chat(system, user)
+        text, label = self._chat(system, user)
         if text is not None:
             return text
         # Fallback: surface the most relevant doctrine deterministically.
@@ -125,37 +174,134 @@ class FinanceBrain:
             "\"rationale\":\"...\",\"risks\":[\"...\"]}.\n\n"
             f"OPPORTUNITY:\n{json.dumps(facts, default=str)}"
         )
-        text = self._chat(system, user)
-        verdict = _parse_verdict(text, self._route_label) if text else None
+        text, label = self._chat(system, user)
+        verdict = _parse_verdict(text, label) if text else None
         if verdict is not None:
             return verdict
         return _heuristic_verdict(facts)
 
     # -- llm plumbing ---------------------------------------------------------
-    def _chat(self, system: str, user: str) -> str | None:
-        if self._client is None:
-            return None
-        try:
-            resp = self._client.chat.completions.create(
-                model=self._model,
-                messages=[
-                    {"role": "system", "content": system},
-                    {"role": "user", "content": user},
-                ],
-                temperature=0.2,
-                max_tokens=_MAX_OUTPUT_TOKENS,
+    def _probe_llm(self) -> tuple[str | None, str, str]:
+        for slot in self._routes:
+            if slot.dead:
+                continue
+            try:
+                text = self._invoke_slot(
+                    slot,
+                    "You are a health probe.",
+                    "Reply with exactly: GEMINI_OK",
+                    max_tokens=20,
+                    temperature=0.0,
+                )
+                if text:
+                    self._route_label = slot.label
+                    self._model = slot.model
+                    return text, slot.label, ""
+            except Exception as exc:
+                err = str(exc)
+                if _disable_slot(slot, exc):
+                    continue
+                return None, slot.label, err
+        return None, "heuristic", ""
+
+    def _chat(self, system: str, user: str) -> tuple[str | None, str]:
+        if not self.is_live:
+            return None, "heuristic"
+        for slot in self._routes:
+            if slot.dead:
+                continue
+            try:
+                text = self._invoke_slot(
+                    slot,
+                    system,
+                    user,
+                    max_tokens=_MAX_OUTPUT_TOKENS,
+                    temperature=0.2,
+                )
+                if text:
+                    self._route_label = slot.label
+                    self._model = slot.model
+                    return text, slot.label
+            except Exception as exc:
+                LOGGER.warning(
+                    "FinanceBrain LLM call failed (%s); trying next route: %s",
+                    slot.label,
+                    exc,
+                )
+                _disable_slot(slot, exc)
+        return None, "heuristic"
+
+    def _invoke_slot(
+        self,
+        slot: _RouteSlot,
+        system: str,
+        user: str,
+        *,
+        max_tokens: int,
+        temperature: float,
+    ) -> str | None:
+        if slot.native_gemini_key:
+            from apex.core.gemini_native import generate_content
+
+            text = generate_content(
+                slot.native_gemini_key,
+                slot.model,
+                system=system,
+                user=user,
+                max_output_tokens=max_tokens,
+                temperature=temperature,
             )
-            choice = resp.choices[0]
-            content = getattr(choice.message, "content", None)
-            if isinstance(content, str) and content.strip():
-                return content.strip()
+            return text.strip() if text and text.strip() else None
+        if slot.client is None:
             return None
-        except Exception as exc:
-            LOGGER.warning("FinanceBrain LLM call failed (%s); using fallback: %s", self._route_label, exc)
-            # A failed call means the route is effectively dead for now.
-            self._client = None
-            self._route_label = "none"
-            return None
+        resp = slot.client.chat.completions.create(
+            model=slot.model,
+            messages=[
+                {"role": "system", "content": system},
+                {"role": "user", "content": user},
+            ],
+            temperature=temperature,
+            max_tokens=max_tokens,
+        )
+        choice = resp.choices[0]
+        content = getattr(choice.message, "content", None)
+        if isinstance(content, str) and content.strip():
+            return content.strip()
+        return None
+
+
+def _disable_slot(slot: _RouteSlot, exc: BaseException) -> bool:
+    from apex.core.llm_routing import llm_error_disables_route
+
+    if llm_error_disables_route(exc):
+        slot.dead = True
+        slot.client = None
+        slot.native_gemini_key = ""
+        return True
+    return False
+
+
+def _classify_probe_error(msg: str) -> dict[str, Any]:
+    lower = msg.lower()
+    if "429" in msg or "resource_exhausted" in lower:
+        return {
+            "authenticated": True,
+            "probe": "quota_exhausted",
+            "probe_detail": msg[:200],
+        }
+    if "organization_restricted" in lower or "organization has been restricted" in lower:
+        return {
+            "authenticated": False,
+            "probe": "provider_restricted",
+            "probe_detail": msg[:200],
+        }
+    if any(token in lower for token in ("403", "401", "api_key", "permission_denied", "invalid api key")):
+        return {
+            "authenticated": False,
+            "probe": "auth_failed",
+            "probe_detail": msg[:200],
+        }
+    return {"authenticated": False, "probe": "failed", "probe_detail": msg[:200]}
 
 
 # ---------------------------------------------------------------------------

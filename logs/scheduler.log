@@ -1,0 +1,81 @@
+2026-05-20 09:57:17,092 | INFO | - | apex.integrations.tradingagents_adapter | TradingAgents adapter initialized from /home/aarav/Aarav/Autopilot/external/TradingAgents (provider=ollama, model=llama3.2:3b)
+2026-05-20 09:57:17,092 | INFO | - | apex.integrations.hub | TradingAgents adapter ready
+2026-05-20 09:57:17,100 | WARNING | - | apex.integrations.tradingagents_adapter | Ollama health check failed (http://localhost:11434): HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/tags (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+2026-05-20 09:57:17,100 | INFO | - | apex.integrations.dexter_adapter | Dexter adapter initialized from /home/aarav/Aarav/Autopilot/external/dexter
+2026-05-20 09:57:17,101 | INFO | - | apex.integrations.hub | Dexter adapter ready
+2026-05-20 09:57:17,101 | INFO | - | apex.integrations.polymarket_adapter | Polymarket MCP adapter initialized from /home/aarav/Aarav/Autopilot/external/PolyMarket-MCP (demo_mode=False)
+2026-05-20 09:57:17,101 | INFO | - | apex.integrations.hub | Polymarket MCP adapter ready
+2026-05-20 09:57:17,101 | INFO | - | apex.integrations.hub | Alpaca direct integration ready
+2026-05-20 09:57:17,101 | INFO | - | apex.integrations.hub | IntegrationHub status:
+2026-05-20 09:57:17,101 | INFO | - | apex.integrations.hub |   TradingAgents: READY
+2026-05-20 09:57:17,101 | INFO | - | apex.integrations.hub |   Dexter: READY
+2026-05-20 09:57:17,101 | INFO | - | apex.integrations.hub |   Polymarket: READY
+2026-05-20 09:57:17,101 | INFO | - | apex.integrations.hub |   Alpaca Direct: READY
+2026-05-20 09:57:17,101 | INFO | - | apex.integrations.hub |   Market Data (yfinance): READY
+2026-05-20 09:57:17,101 | INFO | - | apex.integrations.hub |   Options Data (yfinance): READY
+2026-05-20 09:57:17,101 | INFO | - | apex.integrations.news_regime_adapters | MiroFish adapter initialized from /home/aarav/Aarav/Autopilot/external/MiroFish
+2026-05-20 09:57:17,101 | INFO | - | apex.integrations.daily_stock_analysis_adapter | DailyStockAnalysis adapter initialized from /home/aarav/Aarav/Autopilot/external/daily_stock_analysis
+2026-05-20 09:57:17,101 | INFO | - | apex.integrations.news_regime_adapters | Kronos adapter initialized from /home/aarav/Aarav/Autopilot/external/Kronos
+2026-05-20 09:57:17,104 | INFO | - | apscheduler.scheduler | Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-05-20 09:57:17,104 | INFO | - | apscheduler.scheduler | Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-05-20 09:57:17,104 | INFO | - | apscheduler.scheduler | Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-05-20 09:57:17,104 | INFO | - | apscheduler.scheduler | Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-05-20 09:57:17,104 | INFO | - | apscheduler.scheduler | Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-05-20 09:57:17,104 | INFO | - | apscheduler.scheduler | Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-05-20 09:57:17,104 | INFO | - | apscheduler.scheduler | Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-05-20 09:57:17,104 | INFO | - | apscheduler.scheduler | Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-05-20 09:57:17,105 | INFO | - | apscheduler.scheduler | Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-05-20 09:57:17,105 | INFO | - | apscheduler.scheduler | Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-05-20 09:57:17,105 | INFO | - | apscheduler.scheduler | Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-05-20 09:57:17,105 | INFO | - | apscheduler.scheduler | Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-05-20 09:57:17,105 | INFO | - | apscheduler.scheduler | Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-05-20 09:57:17,105 | INFO | - | apscheduler.scheduler | Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-05-20 09:57:17,105 | INFO | - | apscheduler.scheduler | Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-05-20 09:57:17,105 | INFO | - | apscheduler.scheduler | Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-05-20 09:57:17,105 | INFO | - | apscheduler.scheduler | Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-05-20 09:57:17,105 | INFO | - | apscheduler.scheduler | Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-05-20 09:57:17,105 | INFO | - | apscheduler.scheduler | Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-05-20 09:57:17,105 | INFO | - | apscheduler.scheduler | Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-05-20 09:57:17,105 | INFO | - | apscheduler.scheduler | Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-05-20 09:57:17,106 | INFO | - | apscheduler.scheduler | Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-05-20 09:57:17,106 | INFO | - | apscheduler.scheduler | Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-05-20 09:57:17,106 | INFO | - | apscheduler.scheduler | Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-05-20 09:57:17,106 | INFO | - | apscheduler.scheduler | Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-05-20 09:57:17,106 | INFO | - | apscheduler.scheduler | Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-05-20 09:58:16,024 | INFO | - | apex.services.engine | Watchlist size: 50
+2026-05-20 09:58:16,024 | INFO | - | apex.services.engine | Warm: priming polymarket + options + market for 50 symbols
+2026-05-20 09:58:54,658 | ERROR | - | yfinance | HTTP Error 404: {"quoteSummary":{"result":null,"error":{"code":"Not Found","description":"No fundamentals data found for symbol: SMH"}}}
+2026-05-20 09:58:55,366 | ERROR | - | yfinance | HTTP Error 404: {"quoteSummary":{"result":null,"error":{"code":"Not Found","description":"No fundamentals data found for symbol: SOXX"}}}
+2026-05-20 09:58:56,151 | ERROR | - | yfinance | HTTP Error 404: {"quoteSummary":{"result":null,"error":{"code":"Not Found","description":"No fundamentals data found for symbol: XSD"}}}
+2026-05-20 09:59:16,226 | ERROR | - | yfinance | HTTP Error 404: {"quoteSummary":{"result":null,"error":{"code":"Not Found","description":"No fundamentals data found for symbol: SPY"}}}
+2026-05-20 09:59:16,227 | INFO | - | apex.scheduler.service | APEX autopilot scheduler running (Ctrl+C or SIGTERM to exit)
+2026-05-20 09:59:16,236 | INFO | - | apscheduler.scheduler | Added job "register_jobs.<locals>.<lambda>" to job store "default"
+2026-05-20 09:59:16,236 | INFO | - | apscheduler.scheduler | Added job "register_jobs.<locals>.<lambda>" to job store "default"
+2026-05-20 09:59:16,236 | INFO | - | apscheduler.scheduler | Added job "register_jobs.<locals>.<lambda>" to job store "default"
+2026-05-20 09:59:16,236 | INFO | - | apscheduler.scheduler | Added job "register_jobs.<locals>.<lambda>" to job store "default"
+2026-05-20 09:59:16,237 | INFO | - | apscheduler.scheduler | Added job "register_jobs.<locals>.<lambda>" to job store "default"
+2026-05-20 09:59:16,237 | INFO | - | apscheduler.scheduler | Added job "register_jobs.<locals>.<lambda>" to job store "default"
+2026-05-20 09:59:16,237 | INFO | - | apscheduler.scheduler | Added job "register_jobs.<locals>.<lambda>" to job store "default"
+2026-05-20 09:59:16,237 | INFO | - | apscheduler.scheduler | Added job "register_jobs.<locals>.<lambda>" to job store "default"
+2026-05-20 09:59:16,237 | INFO | - | apscheduler.scheduler | Added job "register_jobs.<locals>.<lambda>" to job store "default"
+2026-05-20 09:59:16,237 | INFO | - | apscheduler.scheduler | Added job "register_jobs.<locals>.<lambda>" to job store "default"
+2026-05-20 09:59:16,237 | INFO | - | apscheduler.scheduler | Added job "register_jobs.<locals>.<lambda>" to job store "default"
+2026-05-20 09:59:16,237 | INFO | - | apscheduler.scheduler | Added job "register_jobs.<locals>.<lambda>" to job store "default"
+2026-05-20 09:59:16,238 | INFO | - | apscheduler.scheduler | Added job "register_jobs.<locals>.<lambda>" to job store "default"
+2026-05-20 09:59:16,238 | INFO | - | apscheduler.scheduler | Added job "register_jobs.<locals>.<lambda>" to job store "default"
+2026-05-20 09:59:16,238 | INFO | - | apscheduler.scheduler | Added job "register_jobs.<locals>.<lambda>" to job store "default"
+2026-05-20 09:59:16,238 | INFO | - | apscheduler.scheduler | Added job "register_jobs.<locals>.<lambda>" to job store "default"
+2026-05-20 09:59:16,238 | INFO | - | apscheduler.scheduler | Added job "register_jobs.<locals>.<lambda>" to job store "default"
+2026-05-20 09:59:16,238 | INFO | - | apscheduler.scheduler | Added job "register_jobs.<locals>.<lambda>" to job store "default"
+2026-05-20 09:59:16,238 | INFO | - | apscheduler.scheduler | Added job "register_jobs.<locals>.<lambda>" to job store "default"
+2026-05-20 09:59:16,238 | INFO | - | apscheduler.scheduler | Added job "register_jobs.<locals>.<lambda>" to job store "default"
+2026-05-20 09:59:16,238 | INFO | - | apscheduler.scheduler | Added job "register_jobs.<locals>.<lambda>" to job store "default"
+2026-05-20 09:59:16,238 | INFO | - | apscheduler.scheduler | Added job "register_jobs.<locals>.<lambda>" to job store "default"
+2026-05-20 09:59:16,239 | INFO | - | apscheduler.scheduler | Added job "register_jobs.<locals>.<lambda>" to job store "default"
+2026-05-20 09:59:16,239 | INFO | - | apscheduler.scheduler | Added job "register_jobs.<locals>.<lambda>" to job store "default"
+2026-05-20 09:59:16,239 | INFO | - | apscheduler.scheduler | Added job "register_jobs.<locals>.<lambda>" to job store "default"
+2026-05-20 09:59:16,239 | INFO | - | apscheduler.scheduler | Added job "register_jobs.<locals>.<lambda>" to job store "default"
+2026-05-20 09:59:16,239 | INFO | - | apscheduler.scheduler | Scheduler started
+2026-05-20 09:59:16,314 | INFO | - | apex.scheduler.service | Received signal 15; stopping autopilot
+2026-05-20 09:59:16,314 | INFO | - | apex.scheduler.service | Scheduler stop requested
+2026-05-20 09:59:16,315 | INFO | - | apscheduler.scheduler | Scheduler has been shut down

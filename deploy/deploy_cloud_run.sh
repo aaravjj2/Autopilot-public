@@ -34,7 +34,7 @@ echo ">> Project=${PROJECT_ID} Region=${REGION}"
 echo ">> Backend service=${SERVICE_BACKEND}  Frontend service=${SERVICE_FRONTEND}"
 
 SECRET_KEYS=(
-  GEMINI_API_KEY APEX_AUTH_SECRET APEX_SECRETS_KEY
+  GROQ_API_KEY APEX_AUTH_SECRET APEX_SECRETS_KEY
   ALPACA_API_KEY ALPACA_SECRET_KEY
   KALSHI_API_KEY KALSHI_API_PRIVATE_KEY
   POLYGON_API_KEY SEC_API_KEY BRIGHTDATA_API_KEY TRADIER_SANDBOX_TOKEN
@@ -42,7 +42,8 @@ SECRET_KEYS=(
 
 PLAIN_ENV_BASE="AUTH_ENABLED=true,COOKIE_SECURE=true,COOKIE_SAMESITE=none,\
 ALLOW_OPEN_REGISTRATION=false,AUTH_RATE_LIMIT_PER_MIN=10,API_RATE_LIMIT_PER_MIN=120,\
-GEMINI_MODEL=gemini-1.5-flash,LOG_LEVEL=INFO,APEX_ARB_SCAN_LOOP=true,\
+LLM_ENABLE_GEMINI=false,GROQ_MODEL=llama-3.3-70b-versatile,LOG_LEVEL=INFO,\
+APEX_ARB_SCAN_LOOP=true,APEX_MORNING_CHAIN=true,\
 SHOWCASE_MODE=true,SHOWCASE_ARB_COUNT=100,SHOWCASE_PROPOSAL_COUNT=32,\
 PYTHONPATH=/app/src:/app/autopilot-local/backend:/app"
 
@@ -60,8 +61,12 @@ gcloud artifacts repositories create "${REPO}" --repository-format=docker \
 SECRET_FLAGS=""
 if [[ "${SKIP_SECRETS:-0}" != "1" ]]; then
   [[ -f "${ENV_FILE}" ]] || { echo "ERROR: ${ENV_FILE} not found" >&2; exit 1; }
+  KEYS_FILE="${KEYS_FILE:-keys.env}"
   for KEY in "${SECRET_KEYS[@]}"; do
     VALUE="$(python3 deploy/_read_env_value.py "${ENV_FILE}" "${KEY}" || true)"
+    if [[ -z "${VALUE}" && -f "${KEYS_FILE}" ]]; then
+      VALUE="$(python3 deploy/_read_env_value.py "${KEYS_FILE}" "${KEY}" || true)"
+    fi
     if [[ -z "${VALUE}" ]]; then
       echo "   - ${KEY}: (absent, skipping)"
       continue

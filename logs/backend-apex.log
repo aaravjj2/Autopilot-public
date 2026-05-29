@@ -1,0 +1,70 @@
+INFO:     Started server process [1822563]
+INFO:     Waiting for application startup.
+Ollama health check failed (http://localhost:11434): HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/tags (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+INFO:     127.0.0.1:51811 - "WebSocket /ws" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:48462 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46502 - "GET /health HTTP/1.1" 200 OK
+INFO:     connection closed
+INFO:     127.0.0.1:52839 - "WebSocket /ws" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     127.0.0.1:60355 - "WebSocket /ws" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     127.0.0.1:54270 - "WebSocket /ws" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     127.0.0.1:50814 - "WebSocket /ws" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     127.0.0.1:60752 - "WebSocket /ws" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     127.0.0.1:62253 - "WebSocket /ws" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:52277 - "WebSocket /api/arb/stream" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     connection closed
+INFO:     127.0.0.1:57287 - "WebSocket /ws" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     127.0.0.1:62528 - "WebSocket /ws" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:48100 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47820 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47092 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48646 - "GET /health HTTP/1.1" 200 OK
+INFO:     connection closed
+INFO:     127.0.0.1:58288 - "WebSocket /ws" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     127.0.0.1:49672 - "WebSocket /ws" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     127.0.0.1:50513 - "WebSocket /ws" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     127.0.0.1:49672 - "WebSocket /ws" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     127.0.0.1:64582 - "WebSocket /ws" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     127.0.0.1:58852 - "WebSocket /ws" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:44996 - "GET /health HTTP/1.1" 200 OK
+INFO:     connection closed
+INFO:     127.0.0.1:56548 - "WebSocket /ws" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:45478 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46796 - "GET /api/kalshi/book HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:46802 - "GET /api/polymarket/book HTTP/1.1" 404 Not Found
+INFO:     Shutting down
+INFO:     connection closed
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [1822563]

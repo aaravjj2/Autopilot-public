@@ -1,0 +1,20 @@
+[
+  {
+    "type": "screenshot",
+    "path": "/home/aarav/Aarav/Autopilot/data/artifacts/iteration_0602/screenshots/dashboard_arb-radar.png",
+    "iteration": 602,
+    "timestamp": "2026-05-29T02:21:10.646280"
+  },
+  {
+    "type": "screenshot",
+    "path": "/home/aarav/Aarav/Autopilot/data/artifacts/iteration_0602/screenshots/dashboard_analytics.png",
+    "iteration": 602,
+    "timestamp": "2026-05-29T02:21:10.646280"
+  },
+  {
+    "type": "metrics",
+    "path": "/home/aarav/Aarav/Autopilot/data/artifacts/iteration_0602/metrics.json",
+    "iteration": 602,
+    "timestamp": "2026-05-29T02:21:10.646280"
+  }
+]

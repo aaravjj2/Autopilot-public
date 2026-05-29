@@ -1,0 +1,14 @@
+
+> apex-trading-terminal@1.0.0 dev
+> next dev -p 3000
+
+   ▲ Next.js 15.5.18
+   - Local:        http://localhost:3000
+   - Network:      http://10.255.255.254:3000
+
+ ✓ Starting...
+ ✓ Ready in 4.9s
+ ○ Compiling / ...
+ ✓ Compiled / in 3.8s (609 modules)
+ GET / 200 in 5222ms
+[?25h

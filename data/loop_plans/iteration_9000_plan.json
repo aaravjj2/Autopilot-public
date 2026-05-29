@@ -1,0 +1,18 @@
+{
+  "steps": [
+    {
+      "file": "src/apex/main.py",
+      "action": "MODIFY",
+      "description": "Mock step"
+    }
+  ],
+  "test_commands": [
+    "python -m pytest tests/ -q --tb=short"
+  ],
+  "rollback_steps": [
+    "git restore ."
+  ],
+  "expected_artifacts": [
+    "/dashboard/arb-radar"
+  ]
+}

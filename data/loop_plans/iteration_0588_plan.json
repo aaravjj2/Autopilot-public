@@ -1,0 +1,8 @@
+{
+  "steps": [],
+  "test_commands": [
+    "python -m pytest tests/ -q --tb=no"
+  ],
+  "rollback_steps": [],
+  "expected_artifacts": []
+}

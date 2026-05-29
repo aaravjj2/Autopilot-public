@@ -1,0 +1,5 @@
+Phase: commit
+Tool: opencode
+Error Type: CLI flag not recognized
+
+error: unknown option '-p'

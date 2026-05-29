@@ -1,0 +1,1849 @@
+
+> apex-trading-terminal@1.0.0 dev
+> next dev -p 3000
+
+ ⚠ Warning: Next.js inferred your workspace root, but it may not be correct.
+ We detected multiple lockfiles and selected the directory of /home/aarav/Aarav/Autopilot/autopilot-local/package-lock.json as the root directory.
+ To silence this warning, set `outputFileTracingRoot` in your Next.js config, or consider removing one of the lockfiles if it's not needed.
+   See https://nextjs.org/docs/app/api-reference/config/next-config-js/output#caveats for more information.
+ Detected additional lockfiles: 
+   * /home/aarav/Aarav/Autopilot/autopilot-local/frontend/package-lock.json
+
+   ▲ Next.js 15.5.18
+   - Local:        http://localhost:3000
+   - Network:      http://10.255.255.254:3000
+   - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 1255ms
+ ○ Compiling / ...
+ ✓ Compiled / in 1073ms (629 modules)
+ GET / 200 in 1598ms
+ GET / 200 in 76ms
+ GET / 200 in 48ms
+ GET / 200 in 50ms
+ GET / 200 in 95ms
+ GET / 200 in 52ms
+ GET / 200 in 56ms
+ GET / 200 in 43ms
+ GET / 200 in 45ms
+ GET / 200 in 45ms
+ GET / 200 in 46ms
+ GET / 200 in 45ms
+ GET / 200 in 46ms
+ GET / 200 in 45ms
+ GET / 200 in 43ms
+ GET / 200 in 43ms
+ GET / 200 in 41ms
+ GET / 200 in 47ms
+ GET / 200 in 43ms
+ GET / 200 in 65ms
+ GET / 200 in 46ms
+ GET / 200 in 48ms
+ GET / 200 in 44ms
+ GET / 200 in 45ms
+ GET / 200 in 46ms
+ GET / 200 in 65ms
+ GET / 200 in 53ms
+ GET / 200 in 45ms
+ GET / 200 in 45ms
+ GET / 200 in 45ms
+ GET / 200 in 47ms
+ GET / 200 in 46ms
+ GET / 200 in 45ms
+ GET / 200 in 46ms
+ GET / 200 in 51ms
+ GET / 200 in 45ms
+ GET / 200 in 44ms
+ GET / 200 in 47ms
+ GET / 200 in 48ms
+ GET / 200 in 51ms
+ GET / 200 in 46ms
+ GET / 200 in 45ms
+ GET / 200 in 45ms
+ GET / 200 in 45ms
+ GET / 200 in 59ms
+ GET / 200 in 48ms
+ GET / 200 in 45ms
+ GET / 200 in 51ms
+ GET / 200 in 98ms
+ GET / 200 in 60ms
+ GET / 200 in 52ms
+ GET / 200 in 52ms
+ GET / 200 in 47ms
+ GET / 200 in 47ms
+ GET / 200 in 51ms
+ GET / 200 in 92ms
+ GET / 200 in 47ms
+ GET / 200 in 153ms
+ GET / 200 in 54ms
+ GET / 200 in 54ms
+ GET / 200 in 51ms
+ GET / 200 in 48ms
+ GET / 200 in 58ms
+ GET / 200 in 52ms
+ GET / 200 in 59ms
+ GET / 200 in 45ms
+ GET / 200 in 46ms
+ GET / 200 in 50ms
+ GET / 200 in 44ms
+ GET / 200 in 44ms
+ GET / 200 in 45ms
+ GET / 200 in 49ms
+ GET / 200 in 43ms
+ GET / 200 in 41ms
+ GET / 200 in 44ms
+ GET / 200 in 46ms
+ GET / 200 in 49ms
+ GET / 200 in 44ms
+ GET / 200 in 51ms
+ GET / 200 in 47ms
+ GET / 200 in 43ms
+ GET / 200 in 45ms
+ GET / 200 in 51ms
+ GET / 200 in 55ms
+ GET / 200 in 50ms
+ GET / 200 in 63ms
+ GET / 200 in 49ms
+ GET / 200 in 46ms
+ GET / 200 in 47ms
+ GET / 200 in 47ms
+ GET / 200 in 47ms
+ GET / 200 in 48ms
+ GET / 200 in 66ms
+ GET / 200 in 48ms
+ GET / 200 in 45ms
+ GET / 200 in 42ms
+ GET / 200 in 54ms
+ GET / 200 in 44ms
+ GET / 200 in 47ms
+ GET / 200 in 48ms
+ GET / 200 in 44ms
+ GET / 200 in 45ms
+ GET / 200 in 45ms
+ GET / 200 in 43ms
+ GET / 200 in 45ms
+ GET / 200 in 44ms
+ GET / 200 in 44ms
+ GET / 200 in 54ms
+ GET / 200 in 43ms
+ GET / 200 in 43ms
+ GET / 200 in 46ms
+ GET / 200 in 42ms
+ GET / 200 in 46ms
+ GET / 200 in 46ms
+ GET / 200 in 43ms
+ GET / 200 in 43ms
+ GET / 200 in 43ms
+ GET / 200 in 44ms
+ GET / 200 in 43ms
+ GET / 200 in 45ms
+ GET / 200 in 49ms
+ GET / 200 in 46ms
+ GET / 200 in 47ms
+ GET / 200 in 41ms
+ GET / 200 in 43ms
+ GET / 200 in 47ms
+ GET / 200 in 45ms
+ GET / 200 in 42ms
+ GET / 200 in 64ms
+ GET / 200 in 47ms
+ GET / 200 in 41ms
+ GET / 200 in 43ms
+ GET / 200 in 43ms
+ GET / 200 in 43ms
+ GET / 200 in 44ms
+ GET / 200 in 42ms
+ GET / 200 in 59ms
+ GET / 200 in 44ms
+ GET / 200 in 47ms
+ GET / 200 in 45ms
+ GET / 200 in 44ms
+ GET / 200 in 46ms
+ GET / 200 in 46ms
+ GET / 200 in 46ms
+ GET / 200 in 69ms
+ GET / 200 in 47ms
+ GET / 200 in 43ms
+ GET / 200 in 42ms
+ GET / 200 in 44ms
+ GET / 200 in 43ms
+ GET / 200 in 43ms
+ GET / 200 in 47ms
+ GET / 200 in 64ms
+ GET / 200 in 45ms
+ GET / 200 in 43ms
+ GET / 200 in 44ms
+ GET / 200 in 43ms
+ GET / 200 in 45ms
+ GET / 200 in 44ms
+ GET / 200 in 45ms
+ GET / 200 in 56ms
+ GET / 200 in 48ms
+ GET / 200 in 44ms
+ GET / 200 in 42ms
+ GET / 200 in 43ms
+ GET / 200 in 42ms
+ GET / 200 in 43ms
+ GET / 200 in 46ms
+ GET / 200 in 53ms
+ GET / 200 in 42ms
+ GET / 200 in 45ms
+ GET / 200 in 43ms
+ GET / 200 in 44ms
+ GET / 200 in 49ms
+ GET / 200 in 45ms
+ GET / 200 in 54ms
+ GET / 200 in 50ms
+ GET / 200 in 53ms
+ GET / 200 in 49ms
+ GET / 200 in 44ms
+ GET / 200 in 43ms
+ GET / 200 in 49ms
+ GET / 200 in 42ms
+ GET / 200 in 42ms
+ GET / 200 in 53ms
+ GET / 200 in 50ms
+ GET / 200 in 44ms
+ GET / 200 in 49ms
+ GET / 200 in 42ms
+ GET / 200 in 44ms
+ GET / 200 in 50ms
+ GET / 200 in 43ms
+ GET / 200 in 48ms
+ GET / 200 in 48ms
+ GET / 200 in 42ms
+ GET / 200 in 42ms
+ GET / 200 in 43ms
+ GET / 200 in 42ms
+ GET / 200 in 42ms
+ GET / 200 in 63ms
+ GET / 200 in 54ms
+ GET / 200 in 46ms
+ GET / 200 in 43ms
+ GET / 200 in 43ms
+ GET / 200 in 44ms
+ GET / 200 in 49ms
+ GET / 200 in 45ms
+ GET / 200 in 44ms
+ GET / 200 in 53ms
+ GET / 200 in 46ms
+ GET / 200 in 50ms
+ GET / 200 in 43ms
+ GET / 200 in 40ms
+ GET / 200 in 47ms
+ GET / 200 in 42ms
+ GET / 200 in 43ms
+ GET / 200 in 49ms
+ GET / 200 in 45ms
+ GET / 200 in 42ms
+ GET / 200 in 41ms
+ GET / 200 in 41ms
+ GET / 200 in 43ms
+ GET / 200 in 45ms
+ GET / 200 in 43ms
+ GET / 200 in 43ms
+ GET / 200 in 46ms
+ GET / 200 in 41ms
+ GET / 200 in 44ms
+ GET / 200 in 42ms
+ GET / 200 in 43ms
+ GET / 200 in 41ms
+ GET / 200 in 44ms
+ GET / 200 in 43ms
+ GET / 200 in 45ms
+ GET / 200 in 43ms
+ GET / 200 in 42ms
+ GET / 200 in 44ms
+ GET / 200 in 51ms
+ GET / 200 in 43ms
+ GET / 200 in 43ms
+ GET / 200 in 49ms
+ GET / 200 in 48ms
+ GET / 200 in 43ms
+ GET / 200 in 40ms
+ GET / 200 in 42ms
+ GET / 200 in 50ms
+ GET / 200 in 44ms
+ GET / 200 in 41ms
+ GET / 200 in 51ms
+ GET / 200 in 43ms
+ GET / 200 in 45ms
+ GET / 200 in 43ms
+ GET / 200 in 43ms
+ GET / 200 in 44ms
+ GET / 200 in 43ms
+ GET / 200 in 42ms
+ GET / 200 in 43ms
+ GET / 200 in 76ms
+ GET / 200 in 47ms
+ GET / 200 in 42ms
+ GET / 200 in 43ms
+ GET / 200 in 41ms
+ GET / 200 in 45ms
+ GET / 200 in 42ms
+ GET / 200 in 42ms
+ GET / 200 in 43ms
+ GET / 200 in 57ms
+ GET / 200 in 43ms
+ GET / 200 in 41ms
+ GET / 200 in 47ms
+ GET / 200 in 43ms
+ GET / 200 in 43ms
+ GET / 200 in 43ms
+ GET / 200 in 50ms
+ GET / 200 in 48ms
+ GET / 200 in 57ms
+ GET / 200 in 46ms
+ GET / 200 in 45ms
+ GET / 200 in 45ms
+ GET / 200 in 46ms
+ GET / 200 in 43ms
+ GET / 200 in 45ms
+ GET / 200 in 42ms
+ GET / 200 in 43ms
+ GET / 200 in 54ms
+ GET / 200 in 45ms
+ GET / 200 in 44ms
+ GET / 200 in 41ms
+ GET / 200 in 44ms
+ GET / 200 in 44ms
+ GET / 200 in 43ms
+ GET / 200 in 42ms
+ GET / 200 in 48ms
+ GET / 200 in 55ms
+ GET / 200 in 44ms
+ GET / 200 in 43ms
+ GET / 200 in 43ms
+ GET / 200 in 44ms
+ GET / 200 in 44ms
+ GET / 200 in 45ms
+ GET / 200 in 42ms
+ GET / 200 in 46ms
+ GET / 200 in 50ms
+ GET / 200 in 46ms
+ GET / 200 in 42ms
+ GET / 200 in 46ms
+ GET / 200 in 46ms
+ GET / 200 in 47ms
+ GET / 200 in 48ms
+ GET / 200 in 44ms
+ GET / 200 in 61ms
+ GET / 200 in 61ms
+ GET / 200 in 59ms
+ GET / 200 in 51ms
+ GET / 200 in 48ms
+ GET / 200 in 44ms
+ GET / 200 in 70ms
+ GET / 200 in 68ms
+ GET / 200 in 99ms
+ GET / 200 in 59ms
+ GET / 200 in 122ms
+ GET / 200 in 63ms
+ GET / 200 in 98ms
+ GET / 200 in 92ms
+ GET / 200 in 127ms
+ GET / 200 in 67ms
+ GET / 200 in 110ms
+ GET / 200 in 254ms
+ GET / 200 in 63ms
+ GET / 200 in 247ms
+ GET / 200 in 122ms
+ GET / 200 in 128ms
+ GET / 200 in 61ms
+ GET / 200 in 66ms
+ GET / 200 in 127ms
+ GET / 200 in 88ms
+ GET / 200 in 52ms
+ GET / 200 in 49ms
+ GET / 200 in 235ms
+ GET / 200 in 101ms
+ GET / 200 in 134ms
+ GET / 200 in 52ms
+ GET / 200 in 116ms
+ GET / 200 in 180ms
+ GET / 200 in 57ms
+ GET / 200 in 55ms
+ GET / 200 in 62ms
+ GET / 200 in 211ms
+ ✓ Compiled in 1567ms (261 modules)
+ GET / 200 in 56ms
+ ✓ Compiled in 215ms (261 modules)
+ GET / 200 in 285ms
+ GET / 200 in 125ms
+ GET / 200 in 219ms
+ GET / 200 in 212ms
+ GET / 200 in 150ms
+ GET / 200 in 198ms
+ GET / 200 in 63ms
+ GET / 200 in 119ms
+ GET / 200 in 54ms
+ GET / 200 in 52ms
+ GET / 200 in 50ms
+ GET / 200 in 242ms
+ GET / 200 in 75ms
+ GET / 200 in 62ms
+ GET / 200 in 77ms
+ GET / 200 in 62ms
+ GET / 200 in 69ms
+ GET / 200 in 118ms
+ GET / 200 in 73ms
+ GET / 200 in 183ms
+ GET / 200 in 64ms
+ ✓ Compiled in 425ms (261 modules)
+ ✓ Compiled in 198ms (261 modules)
+ GET / 200 in 73ms
+ ✓ Compiled in 252ms (261 modules)
+ GET / 200 in 63ms
+ GET / 200 in 51ms
+ GET / 200 in 51ms
+ GET / 200 in 49ms
+ GET / 200 in 47ms
+ GET / 200 in 47ms
+ GET / 200 in 48ms
+ GET / 200 in 48ms
+ GET / 200 in 47ms
+ GET / 200 in 47ms
+ GET / 200 in 49ms
+ GET / 200 in 65ms
+ GET / 200 in 55ms
+ GET / 200 in 47ms
+ GET / 200 in 50ms
+ GET / 200 in 50ms
+ GET / 200 in 49ms
+ GET / 200 in 48ms
+ GET / 200 in 51ms
+ GET / 200 in 60ms
+ GET / 200 in 50ms
+ GET / 200 in 79ms
+ GET / 200 in 68ms
+ GET / 200 in 88ms
+ GET / 200 in 199ms
+ GET / 200 in 69ms
+ GET / 200 in 48ms
+ GET / 200 in 69ms
+ GET / 200 in 47ms
+ ✓ Compiled in 1077ms (643 modules)
+ GET / 200 in 320ms
+ GET / 200 in 59ms
+ GET / 200 in 54ms
+ GET / 200 in 54ms
+ GET / 200 in 53ms
+ GET / 200 in 65ms
+ GET / 200 in 56ms
+ GET / 200 in 55ms
+ GET / 200 in 84ms
+ ⚠ Cross origin request detected from 127.0.0.1 to /_next/* resource. In a future major version of Next.js, you will need to explicitly configure "allowedDevOrigins" in next.config to allow this.
+Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins
+ ○ Compiling /dashboard ...
+ ✓ Compiled /dashboard in 1876ms (710 modules)
+ GET /dashboard 200 in 2322ms
+ GET / 200 in 63ms
+ GET / 200 in 53ms
+ ○ Compiling /dashboard/arb-radar ...
+ ✓ Compiled /dashboard/arb-radar in 838ms (733 modules)
+ GET /dashboard/arb-radar 200 in 1073ms
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ○ Compiling /dashboard/risk-management ...
+ ✓ Compiled /dashboard/risk-management in 518ms (744 modules)
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ GET /dashboard/risk-management 200 in 712ms
+ GET / 200 in 50ms
+ GET / 200 in 67ms
+ GET / 200 in 45ms
+ GET / 200 in 47ms
+ GET / 200 in 50ms
+ GET / 200 in 64ms
+ GET / 200 in 55ms
+ GET / 200 in 55ms
+ GET / 200 in 72ms
+ GET / 200 in 100ms
+ GET / 200 in 64ms
+ GET / 200 in 132ms
+ GET / 200 in 61ms
+ GET / 200 in 57ms
+ GET / 200 in 94ms
+ GET / 200 in 62ms
+ GET / 200 in 61ms
+ GET / 200 in 76ms
+ GET / 200 in 64ms
+ GET / 200 in 50ms
+ GET / 200 in 65ms
+ GET / 200 in 57ms
+ GET / 200 in 65ms
+ GET / 200 in 64ms
+ GET / 200 in 65ms
+ GET / 200 in 69ms
+ GET / 200 in 58ms
+ GET / 200 in 63ms
+ GET / 200 in 55ms
+ GET / 200 in 109ms
+ GET / 200 in 64ms
+ GET / 200 in 69ms
+ GET / 200 in 56ms
+ GET / 200 in 57ms
+ GET / 200 in 51ms
+ GET / 200 in 52ms
+ GET / 200 in 52ms
+ GET / 200 in 51ms
+ GET / 200 in 54ms
+ GET / 200 in 52ms
+ GET / 200 in 52ms
+ GET / 200 in 67ms
+ GET / 200 in 49ms
+ GET / 200 in 49ms
+ GET / 200 in 51ms
+ GET / 200 in 49ms
+ GET / 200 in 54ms
+ GET / 200 in 52ms
+ GET / 200 in 48ms
+ GET / 200 in 46ms
+ GET / 200 in 54ms
+ GET / 200 in 40ms
+ GET / 200 in 44ms
+ GET / 200 in 58ms
+ GET / 200 in 47ms
+ GET / 200 in 40ms
+ GET / 200 in 45ms
+ GET / 200 in 40ms
+ GET / 200 in 41ms
+ GET / 200 in 42ms
+ GET / 200 in 46ms
+ GET / 200 in 42ms
+ GET / 200 in 44ms
+ GET / 200 in 42ms
+ GET / 200 in 42ms
+ GET / 200 in 48ms
+ GET / 200 in 46ms
+ GET / 200 in 48ms
+ GET / 200 in 41ms
+ GET / 200 in 47ms
+ GET / 200 in 41ms
+ GET / 200 in 44ms
+ GET / 200 in 49ms
+ GET / 200 in 42ms
+ GET / 200 in 41ms
+ GET / 200 in 47ms
+ GET / 200 in 48ms
+ GET / 200 in 45ms
+ GET / 200 in 49ms
+ GET / 200 in 47ms
+ GET / 200 in 42ms
+ GET / 200 in 48ms
+ GET / 200 in 46ms
+ GET / 200 in 40ms
+ GET / 200 in 47ms
+ GET / 200 in 46ms
+ GET / 200 in 42ms
+ GET / 200 in 39ms
+ GET / 200 in 44ms
+ GET / 200 in 46ms
+ GET / 200 in 50ms
+ GET / 200 in 45ms
+ GET / 200 in 46ms
+ GET / 200 in 41ms
+ GET / 200 in 40ms
+ GET / 200 in 53ms
+ GET / 200 in 42ms
+ GET / 200 in 42ms
+ GET / 200 in 47ms
+ GET / 200 in 38ms
+ GET / 200 in 42ms
+ GET / 200 in 46ms
+ GET / 200 in 62ms
+ GET / 200 in 43ms
+ GET / 200 in 46ms
+ GET / 200 in 41ms
+ GET / 200 in 43ms
+ GET / 200 in 45ms
+ GET / 200 in 41ms
+ GET / 200 in 41ms
+ GET / 200 in 45ms
+ GET / 200 in 48ms
+ GET / 200 in 40ms
+ GET / 200 in 46ms
+ GET / 200 in 58ms
+ GET / 200 in 53ms
+ GET / 200 in 42ms
+ GET / 200 in 47ms
+ GET / 200 in 40ms
+ GET / 200 in 43ms
+ GET / 200 in 44ms
+ GET / 200 in 40ms
+ GET / 200 in 41ms
+ GET / 200 in 47ms
+ GET / 200 in 46ms
+ GET / 200 in 40ms
+ GET / 200 in 45ms
+ GET / 200 in 46ms
+ GET / 200 in 42ms
+ GET / 200 in 47ms
+ GET / 200 in 42ms
+ GET / 200 in 47ms
+ GET / 200 in 43ms
+ GET / 200 in 46ms
+ GET / 200 in 43ms
+ GET / 200 in 41ms
+ GET / 200 in 46ms
+ GET / 200 in 42ms
+ GET / 200 in 41ms
+ GET / 200 in 46ms
+ GET / 200 in 68ms
+ GET / 200 in 56ms
+ GET / 200 in 52ms
+ GET / 200 in 50ms
+ GET / 200 in 46ms
+ GET / 200 in 53ms
+ GET / 200 in 42ms
+ GET / 200 in 47ms
+ GET / 200 in 49ms
+ GET / 200 in 50ms
+ GET / 200 in 47ms
+ GET / 200 in 48ms
+ GET / 200 in 63ms
+ GET / 200 in 52ms
+ GET / 200 in 47ms
+ GET / 200 in 49ms
+ GET / 200 in 45ms
+ GET / 200 in 48ms
+ GET / 200 in 51ms
+ GET / 200 in 47ms
+ GET / 200 in 52ms
+ GET / 200 in 54ms
+ GET / 200 in 47ms
+ GET / 200 in 47ms
+ GET / 200 in 50ms
+ GET / 200 in 61ms
+ GET / 200 in 54ms
+ GET / 200 in 49ms
+ GET / 200 in 49ms
+ GET / 200 in 47ms
+ GET / 200 in 48ms
+ GET / 200 in 59ms
+ GET / 200 in 46ms
+ GET / 200 in 47ms
+ GET / 200 in 46ms
+ GET / 200 in 49ms
+ GET / 200 in 47ms
+ GET / 200 in 46ms
+ GET / 200 in 67ms
+ GET / 200 in 48ms
+ GET / 200 in 47ms
+ GET / 200 in 53ms
+ GET / 200 in 46ms
+ GET / 200 in 48ms
+ GET / 200 in 55ms
+ GET / 200 in 47ms
+ GET / 200 in 51ms
+ GET / 200 in 52ms
+ GET / 200 in 53ms
+ GET / 200 in 49ms
+ GET / 200 in 47ms
+ GET / 200 in 66ms
+ GET / 200 in 54ms
+ GET / 200 in 46ms
+ GET / 200 in 50ms
+ GET / 200 in 50ms
+ GET / 200 in 48ms
+ GET / 200 in 50ms
+ GET / 200 in 46ms
+ GET / 200 in 50ms
+ GET / 200 in 47ms
+ GET / 200 in 48ms
+ GET / 200 in 47ms
+ GET / 200 in 51ms
+ GET / 200 in 47ms
+ GET / 200 in 47ms
+ GET / 200 in 50ms
+ GET / 200 in 47ms
+ GET / 200 in 44ms
+ GET / 200 in 52ms
+ GET / 200 in 48ms
+ GET / 200 in 47ms
+ GET / 200 in 54ms
+ GET / 200 in 53ms
+ GET / 200 in 49ms
+ GET / 200 in 50ms
+ GET / 200 in 53ms
+ GET / 200 in 57ms
+ GET / 200 in 52ms
+ GET / 200 in 51ms
+ GET / 200 in 46ms
+ GET / 200 in 47ms
+ GET / 200 in 51ms
+ GET / 200 in 57ms
+ GET / 200 in 45ms
+ GET / 200 in 50ms
+ GET / 200 in 48ms
+ GET / 200 in 48ms
+ GET / 200 in 49ms
+ GET / 200 in 50ms
+ GET / 200 in 58ms
+ GET / 200 in 48ms
+ GET / 200 in 47ms
+ GET / 200 in 50ms
+ GET / 200 in 51ms
+ GET / 200 in 51ms
+ GET / 200 in 49ms
+ GET / 200 in 53ms
+ GET / 200 in 54ms
+ GET / 200 in 50ms
+ GET / 200 in 47ms
+ GET / 200 in 54ms
+ GET / 200 in 49ms
+ GET / 200 in 50ms
+ GET / 200 in 50ms
+ GET / 200 in 49ms
+ GET / 200 in 46ms
+ GET / 200 in 52ms
+ GET / 200 in 50ms
+ GET / 200 in 47ms
+ GET / 200 in 55ms
+ GET / 200 in 53ms
+ GET / 200 in 51ms
+ GET / 200 in 48ms
+ GET / 200 in 55ms
+ GET / 200 in 48ms
+ GET / 200 in 45ms
+ GET / 200 in 54ms
+ GET / 200 in 52ms
+ GET / 200 in 48ms
+ GET / 200 in 48ms
+ GET / 200 in 51ms
+ GET / 200 in 45ms
+ GET / 200 in 48ms
+ GET / 200 in 51ms
+ GET / 200 in 49ms
+ GET / 200 in 48ms
+ GET / 200 in 51ms
+ GET / 200 in 46ms
+ GET / 200 in 49ms
+ GET / 200 in 81ms
+ GET / 200 in 51ms
+ GET / 200 in 54ms
+ GET / 200 in 47ms
+ GET / 200 in 46ms
+ GET / 200 in 47ms
+ GET / 200 in 46ms
+ GET / 200 in 50ms
+ GET / 200 in 47ms
+ GET / 200 in 46ms
+ GET / 200 in 51ms
+ GET / 200 in 47ms
+ GET / 200 in 46ms
+ GET / 200 in 53ms
+ GET / 200 in 74ms
+ GET / 200 in 53ms
+ GET / 200 in 46ms
+ GET / 200 in 48ms
+ GET / 200 in 50ms
+ GET / 200 in 45ms
+ GET / 200 in 54ms
+ GET / 200 in 49ms
+ GET / 200 in 47ms
+ GET / 200 in 53ms
+ GET / 200 in 52ms
+ GET / 200 in 48ms
+ GET / 200 in 46ms
+ GET / 200 in 54ms
+ GET / 200 in 52ms
+ GET / 200 in 50ms
+ GET / 200 in 47ms
+ GET / 200 in 47ms
+ GET / 200 in 48ms
+ GET / 200 in 51ms
+ GET / 200 in 47ms
+ GET / 200 in 47ms
+ GET / 200 in 50ms
+ GET / 200 in 48ms
+ GET / 200 in 50ms
+ GET / 200 in 52ms
+ GET / 200 in 45ms
+ GET / 200 in 61ms
+ GET / 200 in 48ms
+ GET / 200 in 52ms
+ GET / 200 in 49ms
+ GET / 200 in 48ms
+ GET / 200 in 54ms
+ GET / 200 in 46ms
+ GET / 200 in 49ms
+ GET / 200 in 53ms
+ GET / 200 in 50ms
+ GET / 200 in 46ms
+ GET / 200 in 51ms
+ GET / 200 in 50ms
+ GET / 200 in 51ms
+ GET / 200 in 60ms
+ GET / 200 in 58ms
+ GET / 200 in 48ms
+ GET / 200 in 49ms
+ GET / 200 in 48ms
+ GET / 200 in 49ms
+ GET / 200 in 52ms
+ GET / 200 in 46ms
+ GET / 200 in 46ms
+ GET / 200 in 48ms
+ GET / 200 in 54ms
+ GET / 200 in 49ms
+ GET / 200 in 51ms
+ GET / 200 in 50ms
+ GET / 200 in 68ms
+ GET / 200 in 53ms
+ GET / 200 in 52ms
+ GET / 200 in 45ms
+ GET / 200 in 49ms
+ GET / 200 in 51ms
+ GET / 200 in 52ms
+ GET / 200 in 48ms
+ GET / 200 in 48ms
+ GET / 200 in 52ms
+ GET / 200 in 56ms
+ GET / 200 in 44ms
+ GET / 200 in 50ms
+ GET / 200 in 52ms
+ GET / 200 in 47ms
+ GET / 200 in 56ms
+ GET / 200 in 52ms
+ GET / 200 in 45ms
+ GET / 200 in 49ms
+ GET / 200 in 46ms
+ GET / 200 in 46ms
+ GET / 200 in 51ms
+ GET / 200 in 45ms
+ GET / 200 in 56ms
+ GET / 200 in 52ms
+ GET / 200 in 54ms
+ GET / 200 in 48ms
+ GET / 200 in 46ms
+ GET / 200 in 59ms
+ GET / 200 in 53ms
+ GET / 200 in 49ms
+ GET / 200 in 49ms
+ GET / 200 in 47ms
+ GET / 200 in 50ms
+ GET / 200 in 57ms
+ GET / 200 in 45ms
+ GET / 200 in 48ms
+ GET / 200 in 52ms
+ GET / 200 in 48ms
+ GET / 200 in 49ms
+ GET / 200 in 51ms
+ GET / 200 in 51ms
+ GET / 200 in 50ms
+ GET / 200 in 51ms
+ GET / 200 in 53ms
+ GET / 200 in 44ms
+ GET / 200 in 47ms
+ GET / 200 in 52ms
+ GET / 200 in 47ms
+ GET / 200 in 47ms
+ GET / 200 in 62ms
+ GET / 200 in 46ms
+ GET / 200 in 49ms
+ GET / 200 in 54ms
+ GET / 200 in 53ms
+ GET / 200 in 54ms
+ GET / 200 in 52ms
+ GET / 200 in 54ms
+ GET / 200 in 45ms
+ GET / 200 in 50ms
+ GET / 200 in 54ms
+ GET / 200 in 48ms
+ GET / 200 in 50ms
+ GET / 200 in 52ms
+ GET / 200 in 51ms
+ GET / 200 in 48ms
+ GET / 200 in 54ms
+ GET / 200 in 52ms
+ GET / 200 in 49ms
+ GET / 200 in 55ms
+ GET / 200 in 54ms
+ GET / 200 in 68ms
+ GET / 200 in 57ms
+ GET / 200 in 50ms
+ GET / 200 in 44ms
+ GET / 200 in 46ms
+ GET / 200 in 51ms
+ GET / 200 in 56ms
+ GET / 200 in 50ms
+ GET / 200 in 53ms
+ GET / 200 in 49ms
+ GET / 200 in 46ms
+ GET / 200 in 50ms
+ GET / 200 in 47ms
+ GET / 200 in 47ms
+ GET / 200 in 50ms
+ GET / 200 in 52ms
+ GET / 200 in 48ms
+ GET / 200 in 45ms
+ GET / 200 in 52ms
+ GET / 200 in 46ms
+ GET / 200 in 50ms
+ GET / 200 in 55ms
+ GET / 200 in 48ms
+ GET / 200 in 50ms
+ GET / 200 in 57ms
+ GET / 200 in 48ms
+ GET / 200 in 55ms
+ GET / 200 in 58ms
+ GET / 200 in 49ms
+ GET / 200 in 54ms
+ GET / 200 in 59ms
+ GET / 200 in 54ms
+ GET / 200 in 46ms
+ GET / 200 in 52ms
+ GET / 200 in 47ms
+ GET / 200 in 46ms
+ GET / 200 in 51ms
+ GET / 200 in 47ms
+ GET / 200 in 47ms
+ GET / 200 in 58ms
+ GET / 200 in 51ms
+ GET / 200 in 49ms
+ GET / 200 in 47ms
+ GET / 200 in 52ms
+ GET / 200 in 49ms
+ GET / 200 in 61ms
+ GET / 200 in 53ms
+ GET / 200 in 49ms
+ GET / 200 in 48ms
+ GET / 200 in 55ms
+ GET / 200 in 50ms
+ GET / 200 in 49ms
+ GET / 200 in 55ms
+ GET / 200 in 48ms
+ GET / 200 in 54ms
+ GET / 200 in 53ms
+ GET / 200 in 50ms
+ GET / 200 in 52ms
+ GET / 200 in 48ms
+ GET / 200 in 52ms
+ GET / 200 in 51ms
+ GET / 200 in 52ms
+ GET / 200 in 50ms
+ GET / 200 in 53ms
+ GET / 200 in 50ms
+ GET / 200 in 56ms
+ GET / 200 in 46ms
+ GET / 200 in 46ms
+ GET / 200 in 53ms
+ GET / 200 in 48ms
+ GET / 200 in 49ms
+ GET / 200 in 57ms
+ GET / 200 in 57ms
+ GET / 200 in 50ms
+ GET / 200 in 47ms
+ GET / 200 in 56ms
+ GET / 200 in 55ms
+ GET / 200 in 49ms
+ GET / 200 in 53ms
+ GET / 200 in 48ms
+ GET / 200 in 47ms
+ GET / 200 in 53ms
+ GET / 200 in 56ms
+ GET / 200 in 50ms
+ GET / 200 in 49ms
+ GET / 200 in 57ms
+ GET / 200 in 51ms
+ GET / 200 in 49ms
+ GET / 200 in 53ms
+ GET / 200 in 48ms
+ GET / 200 in 76ms
+ GET / 200 in 63ms
+ GET / 200 in 66ms
+ GET / 200 in 55ms
+ GET /dashboard/risk-management 200 in 88ms
+ GET / 200 in 78ms
+ GET / 200 in 59ms
+ GET / 200 in 111ms
+Failed to proxy http://127.0.0.1:8000/api/risk/metrics Error: connect ECONNREFUSED 127.0.0.1:8000
+    at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:8000) {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 8000
+}
+Error: connect ECONNREFUSED 127.0.0.1:8000
+    at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:8000) {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 8000
+}
+Failed to proxy http://127.0.0.1:8000/health Error: connect ECONNREFUSED 127.0.0.1:8000
+    at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:8000) {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 8000
+}
+Error: connect ECONNREFUSED 127.0.0.1:8000
+    at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:8000) {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 8000
+}
+Failed to proxy http://127.0.0.1:8000/health Error: connect ECONNREFUSED 127.0.0.1:8000
+    at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:8000) {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 8000
+}
+Error: connect ECONNREFUSED 127.0.0.1:8000
+    at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:8000) {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 8000
+}
+Failed to proxy http://127.0.0.1:8000/api/risk/metrics Error: connect ECONNREFUSED 127.0.0.1:8000
+    at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:8000) {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 8000
+}
+Error: connect ECONNREFUSED 127.0.0.1:8000
+    at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:8000) {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 8000
+}
+Failed to proxy http://127.0.0.1:8000/health Error: connect ECONNREFUSED 127.0.0.1:8000
+    at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:8000) {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 8000
+}
+Error: connect ECONNREFUSED 127.0.0.1:8000
+    at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:8000) {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 8000
+}
+Failed to proxy http://127.0.0.1:8000/health Error: connect ECONNREFUSED 127.0.0.1:8000
+    at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:8000) {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 8000
+}
+Error: connect ECONNREFUSED 127.0.0.1:8000
+    at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:8000) {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 8000
+}
+Failed to proxy http://127.0.0.1:8000/health Error: connect ECONNREFUSED 127.0.0.1:8000
+    at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:8000) {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 8000
+}
+Error: connect ECONNREFUSED 127.0.0.1:8000
+    at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:8000) {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 8000
+}
+Failed to proxy http://127.0.0.1:8000/health Error: connect ECONNREFUSED 127.0.0.1:8000
+    at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:8000) {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 8000
+}
+Error: connect ECONNREFUSED 127.0.0.1:8000
+    at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:8000) {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 8000
+}
+Failed to proxy http://127.0.0.1:8000/api/risk/metrics Error: connect ECONNREFUSED 127.0.0.1:8000
+    at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:8000) {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 8000
+}
+Error: connect ECONNREFUSED 127.0.0.1:8000
+    at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:8000) {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 8000
+}
+Failed to proxy http://127.0.0.1:8000/health Error: connect ECONNREFUSED 127.0.0.1:8000
+    at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:8000) {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 8000
+}
+Error: connect ECONNREFUSED 127.0.0.1:8000
+    at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:8000) {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 8000
+}
+ ○ Compiling /_error ...
+Failed to proxy http://127.0.0.1:8000/api/dashboard/snapshot Error: connect ECONNREFUSED 127.0.0.1:8000
+    at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:8000) {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 8000
+}
+Error: connect ECONNREFUSED 127.0.0.1:8000
+    at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:8000) {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 8000
+}
+Failed to proxy http://127.0.0.1:8000/health Error: connect ECONNREFUSED 127.0.0.1:8000
+    at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:8000) {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 8000
+}
+Error: connect ECONNREFUSED 127.0.0.1:8000
+    at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:8000) {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 8000
+}
+Failed to proxy http://127.0.0.1:8000/health Error: connect ECONNREFUSED 127.0.0.1:8000
+    at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:8000) {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 8000
+}
+Error: connect ECONNREFUSED 127.0.0.1:8000
+    at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:8000) {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 8000
+}
+ ✓ Compiled /_error in 1558ms (1084 modules)
+ GET /dashboard/risk-management 200 in 953ms
+ GET /dashboard/risk-management 200 in 24ms
+Failed to proxy http://127.0.0.1:8000/api/dashboard/snapshot Error: connect ECONNREFUSED 127.0.0.1:8000
+    at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:8000) {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 8000
+}
+Error: connect ECONNREFUSED 127.0.0.1:8000
+    at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:8000) {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 8000
+}
+ GET / 200 in 113ms
+Failed to proxy http://127.0.0.1:8000/api/risk/metrics Error: connect ECONNREFUSED 127.0.0.1:8000
+    at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:8000) {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 8000
+}
+Error: connect ECONNREFUSED 127.0.0.1:8000
+    at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:8000) {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 8000
+}
+Failed to proxy http://127.0.0.1:8000/health Error: connect ECONNREFUSED 127.0.0.1:8000
+    at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:8000) {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 8000
+}
+Error: connect ECONNREFUSED 127.0.0.1:8000
+    at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:8000) {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 8000
+}
+Failed to proxy http://127.0.0.1:8000/health Error: connect ECONNREFUSED 127.0.0.1:8000
+    at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:8000) {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 8000
+}
+Error: connect ECONNREFUSED 127.0.0.1:8000
+    at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:8000) {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 8000
+}
+Failed to proxy http://127.0.0.1:8000/api/dashboard/snapshot Error: connect ECONNREFUSED 127.0.0.1:8000
+    at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:8000) {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 8000
+}
+Error: connect ECONNREFUSED 127.0.0.1:8000
+    at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:8000) {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 8000
+}
+ GET / 200 in 46ms
+ GET / 200 in 47ms
+Failed to proxy http://127.0.0.1:8000/api/dashboard/snapshot Error: connect ECONNREFUSED 127.0.0.1:8000
+    at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:8000) {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 8000
+}
+Error: connect ECONNREFUSED 127.0.0.1:8000
+    at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:8000) {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 8000
+}
+Failed to proxy http://127.0.0.1:8000/api/dashboard/snapshot Error: connect ECONNREFUSED 127.0.0.1:8000
+    at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:8000) {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 8000
+}
+Error: connect ECONNREFUSED 127.0.0.1:8000
+    at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:8000) {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 8000
+}
+Failed to proxy http://127.0.0.1:8000/health Error: connect ECONNREFUSED 127.0.0.1:8000
+    at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:8000) {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 8000
+}
+Error: connect ECONNREFUSED 127.0.0.1:8000
+    at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:8000) {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 8000
+}
+Failed to proxy http://127.0.0.1:8000/health Error: connect ECONNREFUSED 127.0.0.1:8000
+    at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:8000) {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 8000
+}
+Error: connect ECONNREFUSED 127.0.0.1:8000
+    at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:8000) {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 8000
+}
+Failed to proxy http://127.0.0.1:8000/api/dashboard/snapshot Error: connect ECONNREFUSED 127.0.0.1:8000
+    at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:8000) {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 8000
+}
+Error: connect ECONNREFUSED 127.0.0.1:8000
+    at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:8000) {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 8000
+}
+Failed to proxy http://127.0.0.1:8000/health Error: connect ECONNREFUSED 127.0.0.1:8000
+    at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:8000) {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 8000
+}
+Error: connect ECONNREFUSED 127.0.0.1:8000
+    at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:8000) {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 8000
+}
+Failed to proxy http://127.0.0.1:8000/api/risk/metrics Error: connect ECONNREFUSED 127.0.0.1:8000
+    at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:8000) {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 8000
+}
+Error: connect ECONNREFUSED 127.0.0.1:8000
+    at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:8000) {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 8000
+}
+Failed to proxy http://127.0.0.1:8000/api/dashboard/snapshot Error: connect ECONNREFUSED 127.0.0.1:8000
+    at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:8000) {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 8000
+}
+Error: connect ECONNREFUSED 127.0.0.1:8000
+    at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:8000) {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 8000
+}
+Failed to proxy http://127.0.0.1:8000/health Error: connect ECONNREFUSED 127.0.0.1:8000
+    at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:8000) {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 8000
+}
+Error: connect ECONNREFUSED 127.0.0.1:8000
+    at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:8000) {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 8000
+}
+Failed to proxy http://127.0.0.1:8000/api/dashboard/snapshot Error: connect ECONNREFUSED 127.0.0.1:8000
+    at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:8000) {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 8000
+}
+Error: connect ECONNREFUSED 127.0.0.1:8000
+    at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:8000) {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 8000
+}
+Failed to proxy http://127.0.0.1:8000/health Error: connect ECONNREFUSED 127.0.0.1:8000
+    at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:8000) {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 8000
+}
+Error: connect ECONNREFUSED 127.0.0.1:8000
+    at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:8000) {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 8000
+}
+ ✓ Compiled in 1448ms (1098 modules)
+ GET /dashboard/risk-management 200 in 112ms
+ GET / 200 in 145ms
+ GET / 200 in 44ms
+ GET / 200 in 50ms
+ GET / 200 in 98ms
+ GET / 200 in 124ms
+ ○ Compiling /dashboard/arb-radar ...
+ ✓ Compiled /dashboard/arb-radar in 743ms (543 modules)
+ GET /dashboard/arb-radar 200 in 919ms
+ GET / 200 in 142ms
+ GET / 200 in 41ms
+ GET / 200 in 56ms
+ GET / 200 in 50ms
+ GET /dashboard/arb-radar 200 in 100ms
+ GET / 200 in 75ms
+ GET / 200 in 1095ms
+ GET / 200 in 104ms
+ GET / 200 in 57ms
+ GET / 200 in 101ms
+ GET / 200 in 74ms
+ GET / 200 in 61ms
+ GET / 200 in 65ms
+Failed to proxy http://127.0.0.1:8000/health Error: connect ECONNREFUSED 127.0.0.1:8000
+    at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:8000) {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 8000
+}
+Error: connect ECONNREFUSED 127.0.0.1:8000
+    at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:8000) {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 8000
+}
+Failed to proxy http://127.0.0.1:8000/health Error: connect ECONNREFUSED 127.0.0.1:8000
+    at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:8000) {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 8000
+}
+Error: connect ECONNREFUSED 127.0.0.1:8000
+    at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:8000) {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 8000
+}
+Failed to proxy http://127.0.0.1:8000/health Error: connect ECONNREFUSED 127.0.0.1:8000
+    at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:8000) {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 8000
+}
+Error: connect ECONNREFUSED 127.0.0.1:8000
+    at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:8000) {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 8000
+}
+Failed to proxy http://127.0.0.1:8000/health Error: connect ECONNREFUSED 127.0.0.1:8000
+    at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:8000) {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 8000
+}
+Error: connect ECONNREFUSED 127.0.0.1:8000
+    at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:8000) {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 8000
+}
+Failed to proxy http://127.0.0.1:8000/api/dashboard/snapshot Error: connect ECONNREFUSED 127.0.0.1:8000
+    at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:8000) {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 8000
+}
+Error: connect ECONNREFUSED 127.0.0.1:8000
+    at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:8000) {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 8000
+}
+Failed to proxy http://127.0.0.1:8000/health Error: connect ECONNREFUSED 127.0.0.1:8000
+    at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:8000) {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 8000
+}
+Error: connect ECONNREFUSED 127.0.0.1:8000
+    at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:8000) {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 8000
+}
+Failed to proxy http://127.0.0.1:8000/api/dashboard/snapshot Error: connect ECONNREFUSED 127.0.0.1:8000
+    at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:8000) {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 8000
+}
+Error: connect ECONNREFUSED 127.0.0.1:8000
+    at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:8000) {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 8000
+}
+Failed to proxy http://127.0.0.1:8000/health Error: connect ECONNREFUSED 127.0.0.1:8000
+    at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:8000) {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 8000
+}
+Error: connect ECONNREFUSED 127.0.0.1:8000
+    at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:8000) {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 8000
+}
+Failed to proxy http://127.0.0.1:8000/health Error: connect ECONNREFUSED 127.0.0.1:8000
+    at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:8000) {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 8000
+}
+Error: connect ECONNREFUSED 127.0.0.1:8000
+    at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:8000) {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 8000
+}
+ ✓ Compiled /_error in 405ms (1097 modules)
+ GET / 200 in 150ms
+Failed to proxy http://127.0.0.1:8000/health Error: connect ECONNREFUSED 127.0.0.1:8000
+    at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:8000) {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 8000
+}
+Error: connect ECONNREFUSED 127.0.0.1:8000
+    at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:8000) {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 8000
+}
+Failed to proxy http://127.0.0.1:8000/api/dashboard/snapshot Error: connect ECONNREFUSED 127.0.0.1:8000
+    at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:8000) {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 8000
+}
+Error: connect ECONNREFUSED 127.0.0.1:8000
+    at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:8000) {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 8000
+}
+Failed to proxy http://127.0.0.1:8000/health Error: connect ECONNREFUSED 127.0.0.1:8000
+    at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:8000) {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 8000
+}
+Error: connect ECONNREFUSED 127.0.0.1:8000
+    at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:8000) {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 8000
+}
+Failed to proxy http://127.0.0.1:8000/api/dashboard/snapshot Error: connect ECONNREFUSED 127.0.0.1:8000
+    at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:8000) {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 8000
+}
+Error: connect ECONNREFUSED 127.0.0.1:8000
+    at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:8000) {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 8000
+}
+Failed to proxy http://127.0.0.1:8000/health Error: connect ECONNREFUSED 127.0.0.1:8000
+    at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:8000) {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 8000
+}
+Error: connect ECONNREFUSED 127.0.0.1:8000
+    at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:8000) {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 8000
+}
+Failed to proxy http://127.0.0.1:8000/health Error: connect ECONNREFUSED 127.0.0.1:8000
+    at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:8000) {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 8000
+}
+Error: connect ECONNREFUSED 127.0.0.1:8000
+    at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:8000) {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 8000
+}
+Failed to proxy http://127.0.0.1:8000/api/dashboard/snapshot Error: connect ECONNREFUSED 127.0.0.1:8000
+    at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:8000) {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 8000
+}
+Error: connect ECONNREFUSED 127.0.0.1:8000
+    at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:8000) {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 8000
+}
+Failed to proxy http://127.0.0.1:8000/api/dashboard/snapshot Error: connect ECONNREFUSED 127.0.0.1:8000
+    at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:8000) {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 8000
+}
+Error: connect ECONNREFUSED 127.0.0.1:8000
+    at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:8000) {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 8000
+}
+Failed to proxy http://127.0.0.1:8000/health Error: connect ECONNREFUSED 127.0.0.1:8000
+    at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:8000) {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 8000
+}
+Error: connect ECONNREFUSED 127.0.0.1:8000
+    at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:8000) {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 8000
+}
+Failed to proxy http://127.0.0.1:8000/health Error: connect ECONNREFUSED 127.0.0.1:8000
+    at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:8000) {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 8000
+}
+Error: connect ECONNREFUSED 127.0.0.1:8000
+    at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:8000) {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 8000
+}
+Failed to proxy http://127.0.0.1:8000/api/dashboard/snapshot Error: connect ECONNREFUSED 127.0.0.1:8000
+    at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:8000) {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 8000
+}
+Error: connect ECONNREFUSED 127.0.0.1:8000
+    at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:8000) {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 8000
+}
+ GET / 200 in 54ms
+Failed to proxy http://127.0.0.1:8000/api/dashboard/snapshot Error: connect ECONNREFUSED 127.0.0.1:8000
+    at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:8000) {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 8000
+}
+Error: connect ECONNREFUSED 127.0.0.1:8000
+    at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:8000) {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 8000
+}
+Failed to proxy http://127.0.0.1:8000/health Error: connect ECONNREFUSED 127.0.0.1:8000
+    at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:8000) {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 8000
+}
+Error: connect ECONNREFUSED 127.0.0.1:8000
+    at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:8000) {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 8000
+}
+ GET / 200 in 75ms
+Failed to proxy http://127.0.0.1:8000/health Error: connect ECONNREFUSED 127.0.0.1:8000
+    at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:8000) {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 8000
+}
+Error: connect ECONNREFUSED 127.0.0.1:8000
+    at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:8000) {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 8000
+}
+Failed to proxy http://127.0.0.1:8000/api/dashboard/snapshot Error: connect ECONNREFUSED 127.0.0.1:8000
+    at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:8000) {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 8000
+}
+Error: connect ECONNREFUSED 127.0.0.1:8000
+    at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:8000) {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 8000
+}
+ GET / 200 in 51ms
+ GET / 200 in 63ms
+ GET / 200 in 60ms
+ GET / 200 in 48ms
+ GET / 200 in 53ms
+ GET / 200 in 54ms
+ GET / 200 in 53ms
+ GET / 200 in 52ms
+ GET / 200 in 56ms

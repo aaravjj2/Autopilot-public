@@ -1,0 +1,34 @@
+{
+  "cycle": 9,
+  "timestamp": "20260528_211931",
+  "phases": {
+    "bootstrap": {
+      "success": true,
+      "output": "Here's the full codebase health & environment report:\n\n\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\n  APEX AUTOPILOT ENGINE \u2014 HEALTH REPORT\n\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\n\n[PASS] Project Structure\n  - Root: /home/aarav/Aarav/Autopilot (8.0 GB total)\n  - 166 Python source files across 27 modules under src/apex/\n  - Clean git working tree (no uncommitted changes)\n  - Last commit: iter 587 \u2014 \"Log scan_metrics summary each arb cycle\"\n  - Disk: 782G free on /\n\n[PASS] Python Environment\n  - "
+    },
+    "analyze": {
+      "success": true,
+      "output": "error: unknown option '--dir'\n\nTry 'copilot --help' for more information.\n"
+    },
+    "plan": {
+      "success": false,
+      "output": ""
+    },
+    "execute": {
+      "success": true,
+      "output": "flags provided but not defined: -workdir\nUsage of agy:\n  --add-dir                       Add a directory to the workspace (repeatable) (default [])\n  -c                              Short alias for --continue\n  --continue                      Continue the most recent conversation\n  --conversation                  Resume a previous conversation by ID\n  --dangerously-skip-permissions  Auto-approve all tool permission requests without prompting\n  -i                              Short alias for --pr"
+    },
+    "test": {
+      "success": true,
+      "output": "All **346 tests passed**, 1 skipped (Playwright test needing a browser), 18 warnings (all Pydantic deprecation notices \u2014 harmless).\n\n**Test Summary:**\n- Total collected: 346 (+ 1 skipped)\n- Passed: 346\n- Failed: 0\n- Time: 1m 51s\n\n**Warnings (non-blocking):**\n- SQLModel/Pydantic v2 deprecation of `class-based config` (planned for v3)\n- ChromaDB instance-level `model_fields` access (Pydantic 2.11+)\n\nEverything is green. The skipped test (`test_dashboard_playwright.py`) requires a browser \u2014 that's "
+    },
+    "commit": {
+      "success": true,
+      "output": "Working tree is clean \u2014 nothing to commit right now. The branch is 5 commits ahead of `origin/main` and all changes are already committed. Would you like to push the pending commits instead?\n"
+    },
+    "report": {
+      "success": true,
+      "output": "error: unknown option '--dir'\n\nTry 'copilot --help' for more information.\n"
+    }
+  }
+}

@@ -38,137 +38,34 @@ env/
 *.egg
 *.egg-info/
 .eggs/
-dist/
-build/
-pip-wheel-metadata/
-.pytest_cache/
-.ruff_cache/
-.mypy_cache/
-.coverage
-.coverage.*
-htmlcov/
-.tox/
-.nox/
-*.cover
 
-# --- Node.js / Next.js ---
-node_modules/
-.next/
-out/
-.npm
-.yarn/
-.pnp.*
-*.tsbuildinfo
-next-env.d.ts
-autopilot-local/frontend/node_modules/
-autopilot-local/frontend/.next/
+# --- Stale / debug files ---
+scratch.py
+scratch_*.py
+*.debug.py
 
-# --- Databases, logs, runtime data ---
-*.db
-*.sqlite
-*.sqlite3
-*.sqlite-journal
-*.sqlite-shm
-*.sqlite-wal
-/data/
-logs/
-autopilot-local/logs/
-/tmp/
-/tmp/apex-logs/
-reports/
-*.pid
-*.log
-backups/
-autopilot-local/autopilot.db
+# --- Dynamic artifacts (regenerated each cycle; git noise) ---
+artifacts/submission/*.json
 
-# Runtime tick / stream captures (do not version live market data)
-*.jsonl
-autopilot-local/backend/data/*.jsonl
-
-# Process manager
-nohup.out
-
-# Python cache under runtime data dirs
-**/data/__pycache__/
-
-# Vector stores
-**/chromadb/
-.chroma/
-
-# --- IDE & OS ---
-.idea/
+# --- IDE / editor ---
 .vscode/
+.idea/
 *.swp
 *.swo
 *~
 .DS_Store
 Thumbs.db
-desktop.ini
-.project
-.settings/
-.classpath
-$RECYCLE.BIN/
 
-# --- Cursor / local agent tooling ---
-.cursor/
-.cursorrules
-.antigravitycli/
-agent-transcripts/
-.agents/
-skills-lock.json
-
-# --- Local runtime state (may contain API tokens / webhooks) ---
-.state/
-
-# --- Office lock files ---
-~$*
-
-# --- Docker overrides ---
-docker-compose.override.yml
-
-# --- Vendored clones (keep README only) ---
-external/*
-!external/README.md
-
-# --- Discord bot ---
-Discord/
-Discord/*/keys.env
-!Discord/*/keys.env.example
-Discord/*/.env
-!Discord/*/.env.example
-Discord/zen_instatrade/trades.db
-Discord/zen_instatrade/*.log
-Discord/zen_instatrade/__pycache__/
-
-# --- Autopilot-local ---
-autopilot-local/.venv/
-
-# --- Jupyter ---
-.ipynb_checkpoints/
-
-# --- Submission demo artifacts (regenerate via scripts/build_submission_artifacts.sh) ---
-artifacts/submission/video/
-artifacts/submission/*.webm
-artifacts/submission/*.mp4
-APEX_Autopilot_Submission_Artifacts.zip
-
-# --- Misc ---
-.cache/
-*.bak
-*.tmp
-.terraform/
-.hypothesis/
-
-# --- Playwright / E2E artifacts ---
-playwright-report/
-test-results/
-autopilot-local/frontend/playwright-report/
-autopilot-local/frontend/test-results/
-
-# --- Coverage ---
-coverage/
-coverage.xml
-coverage.json
-
-# --- Duplicate / generated bundles (do not version) ---
-marketmind-apex-agy-package/
+# --- Build outputs ---
+dist/
+build/
+*.db
+*.sqlite
+*.sqlite3
+*.db-journal
+*.db-wal
+node_modules/
+.next/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/

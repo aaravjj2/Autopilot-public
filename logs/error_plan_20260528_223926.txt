@@ -1,0 +1,5 @@
+Phase: plan
+Tool: opencode
+Error Type: CLI flag not recognized
+
+error: unknown option '-p'

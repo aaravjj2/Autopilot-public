@@ -519,6 +519,11 @@ if str(_MARKETPLACE_BACKEND) not in sys.path:
 
 _kalshi_ws_task: asyncio.Task | None = None
 _kalshi_ws_mgr: Any = None
+_background_scheduler: Any = None
+
+
+def _morning_chain_enabled() -> bool:
+    return os.getenv("APEX_MORNING_CHAIN", "true").lower() in ("1", "true", "yes")
 
 
 def _scheduler_health() -> dict[str, Any]:
@@ -529,6 +534,7 @@ def _scheduler_health() -> dict[str, Any]:
         "equity_loop": os.getenv("APEX_EQUITY_LOOP", "true").lower() in ("1", "true", "yes"),
         "self_improvement_loop": os.getenv("APEX_SELF_IMPROVEMENT_LOOP", "false").lower()
         in ("1", "true", "yes"),
+        "morning_chain": _morning_chain_enabled(),
     }
     in_process_enabled = any(loop_flags.values())
     daemon_expected = os.getenv("APEX_EXPECT_SCHEDULER_DAEMON", "false").lower() in (
@@ -576,7 +582,7 @@ def _scheduler_health() -> dict[str, Any]:
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    global _kalshi_ws_task, _kalshi_ws_mgr
+    global _kalshi_ws_task, _kalshi_ws_mgr, _background_scheduler
     from marketplace_lifecycle import shutdown_marketplace, startup_marketplace
     from apex.core.logging import get_logger
     from apex.demo.seed_data import seed_demo_database
@@ -644,9 +650,25 @@ async def lifespan(app: FastAPI):
         asyncio.create_task(equity_autopilot_loop())
     if os.getenv("APEX_SELF_IMPROVEMENT_LOOP", "false").lower() in ("1", "true", "yes"):
         asyncio.create_task(self_improvement_loop())
+    if _morning_chain_enabled():
+        try:
+            from apex.main import build_engine
+            from apex.scheduler.service import start_background_scheduler
+
+            engine = await asyncio.to_thread(build_engine)
+            _background_scheduler = await asyncio.to_thread(start_background_scheduler, engine)
+            print("[startup] Morning chain scheduler started (APScheduler, US/Eastern)")
+        except Exception as exc:
+            print(f"[startup] Morning chain scheduler failed: {exc}")
     try:
         yield
     finally:
+        if _background_scheduler is not None:
+            try:
+                _background_scheduler.shutdown(wait=False)
+            except Exception as exc:  # noqa: BLE001
+                print(f"[shutdown] Morning chain scheduler: {exc}")
+            _background_scheduler = None
         if _kalshi_ws_task and not _kalshi_ws_task.done():
             if _kalshi_ws_mgr is not None:
                 _kalshi_ws_mgr.stop()
@@ -1233,11 +1255,11 @@ def pm_brain(force: bool = False):
 
 
 @app.get("/api/brain/status")
-def brain_status():
-    """FinanceBrain (autopilot LLM reasoner) status + knowledge metadata."""
+def brain_status(probe: bool = False):
+    """FinanceBrain (autopilot LLM reasoner) status + optional live API probe."""
     from apex.brain import get_brain
 
-    return get_brain(settings, refresh=True).status()
+    return get_brain(settings, refresh=True).status(probe=probe)
 
 
 @app.post("/api/brain/ask")

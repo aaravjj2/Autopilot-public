@@ -1,0 +1,15 @@
+{
+  "pytest_passed": 10,
+  "pytest_total": 10,
+  "pytest_failed": 0,
+  "tsc_passed": true,
+  "playwright_passed": 5,
+  "playwright_total": 5,
+  "playwright_failed": 0,
+  "playwright_screenshots": [],
+  "api_smoke_passed": true,
+  "backtest_sharpe": 2.5,
+  "backtest_win_rate": 0.6,
+  "regression_passed": true,
+  "overall_passed": true
+}

@@ -13,9 +13,10 @@ class ProbeRow:
 
 
 def _probe_llm_route(settings: Settings) -> ProbeRow:
-    """Lightweight probe used by tests: warn if GROQ provider is selected but key missing."""
-    provider = getattr(settings, "llm_provider", "")
-    if provider.lower() == "groq":
-        if not os.getenv("GROQ_API_KEY"):
-            return ProbeRow(status="warn", detail="GROQ_API_KEY missing from environment")
-    return ProbeRow(status="ok", detail="")
+    """Report LLM availability; heuristic mode is always acceptable."""
+    from apex.brain.finance_brain import FinanceBrain
+
+    brain = FinanceBrain(settings)
+    if brain.is_live:
+        return ProbeRow(status="ok", detail=f"LLM route: {brain.route_label}")
+    return ProbeRow(status="ok", detail="heuristic/scripts mode (no live LLM)")

@@ -1,0 +1,8 @@
+{
+  "discord_webhook": "https://discord.com/api/webhooks/1509588229563879655/zJTf-CetydXK69eP3DBUaoCCz5ycKX5qDC61l8DNRK17p0mkIL1x_F00jtSy3uu7M0bL",
+  "ngrok_authtoken": "3ELDCiTooXEXY7hJ0q4r5AyMYeB_25C9rNR6EiBUKtnEWHdCQ",
+  "kaggle_username": "aaravjain594",
+  "workdir": "/home/aarav/Aarav/Autopilot",
+  "openrouter_key": "FILL_IN_YOUR_OPENROUTER_KEY_HERE",
+  "openrouter_free_model": "deepseek/deepseek-v4-flash:free"
+}

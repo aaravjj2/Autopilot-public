@@ -1,0 +1,255 @@
+
+> apex-trading-terminal@1.0.0 dev
+> next dev -p 3000 --port 3000
+
+ ⚠ Warning: Next.js inferred your workspace root, but it may not be correct.
+ We detected multiple lockfiles and selected the directory of /home/aarav/Aarav/Autopilot/autopilot-local/package-lock.json as the root directory.
+ To silence this warning, set `outputFileTracingRoot` in your Next.js config, or consider removing one of the lockfiles if it's not needed.
+   See https://nextjs.org/docs/app/api-reference/config/next-config-js/output#caveats for more information.
+ Detected additional lockfiles: 
+   * /home/aarav/Aarav/Autopilot/autopilot-local/frontend/package-lock.json
+
+   ▲ Next.js 15.5.18
+   - Local:        http://localhost:3000
+   - Network:      http://10.255.255.254:3000
+   - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 1829ms
+ ⚠ Cross origin request detected from 127.0.0.1 to /_next/* resource. In a future major version of Next.js, you will need to explicitly configure "allowedDevOrigins" in next.config to allow this.
+Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins
+ ○ Compiling / ...
+ ✓ Compiled / in 1345ms (643 modules)
+ GET / 200 in 2016ms
+ GET / 200 in 81ms
+ GET / 200 in 51ms
+ ○ Compiling /dashboard/autopilot ...
+ ✓ Compiled /dashboard/polymarket in 1677ms (713 modules)
+ GET /dashboard/autopilot 200 in 1809ms
+ GET /dashboard/autopilot 200 in 2265ms
+ GET /dashboard/polymarket 200 in 1783ms
+ ○ Compiling /dashboard/kalshi ...
+ ✓ Compiled /dashboard/kalshi in 745ms (720 modules)
+ GET /dashboard/autopilot 200 in 1022ms
+ GET /dashboard/kalshi 200 in 1101ms
+ GET /dashboard/autopilot 200 in 70ms
+ GET /dashboard/polymarket 200 in 121ms
+ GET /dashboard/polymarket 200 in 72ms
+ GET / 200 in 57ms
+ GET / 200 in 77ms
+ GET / 200 in 88ms
+ ✓ Compiled in 447ms (302 modules)
+ GET / 200 in 47ms
+ GET / 200 in 50ms
+ GET / 200 in 55ms
+ GET / 200 in 64ms
+ ○ Compiling /dashboard/arb-radar ...
+ ✓ Compiled /dashboard/arb-radar in 1428ms (719 modules)
+ ✓ Compiled /dashboard/autopilot in 187ms (426 modules)
+ ✓ Compiled /dashboard/polymarket in 1ms (426 modules)
+ GET /dashboard/arb-radar 200 in 2130ms
+ ✓ Compiled in 1ms (440 modules)
+ GET /dashboard/autopilot 200 in 1828ms
+ GET /dashboard/autopilot 200 in 1837ms
+ GET /dashboard/polymarket 200 in 1657ms
+ GET /dashboard/autopilot 200 in 133ms
+ ○ Compiling /dashboard/kalshi ...
+ ✓ Compiled /dashboard/kalshi in 622ms (445 modules)
+ GET /dashboard/kalshi 200 in 897ms
+ GET /dashboard/autopilot 200 in 108ms
+ GET /dashboard/polymarket 200 in 156ms
+ GET /dashboard/polymarket 200 in 78ms
+ GET / 200 in 60ms
+ GET / 200 in 52ms
+ GET / 200 in 57ms
+ GET / 200 in 56ms
+ GET / 200 in 49ms
+ GET / 200 in 51ms
+ GET / 200 in 52ms
+ GET / 200 in 74ms
+ GET / 200 in 46ms
+ GET / 200 in 82ms
+ GET / 200 in 45ms
+ GET / 200 in 47ms
+ GET / 200 in 67ms
+ GET / 200 in 46ms
+ GET / 200 in 51ms
+ GET / 200 in 45ms
+ ✓ Compiled /dashboard/positions in 482ms (713 modules)
+ GET /dashboard/positions 200 in 569ms
+ GET / 200 in 124ms
+ GET / 200 in 85ms
+ GET / 200 in 47ms
+ GET / 200 in 51ms
+ ○ Compiling /dashboard/marketplace ...
+ ✓ Compiled /dashboard/marketplace in 1469ms (720 modules)
+ GET /dashboard/marketplace 200 in 1711ms
+ GET /dashboard/marketplace 200 in 2005ms
+ ✓ Compiled /dashboard/kalshi in 147ms (429 modules)
+ ✓ Compiled (434 modules)
+ GET /dashboard/kalshi 200 in 751ms
+ GET /dashboard/polymarket 200 in 786ms
+ GET / 200 in 82ms
+ GET /dashboard/polymarket 200 in 98ms
+ ✓ Compiled /dashboard/settings in 485ms (749 modules)
+ GET /dashboard/settings 200 in 736ms
+ GET /dashboard/marketplace 200 in 113ms
+ GET /dashboard/marketplace 200 in 94ms
+ GET /dashboard/marketplace 200 in 73ms
+ GET /dashboard/polymarket 200 in 122ms
+ ✓ Compiled /dashboard in 418ms (764 modules)
+ GET /dashboard 200 in 627ms
+ GET /dashboard/marketplace 200 in 128ms
+ GET / 200 in 82ms
+ GET / 200 in 48ms
+ GET / 200 in 51ms
+ GET / 200 in 53ms
+ GET / 200 in 53ms
+ GET / 200 in 54ms
+ GET / 200 in 59ms
+ GET / 200 in 63ms
+ GET / 200 in 56ms
+ GET / 200 in 50ms
+ GET / 200 in 59ms
+ GET / 200 in 51ms
+ GET / 200 in 54ms
+ GET / 200 in 70ms
+ GET / 200 in 92ms
+ GET / 200 in 92ms
+ GET / 200 in 141ms
+ ○ Compiling /dashboard/arb-radar ...
+ ✓ Compiled /dashboard/arb-radar in 710ms (445 modules)
+ GET /dashboard/arb-radar 200 in 1102ms
+ GET / 200 in 64ms
+ GET / 200 in 62ms
+ GET / 200 in 54ms
+ GET /dashboard/arb-radar 200 in 99ms
+ GET / 200 in 53ms
+ GET / 200 in 49ms
+ GET / 200 in 49ms
+ GET / 200 in 50ms
+ GET / 200 in 51ms
+ GET / 200 in 48ms
+ GET / 200 in 59ms
+ GET / 200 in 68ms
+ GET / 200 in 59ms
+ GET / 200 in 56ms
+ GET / 200 in 61ms
+ GET / 200 in 56ms
+ GET / 200 in 56ms
+ GET / 200 in 60ms
+ GET / 200 in 57ms
+ GET / 200 in 55ms
+ GET / 200 in 53ms
+ GET / 200 in 51ms
+ GET / 200 in 57ms
+ GET / 200 in 55ms
+ GET / 200 in 60ms
+ GET / 200 in 53ms
+ GET / 200 in 54ms
+ GET / 200 in 64ms
+ GET / 200 in 74ms
+ GET / 200 in 154ms
+ GET / 200 in 82ms
+ GET / 200 in 95ms
+ GET / 200 in 97ms
+ GET / 200 in 60ms
+ GET / 200 in 56ms
+ GET / 200 in 111ms
+ GET / 200 in 123ms
+ GET / 200 in 63ms
+ GET / 200 in 57ms
+ GET / 200 in 57ms
+ GET / 200 in 53ms
+ GET / 200 in 58ms
+ GET / 200 in 76ms
+ GET / 200 in 77ms
+ GET / 200 in 47ms
+ GET / 200 in 50ms
+ GET / 200 in 54ms
+ GET / 200 in 48ms
+ GET / 200 in 70ms
+ GET / 200 in 95ms
+ GET / 200 in 52ms
+ GET / 200 in 57ms
+ GET / 200 in 70ms
+ GET / 200 in 53ms
+ GET / 200 in 51ms
+ GET / 200 in 48ms
+ GET / 200 in 51ms
+ GET / 200 in 48ms
+ GET / 200 in 52ms
+ GET / 200 in 51ms
+ GET / 200 in 50ms
+ GET / 200 in 66ms
+ GET / 200 in 48ms
+ GET / 200 in 48ms
+ GET / 200 in 51ms
+ GET / 200 in 50ms
+ GET / 200 in 51ms
+ GET / 200 in 48ms
+ GET / 200 in 48ms
+ GET / 200 in 50ms
+ GET / 200 in 50ms
+ GET / 200 in 48ms
+ GET / 200 in 48ms
+ GET / 200 in 47ms
+ GET / 200 in 62ms
+ GET / 200 in 50ms
+ GET / 200 in 49ms
+ GET / 200 in 48ms
+ GET / 200 in 47ms
+ GET / 200 in 48ms
+ GET / 200 in 49ms
+ GET / 200 in 49ms
+ GET / 200 in 46ms
+ GET / 200 in 52ms
+ GET / 200 in 65ms
+ GET / 200 in 48ms
+ GET / 200 in 71ms
+ GET / 200 in 103ms
+ GET / 200 in 48ms
+ GET / 200 in 60ms
+ GET / 200 in 50ms
+ GET / 200 in 53ms
+ GET / 200 in 49ms
+ GET / 200 in 49ms
+ GET / 200 in 49ms
+ GET / 200 in 50ms
+ GET / 200 in 51ms
+ GET / 200 in 50ms
+ GET / 200 in 48ms
+ GET / 200 in 41ms
+ GET / 200 in 59ms
+ GET / 200 in 44ms
+ GET / 200 in 41ms
+ GET / 200 in 51ms
+ GET / 200 in 41ms
+ GET / 200 in 41ms
+ GET / 200 in 44ms
+ GET / 200 in 44ms
+ GET / 200 in 42ms
+ GET / 200 in 48ms
+ GET / 200 in 46ms
+ GET / 200 in 41ms
+ GET / 200 in 43ms
+ GET / 200 in 46ms
+ GET / 200 in 39ms
+ GET / 200 in 44ms
+ GET / 200 in 44ms
+ GET / 200 in 47ms
+ GET / 200 in 45ms
+ GET / 200 in 64ms
+ GET / 200 in 110ms
+ ✓ Compiled in 1949ms (760 modules)
+ GET / 200 in 446ms
+ GET / 200 in 48ms
+ GET / 200 in 47ms
+ GET / 200 in 49ms
+ GET / 200 in 63ms
+ GET / 200 in 89ms
+ GET / 200 in 58ms
+ GET / 200 in 52ms
+ GET / 200 in 84ms
+ ✓ Compiled in 347ms (328 modules)
+ GET / 200 in 51ms

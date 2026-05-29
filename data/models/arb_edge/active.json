@@ -1,0 +1,14 @@
+{
+  "model_path": "/home/aarav/Aarav/Autopilot/data/models/arb_edge/candidate_20260529T041737Z/model.json",
+  "promoted_at": "2026-05-29T04:17:37.931251+00:00",
+  "metrics": {
+    "n_samples": 104,
+    "accuracy": 0.9231,
+    "win_rate_baseline": 0.6442,
+    "model_metrics": {
+      "n_samples": 104,
+      "accuracy": 0.9231,
+      "mean_pred": 0.7183
+    }
+  }
+}

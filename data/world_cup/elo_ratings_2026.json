@@ -1,0 +1,32 @@
+{
+  "version": "2026-prep-v1",
+  "updated_at": "2026-05-01",
+  "home_advantage_elo": 45,
+  "teams": {
+    "Brazil": 2100,
+    "Argentina": 2085,
+    "France": 2070,
+    "England": 2055,
+    "Spain": 2045,
+    "Germany": 2035,
+    "Portugal": 2025,
+    "Netherlands": 2010,
+    "Belgium": 2005,
+    "Italy": 1995,
+    "USA": 1985,
+    "Mexico": 1960,
+    "Uruguay": 1955,
+    "Colombia": 1945,
+    "Japan": 1920,
+    "Morocco": 1915,
+    "Croatia": 1910,
+    "Switzerland": 1905,
+    "Denmark": 1900,
+    "South Korea": 1895,
+    "Ecuador": 1885,
+    "Senegal": 1880,
+    "Australia": 1875,
+    "Canada": 1865,
+    "Costa Rica": 1850
+  }
+}

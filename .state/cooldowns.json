@@ -1,0 +1,8 @@
+{
+  "agy":              { "locked_until": null, "cooldown_minutes": 30, "consecutive_fails": 0 },
+  "copilot-gpt52":    { "locked_until": null, "cooldown_minutes": 5,  "consecutive_fails": 0 },
+  "opencode":         { "locked_until": null, "cooldown_minutes": 0,  "consecutive_fails": 0 },
+  "ngrok":            { "locked_until": null, "cooldown_minutes": 0,  "consecutive_fails": 0 },
+  "gemini":           { "locked_until": null, "cooldown_minutes": 0,  "consecutive_fails": 0 },
+  "openrouter":       { "locked_until": null, "cooldown_minutes": 2,  "consecutive_fails": 0 }
+}

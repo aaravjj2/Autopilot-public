@@ -406,31 +406,19 @@ class Settings(BaseSettings):
 
     # ---- LLM client factory ----------------------------------------------------
     def get_llm_client(self) -> object | None:  # noqa: ANN401
-        """OpenAI-compatible client for the auto-resolved route (Groq/Gemini/OR/Ollama)."""
-        from apex.core.llm_routing import resolve_llm_route
+        """OpenAI-compatible client for the auto-resolved route (Groq/Ollama/OR)."""
+        from apex.core.llm_routing import openai_client_from_route, resolve_llm_route
 
         route = resolve_llm_route(self)
         if route is None:
             LOGGER.warning(
-                "get_llm_client: no LLM route resolved; check GROQ/GEMINI/OPENROUTER keys or Ollama availability"
+                "get_llm_client: no LLM route resolved; autopilot uses heuristic/scripts mode"
             )
             return None
-        if not route.base_url.strip():
-            LOGGER.warning("get_llm_client: route %s has empty base_url", route.label)
-            return None
-        if route.provider != "ollama" and not route.api_key.strip():
-            LOGGER.warning("get_llm_client: route %s has empty api_key", route.label)
-            return None
-        try:
-            from openai import OpenAI  # type: ignore[import-untyped]
-
-            return OpenAI(api_key=route.api_key, base_url=route.base_url)
-        except ImportError:
-            LOGGER.warning("get_llm_client: openai package not installed; run `pip install openai`")
-            return None
-        except Exception as exc:
-            LOGGER.warning("get_llm_client: init failed for %s: %s", route.label, exc)
-            return None
+        client = openai_client_from_route(route)
+        if client is None and route.provider != "ollama":
+            LOGGER.warning("get_llm_client: could not init client for %s", route.label)
+        return client
 
     @property
     def brightdata_enabled(self) -> bool:

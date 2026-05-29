@@ -1,0 +1,29 @@
+diff --git a/src/apex/main.py b/src/apex/main.py
+index 4a3a23b..3e3fa78 100644
+--- a/src/apex/main.py
++++ b/src/apex/main.py
+@@ -31,6 +31,7 @@ from apex.layers.l4.observability import ObservabilityService
+ from apex.repositories.sqlite_store import SQLiteStore
+ from apex.scheduler.service import run_scheduler as scheduler_runner
+ from apex.services.engine import ApexEngine
++from apex.services.arb_engine import ArbEngine
+ from apex.services.test_gates import TestGateRunner
+ 
+ LOGGER = get_logger(__name__)
+@@ -109,6 +110,8 @@ def build_engine() -> ApexEngine:
+     candidates = build_effective_watchlist_candidates(
+         DEFAULT_WATCHLIST_CANDIDATES, settings
+     )
++    
++    arb_engine = ArbEngine(settings=settings, store=store)
+ 
+     return ApexEngine(
+         settings=settings,
+@@ -119,6 +122,7 @@ def build_engine() -> ApexEngine:
+         execution=execution,
+         observability=observability,
+         integration_registry=registry,
++        arb_engine=arb_engine,
+         watchlist_candidates=candidates,
+     )
+ 

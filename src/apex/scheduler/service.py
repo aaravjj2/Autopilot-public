@@ -6,7 +6,9 @@ from typing import Any
 from zoneinfo import ZoneInfo
 
 from apscheduler.executors.pool import ThreadPoolExecutor
+from apscheduler.schedulers.background import BackgroundScheduler
 from apscheduler.schedulers.blocking import BlockingScheduler
+from apscheduler.schedulers.base import BaseScheduler
 
 from apex.core.logging import get_logger
 from apex.scheduler.jobs import register_jobs
@@ -15,6 +17,31 @@ from apex.services.engine import ApexEngine
 LOGGER = get_logger(__name__)
 
 ET = ZoneInfo("America/New_York")
+
+_SCHEDULER_DEFAULTS = {
+    "coalesce": True,
+    "max_instances": 1,
+    "misfire_grace_time": 7200,
+}
+
+
+def _build_scheduler(*, blocking: bool) -> BaseScheduler:
+    cls = BlockingScheduler if blocking else BackgroundScheduler
+    return cls(
+        executors={"default": ThreadPoolExecutor(5)},
+        job_defaults=dict(_SCHEDULER_DEFAULTS),
+        timezone="America/New_York",
+    )
+
+
+def _register_and_bootstrap(scheduler: BaseScheduler, engine: ApexEngine, *, bootstrap: bool) -> None:
+    register_jobs(scheduler, engine)
+    if bootstrap:
+        try:
+            engine.warm_trading_day_caches()
+        except Exception as exc:  # noqa: BLE001
+            LOGGER.warning("Startup bootstrap skipped: %s", exc)
+        _catch_up_morning_pipeline(engine)
 
 
 def _catch_up_morning_pipeline(engine: ApexEngine) -> None:
@@ -102,28 +129,26 @@ def _interrupt_from_signal(signum: int, _frame: object | None) -> None:
     raise KeyboardInterrupt()
 
 
+def start_background_scheduler(
+    engine: ApexEngine,
+    *,
+    bootstrap: bool = True,
+) -> BackgroundScheduler:
+    """Non-blocking APScheduler for co-hosting with FastAPI / Cloud Run."""
+    scheduler = _build_scheduler(blocking=False)
+    _register_and_bootstrap(scheduler, engine, bootstrap=bootstrap)
+    scheduler.start()
+    LOGGER.info("APEX background scheduler started (morning chain + intraday jobs)")
+    return scheduler
+
+
 def run_scheduler(engine: ApexEngine, *, bootstrap: bool = True) -> None:
     """
     Blocking APScheduler loop (US/Eastern). One failed job no longer tears down
     the process; SIGINT/SIGTERM raise KeyboardInterrupt for graceful shutdown.
     """
-    scheduler = BlockingScheduler(
-        executors={"default": ThreadPoolExecutor(5)},
-        job_defaults={
-            "coalesce": True,
-            "max_instances": 1,
-            "misfire_grace_time": 7200,
-        },
-        timezone="America/New_York",
-    )
-    register_jobs(scheduler, engine)
-
-    if bootstrap:
-        try:
-            engine.warm_trading_day_caches()
-        except Exception as exc:  # noqa: BLE001
-            LOGGER.warning("Startup bootstrap skipped: %s", exc)
-        _catch_up_morning_pipeline(engine)
+    scheduler = _build_scheduler(blocking=True)
+    _register_and_bootstrap(scheduler, engine, bootstrap=bootstrap)
 
     try:
         signal.signal(signal.SIGINT, _interrupt_from_signal)

@@ -1,0 +1,3428 @@
+{
+  "current_iteration": 614,
+  "completed_iterations": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    445,
+    586,
+    587,
+    588,
+    589,
+    590,
+    591,
+    592,
+    593,
+    594,
+    595,
+    596,
+    597,
+    598,
+    599,
+    600,
+    601,
+    602,
+    603,
+    604,
+    605,
+    606,
+    607,
+    608,
+    609,
+    610,
+    611,
+    612,
+    613
+  ],
+  "idea_history": [
+    {
+      "iteration": 1,
+      "idea": "Dry Run Idea 1",
+      "outcome": "SUCCESS",
+      "files_changed": [
+        "src/apex/main.py"
+      ],
+      "sharpe": 2.5
+    },
+    {
+      "iteration": 2,
+      "idea": "Dry Run Idea 2",
+      "outcome": "SUCCESS",
+      "files_changed": [
+        "src/apex/main.py"
+      ],
+      "sharpe": 2.5
+    },
+    {
+      "iteration": 3,
+      "idea": "Dry Run Idea 3",
+      "outcome": "SUCCESS",
+      "files_changed": [
+        "src/apex/main.py"
+      ],
+      "sharpe": 2.5
+    },
+    {
+      "iteration": 4,
+      "idea": "Dry Run Idea 4",
+      "outcome": "SUCCESS",
+      "files_changed": [
+        "src/apex/main.py"
+      ],
+      "sharpe": 2.5
+    },
+    {
+      "iteration": 5,
+      "idea": "Dry Run Idea 5",
+      "outcome": "SUCCESS",
+      "files_changed": [
+        "src/apex/main.py"
+      ],
+      "sharpe": 2.5
+    },
+    {
+      "iteration": 6,
+      "idea": "Dry Run Idea 1",
+      "outcome": "SUCCESS",
+      "files_changed": [
+        "src/apex/main.py"
+      ],
+      "sharpe": 2.5
+    },
+    {
+      "iteration": 7,
+      "idea": "Dry Run Idea 1",
+      "outcome": "SUCCESS",
+      "files_changed": [
+        "src/apex/main.py"
+      ],
+      "sharpe": 2.5
+    },
+    {
+      "iteration": 8,
+      "idea": "Dry Run Idea 2",
+      "outcome": "SUCCESS",
+      "files_changed": [
+        "src/apex/main.py"
+      ],
+      "sharpe": 2.5
+    },
+    {
+      "iteration": 445,
+      "idea": "Dry Run Idea 3",
+      "outcome": "SUCCESS",
+      "files_changed": [
+        "src/apex/main.py"
+      ],
+      "sharpe": 2.5
+    },
+    {
+      "iteration": 586,
+      "idea": "Log scan_metrics summary each arb cycle",
+      "outcome": "PARTIAL",
+      "files_changed": [],
+      "sharpe": 3.211
+    },
+    {
+      "iteration": 587,
+      "idea": "Log scan_metrics summary each arb cycle",
+      "outcome": "PARTIAL",
+      "files_changed": [],
+      "sharpe": 3.211
+    },
+    {
+      "iteration": 588,
+      "idea": "Log scan_metrics summary each arb cycle",
+      "outcome": "PARTIAL",
+      "files_changed": [],
+      "sharpe": 3.211
+    },
+    {
+      "iteration": 589,
+      "idea": "Log scan_metrics summary each arb cycle",
+      "outcome": "PARTIAL",
+      "files_changed": [],
+      "sharpe": 3.211
+    },
+    {
+      "iteration": 590,
+      "idea": "Log scan_metrics summary each arb cycle",
+      "outcome": "PARTIAL",
+      "files_changed": [],
+      "sharpe": 3.211
+    },
+    {
+      "iteration": 591,
+      "idea": "Log scan_metrics summary each arb cycle",
+      "outcome": "PARTIAL",
+      "files_changed": [],
+      "sharpe": 3.211
+    },
+    {
+      "iteration": 592,
+      "idea": "Log scan_metrics summary each arb cycle",
+      "outcome": "PARTIAL",
+      "files_changed": [],
+      "sharpe": 3.211
+    },
+    {
+      "iteration": 593,
+      "idea": "Log scan_metrics summary each arb cycle",
+      "outcome": "PARTIAL",
+      "files_changed": [],
+      "sharpe": 3.211
+    },
+    {
+      "iteration": 594,
+      "idea": "Log scan_metrics summary each arb cycle",
+      "outcome": "PARTIAL",
+      "files_changed": [],
+      "sharpe": 3.211
+    },
+    {
+      "iteration": 595,
+      "idea": "Log scan_metrics summary each arb cycle",
+      "outcome": "PARTIAL",
+      "files_changed": [],
+      "sharpe": 3.211
+    },
+    {
+      "iteration": 596,
+      "idea": "Log scan_metrics summary each arb cycle",
+      "outcome": "PARTIAL",
+      "files_changed": [],
+      "sharpe": 3.211
+    },
+    {
+      "iteration": 597,
+      "idea": "Log scan_metrics summary each arb cycle",
+      "outcome": "PARTIAL",
+      "files_changed": [],
+      "sharpe": 3.211
+    },
+    {
+      "iteration": 598,
+      "idea": "Log scan_metrics summary each arb cycle",
+      "outcome": "PARTIAL",
+      "files_changed": [],
+      "sharpe": 3.211
+    },
+    {
+      "iteration": 599,
+      "idea": "Log scan_metrics summary each arb cycle",
+      "outcome": "PARTIAL",
+      "files_changed": [],
+      "sharpe": 3.211
+    },
+    {
+      "iteration": 600,
+      "idea": "Log scan_metrics summary each arb cycle",
+      "outcome": "PARTIAL",
+      "files_changed": [],
+      "sharpe": 3.211
+    },
+    {
+      "iteration": 601,
+      "idea": "Cache Kalshi category fetches",
+      "outcome": "PARTIAL",
+      "files_changed": [],
+      "sharpe": 3.211
+    },
+    {
+      "iteration": 602,
+      "idea": "Tune arb_min_net_edge from scan metrics",
+      "outcome": "PARTIAL",
+      "files_changed": [],
+      "sharpe": 3.211
+    },
+    {
+      "iteration": 603,
+      "idea": "Cache Kalshi category fetches",
+      "outcome": "PARTIAL",
+      "files_changed": [],
+      "sharpe": 3.211
+    },
+    {
+      "iteration": 604,
+      "idea": "Tune arb_min_net_edge from scan metrics",
+      "outcome": "PARTIAL",
+      "files_changed": [],
+      "sharpe": 3.211
+    },
+    {
+      "iteration": 605,
+      "idea": "Cache Kalshi category fetches",
+      "outcome": "PARTIAL",
+      "files_changed": [],
+      "sharpe": 3.211
+    },
+    {
+      "iteration": 606,
+      "idea": "Tune arb_min_net_edge from scan metrics",
+      "outcome": "PARTIAL",
+      "files_changed": [],
+      "sharpe": 3.211
+    },
+    {
+      "iteration": 607,
+      "idea": "Cache Kalshi category fetches",
+      "outcome": "PARTIAL",
+      "files_changed": [],
+      "sharpe": 3.211
+    },
+    {
+      "iteration": 608,
+      "idea": "Tune arb_min_net_edge from scan metrics",
+      "outcome": "PARTIAL",
+      "files_changed": [],
+      "sharpe": 3.211
+    },
+    {
+      "iteration": 609,
+      "idea": "Cache Kalshi category fetches",
+      "outcome": "PARTIAL",
+      "files_changed": [],
+      "sharpe": 3.211
+    },
+    {
+      "iteration": 610,
+      "idea": "Tune arb_min_net_edge from scan metrics",
+      "outcome": "PARTIAL",
+      "files_changed": [],
+      "sharpe": 3.211
+    },
+    {
+      "iteration": 611,
+      "idea": "Expose risk gate rejection reasons in API",
+      "outcome": "PARTIAL",
+      "files_changed": [],
+      "sharpe": 3.211
+    },
+    {
+      "iteration": 612,
+      "idea": "Expose risk gate rejection reasons in API",
+      "outcome": "PARTIAL",
+      "files_changed": [],
+      "sharpe": 3.211
+    },
+    {
+      "iteration": 613,
+      "idea": "Expose risk gate rejection reasons in API",
+      "outcome": "PARTIAL",
+      "files_changed": [],
+      "sharpe": 3.211
+    }
+  ],
+  "failed_iterations": [
+    {
+      "iteration": 9,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 10,
+      "idea": "unknown",
+      "error": "Error code: 401 - {'error': {'message': 'User not found.', 'code': 401}}"
+    },
+    {
+      "iteration": 11,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 12,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 13,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 14,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 15,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 16,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 17,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 18,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 19,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 20,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 21,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 22,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 23,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 24,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 25,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 26,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 27,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 28,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 29,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 30,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 31,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 32,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 33,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 34,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 35,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 36,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 37,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 38,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 39,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 40,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 41,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 42,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 43,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 44,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 45,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 46,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 47,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 48,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 49,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 50,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 51,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 52,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 53,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 54,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 55,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 56,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 57,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 58,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 59,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 60,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 61,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 62,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 63,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 64,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 65,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 66,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 67,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 68,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 69,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 70,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 71,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 72,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 73,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 74,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 75,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 76,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 77,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 78,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 79,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 80,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 81,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 82,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 83,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 84,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 85,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 86,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 87,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 88,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 89,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 90,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 91,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 92,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 93,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 94,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 95,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 96,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 97,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 98,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 99,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 100,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 101,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 102,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 103,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 104,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 105,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 106,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 107,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 108,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 109,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 110,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 111,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 112,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 113,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 114,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 115,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 116,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 117,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 118,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 119,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 120,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 121,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 122,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 123,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 124,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 125,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 126,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 127,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 128,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 129,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 130,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 131,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 132,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 133,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 134,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 135,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 136,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 137,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 138,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 139,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 140,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 141,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 142,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 143,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 144,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 145,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 146,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 147,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 148,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 149,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 150,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 151,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 152,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 153,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 154,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 155,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 156,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 157,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 158,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 159,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 160,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 161,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 162,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 163,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 164,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 165,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 166,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 167,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 168,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 169,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 170,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 171,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 172,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 173,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 174,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 175,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 176,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 177,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 178,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 179,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 180,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 181,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 182,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 183,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 184,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 185,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 186,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 187,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 188,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 189,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 190,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 191,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 192,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 193,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 194,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 195,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 196,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 197,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 198,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 199,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 200,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 201,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 202,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 203,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 204,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 205,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 206,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 207,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 208,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 209,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 210,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 211,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 212,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 213,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 214,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 215,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 216,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 217,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 218,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 219,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 220,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 221,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 222,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 223,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 224,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 225,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 226,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 227,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 228,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 229,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 230,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 231,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 232,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 233,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 234,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 235,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 236,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 237,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 238,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 239,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 240,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 241,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 242,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 243,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 244,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 245,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 246,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 247,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 248,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 249,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 250,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 251,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 252,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 253,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 254,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 255,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 256,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 257,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 258,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 259,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 260,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 261,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 262,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 263,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 264,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 265,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 266,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 267,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 268,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 269,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 270,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 271,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 272,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 273,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 274,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 275,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 276,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 277,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 278,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 279,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 280,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 281,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 282,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 283,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 284,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 285,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 286,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 287,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 288,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 289,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 290,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 291,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 292,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 293,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 294,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 295,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 296,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 297,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 298,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 299,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 300,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 301,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 302,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 303,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 304,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 305,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 306,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 307,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 308,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 309,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 310,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 311,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 312,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 313,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 314,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 315,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 316,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 317,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 318,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 319,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 320,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 321,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 322,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 323,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 324,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 325,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 326,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 327,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 328,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 329,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 330,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 331,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 332,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 333,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 334,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 335,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 336,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 337,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 338,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 339,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 340,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 341,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 342,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 343,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 344,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 345,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 346,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 347,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 348,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 349,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 350,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 351,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 352,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 353,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 354,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 355,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 356,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 357,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 358,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 359,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 360,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 361,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 362,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 363,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 364,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 365,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 366,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 367,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 368,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 369,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 370,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 371,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 372,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 373,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 374,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 375,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 376,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 377,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 378,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 379,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 380,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 381,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 382,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 383,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 384,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 385,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 386,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 387,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 388,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 389,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 390,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 391,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 392,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 393,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 394,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 395,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 396,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 397,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 398,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 399,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 400,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 401,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 402,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 403,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 404,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 405,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 406,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 407,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 408,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 409,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 410,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 411,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 412,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 413,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 414,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 415,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 416,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 417,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 418,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 419,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 420,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 421,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 422,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 423,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 424,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 425,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 426,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 427,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 428,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 429,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 430,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 431,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 432,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 433,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 434,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 435,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 436,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 437,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 438,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 439,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 440,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 441,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 442,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 443,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 444,
+      "idea": "unknown",
+      "error": "Connection error."
+    },
+    {
+      "iteration": 446,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 447,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 448,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 449,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 450,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 451,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 452,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 453,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 454,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 455,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 456,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 457,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 458,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 459,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 460,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 461,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 462,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 463,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 464,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 465,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 466,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 467,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 468,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 469,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 470,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 471,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 472,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 473,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 474,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 475,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 476,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 477,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 478,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 479,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 480,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 481,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 482,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 483,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 484,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 485,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 486,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 487,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 488,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 489,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 490,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 491,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 492,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 493,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 494,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 495,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 496,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 497,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 498,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 499,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 500,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 501,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 502,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 503,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 504,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 505,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 506,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 507,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 508,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 509,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 510,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 511,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 512,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 513,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 514,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 515,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 516,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 517,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 518,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 519,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 520,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 521,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 522,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 523,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 524,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 525,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 526,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 527,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 528,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 529,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 530,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 531,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 532,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 533,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 534,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 535,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 536,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 537,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 538,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 539,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 540,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 541,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 542,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 543,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 544,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 545,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 546,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 547,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 548,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 549,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 550,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 551,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 552,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 553,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 554,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 555,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 556,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 557,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 558,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 559,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 560,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 561,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 562,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 563,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 564,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 565,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 566,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 567,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 568,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 569,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 570,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 571,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 572,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 573,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 574,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 575,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 576,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 577,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 578,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 579,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 580,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 581,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 582,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 583,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 584,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    },
+    {
+      "iteration": 585,
+      "idea": "unknown",
+      "error": "Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}"
+    }
+  ],
+  "metrics_history": [
+    {
+      "iteration": 1,
+      "sharpe": 2.5,
+      "win_rate": 0.6,
+      "test_pass_rate": 1.0
+    },
+    {
+      "iteration": 2,
+      "sharpe": 2.5,
+      "win_rate": 0.6,
+      "test_pass_rate": 1.0
+    },
+    {
+      "iteration": 3,
+      "sharpe": 2.5,
+      "win_rate": 0.6,
+      "test_pass_rate": 1.0
+    },
+    {
+      "iteration": 4,
+      "sharpe": 2.5,
+      "win_rate": 0.6,
+      "test_pass_rate": 1.0
+    },
+    {
+      "iteration": 5,
+      "sharpe": 2.5,
+      "win_rate": 0.6,
+      "test_pass_rate": 1.0
+    },
+    {
+      "iteration": 6,
+      "sharpe": 2.5,
+      "win_rate": 0.6,
+      "test_pass_rate": 1.0
+    },
+    {
+      "iteration": 7,
+      "sharpe": 2.5,
+      "win_rate": 0.6,
+      "test_pass_rate": 1.0
+    },
+    {
+      "iteration": 8,
+      "sharpe": 2.5,
+      "win_rate": 0.6,
+      "test_pass_rate": 1.0
+    },
+    {
+      "iteration": 445,
+      "sharpe": 2.5,
+      "win_rate": 0.6,
+      "test_pass_rate": 1.0
+    },
+    {
+      "iteration": 586,
+      "sharpe": 3.211,
+      "win_rate": 0.5,
+      "test_pass_rate": 0.9939148073022313
+    },
+    {
+      "iteration": 587,
+      "sharpe": 3.211,
+      "win_rate": 0.5,
+      "test_pass_rate": 0.9979716024340771
+    },
+    {
+      "iteration": 588,
+      "sharpe": 3.211,
+      "win_rate": 0.5,
+      "test_pass_rate": 1.0
+    },
+    {
+      "iteration": 589,
+      "sharpe": 3.211,
+      "win_rate": 0.5,
+      "test_pass_rate": 1.0
+    },
+    {
+      "iteration": 590,
+      "sharpe": 3.211,
+      "win_rate": 0.5,
+      "test_pass_rate": 1.0
+    },
+    {
+      "iteration": 591,
+      "sharpe": 3.211,
+      "win_rate": 0.5,
+      "test_pass_rate": 1.0
+    },
+    {
+      "iteration": 592,
+      "sharpe": 3.211,
+      "win_rate": 0.5,
+      "test_pass_rate": 1.0
+    },
+    {
+      "iteration": 593,
+      "sharpe": 3.211,
+      "win_rate": 0.5,
+      "test_pass_rate": 1.0
+    },
+    {
+      "iteration": 594,
+      "sharpe": 3.211,
+      "win_rate": 0.5,
+      "test_pass_rate": 1.0
+    },
+    {
+      "iteration": 595,
+      "sharpe": 3.211,
+      "win_rate": 0.5,
+      "test_pass_rate": 1.0
+    },
+    {
+      "iteration": 596,
+      "sharpe": 3.211,
+      "win_rate": 0.5,
+      "test_pass_rate": 1.0
+    },
+    {
+      "iteration": 597,
+      "sharpe": 3.211,
+      "win_rate": 0.5,
+      "test_pass_rate": 1.0
+    },
+    {
+      "iteration": 598,
+      "sharpe": 3.211,
+      "win_rate": 0.5,
+      "test_pass_rate": 1.0
+    },
+    {
+      "iteration": 599,
+      "sharpe": 3.211,
+      "win_rate": 0.5,
+      "test_pass_rate": 1.0
+    },
+    {
+      "iteration": 600,
+      "sharpe": 3.211,
+      "win_rate": 0.5,
+      "test_pass_rate": 1.0
+    },
+    {
+      "iteration": 601,
+      "sharpe": 3.211,
+      "win_rate": 0.5,
+      "test_pass_rate": 1.0
+    },
+    {
+      "iteration": 602,
+      "sharpe": 3.211,
+      "win_rate": 0.5,
+      "test_pass_rate": 1.0
+    },
+    {
+      "iteration": 603,
+      "sharpe": 3.211,
+      "win_rate": 0.5,
+      "test_pass_rate": 1.0
+    },
+    {
+      "iteration": 604,
+      "sharpe": 3.211,
+      "win_rate": 0.5,
+      "test_pass_rate": 1.0
+    },
+    {
+      "iteration": 605,
+      "sharpe": 3.211,
+      "win_rate": 0.5,
+      "test_pass_rate": 1.0
+    },
+    {
+      "iteration": 606,
+      "sharpe": 3.211,
+      "win_rate": 0.5,
+      "test_pass_rate": 1.0
+    },
+    {
+      "iteration": 607,
+      "sharpe": 3.211,
+      "win_rate": 0.5,
+      "test_pass_rate": 1.0
+    },
+    {
+      "iteration": 608,
+      "sharpe": 3.211,
+      "win_rate": 0.5,
+      "test_pass_rate": 1.0
+    },
+    {
+      "iteration": 609,
+      "sharpe": 3.211,
+      "win_rate": 0.5,
+      "test_pass_rate": 1.0
+    },
+    {
+      "iteration": 610,
+      "sharpe": 3.211,
+      "win_rate": 0.5,
+      "test_pass_rate": 1.0
+    },
+    {
+      "iteration": 611,
+      "sharpe": 3.211,
+      "win_rate": 0.5,
+      "test_pass_rate": 1.0
+    },
+    {
+      "iteration": 612,
+      "sharpe": 3.211,
+      "win_rate": 0.5,
+      "test_pass_rate": 0.9939024390243902
+    },
+    {
+      "iteration": 613,
+      "sharpe": 3.211,
+      "win_rate": 0.5,
+      "test_pass_rate": 0.8902439024390244
+    }
+  ],
+  "last_compact_summary": ""
+}

@@ -30,13 +30,13 @@ RATE_LIMITS = {
 }
 
 PHASE_MODELS = {
-    "bootstrap":  ("deepseek-v4-flash-free", "opencode-zen"),
-    "analyze":    ("gpt-5.2-codex", "opencode-zen"),  # Changed from copilot to opencode-zen
-    "plan":       ("deepseek-v4-flash-free", "opencode-zen"),
-    "execute":    ("agy-switch", "hermes"),  # agy with model switching
-    "test":       ("deepseek-v4-flash-free", "opencode-zen"),
-    "commit":     ("deepseek-v4-flash-free", "opencode-zen"),
-    "report":     ("gpt-5.2-codex", "opencode-zen"),  # Changed from copilot to opencode-zen
+    "bootstrap":  ("minimax-m2.7", "opencode-zen"),
+    "analyze":    ("minimax-m2.7", "opencode-zen"),
+    "plan":       ("minimax-m2.7", "opencode-zen"),
+    "execute":    ("agy-default", "hermes"),  # agy uses its own default model
+    "test":       ("minimax-m2.7", "opencode-zen"),
+    "commit":     ("minimax-m2.7", "opencode-zen"),
+    "report":     ("minimax-m2.7", "opencode-zen"),
 }
 
 # ── Discord Streaming ────────────────────────────────────────────────────────
@@ -108,28 +108,30 @@ def run_phase(phase: str, prompt: str) -> tuple[bool, str]:
     """
     post_phase_start(phase)
     
-    model, provider = PHASE_MODELS.get(phase, ("deepseek-v4-flash-free", "opencode-zen"))
+    model, provider = PHASE_MODELS.get(phase, ("minimax-m2.7", "opencode-zen"))
     
     try:
         if phase == "execute" and provider == "hermes":
-            # Use agy with model switching
+            # Use agy — no --model flag (agy doesn't support it)
             cmd = [
                 "agy",
                 "--dangerously-skip-permissions",
                 "--add-dir", WORKDIR,
-                "--model", "gpt-5.2-codex",
                 prompt
             ]
             tool_key = "agy"
             timeout = 600
         else:
-            # Use hermes chat -q for non-interactive execution
-            # This works reliably in subprocess mode without TUI interference
+            # Use hermes chat -q via the autopilot-worker profile
+            # This profile has opencode-zen + deepseek-v4-flash-free configured,
+            # avoiding copilot rate limits entirely
             cmd = [
                 "hermes",
+                "--profile", "autopilot-worker",
                 "chat",
                 "-q", prompt,
-                "-t", "terminal,file,code_execution"  # Minimal safe toolset for phases
+                "-t", "terminal,file,code_execution",
+                "-Q"
             ]
             tool_key = provider if provider != "opencode-zen" else "opencode"
             timeout = 300
@@ -150,20 +152,45 @@ def run_phase(phase: str, prompt: str) -> tuple[bool, str]:
         output = result.stdout + result.stderr
         
         # Check for critical errors
+        # IMPORTANT: hermes chat -q returns exit code 0 even with API failures (404, 429 after 3 retries)
+        # We must check output content for failure indicators
+        error_found = False
+        error_type = "Unknown error"
+        
+        # First check return code
         if result.returncode != 0:
+            error_found = True
             error_patterns = {
                 "unknown option": "CLI flag not recognized",
                 "flags provided but not defined": "Invalid flag passed to tool",
                 "traceback": "Python exception in tool",
                 "not found": "Tool binary not found",
-                "permission denied": "Permission error"
+                "permission denied": "Permission error",
+                "error opening TTY": "TTY not available in subprocess",
+                "bubbletea": "TUI tool cannot run in subprocess"
             }
-            
-            error_type = "Unknown error"
             for pattern, desc in error_patterns.items():
                 if pattern in output.lower():
                     error_type = desc
                     break
+        
+        # Also check output content for API failures (hermes returns 0 even when API fails)
+        if not error_found:
+            api_failures = [
+                "api call failed",
+                "http 404",
+                "http 429",
+                "notfounderror",
+                "ratelimiterror",
+                "all retries exhausted"
+            ]
+            for pattern in api_failures:
+                if pattern in output.lower():
+                    error_found = True
+                    error_type = f"API failure detected: {output[:200]}"
+                    break
+        
+        if error_found:
             
             # Log the full error for debugging
             error_log = LOGS / f"error_{phase}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.txt"

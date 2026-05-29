@@ -1,0 +1,365 @@
+{
+  "epics": [
+    {
+      "id": "E01",
+      "title": "Arb Detection & Matching Quality",
+      "status": "active",
+      "stories": [
+        {
+          "id": "E01-S01",
+          "title": "Semantic market matching",
+          "status": "pending",
+          "tasks": [
+            {
+              "id": "E01-S01-T01",
+              "title": "ChromaDB market embeddings store",
+              "description": "Create src/apex/integrations/chromadb_market_store.py with ChromaMarketStore class. Methods: upsert_market(market_id, title, platform), find_semantic_match(title, platform, top_k=5). Use sentence-transformers all-MiniLM-L6-v2 for embeddings. Wrap existing ChromaDB at settings.chromadb_path.",
+              "files_likely_affected": [
+                "src/apex/integrations/chromadb_market_store.py"
+              ],
+              "test_strategy": "python -m pytest tests/test_chromadb_store.py -v",
+              "estimated_complexity": "MEDIUM",
+              "status": "done"
+            },
+            {
+              "id": "E01-S01-T02",
+              "title": "Integrate semantic scoring into ArbEngine.scan()",
+              "description": "Update src/apex/services/arb_engine.py. After fuzzy match, run ChromaMarketStore.find_semantic_match(). Combined score: 0.6 * semantic + 0.4 * fuzzy. Only proceed if combined_score >= 0.72. Upsert every fetched market into ChromaDB.",
+              "files_likely_affected": [
+                "src/apex/services/arb_engine.py"
+              ],
+              "test_strategy": "python -m pytest tests/test_arb_engine.py -v",
+              "estimated_complexity": "MEDIUM",
+              "status": "done"
+            }
+          ]
+        },
+        {
+          "id": "E01-S02",
+          "title": "Resolution timestamp alignment",
+          "status": "pending",
+          "tasks": [
+            {
+              "id": "E01-S02-T01",
+              "title": "Add resolution_ts comparison to SettlementAuditor",
+              "description": "Update src/apex/services/settlement_auditor.py. Fetch resolution_ts from both Kalshi and Polymarket market data. If abs(kalshi_resolution_ts - poly_resolution_ts) > 4 hours, add flag RESOLUTION_TIME_MISMATCH to SettlementVerdict.flags and reduce match_score by 0.2.",
+              "files_likely_affected": [
+                "src/apex/services/settlement_auditor.py"
+              ],
+              "test_strategy": "python -m pytest tests/test_settlement_auditor.py -v",
+              "estimated_complexity": "LOW",
+              "status": "done"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "E02",
+      "title": "Risk & Execution Hardening",
+      "status": "pending",
+      "stories": [
+        {
+          "id": "E02-S01",
+          "title": "Orderbook liquidity gates",
+          "status": "pending",
+          "tasks": [
+            {
+              "id": "E02-S01-T01",
+              "title": "M07 L2 orderbook liquidity check",
+              "description": "Add M07_LIQUIDITY_DEPTH to src/apex/layers/l3/risk_checks.py. Fetch full L2 orderbook for both legs. Simulate walking the book for stake_usd. If estimated slippage > 0.005, block trade. M07 runs after M06. Log slippage estimate at DEBUG. Never crash if orderbook fetch fails \u2014 log WARNING and block conservatively.",
+              "files_likely_affected": [
+                "src/apex/layers/l3/risk_checks.py",
+                "src/apex/integrations/kalshi_adapter.py"
+              ],
+              "test_strategy": "python -m pytest tests/test_risk_checks.py -v",
+              "estimated_complexity": "MEDIUM",
+              "status": "done"
+            },
+            {
+              "id": "E02-S01-T02",
+              "title": "M08 bid-ask spread width gate",
+              "description": "Add M08_SPREAD_WIDTH to src/apex/layers/l3/risk_checks.py. If Kalshi yes bid-ask spread > 0.15, block trade. Runs after M07. Log spread width at DEBUG on every check.",
+              "files_likely_affected": [
+                "src/apex/layers/l3/risk_checks.py"
+              ],
+              "test_strategy": "python -m pytest tests/test_risk_checks.py::test_m08 -v",
+              "estimated_complexity": "LOW",
+              "status": "done"
+            }
+          ]
+        },
+        {
+          "id": "E02-S02",
+          "title": "Dynamic position sizing",
+          "status": "pending",
+          "tasks": [
+            {
+              "id": "E02-S02-T01",
+              "title": "Kelly criterion position sizing",
+              "description": "Update src/apex/layers/l3/execution.py. Replace fixed stake_usd with Kelly: fraction = (net_edge * confidence) / (1 - net_edge). Cap at 5% of POLYMARKET_PAPER_BANKROLL_USD. Floor at $10. Map ArbThesis.confidence HIGH->0.8, MEDIUM->0.5, LOW->0.2. Default 0.5 if thesis is None. Log Kelly fraction and final stake at INFO.",
+              "files_likely_affected": [
+                "src/apex/layers/l3/execution.py"
+              ],
+              "test_strategy": "python -m pytest tests/test_execution.py -v",
+              "estimated_complexity": "LOW",
+              "status": "done"
+            },
+            {
+              "id": "E02-S02-T02",
+              "title": "Leg imbalance reconciliation",
+              "description": "Update src/apex/layers/l3/execution.py. If Polymarket leg fills but Kalshi leg fails within 30 seconds, auto-market-sell the filled Polymarket leg to flatten exposure. Log CRITICAL on imbalance. Write imbalance event to SQLite audit_events table.",
+              "files_likely_affected": [
+                "src/apex/layers/l3/execution.py",
+                "src/apex/repositories/sqlite_store.py"
+              ],
+              "test_strategy": "python -m pytest tests/test_execution.py::test_leg_imbalance -v",
+              "estimated_complexity": "HIGH",
+              "status": "done"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "E03",
+      "title": "Thesis Intelligence",
+      "status": "pending",
+      "stories": [
+        {
+          "id": "E03-S01",
+          "title": "Parallel sub-agent execution",
+          "status": "pending",
+          "tasks": [
+            {
+              "id": "E03-S01-T01",
+              "title": "Refactor ArbAnalystPanel to asyncio.gather",
+              "description": "Update src/apex/layers/l2/arb_analyst_panel.py. Run SettlementAuditor, PlatformDemographer, EdgeCalculator concurrently via asyncio.gather(). Only after all three complete pass combined outputs to Adversarial/Synthesizer agent. Update ThesisService.generate() to be fully async. Update /api/arb/{id}/thesis SSE endpoint in backend/main.py accordingly.",
+              "files_likely_affected": [
+                "src/apex/layers/l2/arb_analyst_panel.py",
+                "src/apex/integrations/thesis_service.py",
+                "autopilot-local/backend/main.py"
+              ],
+              "test_strategy": "python -m pytest tests/test_arb_analyst_panel.py -v",
+              "estimated_complexity": "MEDIUM",
+              "status": "done"
+            }
+          ]
+        },
+        {
+          "id": "E03-S02",
+          "title": "Thesis feedback loop",
+          "status": "pending",
+          "tasks": [
+            {
+              "id": "E03-S02-T01",
+              "title": "Store and inject failed thesis examples",
+              "description": "Add get_failed_thesis_examples(limit=5) to src/apex/repositories/sqlite_store.py \u2014 fetches arb_opportunities where outcome=LOSS and thesis_settlement_verdict=SAFE. In arb_analyst_panel.py before building settlement prompt, call get_failed_thesis_examples() and inject as few-shot cautionary examples in SYSTEM_PROMPT. If no examples yet, proceed without injection.",
+              "files_likely_affected": [
+                "src/apex/repositories/sqlite_store.py",
+                "src/apex/layers/l2/arb_analyst_panel.py"
+              ],
+              "test_strategy": "python -m pytest tests/test_thesis_feedback.py -v",
+              "estimated_complexity": "MEDIUM",
+              "status": "done"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "E04",
+      "title": "Analytics & Backtesting",
+      "status": "pending",
+      "stories": [
+        {
+          "id": "E04-S01",
+          "title": "Backtest accuracy improvements",
+          "status": "pending",
+          "tasks": [
+            {
+              "id": "E04-S01-T01",
+              "title": "Annualized ROC and slippage in BacktestEngine",
+              "description": "Update src/apex/services/backtest_engine.py and BacktestResult dataclass. Add: annualized_roc = (avg_edge / avg_hold_days) * 365 where avg_hold_days = mean(resolution_ts - detection_ts) in days. Add slippage_adjusted_sharpe recomputing Sharpe after 0.01 penalty per leg. Add avg_hold_days: float to BacktestResult. Update /api/arb/backtest to return new fields.",
+              "files_likely_affected": [
+                "src/apex/services/backtest_engine.py",
+                "autopilot-local/backend/main.py"
+              ],
+              "test_strategy": "python -m pytest tests/test_backtest_engine.py -v",
+              "estimated_complexity": "LOW",
+              "status": "done"
+            },
+            {
+              "id": "E04-S01-T02",
+              "title": "Category analytics in backtest dashboard",
+              "description": "Update src/apex/services/backtest_engine.py to compute per_category_stats: list of {category, n_trades, win_rate, avg_edge, total_pnl}. Derive category from kalshi_ticker prefix. Update BacktestResult. Update /api/arb/backtest. Add PieChart (Recharts) showing PnL by category and BarChart showing win rate by category to autopilot-local/frontend/app/dashboard/analytics/page.tsx.",
+              "files_likely_affected": [
+                "src/apex/services/backtest_engine.py",
+                "autopilot-local/backend/main.py",
+                "autopilot-local/frontend/app/dashboard/analytics/page.tsx"
+              ],
+              "test_strategy": "python -m pytest tests/test_backtest_engine.py -v && cd autopilot-local/frontend && npx playwright test e2e/analytics.spec.ts",
+              "estimated_complexity": "MEDIUM",
+              "status": "done"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "E05",
+      "title": "Frontend & UX",
+      "status": "pending",
+      "stories": [
+        {
+          "id": "E05-S01",
+          "title": "Real-time WebSocket radar",
+          "status": "pending",
+          "tasks": [
+            {
+              "id": "E05-S01-T01",
+              "title": "WebSocket endpoint for live arb opportunities",
+              "description": "Add WebSocket endpoint /ws/arb-opportunities to autopilot-local/backend/main.py. On connect send current opportunities as JSON. Broadcast to all connected clients when ArbEngine.scan() finds new opportunities. Keep global set of active connections, handle disconnects cleanly.",
+              "files_likely_affected": [
+                "autopilot-local/backend/main.py"
+              ],
+              "test_strategy": "python -m pytest tests/test_websocket.py -v",
+              "estimated_complexity": "MEDIUM",
+              "status": "done"
+            },
+            {
+              "id": "E05-S01-T02",
+              "title": "Replace polling with WebSocket in arb-radar page",
+              "description": "Update autopilot-local/frontend/app/dashboard/arb-radar/page.tsx. Replace polling fetch with useEffect WebSocket to ws://localhost:8000/ws/arb-opportunities. Show green dot when connected, red when disconnected. Auto-reconnect with 3s backoff. Add data-testid attributes to all interactive elements.",
+              "files_likely_affected": [
+                "autopilot-local/frontend/app/dashboard/arb-radar/page.tsx"
+              ],
+              "test_strategy": "cd autopilot-local/frontend && npx playwright test e2e/arb-radar.spec.ts",
+              "estimated_complexity": "MEDIUM",
+              "status": "done"
+            }
+          ]
+        },
+        {
+          "id": "E05-S02",
+          "title": "Interactive thesis chat",
+          "status": "pending",
+          "tasks": [
+            {
+              "id": "E05-S02-T01",
+              "title": "Thesis chat backend endpoint",
+              "description": "Add POST /api/arb/{id}/thesis/chat to autopilot-local/backend/main.py. Accepts {message: str, history: list[dict]}. Builds context from ArbOpportunity + ArbThesis + conversation history. Streams response via settings.get_llm_client(). Returns placeholder JSON if LLM unavailable.",
+              "files_likely_affected": [
+                "autopilot-local/backend/main.py"
+              ],
+              "test_strategy": "python -m pytest tests/test_thesis_chat.py -v",
+              "estimated_complexity": "MEDIUM",
+              "status": "done"
+            },
+            {
+              "id": "E05-S02-T02",
+              "title": "Interactive chat UI in ThesisCard",
+              "description": "Update autopilot-local/frontend/components/ThesisCard.tsx. After thesis streams in add follow-up chat section with input box and Send button. POST to /api/arb/{id}/thesis/chat with {message, history}. Stream response via SSE. Maintain conversation history in React state. No form elements \u2014 onClick only. Add data-testid to all elements.",
+              "files_likely_affected": [
+                "autopilot-local/frontend/components/ThesisCard.tsx"
+              ],
+              "test_strategy": "cd autopilot-local/frontend && npx playwright test e2e/arb-radar.spec.ts",
+              "estimated_complexity": "MEDIUM",
+              "status": "done"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "E06",
+      "title": "Observability & Ops",
+      "status": "pending",
+      "stories": [
+        {
+          "id": "E06-S01",
+          "title": "Circuit breakers and resilience",
+          "status": "pending",
+          "tasks": [
+            {
+              "id": "E06-S01-T01",
+              "title": "API circuit breakers in ArbEngine",
+              "description": "Update src/apex/services/arb_engine.py. Track consecutive 429/500 errors per platform in instance variables. If errors >= 3 consecutive raise BrokerCircuitOpenError(platform) and skip that platform for current scan. Log CRITICAL on circuit open, INFO on reset. Create BrokerCircuitOpenError in src/apex/domain/exceptions.py.",
+              "files_likely_affected": [
+                "src/apex/services/arb_engine.py",
+                "src/apex/domain/exceptions.py"
+              ],
+              "test_strategy": "python -m pytest tests/test_circuit_breaker.py -v",
+              "estimated_complexity": "LOW",
+              "status": "done"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "E07",
+      "title": "Testing & Quality",
+      "status": "active",
+      "stories": [
+        {
+          "id": "E07-S01",
+          "title": "Frontend connectivity and test foundation",
+          "status": "pending",
+          "tasks": [
+            {
+              "id": "E07-S01-T01",
+              "title": "Frontend connectivity audit and fix",
+              "description": "Read every file in autopilot-local/frontend/app/ and autopilot-local/frontend/components/. For each page check: does it fetch from a real endpoint in backend/main.py? Does it handle loading/error/empty states? Are there hardcoded mock values? Run npx tsc --noEmit and fix ALL TypeScript errors. Produce docs/FRONTEND_AUDIT.md with findings table. Fix every disconnected component.",
+              "files_likely_affected": [
+                "autopilot-local/frontend/app/",
+                "autopilot-local/frontend/components/",
+                "docs/FRONTEND_AUDIT.md"
+              ],
+              "test_strategy": "cd autopilot-local/frontend && npx tsc --noEmit && npx playwright test",
+              "estimated_complexity": "HIGH",
+              "status": "done"
+            },
+            {
+              "id": "E07-S01-T02",
+              "title": "Playwright E2E test suite",
+              "description": "Install Playwright: cd autopilot-local/frontend && npx playwright install --with-deps chromium. Create playwright.config.ts with baseURL localhost:3000, webServer config, testDir ./e2e, timeout 30000, retries 2. Write e2e/arb-radar.spec.ts, e2e/analytics.spec.ts, e2e/navigation.spec.ts, e2e/api-smoke.spec.ts. Mock external APIs via route interception. Add data-testid to all interactive elements. All tests must pass.",
+              "files_likely_affected": [
+                "autopilot-local/frontend/playwright.config.ts",
+                "autopilot-local/frontend/e2e/"
+              ],
+              "test_strategy": "cd autopilot-local/frontend && npx playwright test --reporter=list",
+              "estimated_complexity": "HIGH",
+              "status": "done"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "E08",
+      "title": "Infrastructure & DevEx",
+      "status": "pending",
+      "stories": [
+        {
+          "id": "E08-S01",
+          "title": "Documentation",
+          "status": "pending",
+          "tasks": [
+            {
+              "id": "E08-S01-T01",
+              "title": "Create AGENTS.md master context document",
+              "description": "Create AGENTS.md in project root. Under 2000 tokens. Include: project summary (3 sentences), architecture L0-L4 with key file per layer, 20 most important files map, non-negotiable rules, current roadmap status summary, how to run tests (exact commands), common patterns with one example each, known gotchas from any existing logs. Read actual codebase \u2014 do not invent.",
+              "files_likely_affected": [
+                "AGENTS.md"
+              ],
+              "test_strategy": "python -c \"from pathlib import Path; content = Path('AGENTS.md').read_text(); assert len(content) > 500, 'AGENTS.md too short'\"",
+              "estimated_complexity": "LOW",
+              "status": "done"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

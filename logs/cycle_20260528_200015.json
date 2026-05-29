@@ -1,0 +1,34 @@
+{
+  "cycle": 7,
+  "timestamp": "20260528_200015",
+  "phases": {
+    "bootstrap": {
+      "success": true,
+      "output": "## APEX Autopilot Engine \u2014 Codebase Health Report\n\n**Date:** 2026-05-28  \n**Environment:** WSL (Ubuntu) | Python 3.13.12 (miniconda3)\n\n---\n\n### 1. Python Environment\n\n| Check | Status |\n|---|---|\n| Python 3.11+ | PASS (3.13.12) |\n| pip 26.0.1 | present |\n| Editable install (apex-autopilot-engine 1.0.0) | PASS |\n| Pydantic 2.13.4 / FastAPI 0.136.1 / APScheduler 3.11.2 | PASS |\n| httpx 0.28.1 / pandas 2.3.3 / numpy 2.4.4 | PASS |\n| pytest 8.3.4 + pytest-asyncio + pytest-mock | PASS |\n| pyproject.t"
+    },
+    "analyze": {
+      "success": true,
+      "output": "error: unknown option '--dir'\n\nTry 'copilot --help' for more information.\n"
+    },
+    "plan": {
+      "success": true,
+      "output": "Based on my thorough analysis of the codebase, here are the top 10 improvement tasks:\n\n---\n\n## APEX Autopilot \u2014 Improvement Tasks\n\n### 1. Enforce Static Typing (Add mypy CI Gate)\n**Why:** 487 `Any` references across 75 files. ~68 functions missing return type annotations. Numerous untyped function arguments. The codebase is 23K lines with paper-trading financial logic where a missed type bug could cause silent mis-execution.\n**What:**\n- Add `mypy` config to `pyproject.toml` with `--strict` gradu"
+    },
+    "execute": {
+      "success": true,
+      "output": "flags provided but not defined: -workdir\nUsage of agy:\n  --add-dir                       Add a directory to the workspace (repeatable) (default [])\n  -c                              Short alias for --continue\n  --continue                      Continue the most recent conversation\n  --conversation                  Resume a previous conversation by ID\n  --dangerously-skip-permissions  Auto-approve all tool permission requests without prompting\n  -i                              Short alias for --pr"
+    },
+    "test": {
+      "success": true,
+      "output": "Here's the test suite summary:\n\n**342 passed \u2705 | 1 skipped \u23ed\ufe0f | 0 failed | 18 warnings (deprecation only)**\n\n| Metric | Status |\n|--------|--------|\n| Tests run | 342 / 343 collected |\n| Passed | **342** \u2014 every collected test green |\n| Skipped | **1** \u2014 `test_dashboard_playwright.py` (requires running dashboard, expected) |\n| Failures | **0** \u2014 no red anywhere |\n| Warnings | 18 \u2014 all pydantic/chromadb deprecation noise, no actionable issues |\n\n**Recent fixes verified** (last 15 commits):\n\n- `fi"
+    },
+    "commit": {
+      "success": true,
+      "output": "All 57 files committed in one shot on `main`.\n\n```\n[main 8cc9971] Add auth/security infrastructure, brain API endpoints, and deployment configs\n 57 files changed, 8179 insertions(+), 2 deletions(-)\n```\n\n**Changes included:**\n\n| Area | Files |\n|---|---|\n| Auth/security middleware | `backend_api.py`, `src/apex/security/*` (router, deps, tokens, passwords, vault, ratelimit, store) |\n| Config | `src/apex/core/config.py` \u2014 11 new auth settings |\n| Brain API | `src/apex/brain/` \u2014 finance brain + endpo"
+    },
+    "report": {
+      "success": true,
+      "output": "error: unknown option '--dir'\n\nTry 'copilot --help' for more information.\n"
+    }
+  }
+}

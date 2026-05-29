@@ -1,0 +1,32 @@
+{
+  "version": "20260529T022903Z",
+  "trained_at": "2026-05-29T02:29:03.715436+00:00",
+  "feature_names": [
+    "net_edge",
+    "gross_spread",
+    "settlement_match_score",
+    "volume_kalshi",
+    "volume_poly",
+    "kalshi_yes_ask",
+    "poly_no_ask",
+    "kelly_fraction",
+    "settlement_flag_count"
+  ],
+  "weights": [
+    12.293789780005039,
+    0.22103105998593942,
+    -4.326112537734082,
+    1.4519193123373575,
+    -0.09758707679453549,
+    13.898021343425773,
+    -2.116821030898124,
+    16.51971014933589,
+    -8.398781125258608
+  ],
+  "bias": -5.777065798980326,
+  "metrics": {
+    "n_samples": 104,
+    "accuracy": 0.9231,
+    "mean_pred": 0.7183
+  }
+}
