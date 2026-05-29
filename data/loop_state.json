@@ -1,5 +1,5 @@
 {
-  "current_iteration": 621,
+  "current_iteration": 622,
   "completed_iterations": [
     1,
     2,
@@ -44,7 +44,8 @@
     617,
     618,
     619,
-    620
+    620,
+    621
   ],
   "idea_history": [
     {
@@ -369,6 +370,13 @@
     {
       "iteration": 620,
       "idea": "Expose risk gate rejection reasons in API",
+      "outcome": "PARTIAL",
+      "files_changed": [],
+      "sharpe": 3.211
+    },
+    {
+      "iteration": 621,
+      "idea": "Log scan_metrics summary each arb cycle",
       "outcome": "PARTIAL",
       "files_changed": [],
       "sharpe": 3.211
@@ -3517,6 +3525,12 @@
     },
     {
       "iteration": 620,
+      "sharpe": 3.211,
+      "win_rate": 0.5,
+      "test_pass_rate": 1.0
+    },
+    {
+      "iteration": 621,
       "sharpe": 3.211,
       "win_rate": 0.5,
       "test_pass_rate": 1.0
