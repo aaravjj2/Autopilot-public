@@ -1,0 +1,34 @@
+============================================================
+CYCLE REPORT: cycle-20260529-073057
+============================================================
+Date (UTC): 2026-05-29T07:30:57.882931
+Status:     ✅ ALL 364 TESTS PASSED
+============================================================
+
+TEST SUMMARY
+------------
+Total:  364 passed
+Failed: 0
+Skipped: 1
+Time:   121.22s (2m 1s)
+
+RECENT FIXES VERIFIED (commit b55ed04)
+--------------------------------------
+1. ✅ /api/opportunities - deduplicated (now delegates to /api/arb/opportunities)
+2. ✅ /proposals/history - now returns order history (was returning same as /proposals)
+3. ✅ LLM circuit breaker - BrainstormEngine + IterationPlanner stop retrying
+     permanently-broken providers (1-hour cooldown on auth errors)
+
+GIT STATE
+---------
+HEAD: 45d9d2b
+Recent tags: cycle-20260529-050426
+cycle-20260529-062338
+cycle-20260529-062908
+
+NEXT STEPS
+----------
+- Start next improvement iteration: scan codebase for gaps/bugs
+- Run frontend E2E tests if Playwright is configured
+- Tag and push cycle
+============================================================

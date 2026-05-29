@@ -1,0 +1,14 @@
+[
+  {
+    "type": "screenshot",
+    "path": "/home/aarav/Aarav/Autopilot/data/artifacts/iteration_0630/screenshots/dashboard_arb-radar.png",
+    "iteration": 630,
+    "timestamp": "2026-05-29T07:35:10.759317"
+  },
+  {
+    "type": "metrics",
+    "path": "/home/aarav/Aarav/Autopilot/data/artifacts/iteration_0630/metrics.json",
+    "iteration": 630,
+    "timestamp": "2026-05-29T07:35:10.759317"
+  }
+]
