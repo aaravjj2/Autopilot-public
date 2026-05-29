@@ -8054,3 +8054,51 @@ Call log:
   - navigating to "http://localhost:3000/dashboard/analytics", waiting until "load"
 
 2026-05-29 03:46:41,820 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+[main 1d0a969] loop(iter 631): Log scan_metrics summary each arb cycle
+ 20 files changed, 1083 insertions(+), 457 deletions(-)
+ rewrite autopilot-local/frontend/tsconfig.tsbuildinfo (71%)
+ create mode 100644 data/artifacts/iteration_0631/manifest.json
+ create mode 100644 data/artifacts/iteration_0631/metrics.json
+ create mode 100644 data/artifacts/iteration_0631/videos/page@e22a7baec574ab5d33997713579d46e3.webm
+ delete mode 100644 data/audit.db-shm
+ create mode 100644 data/loop_logs/iteration_0631_tests.json
+ create mode 100644 data/models/arb_edge/candidate_20260529T073925Z/model.json
+ create mode 100644 data/models/arb_edge/candidate_20260529T073931Z/model.json
+ create mode 100644 data/models/arb_edge/candidate_20260529T074101Z/model.json
+ create mode 100644 data/models/arb_edge/candidate_20260529T074301Z/model.json
+ create mode 100644 logs/cycle_20260529_030045.json
+ create mode 100644 logs/cycle_final_report_v2.md
+ create mode 100644 logs/error_report_20260529_034346.txt
+2026-05-29 03:46:43,135 [INFO] Iteration 631 pushed to origin
+2026-05-29 03:46:43,140 [INFO] Iteration 631 complete. Tests: FAIL
+2026-05-29 03:48:45,221 [INFO] === ITERATION 632 (target 1000) ===
+2026-05-29 03:48:45,497 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-29 03:48:45,497 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-29 03:48:45,498 [WARNING] Using deterministic fallback ideas (LLM unavailable)
+2026-05-29 03:48:45,498 [INFO] --- Idea Scoring Table ---
+2026-05-29 03:48:45,498 [INFO] Idea 1: Log scan_metrics summary each arb cycle
+2026-05-29 03:48:45,498 [INFO]   Score: 0.20 (Impact: 2.0, Comp: 1.0, Novelty: 0.1)
+2026-05-29 03:48:45,498 [WARNING] All ideas were recent/stale. Regenerating...
+2026-05-29 03:48:45,723 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-29 03:48:45,723 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-29 03:48:45,723 [WARNING] Using deterministic fallback ideas (LLM unavailable)
+2026-05-29 03:48:45,724 [INFO] Selected idea: Log scan_metrics summary each arb cycle
+2026-05-29 03:48:45,948 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-29 03:48:45,949 [ERROR] IterationPlanner failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-29 03:48:45,950 [WARNING] Using test-only fallback plan (LLM unavailable)
+2026-05-29 03:48:45,966 [INFO] Step A: Python unit tests
+2026-05-29 03:50:38,153 [INFO] Step B: TypeScript type check
+2026-05-29 03:50:39,464 [INFO] Step C: Playwright E2E tests
+2026-05-29 03:56:01,127 [INFO] Step D: Backend API smoke test
+2026-05-29 03:56:07,845 [INFO] HTTP Request: GET http://localhost:8001/api/opportunities "HTTP/1.1 200 OK"
+2026-05-29 03:56:08,153 [INFO] HTTP Request: GET http://localhost:8001/api/arb/backtest "HTTP/1.1 200 OK"
+2026-05-29 03:56:08,154 [INFO] Step E: Backtest regression check
+2026-05-29 03:56:08,606 [WARNING] Failed to screenshot http://localhost:3000/dashboard/arb-radar: Page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3000/dashboard/arb-radar
+Call log:
+  - navigating to "http://localhost:3000/dashboard/arb-radar", waiting until "load"
+
+2026-05-29 03:56:08,671 [WARNING] Failed to screenshot http://localhost:3000/dashboard/analytics: Page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3000/dashboard/analytics
+Call log:
+  - navigating to "http://localhost:3000/dashboard/analytics", waiting until "load"
+
+2026-05-29 03:56:09,223 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
