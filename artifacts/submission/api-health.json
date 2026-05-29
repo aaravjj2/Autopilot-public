@@ -1,8 +1,8 @@
 {
   "status": "healthy",
-  "timestamp": "2026-05-29T04:37:39.288654+00:00",
-  "last_cache_update": "2026-05-29T04:37:36.502768+00:00",
-  "data_age_seconds": 1.752399,
+  "timestamp": "2026-05-29T04:50:38.715542+00:00",
+  "last_cache_update": "2026-05-29T04:50:31.673749+00:00",
+  "data_age_seconds": 6.95874,
   "is_stale": false,
   "demo_mode": false,
   "alpaca_connected": true,
@@ -19,16 +19,16 @@
   },
   "positions": 1,
   "orders": 0,
-  "opportunities": 286,
-  "proposals": 20,
+  "opportunities": 288,
+  "proposals": 49,
   "events": 100,
-  "arb_opportunities": 286,
+  "arb_opportunities": 288,
   "showcase_mode": false,
   "ml": {
     "self_improvement_enabled": true,
     "active_model": {
-      "version": "20260529T043601Z",
-      "trained_at": "2026-05-29T04:36:01.125465+00:00",
+      "version": "20260529T044613Z",
+      "trained_at": "2026-05-29T04:46:13.069610+00:00",
       "feature_names": [
         "net_edge",
         "gross_spread",
@@ -59,7 +59,7 @@
       }
     },
     "training_corpus": {
-      "total_rows": 429,
+      "total_rows": 431,
       "labeled_rows": 104,
       "resolved_arb_count": 16
     },
@@ -75,7 +75,7 @@
     "connected": true,
     "stale": false,
     "seconds_since_message": null,
-    "seconds_since_frame": 2.5226666039998236,
+    "seconds_since_frame": 17.696062924002035,
     "reconnects": 0
   },
   "scheduler": {
@@ -85,7 +85,8 @@
       "arb_scan_loop": true,
       "pm_agents_loop": true,
       "equity_loop": true,
-      "self_improvement_loop": false
+      "self_improvement_loop": false,
+      "morning_chain": true
     },
     "separate_process_expected": false,
     "separate_process_running": null,
