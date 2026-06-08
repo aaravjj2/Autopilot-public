@@ -1,14 +1,14 @@
 {
-  "model_path": "/home/aarav/Aarav/Autopilot/data/models/arb_edge/candidate_20260608T025155Z/model.json",
-  "promoted_at": "2026-06-08T02:51:56.092604+00:00",
+  "model_path": "/home/aarav/Aarav/Autopilot/data/models/arb_edge/candidate_20260608T130550Z/model.json",
+  "promoted_at": "2026-06-08T13:05:50.411841+00:00",
   "metrics": {
     "n_samples": 113,
-    "accuracy": 0.9292,
+    "accuracy": 0.9204,
     "win_rate_baseline": 0.6726,
     "model_metrics": {
       "n_samples": 113,
-      "accuracy": 0.9292,
-      "mean_pred": 0.7549
+      "accuracy": 0.9204,
+      "mean_pred": 0.7539
     }
   }
 }
