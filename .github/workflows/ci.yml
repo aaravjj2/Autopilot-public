@@ -149,11 +149,14 @@ jobs:
           tags: apex-frontend:ci-${{ github.sha }}
       
       - name: Publish images to Docker Hub
-        if: ${{ secrets.DOCKER_USERNAME != '' }}
         env:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
         run: |
+          if [ -z "$DOCKER_USERNAME" ] || [ -z "$DOCKER_PASSWORD" ]; then
+            echo "Docker Hub secrets not configured — images built locally only."
+            exit 0
+          fi
           echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
           docker tag apex-backend:ci-${{ github.sha }} "$DOCKER_USERNAME/apex-backend:latest"
           docker tag apex-frontend:ci-${{ github.sha }} "$DOCKER_USERNAME/apex-frontend:latest"
