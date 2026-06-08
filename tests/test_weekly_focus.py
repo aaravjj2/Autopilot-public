@@ -75,6 +75,9 @@ def test_priority_nvda_first() -> None:
 
 def test_brain_weekly_focus_nudge(monkeypatch: pytest.MonkeyPatch) -> None:
     monkeypatch.setenv("NVDA_EARNINGS_WINDOW_DAYS", "14")
+    # Freeze today to a date within the earnings window
+    import apex.domain.weekly_focus as wf_mod
+    monkeypatch.setattr(wf_mod, "date", type("FakeDate", (), {"today": staticmethod(lambda: date(2026, 5, 22))})())
     settings = Settings(
         weekly_focus_enabled=True,
         weekly_focus_conviction_boost=0.35,

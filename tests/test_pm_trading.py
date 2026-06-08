@@ -25,6 +25,7 @@ from apex.services.pm_trading import (
 
 def _settings(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> Settings:
     monkeypatch.setenv("KALSHI_DEMO_TRADING_ENABLED", "false")
+    monkeypatch.setenv("SQLITE_PATH", str(tmp_path / "audit.db"))
     return Settings(
         sqlite_path=tmp_path / "audit.db",
         alpaca_paper_trade=True,

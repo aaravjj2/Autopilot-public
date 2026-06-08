@@ -82,7 +82,7 @@ def load_cached_arb_opportunities(
     store: SQLiteStore,
     settings: Settings,
     *,
-    limit: int = 50,
+    limit: int = 500,
 ) -> list[ArbOpportunity]:
     """Active SQLite arbs above min edge, within max age."""
     max_age = timedelta(hours=float(settings.arb_cached_max_age_hours))

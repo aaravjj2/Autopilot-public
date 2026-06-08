@@ -8235,3 +8235,44 @@ Call log:
   - navigating to "http://localhost:3000/dashboard/analytics", waiting until "load"
 
 2026-05-29 04:29:18,486 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+[main 8b04d9f] loop(iter 635): Log scan_metrics summary each arb cycle
+ 31 files changed, 823 insertions(+), 516 deletions(-)
+ rewrite artifacts/submission/screenshots/01-overview.png (97%)
+ rewrite artifacts/submission/screenshots/02-arb-radar.png (97%)
+ rewrite artifacts/submission/screenshots/03-signals.png (98%)
+ rewrite artifacts/submission/screenshots/04-autopilot.png (98%)
+ rewrite artifacts/submission/screenshots/05-risk.png (97%)
+ rewrite artifacts/submission/screenshots/06-hivemind.png (99%)
+ rewrite artifacts/submission/screenshots/07-live-feed.png (95%)
+ rewrite artifacts/submission/screenshots/08-settings.png (98%)
+ create mode 100644 data/artifacts/iteration_0635/manifest.json
+ create mode 100644 data/artifacts/iteration_0635/metrics.json
+ create mode 100644 data/artifacts/iteration_0635/videos/page@5266ceedf1eb448e66c5de027c70f43d.webm
+ create mode 100644 data/loop_logs/iteration_0635_build.log
+ create mode 100644 data/loop_logs/iteration_0635_tests.json
+ create mode 100644 data/loop_plans/iteration_0635_plan.json
+ create mode 100644 data/models/arb_edge/candidate_20260529T081804Z/model.json
+ create mode 100644 data/models/arb_edge/candidate_20260529T081951Z/model.json
+ create mode 100644 data/models/arb_edge/candidate_20260529T082008Z/model.json
+ create mode 100644 data/models/arb_edge/candidate_20260529T082154Z/model.json
+ create mode 100644 logs/error_plan_20260529_042603.txt
+2026-05-29 04:29:20,423 [INFO] Iteration 635 pushed to origin
+2026-05-29 04:29:20,427 [INFO] Iteration 635 complete. Tests: FAIL
+2026-05-29 04:31:23,012 [INFO] === ITERATION 636 (target 1000) ===
+2026-05-29 04:31:23,293 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-29 04:31:23,293 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-29 04:31:23,293 [WARNING] Using deterministic fallback ideas (LLM unavailable)
+2026-05-29 04:31:23,294 [INFO] --- Idea Scoring Table ---
+2026-05-29 04:31:23,294 [INFO] Idea 1: Log scan_metrics summary each arb cycle
+2026-05-29 04:31:23,294 [INFO]   Score: 0.20 (Impact: 2.0, Comp: 1.0, Novelty: 0.1)
+2026-05-29 04:31:23,294 [WARNING] All ideas were recent/stale. Regenerating...
+2026-05-29 04:31:23,474 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-29 04:31:23,474 [ERROR] BrainstormEngine failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-29 04:31:23,475 [WARNING] Using deterministic fallback ideas (LLM unavailable)
+2026-05-29 04:31:23,475 [INFO] Selected idea: Log scan_metrics summary each arb cycle
+2026-05-29 04:31:23,658 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-29 04:31:23,659 [ERROR] IterationPlanner failed: Error code: 400 - {'error': {'message': 'Organization has been restricted. Please reach out to support if you believe this was in error.', 'type': 'invalid_request_error', 'code': 'organization_restricted'}}
+2026-05-29 04:31:23,659 [WARNING] Using test-only fallback plan (LLM unavailable)
+2026-05-29 04:31:23,664 [INFO] Step A: Python unit tests
+2026-05-29 04:33:18,388 [INFO] Step B: TypeScript type check
+2026-05-29 04:33:19,704 [INFO] Step C: Playwright E2E tests
