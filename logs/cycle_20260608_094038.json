@@ -1,0 +1,34 @@
+{
+  "cycle": 8,
+  "timestamp": "20260608_094038",
+  "phases": {
+    "bootstrap": {
+      "success": false,
+      "output": "Here is the comprehensive codebase health and environment status report:\n\n---\n\n## APEX Autopilot \u2014 Codebase Health & Environment Status\n\n**Generated**: 2026-06-08 13:50 UTC\n**HEAD**: `cb5cfa5` \u2014 chore(data): auto-commit 2026-06-08 09:06\n**Repo**: github.com/aaravjj2/Autopilot-public.git (main)\n\n---\n\n### 1. Running Services\n\n| Service | Status | PID | Port |\n|---------|--------|-----|------|\n| Loop Daemon | RUNNING | 257711 | \u2014 |\n| Backend API (uvicorn) | RUNNING | 285356 | :8000 |\n| Frontend (Ne"
+    },
+    "analyze": {
+      "success": true,
+      "output": "Here's the comprehensive codebase analysis:\n\n---\n\n## Codebase Analysis: APEX Autopilot\n\n**Current state (iteration 0635 test data):**\n| Metric | Status |\n|---|---|\n| pytest (406 tests) | ALL PASSED \u2705 |\n| TypeScript compile | PASSED \u2705 |\n| Playwright E2E (106 tests) | **94 passed, 12 FAILED** \u274c |\n| API smoke | PASSED \u2705 |\n| Backtest Sharpe / Win Rate | 3.211 / 50% |\n| Overall | **FAILED (Playwright)** |\n\n### Issues Found\n\n**1. [P1] 12 Playwright E2E tests failing consistently**\n- Iteration 0635 + p"
+    },
+    "plan": {
+      "success": true,
+      "output": "Based on my thorough codebase analysis, here are the **10 highest-impact improvement tasks** for APEX Autopilot:\n\n---\n\n## Improvement Tasks - Cycle 2026-06-08\n\n| # | Task | Category | Impact | Effort |\n|---|------|----------|--------|--------|\n| 1 | **Remove duplicated BrokerCircuitOpenError** \u2014 `errors.py` (extends ApexError) and `exceptions.py` (extends Exception) both define the same class. `arb_engine.py` imports from `exceptions`, `engine.py` imports from `errors`. Consolidate into `errors."
+    },
+    "execute": {
+      "success": false,
+      "output": ""
+    },
+    "test": {
+      "success": false,
+      "output": "API call failed after 3 retries: HTTP 429: Rate limit exceeded. Please try again later.\n\nsession_id: 20260608_100124_fb6fde\n"
+    },
+    "commit": {
+      "success": false,
+      "output": "API call failed after 3 retries: HTTP 429: Rate limit exceeded. Please try again later.\n\nsession_id: 20260608_100540_a52670\n"
+    },
+    "report": {
+      "success": false,
+      "output": "API call failed after 3 retries: HTTP 429: Rate limit exceeded. Please try again later.\n\nsession_id: 20260608_100954_5bc1a0\n"
+    }
+  }
+}
