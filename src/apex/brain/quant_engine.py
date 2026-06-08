@@ -16,7 +16,7 @@ import math
 from dataclasses import dataclass, field
 from typing import Any
 
-from apex.services.arb_ranking import execution_score, min_leg_volume, passes_quality_gate
+from apex.services.arb_ranking import execution_score, passes_quality_gate
 
 ENGINE_VERSION = "2026.05.2"
 KALSHI_FEE_RATE = 0.07  # fee on YES-leg profit (Kalshi taker model used in arb_engine)
