@@ -25,7 +25,7 @@ class IterationDocWriter:
 
         # 1. Changelog update
         changelog_path = self.workspace / "docs" / "CHANGELOG.md"
-        ts = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S UTC")
+        ts = datetime.now(datetime.UTC).strftime("%Y-%m-%d %H:%M:%S UTC")
         
         summary = idea.description
         if client:

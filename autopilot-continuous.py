@@ -51,7 +51,7 @@ def post_to_discord(phase: str, content: str, color: int = 0x5865F2, emoji: str 
                 "title": title,
                 "description": f"```\n{desc}\n```",
                 "color": color,
-                "timestamp": datetime.utcnow().isoformat()
+                "timestamp": datetime.now(datetime.UTC).isoformat()
             }]
         }, timeout=5)
         time.sleep(0.3)  # rate limit: 1 msg per 0.3s

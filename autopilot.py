@@ -36,7 +36,7 @@ def disc(msg: str, color: int = 0x5865F2, title: str = "Autopilot"):
                 "title": title,
                 "description": msg[:4000],
                 "color": color,
-                "timestamp": datetime.utcnow().isoformat()
+                "timestamp": datetime.now(datetime.UTC).isoformat()
             }]
         }, timeout=5)
         time.sleep(0.5)   # stay under 30/min webhook limit

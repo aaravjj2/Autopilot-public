@@ -20,7 +20,7 @@ class ArtifactCapture:
         base_dir = self.workspace / "data" / "artifacts" / f"iteration_{iteration:04d}"
         base_dir.mkdir(parents=True, exist_ok=True)
         
-        ts = datetime.utcnow().isoformat()
+        ts = datetime.now(datetime.UTC).isoformat()
 
         # 1. Diff snapshots
         diff_dir = base_dir / "diffs"

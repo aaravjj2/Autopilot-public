@@ -15,7 +15,7 @@ BACKUP_DIR.mkdir(parents=True, exist_ok=True)
 
 def backup_database():
     """Create timestamped backup of all databases."""
-    timestamp = datetime.utcnow().strftime("%Y%m%d_%H%M%S")
+    timestamp = datetime.now(datetime.UTC).strftime("%Y%m%d_%H%M%S")
     backup_path = BACKUP_DIR / timestamp
     backup_path.mkdir(exist_ok=True)
     
@@ -43,7 +43,7 @@ def backup_database():
 
 def cleanup_old_backups(days: int = 30):
     """Remove backups older than specified days."""
-    cutoff = datetime.utcnow().timestamp() - (days * 86400)
+    cutoff = datetime.now(datetime.UTC).timestamp() - (days * 86400)
     
     for backup in BACKUP_DIR.iterdir():
         if backup.is_dir() and backup.name != "latest":

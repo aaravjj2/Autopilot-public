@@ -65,6 +65,11 @@ def _route_groq(settings: Settings | None) -> LlmRoute | None:
     groq_key = _key(settings, "groq_api_key", "GROQ_API_KEY")
     if not groq_key:
         return None
+    # Quick health check: verify key isn't revoked/restricted
+    _groq_key_revoked = os.getenv("_GROQ_KEY_REVOKED", "").strip().lower() in ("1", "true")
+    if _groq_key_revoked:
+        LOGGER.warning("Skipping groq — key previously detected as revoked/restricted")
+        return None
     return LlmRoute(
         provider="groq",
         api_key=groq_key,
@@ -137,6 +142,27 @@ def _route_ollama(settings: Settings | None) -> LlmRoute | None:
     )
 
 
+def _route_openai(settings: Settings | None) -> LlmRoute | None:
+    """Fallback route using OPENAI_API_KEY + optional OPENAI_BASE_URL."""
+    api_key = _key(settings, "openai_api_key", "OPENAI_API_KEY")
+    if not api_key:
+        return None
+    base_url = (
+        (settings.llm_backend_url if settings else "") or
+        os.getenv("OPENAI_BASE_URL", "https://api.openai.com/v1")
+    ).rstrip("/")
+    model = os.getenv("LLM_MODEL", os.getenv("OPENAI_MODEL", "gpt-4o-mini"))
+    return LlmRoute(
+        provider="openai",
+        api_key=api_key,
+        base_url=base_url,
+        model=model,
+        deep_think_model=os.getenv("LLM_DEEP_THINK_MODEL", model),
+        quick_think_model=os.getenv("LLM_QUICK_THINK_MODEL", "gpt-4o-mini"),
+        label="openai-fallback",
+    )
+
+
 def resolve_llm_routes(
     settings: Settings | None = None,
     *,
@@ -164,6 +190,7 @@ def resolve_llm_routes(
         ("ollama", _route_ollama),
         ("openrouter", _route_openrouter),
         ("gemini", _route_gemini),
+        ("openai-fallback", _route_openai),
     ]
     if prefer == "ollama":
         builders.sort(key=lambda x: 0 if x[0] == "ollama" else 1)
@@ -234,7 +261,11 @@ def llm_error_disables_route(exc: BaseException) -> bool:
         "organization has been restricted",
         "authentication",
     )
-    return any(token in msg for token in tokens)
+    is_fatal = any(token in msg for token in tokens)
+    if is_fatal and "organization_restricted" in msg:
+        os.environ["_GROQ_KEY_REVOKED"] = "true"
+        LOGGER.warning("Groq key marked as revoked — subsequent routes will skip groq")
+    return is_fatal
 
 
 def _route_from_explicit_settings(settings: Settings) -> LlmRoute | None:
