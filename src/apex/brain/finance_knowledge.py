@@ -20,7 +20,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 
-KNOWLEDGE_VERSION = "2026.05.1"
+KNOWLEDGE_VERSION = "2026.05.2"
 
 
 @dataclass(frozen=True)
@@ -200,6 +200,22 @@ KNOWLEDGE: tuple[KnowledgeCard, ...] = (
             "mode, never simulate fills better than the live book would give. "
             "Consistency and survivability beat occasional brilliance; the goal is "
             "positive expectancy compounded without ruin."
+        ),
+    ),
+    KnowledgeCard(
+        id="quant-math",
+        title="Quantitative foundations (APEX quant engine)",
+        category="math",
+        tags=("math", "kelly", "edge", "fee", "score", "formula"),
+        content=(
+            "Two-leg locked payoff: gross = 1 - (kalshi_yes_ask + poly_no_ask). "
+            "Kalshi fee on YES win: fee = 0.07 * (1 - yes_ask). Net edge = gross - fee. "
+            "Binary Kelly: cost = yes_ask + no_ask, b = (1-cost)/cost, "
+            "f* = (p*b - (1-p))/b; trade f = KELLY_ALPHA * f* (default alpha=0.25). "
+            "Size cap = min(bankroll*f, 0.10 * min_leg_volume). Execution score ranks "
+            "opportunities: edge + 0.25*settlement + 0.15*log1p(min_vol)/15 + vwap_bonus "
+            "- 0.05*flags. EXECUTE requires gates pass, score >= 0.08, net >= 3%, "
+            "settlement >= 0.80, no flags, min-leg vol >= 5x gate."
         ),
     ),
 )

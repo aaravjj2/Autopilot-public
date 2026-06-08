@@ -2,7 +2,7 @@
 high-level finance/prediction-market strategy knowledge base.
 
 The brain is provider-agnostic (routes through ``Settings.get_llm_client``)
-and degrades gracefully to deterministic heuristics when no LLM route is
+and degrades gracefully to the quantitative engine when no LLM route is
 live, so the autopilot never hard-fails on the model layer.
 """
 

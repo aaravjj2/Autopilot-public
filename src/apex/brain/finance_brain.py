@@ -13,6 +13,7 @@ from dataclasses import dataclass, field
 from typing import Any
 
 from apex.brain import finance_knowledge as kb
+from apex.brain import quant_engine as qe
 
 LOGGER = logging.getLogger(__name__)
 
@@ -27,16 +28,20 @@ class BrainVerdict:
     confidence: float  # 0..1
     rationale: str
     risks: list[str] = field(default_factory=list)
-    source: str = "heuristic"  # "llm:<label>" or "heuristic"
+    source: str = "quant"  # "llm:<label>" or "quant"
+    quant_meta: dict[str, Any] | None = None
 
     def to_dict(self) -> dict[str, Any]:
-        return {
+        out: dict[str, Any] = {
             "action": self.action,
             "confidence": round(float(self.confidence), 3),
             "rationale": self.rationale,
             "risks": list(self.risks),
             "source": self.source,
         }
+        if self.quant_meta:
+            out["quant"] = self.quant_meta
+        return out
 
 
 @dataclass
@@ -122,13 +127,15 @@ class FinanceBrain:
             "routes": [s.label for s in self._routes if not s.dead],
             "knowledge_version": kb.KNOWLEDGE_VERSION,
             "knowledge_cards": len(kb.all_cards()),
+            "engine": "quantitative",
+            "engine_version": qe.ENGINE_VERSION,
         }
         if active is not None and active.native_gemini_key:
             out["auth_mode"] = "query_key"
         elif active is not None and active.client is not None:
             out["auth_mode"] = "bearer"
         if not self.is_live:
-            out["fallback"] = "heuristic"
+            out["fallback"] = "quant"
         if probe and self.is_live:
             text, probe_label, err = self._probe_llm()
             out["probe_provider"] = probe_label
@@ -150,7 +157,7 @@ class FinanceBrain:
         out["provider"] = out["mode"]
         out["model"] = active.model if active else ""
         if not self.is_live:
-            out["fallback"] = "heuristic"
+            out["fallback"] = "quant"
         return out
 
     # -- public ops -----------------------------------------------------------
@@ -162,10 +169,13 @@ class FinanceBrain:
         if text is not None:
             return text
         # Fallback: surface the most relevant doctrine deterministically.
+        quant_block = qe.explain_topic(question)
         cards = kb.retrieve(question, limit=3)
         bullets = "\n".join(f"- {c.title}: {c.content}" for c in cards)
         return (
-            "[brain offline — knowledge-based answer]\n"
+            "[quant engine — knowledge-based answer]\n"
+            f"{quant_block}\n\n"
+            "Strategy context:\n"
             f"{bullets}"
         )
 
@@ -185,7 +195,7 @@ class FinanceBrain:
         verdict = _parse_verdict(text, label) if text else None
         if verdict is not None:
             return verdict
-        return _heuristic_verdict(facts)
+        return _quant_verdict(facts, self._settings)
 
     # -- llm plumbing ---------------------------------------------------------
     def _probe_llm(self) -> tuple[str | None, str, str]:
@@ -406,56 +416,26 @@ def _extract_json(text: str) -> str | None:
     return None
 
 
-def _heuristic_verdict(facts: dict[str, Any]) -> BrainVerdict:
-    """Deterministic, knowledge-consistent fallback verdict.
+def _quant_verdict(facts: dict[str, Any], settings: Any | None = None) -> BrainVerdict:
+    """Deterministic quantitative verdict (full math pipeline, no LLM)."""
+    if settings is None or not hasattr(settings, "arb_exec_min_settlement_score"):
+        from apex.core.config import get_settings
 
-    Mirrors the doctrine in finance_knowledge: net edge after costs, settlement
-    confidence, liquidity, and flag count drive the decision. Fails closed.
-    """
-    edge = facts["net_edge"]
-    settle = facts["settlement_match_score"]
-    flags = facts["settlement_flags"]
-    min_vol = min(facts["volume_kalshi"], facts["volume_poly"])
-
-    risks: list[str] = []
-    if settle < 0.55:
-        risks.append("low settlement-match score: title match may not be a true arb")
-    if flags:
-        risks.append(f"{len(flags)} settlement flag(s): {', '.join(map(str, flags[:3]))}")
-    if min_vol < 2000:
-        risks.append(f"thin liquidity on the smaller leg (~${min_vol:,.0f} 24h)")
-    if edge <= 0:
-        risks.append("non-positive net edge after costs")
-
-    # Decision logic (fails closed toward SKIP/REVIEW).
-    if edge <= 0 or settle < 0.55 or min_vol < 2000 or len(flags) > 2:
-        action = "SKIP"
-        confidence = 0.7
-        rationale = (
-            "Fails a hard quality gate (edge/settlement/liquidity/flags); "
-            "skipping per risk-first doctrine."
-        )
-    elif edge >= 0.03 and settle >= 0.8 and min_vol >= 10000 and not flags:
-        action = "EXECUTE"
-        confidence = min(0.95, 0.5 + edge * 4 + (settle - 0.8))
-        rationale = (
-            f"Clean two-leg arb: net edge {edge:.1%}, settlement {settle:.2f}, "
-            f"min-leg liquidity ~${min_vol:,.0f}, no flags."
-        )
-    else:
-        action = "REVIEW"
-        confidence = 0.5
-        rationale = (
-            "Marginal opportunity: positive but modest edge or borderline "
-            "settlement/liquidity. Worth a human/secondary check."
-        )
+        settings = get_settings()
+    analysis = qe.evaluate_opportunity(facts, settings)
     return BrainVerdict(
-        action=action,
-        confidence=confidence,
-        rationale=rationale,
-        risks=risks,
-        source="heuristic",
+        action=analysis.action,
+        confidence=analysis.confidence,
+        rationale=analysis.rationale,
+        risks=list(analysis.risks),
+        source="quant",
+        quant_meta=qe.analysis_to_verdict_dict(analysis),
     )
+
+
+def _heuristic_verdict(facts: dict[str, Any]) -> BrainVerdict:
+    """Backward-compatible alias for tests and legacy callers."""
+    return _quant_verdict(facts)
 
 
 # ---------------------------------------------------------------------------

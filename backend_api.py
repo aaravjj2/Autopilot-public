@@ -454,10 +454,10 @@ def _morning_chain_enabled() -> bool:
 def _scheduler_health() -> dict[str, Any]:
     """Report scheduler mode so daemon expectations are explicit."""
     loop_flags = {
-        "arb_scan_loop": os.getenv("APEX_ARB_SCAN_LOOP", "false").lower() in ("1", "true", "yes"),
+        "arb_scan_loop": os.getenv("APEX_ARB_SCAN_LOOP", "true").lower() in ("1", "true", "yes"),
         "pm_agents_loop": os.getenv("APEX_PM_AGENTS_LOOP", "true").lower() in ("1", "true", "yes"),
         "equity_loop": os.getenv("APEX_EQUITY_LOOP", "true").lower() in ("1", "true", "yes"),
-        "self_improvement_loop": os.getenv("APEX_SELF_IMPROVEMENT_LOOP", "false").lower()
+        "self_improvement_loop": os.getenv("APEX_SELF_IMPROVEMENT_LOOP", "true").lower()
         in ("1", "true", "yes"),
         "morning_chain": _morning_chain_enabled(),
     }
@@ -567,13 +567,13 @@ async def lifespan(app: FastAPI):
     await asyncio.to_thread(cache.refresh)
     asyncio.create_task(data_refresh_loop())
     asyncio.create_task(ws_broadcast_loop())
-    if os.getenv("APEX_ARB_SCAN_LOOP", "false").lower() in ("1", "true", "yes"):
+    if os.getenv("APEX_ARB_SCAN_LOOP", "true").lower() in ("1", "true", "yes"):
         asyncio.create_task(arb_scan_loop())
     if os.getenv("APEX_PM_AGENTS_LOOP", "true").lower() in ("1", "true", "yes"):
         asyncio.create_task(pm_agents_loop())
     if os.getenv("APEX_EQUITY_LOOP", "true").lower() in ("1", "true", "yes"):
         asyncio.create_task(equity_autopilot_loop())
-    if os.getenv("APEX_SELF_IMPROVEMENT_LOOP", "false").lower() in ("1", "true", "yes"):
+    if os.getenv("APEX_SELF_IMPROVEMENT_LOOP", "true").lower() in ("1", "true", "yes"):
         asyncio.create_task(self_improvement_loop())
     if _morning_chain_enabled():
         try:

@@ -94,7 +94,7 @@ def test_heuristic_executes_clean_opportunity() -> None:
     v = _heuristic_verdict(_facts())
     assert v.action == "EXECUTE"
     assert v.confidence > 0.5
-    assert v.source == "heuristic"
+    assert v.source == "quant"
 
 
 def test_heuristic_skips_thin_liquidity() -> None:
@@ -183,16 +183,18 @@ def _patch_routes(monkeypatch, routes, client=None) -> None:
     )
 
 
-def test_brain_offline_falls_back_to_heuristic(monkeypatch) -> None:
+def test_brain_offline_falls_back_to_quant(monkeypatch) -> None:
     _patch_routes(monkeypatch, [])
     brain = FinanceBrain(settings=_settings_with_client(None))
     assert brain.is_live is False
     assert brain.operational is True
     v = brain.analyze_opportunity({"net_edge": 0.05, "settlement_match_score": 0.9, "volume_kalshi": 20000, "volume_poly": 20000})
     assert isinstance(v, BrainVerdict)
-    assert v.source == "heuristic"
+    assert v.source == "quant"
     ans = brain.ask("How should I size an arb?")
-    assert "offline" in ans.lower() or len(ans) > 0
+    assert "quant" in ans.lower()
+    assert v.quant_meta is not None
+    assert v.quant_meta.get("execution_score") is not None
 
 
 def test_brain_uses_llm_verdict_when_live(monkeypatch) -> None:
@@ -236,7 +238,7 @@ def test_brain_recovers_when_llm_raises(monkeypatch) -> None:
     _patch_routes(monkeypatch, [_route(label="groq")], client=_Boom())
     brain = FinanceBrain(settings=_settings_with_client(_Boom()))
     v = brain.analyze_opportunity({"net_edge": 0.05, "settlement_match_score": 0.9, "volume_kalshi": 20000, "volume_poly": 20000})
-    assert v.source == "heuristic"
+    assert v.source == "quant"
     assert brain.is_live is True
 
 
@@ -259,4 +261,4 @@ def test_brain_malformed_llm_json_falls_back(monkeypatch) -> None:
     _patch_routes(monkeypatch, [_route(label="groq")], client=client)
     brain = FinanceBrain(settings=_settings_with_client(client))
     v = brain.analyze_opportunity({"net_edge": 0.05, "settlement_match_score": 0.9, "volume_kalshi": 20000, "volume_poly": 20000})
-    assert v.source == "heuristic"
+    assert v.source == "quant"

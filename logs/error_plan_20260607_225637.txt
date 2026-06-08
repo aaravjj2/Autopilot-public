@@ -1,0 +1,73 @@
+Phase: plan
+Tool: opencode
+Error Type: Rate limited (429)
+
+Based on my thorough analysis of the codebase, here are the **10 most impactful improvement tasks** I've identified:
+
+---
+
+## 🚨 CRITICAL (top 3)
+
+### 1. Secret leak: `config.json` with Discord webhook committed & not in `.gitignore`
+`.state/config.json` contains a live Discord webhook URL and ngrok authtoken, but `.gitignore` doesn't cover `.state/` — these secrets are committed to GitHub. Anyone with repo access can spam your Discord channel or use the ngrok token.  
+**Fix**: Add `.state/` to `.gitignore`, rotate the webhook URL, and move secrets to `keys.env` (which IS gitignored).
+
+### 2. `autopilot-continuous.py` ignores per-phase model config — all phases use same fallback
+The code at `autopilot-continuous.py` line 116-124 hardcodes `hermes --profile autopilot-worker chat -q prompt` for **every phase**. Despite `SETUP_COMPLETE.md` documenting `analyze → gpt-5.2-codex/copilot` and `execute → gpt-5.2-codex/copilot`, the actual loop:
+- Never switches models per phase
+- Only uses opencode-zen (which is returning **429 rate limited** on every cycle)
+- Has no fallback to agy/copilot when opencode-zen is down  
+**Fix**: Implement true per-phase model switching by calling `agy-model-switch --phase <phase>` or using different hermes chat commands per phase.
+
+### 3. Rate-limit cascade: opencode-zen 429 kills every cycle; no fallback path works
+All 7 recent cycles fail at execute/test/report phases with `HTTP 429: Rate limit exceeded` from opencode-zen. The RATE_LIMITS dict in `autopilot-continuous.py` (line 24-30) is completely disconnected from `cooldowns.json` on disk — different structure, missing keys (no `openrouter`), and the in-memory dict has no persistence.  
+**Fix**: Sync the two data structures, add `openrouter` fallback (the key IS listed but placeholder), and implement actual tool fallback per phase.
+
+---
+
+## 🔴 HIGH (4-6)
+
+### 4. 12 Playwright E2E tests failing (94/106 passing)
+Last test run shows 12 Playwright failures. The test dashboard at `tests/test_dashboard_playwright.py` checks for Page title "APEX Monitor" and specific UI elements. These failures are likely due to UI changes since the tests were written. The continuous loop doesn't run Playwright tests at all.  
+**Fix**: Run the Playwright suite, diagnose the 12 failures (likely selector mismatches/UI restructure), update assertions, and integrate Playwright into the test phase.
+
+### 5. Groq LLM permanently broken (401 org restricted) since iteration 446
+Groq API returns 401 "organization restricted" but no alternative LLM provider is configured. OpenRouter key is set to `"FILL_IN_YOUR_OPENROUTER_KEY_HERE"` placeholder. The thesis service returns placeholder theses for all arb opportunities. The loop has been running on deterministic fallback only for ~200 iterations.  
+**Fix**: Configure OpenRouter with a valid key, or switch to a working LLM backend. The code already has the OpenRouter API path (line 340-349 of `autopilot.py`) — just needs the key.
+
+### 6. `backend_api.py` is 2,078 lines — needs modularization
+Single file contains DataCache, ConnectionManager, 4 background loops (arb_scan, pm_agents, equity, self-improvement), SSE streaming, WebSocket manager, REST endpoints, intelligence agent wiring, and the security middleware. This is a maintenance liability and makes targeted fixes risky.  
+**Fix**: Split into `backend/cache.py`, `backend/websocket.py`, `backend/loops/`, `backend/routes/` modules.
+
+---
+
+## 🟡 MEDIUM (7-8)
+
+### 7. Error log files accumulating with no rotation (192+ cycle logs + 37 error files)
+`logs/` has 37 error files and 32 cycle files, consuming ~4MB. `data/loop_logs/` has 3,600+ cycle artifacts from iterations 591-636. No cleanup mechanism — these will grow unbounded.  
+**Fix**: Add log rotation: keep last 50 cycles, archive/compress old ones, add a `cleanup_old_logs()` function to `autopilot-continuous.py`.
+
+### 8. `config.json` openrouter_key placeholder — dead code path
+`.state/config.json` has `"openrouter_key": "FILL_IN_YOUR_OPENROUTER_KEY_HERE"` and `"openrouter_free_model": "deepseek/deepseek-v4-flash:free"`. The autopilot.py routing logic (line 313) explicitly skips OpenRouter when the key is this placeholder. It's a dead code path that still runs connection checks.  
+**Fix**: Either set a real key or remove the OpenRouter integration entirely to reduce startup noise.
+
+---
+
+## 🟢 LOW (9-10)
+
+### 9. No automated Playwright runner in continuous improvement loop
+The test phase (Phase 4) in `autopilot-continuous.py` only runs `pytest`. Playwright E2E tests are skipped if the dashboard isn't running. The tests aren't integrated into the CI feedback loop.  
+**Fix**: Add Playwright test execution to the test phase, with proper dashboard startup health check.
+
+### 10. `autopilot.py` and `autopilot-continuous.py` duplicate ~70% of logic
+Both files have their own implementations of Discord posting, rate limiting, git commit tracking, and cycle phases. The old `autopilot.py` (526 lines) uses a different execution model (subprocess tools like agy/copilot/gemini) while `autopilot-continuous.py` uses hermes.  
+**Fix**: Extract shared logic into `src/apex/loop_shared.py` (Discord streaming, rate limiting, git helpers) and have both scripts import from it.
+
+---
+
+**Total tests**: 406/406 pytest ✅ | 94/106 Playwright ⚠️ | API smoke ✅  
+**Active blockers**: OpenCode Zen 429 | Groq 401 | No fallback chain working
+
+Would you like me to start implementing any of these tasks?
+
+session_id: 20260607_225516_75af1e

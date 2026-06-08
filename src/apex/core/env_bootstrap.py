@@ -64,9 +64,14 @@ def bootstrap_environment(*, force: bool = False) -> Path:
         ("APEX_PM_AGENTS_LOOP", "true"),
         ("APEX_ARB_SCAN_LOOP", "true"),
         ("APEX_EQUITY_LOOP", "true"),
+        ("APEX_SELF_IMPROVEMENT_LOOP", "true"),
+        ("APEX_MORNING_CHAIN", "true"),
     ):
         if not (os.getenv(loop_var) or "").strip():
             os.environ[loop_var] = default
+
+    if not (os.getenv("SHOWCASE_MODE") or "").strip():
+        os.environ["SHOWCASE_MODE"] = "false"
 
     if not (os.getenv("ALPACA_PAPER_TRADE") or "").strip():
         os.environ["ALPACA_PAPER_TRADE"] = "true"

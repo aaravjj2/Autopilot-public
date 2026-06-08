@@ -149,8 +149,11 @@ class ArbEngine:
                 continue
 
             poly = match
-            gross = round(1.00 - k.best_ask_yes - float(poly.get("bestAsk_no", 1.0)), 4)
-            net   = self._compute_net_edge(k.best_ask_yes, float(poly.get("bestAsk_no", 1.0)))
+            from apex.brain.quant_engine import fractional_kelly, net_edge_from_quotes
+
+            poly_no = float(poly.get("bestAsk_no", 1.0))
+            gross = round(1.00 - k.best_ask_yes - poly_no, 4)
+            net = net_edge_from_quotes(k.best_ask_yes, poly_no)
 
             if net < self.settings.arb_min_net_edge:
                 continue
@@ -177,7 +180,14 @@ class ArbEngine:
                 settlement_flags=verdict.flags,
                 volume_kalshi=k.volume_24h,
                 volume_poly=float(poly.get("volume24hr", 0)),
-                kelly_fraction=min(round(net * 10.0, 3), 0.5), # Scale edge to sizing cap
+                kelly_fraction=round(
+                    fractional_kelly(
+                        win_prob=max(0.05, min(0.99, verdict.match_score)),
+                        cost=k.best_ask_yes + poly_no,
+                        alpha=self.settings.kelly_alpha,
+                    ),
+                    4,
+                ),
             )
             pair = (opp.kalshi_ticker, opp.poly_market_id)
             if pair in seen_pairs:

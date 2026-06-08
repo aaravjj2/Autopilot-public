@@ -85,7 +85,7 @@ def _world_cup_brain_block(store: SQLiteStore, settings: Settings) -> dict[str, 
         return {"status": "disabled", "enabled": False}
     try:
         wc = store.list_world_cup_opportunities(limit=15)
-    except Exception:
+    except (KeyError, TypeError, AttributeError):
         wc = []
     top = wc[0] if wc else {}
     return {
