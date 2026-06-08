@@ -61,8 +61,11 @@ pytestmark = pytest.mark.skipif(
     reason=_SKIP_REASON or "dashboard unreachable",
 )
 
-# ── Only reached when skip hasn't fired ────────────────────────────────
-from playwright.sync_api import Page, expect
+# Import types for annotations; skipped tests never execute body.
+try:
+    from playwright.sync_api import Page, expect
+except ImportError:  # pragma: no cover - CI backend job has no playwright
+    Page = expect = None  # type: ignore[assignment,misc]
 
 
 # ═══════════════════════════════════════════════════════════════════════
