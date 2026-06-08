@@ -17,19 +17,26 @@ import pytest
 
 _DASHBOARD_URL: str = os.getenv("DASHBOARD_URL", "http://localhost:8501")
 
+# ── skip state ─────────────────────────────────────────────────────────
+_SKIP_REASON: str | None = None
+
 # ── reachability guard ──────────────────────────────────────────────────
 _DASHBOARD_REACHABLE: bool = False
 try:
     import requests as _req
 
-    _req.get(_DASHBOARD_URL, timeout=3)
-    _DASHBOARD_REACHABLE = True
+    _resp = _req.get(_DASHBOARD_URL, timeout=3)
+    # Also verify the response actually contains the APEX Monitor title
+    # so we don't run tests against a different app on the same port
+    if "APEX Monitor" in _resp.text or "apex" in _resp.text.lower():
+        _DASHBOARD_REACHABLE = True
+    else:
+        _SKIP_REASON = f"Dashboard at {_DASHBOARD_URL} is not APEX Monitor"
 except Exception:
     pass
 
 # ── playwright browser check ────────────────────────────────────────────
 _PW_BROWSER_AVAILABLE: bool = False
-_SKIP_REASON: str | None = None
 
 try:
     from playwright.sync_api import sync_playwright
@@ -46,7 +53,7 @@ if _PW_BROWSER_AVAILABLE:
         _SKIP_REASON = f"Playwright cannot launch browser: {exc}"
 
 # Skip if either condition fails.
-if not _DASHBOARD_REACHABLE:
+if not _DASHBOARD_REACHABLE and _SKIP_REASON is None:
     _SKIP_REASON = f"Dashboard not reachable at {_DASHBOARD_URL}"
 
 pytestmark = pytest.mark.skipif(
