@@ -80,6 +80,10 @@ test-results/
 
 # --- Log files ---
 logs/*.log
+logs/cycle_*.json
+
+# --- High-churn runtime streams ---
+data/kalshi_ticks.jsonl
 
 # --- Model candidates (regenerated each cycle) ---
 data/models/arb_edge/candidate_*/
