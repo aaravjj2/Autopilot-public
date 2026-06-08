@@ -1107,12 +1107,12 @@ class ApexEngine:
         dest = backup_dir / f"audit_backup_{today}.db"
         try:
             import sqlite3
-            src_conn = sqlite3.connect(str(self.settings.sqlite_path))
-            dst_conn = sqlite3.connect(str(dest))
-            src_conn.backup(dst_conn)
-            dst_conn.close()
-            src_conn.close()
-            LOGGER.info("DB backup created: %s (%d bytes)", dest, dest.stat().st_size)
+            with (
+                sqlite3.connect(str(self.settings.sqlite_path)) as src_conn,
+                sqlite3.connect(str(dest)) as dst_conn,
+            ):
+                src_conn.backup(dst_conn)
+                LOGGER.info("DB backup created: %s (%d bytes)", dest, dest.stat().st_size)
         except Exception as exc:
             LOGGER.warning("DB backup failed: %s", exc)
             return

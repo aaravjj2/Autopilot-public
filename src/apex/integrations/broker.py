@@ -76,7 +76,7 @@ def _parse_alpaca_entry_time(row: dict[str, Any]) -> datetime:
             return datetime.fromisoformat(str(raw).replace("Z", "+00:00"))
         except ValueError as exc:
             LOGGER.debug("_parse_alpaca_entry_time: could not parse %r for key %r: %s", raw, key, exc)
-    LOGGER.debug("_parse_alpaca_entry_time: no timestamp field found; using utcnow")
+    LOGGER.debug("_parse_alpaca_entry_time: no timestamp field found; using datetime.now(tz=timezone.utc)")
     return datetime.now(tz=timezone.utc)
 
 

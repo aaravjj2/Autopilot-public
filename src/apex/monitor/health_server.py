@@ -65,11 +65,11 @@ def healthz_handler(request: Request) -> JSONResponse:
             body["alpaca_error"] = str(exc)
         # Recent trade stats
         try:
-            cur = sqlite3.connect(str(s.sqlite_path)).cursor()
-            cur.execute("SELECT COUNT(*), COALESCE(SUM(pnl),0) FROM completed_trades WHERE exit_time >= date('now')")
-            row = cur.fetchone()
-            body["today"] = {"closed_trades": row[0], "pnl": round(row[1] or 0, 2)} if row else {}
-            cur.connection.close()
+            with sqlite3.connect(str(s.sqlite_path)) as conn:
+                cur = conn.cursor()
+                cur.execute("SELECT COUNT(*), COALESCE(SUM(pnl),0) FROM completed_trades WHERE exit_time >= date('now')")
+                row = cur.fetchone()
+                body["today"] = {"closed_trades": row[0], "pnl": round(row[1] or 0, 2)} if row else {}
         except Exception:
             pass
     return JSONResponse(body)
