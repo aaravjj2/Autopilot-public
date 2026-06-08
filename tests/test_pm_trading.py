@@ -216,9 +216,12 @@ def test_pm_agents_status_execution_mode(
 
 
 def test_build_engine_has_pm_brokers(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+    from apex.core.config import get_settings
+
     monkeypatch.setenv("SQLITE_PATH", str(tmp_path / "audit.db"))
     monkeypatch.setenv("ALPACA_PAPER_TRADE", "true")
     monkeypatch.setenv("POLYMARKET_PAPER_TRADING_ENABLED", "true")
+    get_settings.cache_clear()
     engine = build_engine()
     broker = engine.execution.broker
     assert getattr(broker, "kalshi_paper", None) is not None

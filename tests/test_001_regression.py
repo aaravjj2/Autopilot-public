@@ -17,8 +17,34 @@ def _rg(pattern: str, *paths: str, extra_args: list[str] | None = None) -> list[
     cmd = ["rg", "--no-heading", "-n", pattern, *paths]
     if extra_args:
         cmd.extend(extra_args)
-    result = subprocess.run(cmd, capture_output=True, text=True)
+    try:
+        result = subprocess.run(cmd, capture_output=True, text=True, check=False)
+    except FileNotFoundError:
+        return _rg_python_fallback(pattern, paths)
     return [ln for ln in result.stdout.splitlines() if ln.strip()]
+
+
+def _rg_python_fallback(pattern: str, paths: tuple[str, ...]) -> list[str]:
+    """Portable fallback when ripgrep is not on PATH (e.g. GitHub Actions)."""
+    skip_dirs = {"node_modules", ".next", ".git"}
+    hits: list[str] = []
+    for base in paths:
+        root = Path(base)
+        if not root.exists():
+            continue
+        for path in root.rglob("*"):
+            if not path.is_file():
+                continue
+            if any(part in skip_dirs for part in path.parts):
+                continue
+            try:
+                text = path.read_text(encoding="utf-8", errors="ignore")
+            except OSError:
+                continue
+            for lineno, line in enumerate(text.splitlines(), start=1):
+                if pattern in line:
+                    hits.append(f"{path}:{lineno}:{line}")
+    return hits
 
 
 def test_no_8001_in_frontend_source() -> None:
