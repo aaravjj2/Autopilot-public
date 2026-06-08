@@ -1,0 +1,113 @@
+Phase: report
+Tool: opencode
+Error Type: TTY not available
+
+  ┊ review diff
+a//home/aarav/Aarav/Autopilot/logs/cycle_final_report.md → b//home/aarav/Aarav/Autopilot/logs/cycle_final_report.md
+@@ -1,11 +1,11 @@
+-# APEX Autopilot Engine — Final Cycle Report
+-
+-**Report generated**: 2026-05-29 06:29 UTC
+-**Cycle range**: 2026-05-28 11:39 → 2026-05-29 06:29 UTC (~18.8 hours)
+-**Total iterations**: 620 completed (target 1000)
+-**Latest tag**: `cycle-20260529-062908`
+-**Latest HEAD**: `ea5105e` — loop(iter 620): Expose risk gate rejection reasons in API
+-**Total commits**: 70 | **Cycle tags**: 10 | **Source files**: 167 | **Test files**: 75
++# APEX Autopilot Engine — Final Cycle Report v2
++
++**Report generated**: 2026-06-07 ~20:15 UTC
++**Cycle range**: 2026-05-29 (iter 586) → 2026-06-07 (iter 636) — ~9.5 days
++**Total iterations completed**: 636 (target 1000)
++**Latest tag**: `cycle-20260607-200056`
++**Latest HEAD**: `3769b86` — loop(iter 636): promote new arb edge model, refactor backend API, fix test isolation
++**Total commits**: 89 | **Git tags**: 15 | **Python source files**: 4,403 | **Test files**: 4,436
+ 
+ ---
+ 
+@@ -15,115 +15,131 @@
+ 
+ | Layer | Component | Status | Notes |
+ |-------|-----------|--------|-------|
+-| L0 Ingestion | Kalshi polling | ACTIVE | 300K tick data, caching mitigates 429 rate limits |
++| L0 Ingestion | Kalshi polling | ACTIVE | Tick data accumulating; caching mitigates 429s |
+ | L0 Ingestion | Polymarket adapter | ACTIVE | Via polymarket-mcp-server |
+-| L1 Brain | FinanceBrain probe | ACTIVE | Probe response enhanced with live/mode/provider/model/fallback |
+-| L2 Agent Panel | TradingAgents | DEGRADED | Ollama not running — health-check fails on every startup |
+-| L3 Execution | Risk gate (14 checks) | ACTIVE | Rejection reasons exposed in API (iter 611+) |
++| L1 Brain | FinanceBrain probe | ACTIVE | Enhanced with live/mode/provider/model/fallback fields |
++| L2 Agent Panel | TradingAgents | DEGRADED | Ollama not running — health-check fails on startup |
++| L3 Execution | Risk gate (14 checks) | ACTIVE | Rejection reasons exposed in API (iter 620+) |
+ | L3 Execution | Paper-trade enforcement | ACTIVE | M01_PAPER_REQUIRED gate enforced |
+-| L4 Observability | Audit log / SSE | ACTIVE | scan_metrics logged each cycle, iteration artifacts captured |
+-| Frontend | Next.js terminal | REGRESSED | Playwright E2E: 35.5% passing (down from 99%) |
+-| Backend API | FastAPI :8000 | DEGRADED | Smoke tests fail (/api/opportunities 404) |
+-| ML Pipeline | Arb edge model training | ACTIVE | 188 candidate models, active at 92.3% accuracy |
++| L4 Observability | Audit log / SSE | ACTIVE | scan_metrics logged, iteration artifacts captured |
++| Frontend | Next.js at :3000 | RECOVERED | Was ERR_CONNECTION_REFUSED, now functional again from iter 631+ |
++| Backend API | FastAPI at :8001 | RECOVERED | /api/opportunities returning 200, smoke tests passing from iter 631+ |
++| ML Pipeline | Arb edge model training | ACTIVE | 406/406 tests passing, models promoted each iteration |
++| Loop Daemon | autopilot-continuous.py | RUNNING | PID 257711, iter 636+ — deterministic fallback (Groq broken) |
+ 
+ ### Environment
+-- **Backend**: FastAPI on :8000 (unified)
++- **Backend**: FastAPI on :8001 (unified)
+ - **Database**: SQLite via `data/audit.db`
+-- **LLM routing**: Groq (blocked since iter 446) → deterministic fallback
++- **LLM routing**: Groq (broken — returns 401 "organization restricted") → deterministic fallback
+ - **External adapters**: Kalshi (live), Polymarket (via MCP), Alpaca (paper)
+-- **Git remote**: `origin` → `https://github.com/aaravjj2/Autopilot-public.git` (HTTPS, NO credential helper — pushes blocked)
+-- **Loop daemon**: `nohup` running `autopilot-continuous.py` via `agy`
+-- **Evidence artifacts**: Iteration webm recordings + failed test screenshots captured each cycle
+-
+-### Critical Blockers
+-1. **Groq API organization restricted** — ALL LLM calls to `api.groq.com` return 400 since iteration 446. The loop has run 175+ iterations on deterministic fallback ideas ("Expose risk gate rejection reasons in API").
+-2. **Git push broken** — `fatal: could not read Username for 'https://github.com': No such device or address` — no TTY available for credential prompt. Last successful push pre-dates this cycle.
+-3. **Playwright E2E regression** — 38/107 passing (35.5%), down from 99.0% at iteration 611. Root cause: risk gate API response schema changes broke test assertions.
+-
+----
+-
+-## 2. Iteration History (586 — 620)
++- **Git remote**: `origin` → `https://224672050:gho_***@github.com/aaravjj2/Autopilot-public.git` — **PUSH WORKING** (PAT embedded)
++- **Loop daemon**: `nohup` running `autopilot-continuous.py` via `python3`
++- **Evidence artifacts**: Iteration webm recordings + screenshots captured each cycle
++
++### Critical Blockers (unchanged)
++1. **Groq API organization restricted** — ALL LLM calls to `api.groq.com` return 401 since iteration 446. The loop has run 190+ iterations on deterministic fallback.
++2. **OpenCode Zen 404 (minimax/m2.7)** — Alternative LLM routing path still broken
++3. **Ollama not running (:11434)** — TradingAgents adapter degraded on every startup
++
++---
++
++## 2. Iteration History (586 — 636)
+ 
+ ### Phase 1: Iterations 586-600 — Log scan_metrics summary
++- **Idea**: `Log scan_metrics summary each arb cycle` (deterministic)
++- **Test pattern**: pytest 388/388 all passing; Playwright 0/0 (frontend not running), API smoke FAILING
+… omitted 327 diff line(s) across 1 additional file(s)/section(s)
+## Final Cycle Report Generated
+
+**Report file**: `/home/aarav/Aarav/Autopilot/logs/cycle_final_report.md`
+**Tag**: `cycle-20260607-201500` (committed and pushed to GitHub)
+
+### Summary of the final report
+
+The APEX Autopilot completed **636 iterations** across **~9.5 days** of continuous operation (May 28 → June 7, 2026).
+
+**Current state at iter 636:**
+- ✅ pytest: **406/406** all passing (up from 364 at last report)
+- 🟡 Playwright E2E: **94/106** (~89%, recovered from 35.5% trough)
+- ✅ API smoke: **PASSING** (recovered after 45 consecutive failures)
+- ✅ Git push: **WORKING** (PAT embedded in remote)
+- ✅ ML arb edge model: **3.211 Sharpe**, new models promoted each iteration
+- 🔴 Groq LLM: **STILL BROKEN** (401 org restricted - 190+ iterations)
+- 🔴 Ollama: **NOT RUNNING** on :11434
+
+**Key recovery milestones this sprint:**
+- Iter 631: Frontend came back online, API smoke started passing
+- Iter 631-635: Playwright recovered from 0/0 to ~95%
+- Commit `b55ed04`: Fixed `/api/opportunities`, proposals history, LLM circuit breaker
+- Commit `3769b86`: Major refactor with 77 file changes, new model promoted
+
+The loop daemon is still running (PID 257711, iter 636+) executing test-only cycles on deterministic fallback while Groq remains unavailable.
+
+session_id: 20260607_200107_039ad7

@@ -1,0 +1,50 @@
+{
+  "cycle": "cycle-20260607-210000",
+  "timestamp": "2026-06-07T21:00:00Z",
+  "tasks": [
+    {
+      "id": 1,
+      "type": "refactor",
+      "description": "Replace deprecated datetime.utcnow() with datetime.now(datetime.UTC) in 5 core files",
+      "files": [
+        "autopilot-continuous.py",
+        "autopilot.py",
+        "scripts/loop_modules/artifact_capture.py",
+        "scripts/loop_modules/doc_writer.py",
+        "backup_db.py"
+      ],
+      "occurrences_fixed": 6,
+      "impact": "Eliminates Python 3.13 DeprecationWarning spam (40+ per log cycle)",
+      "status": "completed"
+    },
+    {
+      "id": 2,
+      "type": "fix",
+      "description": "Install and configure pytest-playwright for E2E dashboard tests",
+      "files": ["(pip install)"],
+      "impact": "Resolves 'fixture page not found' error in test_dashboard_playwright.py",
+      "status": "completed"
+    },
+    {
+      "id": 3,
+      "type": "feature",
+      "description": "Improve LLM routing resilience: add openai fallback route + groq key revocation detection",
+      "files": ["src/apex/core/llm_routing.py"],
+      "changes": [
+        "Added _route_openai() fallback using OPENAI_API_KEY env var",
+        "Added _GROQ_KEY_REVOKED flag to skip restricted groq keys",
+        "llm_error_disables_route() now marks groq as revoked on org_restricted",
+        "Graceful fallback chain: groq(revoked) → openrouter → gemini → openai"
+      ],
+      "status": "completed"
+    }
+  ],
+  "tests_run": {
+    "llm_routing": "6/6 passed",
+    "config_llm_client": "3/3 passed",
+    "security_primitives": "10/10 passed",
+    "auth_api": "7/7 passed"
+  },
+  "commit": "b65741c",
+  "tag": "cycle-20260607-210000"
+}
