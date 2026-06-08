@@ -134,7 +134,7 @@ def start_background_scheduler(
     *,
     bootstrap: bool = True,
 ) -> BackgroundScheduler:
-    """Non-blocking APScheduler for co-hosting with FastAPI / Cloud Run."""
+    """Non-blocking APScheduler for co-hosting with FastAPI / Docker."""
     scheduler = _build_scheduler(blocking=False)
     _register_and_bootstrap(scheduler, engine, bootstrap=bootstrap)
     scheduler.start()

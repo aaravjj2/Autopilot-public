@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Install the standalone APEX morning-chain scheduler as a systemd unit (Linux).
-# Cloud Run uses in-process APEX_MORNING_CHAIN=true (see deploy_cloud_run.sh).
+# Production uses in-process APEX_MORNING_CHAIN=true (set via env / Docker).
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"

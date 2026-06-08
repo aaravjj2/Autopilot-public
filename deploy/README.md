@@ -1,6 +1,10 @@
 # Deploy
 
-Systemd unit files for APEX services. Install:
+**GitHub (recommended):** push to `main` — CI builds Docker images via
+`.github/workflows/ci.yml`. Registry publish uses GitHub Secrets
+(`DOCKER_USERNAME`, `DOCKER_PASSWORD`); no API keys belong in the repo.
+
+**Local systemd** unit files for APEX services. Install:
 
 ```bash
 # Replace %U with your username in each file, then:

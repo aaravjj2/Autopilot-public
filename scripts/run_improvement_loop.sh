@@ -14,8 +14,9 @@ export LOOP_ITERATION_SLEEP_SEC="${LOOP_ITERATION_SLEEP_SEC:-60}"
 export LOOP_DEPLOY_EVERY="${LOOP_DEPLOY_EVERY:-0}"
 export LOOP_PYTEST_TIMEOUT_SEC="${LOOP_PYTEST_TIMEOUT_SEC:-900}"
 
-if [[ -z "${CLOUD_RUN_URL:-}" && -f "$ROOT/data/cloud_run_url.txt" ]]; then
-  export CLOUD_RUN_URL="$(tr -d '\n' < "$ROOT/data/cloud_run_url.txt")"
+# Optional remote smoke: export DEPLOY_BACKEND_URL=https://your-host
+if [[ -z "${DEPLOY_BACKEND_URL:-}" && -n "${CLOUD_RUN_URL:-}" ]]; then
+  export DEPLOY_BACKEND_URL="${CLOUD_RUN_URL}"
 fi
 
 echo "Starting improvement loop max=$MAX start=${START:-auto} log=$LOG"

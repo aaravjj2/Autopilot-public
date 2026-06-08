@@ -84,6 +84,9 @@ logs/cycle_*.json
 
 # --- High-churn runtime streams ---
 data/kalshi_ticks.jsonl
+data/cloud_run_url.txt
+data/cloud_run_frontend_url.txt
+data/cloud_run_urls.json
 
 # --- Model candidates (regenerated each cycle) ---
 data/models/arb_edge/candidate_*/

@@ -11,7 +11,7 @@ from pathlib import Path
 
 import httpx
 
-from loop_modules.gcloud_deployer import read_cloud_run_url, verify_cloud_health
+from loop_modules.github_deployer import read_deploy_url, verify_deploy_health
 from loop_modules.models import ImplementationPlan, LoopContext, TestResult
 
 LOGGER = logging.getLogger(__name__)
@@ -56,7 +56,7 @@ class IterationTestRunner:
                 playwright_screenshots=[],
                 api_smoke_passed=True,
                 cloud_smoke_passed=True,
-                cloud_run_url=read_cloud_run_url(),
+                cloud_run_url=read_deploy_url(),
                 backtest_sharpe=2.5,
                 backtest_win_rate=0.6,
                 regression_passed=True,
@@ -81,8 +81,8 @@ class IterationTestRunner:
         else:
             playwright_passed, playwright_total, playwright_failed = 0, 0, 0
 
-        LOGGER.info("Step E: Cloud Run smoke")
-        cloud_smoke_passed, cloud_url = self._run_cloud_smoke()
+        LOGGER.info("Step E: Optional remote deploy smoke (DEPLOY_BACKEND_URL)")
+        cloud_smoke_passed, cloud_url = self._run_remote_smoke()
 
         LOGGER.info("Step F: Backtest regression check")
         backtest_sharpe, backtest_win_rate, regression_passed = self._run_backtest(context)
@@ -282,14 +282,14 @@ class IterationTestRunner:
                 except subprocess.TimeoutExpired:
                     proc.kill()
 
-    def _run_cloud_smoke(self) -> tuple[bool, str]:
-        url = read_cloud_run_url()
+    def _run_remote_smoke(self) -> tuple[bool, str]:
+        url = read_deploy_url()
         if not url:
-            LOGGER.warning("No CLOUD_RUN_URL configured — skipping cloud smoke (set data/cloud_run_url.txt)")
+            LOGGER.warning("No DEPLOY_BACKEND_URL — skipping remote smoke")
             return True, ""
-        ok, payload = verify_cloud_health(url)
+        ok, payload = verify_deploy_health(url)
         if not ok:
-            LOGGER.error("Cloud smoke failed for %s: %s", url, payload)
+            LOGGER.error("Remote deploy smoke failed for %s: %s", url, payload)
         return ok, url
 
     def _run_backtest(self, context: LoopContext) -> tuple[float, float, bool]:

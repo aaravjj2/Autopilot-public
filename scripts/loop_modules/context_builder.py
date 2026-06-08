@@ -6,7 +6,7 @@ from pathlib import Path
 
 import httpx
 
-from loop_modules.gcloud_deployer import read_cloud_run_url, verify_cloud_health
+from loop_modules.github_deployer import read_deploy_url, verify_deploy_health
 from loop_modules.models import LoopContext, LoopState
 
 WORKSPACE = Path("/home/aarav/Aarav/Autopilot")
@@ -75,11 +75,11 @@ def build_context(state: LoopState, iteration: int) -> LoopContext:
     if state.metrics_history:
         backtest_metrics = state.metrics_history[-1]
 
-    cloud_url = read_cloud_run_url()
+    cloud_url = read_deploy_url()
     cloud_health: dict[str, object] = {}
     if cloud_url:
         try:
-            ok, payload = verify_cloud_health(cloud_url)
+            ok, payload = verify_deploy_health(cloud_url)
             cloud_health = {"ok": ok, **payload}
         except httpx.HTTPError:
             cloud_health = {"ok": False, "error": "cloud health fetch failed"}

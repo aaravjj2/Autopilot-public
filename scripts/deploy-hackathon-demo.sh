@@ -21,7 +21,7 @@ for i in $(seq 1 30); do
     echo ""
     echo "Terminal:  http://127.0.0.1:3000/dashboard/arb-radar"
     echo "Agent API: http://127.0.0.1:8000/api/agent/missions"
-    echo "Set PUBLIC_DEMO_URL in .env after cloud deploy (Cloud Run / Fly.io)."
+    echo "Set PUBLIC_DEMO_URL in .env after publishing your Docker image."
     exit 0
   fi
   sleep 2

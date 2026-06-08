@@ -92,33 +92,28 @@ All security tests pass; the full suite is **336 passed, 1 skipped**.
 1. **Set real secrets in production**: `APEX_AUTH_SECRET` and `APEX_SECRETS_KEY`
    must be provided via Secret Manager. Ephemeral/derived fallbacks are dev-only.
 2. **Single-instance rate limiting**: the limiter is in-process; horizontal scale
-   requires a shared store (Redis). Cloud Run is deployed with `min=max=1`.
-3. **SQLite on Cloud Run is ephemeral**: auth/users reset on cold start unless
-   migrated to Cloud SQL / a mounted volume. Acceptable for demo; documented.
+   requires a shared store (Redis).
+3. **SQLite in containers is ephemeral** unless a volume is mounted: auth/users
+   reset on cold start. Acceptable for demo; documented.
 4. **No email verification / password reset** yet — accounts are local only.
 5. **Gemini key** provided returned `403 PERMISSION_DENIED`; the brain degrades
    to deterministic heuristics. Rotate the key and enable the Generative
    Language API on the project to activate the LLM path.
 
-## Cloud Run deployment
+## Deployment (GitHub Actions)
 
-Deployed via `deploy/deploy_cloud_run.sh` (idempotent, secret-safe):
+Production images are built on push to `main` via
+[`.github/workflows/ci.yml`](.github/workflows/ci.yml):
 
-- **Image**: built from `Dockerfile.cloudrun` (pinned through `cloudbuild.yaml`
-  so the dev-only `./Dockerfile` is never shipped). `PYTHONPATH` includes
-  `src`, `autopilot-local/backend`, and the app root.
-- **Secrets**: all sensitive `.env` keys (Gemini, auth/secrets keys, Alpaca,
-  Kalshi RSA, Polygon, SEC, BrightData) are read locally by
-  `deploy/_read_env_value.py` (multiline-PEM aware), pushed to **Secret
-  Manager**, and mounted as env vars via `--set-secrets`. Values are never
-  printed, baked into the image, or committed (`.gcloudignore` + `.gitignore`).
-- **Runtime config**: `AUTH_ENABLED=true`, `COOKIE_SECURE=true`,
-  `ALLOW_OPEN_REGISTRATION=false` (first admin still bootstraps), 2 vCPU / 2 GiB,
-  `min-instances=1`.
-- The Cloud Run runtime service account is granted
-  `roles/secretmanager.secretAccessor` per secret only.
+- **Backend image**: `Dockerfile.backend` (FastAPI / `backend_api.py`)
+- **Frontend image**: `autopilot-local/frontend/Dockerfile.frontend`
+- **Secrets**: API keys and auth material stay in `.env` / `keys.env` locally
+  (gitignored) or in **GitHub repository Secrets** (`DOCKER_USERNAME`,
+  `DOCKER_PASSWORD`) for registry publish. Nothing sensitive is committed.
+- **Local / demo**: `scripts/deploy-hackathon-demo.sh` and systemd units under
+  `deploy/` for on-host runs.
 
-### Live adversarial verification (deployed instance)
+### Live adversarial verification (optional remote host)
 
 | Live attack | Result |
 | --- | --- |

@@ -26,11 +26,10 @@ from loop_modules.artifact_capture import ArtifactCapture  # noqa: E402
 from loop_modules.doc_writer import IterationDocWriter  # noqa: E402
 from loop_modules.compactor import LoopCompactor  # noqa: E402
 from loop_modules.git_publisher import git_commit_and_push  # noqa: E402
-from loop_modules.gcloud_deployer import (  # noqa: E402
+from loop_modules.github_deployer import (  # noqa: E402
     backend_files_changed,
-    deploy_to_cloud_run,
-    gcloud_available,
-    read_cloud_run_url,
+    deploy_via_github,
+    read_deploy_url,
 )
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
@@ -104,10 +103,10 @@ def run_loop(
     sleep_sec = float(os.getenv("LOOP_ITERATION_SLEEP_SEC", "45"))
     runner = IterationTestRunner(is_dry_run)
 
-    if gcloud_available():
-        LOGGER.info("gcloud OK — Cloud Run URL: %s", read_cloud_run_url() or "(will capture on deploy)")
-    else:
-        LOGGER.warning("gcloud not configured — deploy phase will fail until authenticated")
+    LOGGER.info(
+        "Deploy path: git push → GitHub Actions CI/CD%s",
+        f" (smoke: {read_deploy_url()})" if read_deploy_url() else "",
+    )
 
     for i in range(start, start + max_iterations):
         LOGGER.info("=== ITERATION %s (target %s) ===", i, start + max_iterations - 1)
@@ -144,8 +143,8 @@ def run_loop(
 
             post_build_changed = subprocess_changed_files()
             if _should_deploy(i, post_build_changed, deploy_every=deploy_every, force_deploy=force_deploy):
-                LOGGER.info("Phase: Cloud Run deploy (gcloud)")
-                deploy_result = deploy_to_cloud_run(i, dry_run=is_dry_run)
+                LOGGER.info("Phase: GitHub CI/CD deploy (push triggers workflow)")
+                deploy_result = deploy_via_github(i, dry_run=is_dry_run)
                 if not deploy_result.success:
                     raise TestsFailedError(f"deploy failed: {deploy_result.error}")
             else:
@@ -223,7 +222,7 @@ if __name__ == "__main__":
         "--deploy-every",
         type=int,
         default=int(os.getenv("LOOP_DEPLOY_EVERY", "0")),
-        help="Deploy to Cloud Run every N iterations (0 = only when backend files change)",
+        help="Trigger GitHub deploy record every N iterations (0 = only when backend files change)",
     )
     parser.add_argument("--force-deploy", action="store_true", help="Always deploy after passing tests")
     args = parser.parse_args()
