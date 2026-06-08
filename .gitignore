@@ -74,3 +74,12 @@ node_modules/
 test-results/
 *.trace.zip
 *.zip
+
+# --- TypeScript build artifacts ---
+*.tsbuildinfo
+
+# --- Log files ---
+logs/*.log
+
+# --- Model candidates (regenerated each cycle) ---
+data/models/arb_edge/candidate_*/

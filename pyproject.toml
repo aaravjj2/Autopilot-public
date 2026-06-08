@@ -39,6 +39,7 @@ dependencies = [
 [project.optional-dependencies]
 dev = [
   "pytest>=8.2,<9",
+  "pytest-timeout>=2.3,<3",
 ]
 agents = [
   "langgraph>=0.4.8",
@@ -55,6 +56,10 @@ polymarket-mcp = [
 addopts = "-q"
 testpaths = ["tests"]
 pythonpath = ["src"]
+filterwarnings = [
+    "ignore:Support for class-based `config` is deprecated:DeprecationWarning",
+    "ignore:Accessing the 'model_fields' attribute on the instance is deprecated:DeprecationWarning",
+]
 
 [project.scripts]
 apex-engine = "apex.main:run_daily_cycle"

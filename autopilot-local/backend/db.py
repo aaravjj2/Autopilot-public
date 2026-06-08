@@ -4,6 +4,7 @@ from datetime import date, datetime, timezone
 from typing import Generator
 
 from sqlmodel import Field, Session, SQLModel, create_engine
+from pydantic import ConfigDict
 
 from config import get_settings
 
@@ -75,8 +76,7 @@ class PolymarketPosition(SQLModel, table=True):
     opened_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
     resolved_at: datetime | None = None
 
-    class Config:
-        table_name = "polymarket_position"
+    model_config = ConfigDict(table_name="polymarket_position")
 
 
 class PolymarketTrade(SQLModel, table=True):
@@ -92,8 +92,7 @@ class PolymarketTrade(SQLModel, table=True):
     status: str = "filled"  # filled | cancelled | failed
     executed_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
 
-    class Config:
-        table_name = "polymarket_trade"
+    model_config = ConfigDict(table_name="polymarket_trade")
 
 
 class PolymarketSnapshot(SQLModel, table=True):
@@ -106,8 +105,7 @@ class PolymarketSnapshot(SQLModel, table=True):
     daily_pl: float = 0.0
     daily_pl_pct: float = 0.0
 
-    class Config:
-        table_name = "polymarket_snapshot"
+    model_config = ConfigDict(table_name="polymarket_snapshot")
 
 
 class RefreshLog(SQLModel, table=True):

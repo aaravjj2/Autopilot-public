@@ -5,7 +5,7 @@ Per-phase model switching. Rate limit with per-tool cooldowns.
 Full cycle visibility: Bootstrap→Analyze→Plan→Execute→Test→Commit→Report
 """
 
-import json, os, subprocess, time, threading, requests, re, sys
+import json, os, subprocess, time, threading, requests, re, sys, logging
 from datetime import datetime, timedelta
 from pathlib import Path
 from collections import defaultdict
@@ -56,7 +56,7 @@ def post_to_discord(phase: str, content: str, color: int = 0x5865F2, emoji: str 
         }, timeout=5)
         time.sleep(0.3)  # rate limit: 1 msg per 0.3s
     except Exception as e:
-        print(f"[discord] {e}", file=sys.stderr)
+        logging.error(f"Discord webhook error: {e}")
 
 def post_phase_start(phase: str):
     post_to_discord(phase, f"▶️ Phase started", 0x5865F2, "🚀")
