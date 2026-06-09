@@ -15,7 +15,6 @@ from apex.brain import finance_knowledge as kb
 from apex.brain.finance_brain import (
     BrainVerdict,
     FinanceBrain,
-    _classify_probe_error,
     _extract_json,
     _heuristic_verdict,
     _opp_facts,

@@ -7,7 +7,7 @@ import pytest
 
 from apex.scheduler.jobs import SCHEDULE, register_jobs
 
-from test_integrations_and_autotrade import _engine, _opportunity
+from tests.test_integrations_and_autotrade import _engine, _opportunity
 
 
 @pytest.mark.smoke

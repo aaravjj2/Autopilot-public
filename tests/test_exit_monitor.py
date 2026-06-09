@@ -7,7 +7,7 @@ from apex.domain.enums import Direction
 from apex.domain.models import Position
 from apex.services.exit_monitor import evaluate_position_exit
 
-from test_integrations_and_autotrade import _engine, _opportunity
+from tests.test_integrations_and_autotrade import _engine, _opportunity
 
 
 def _settings_exit(tmp_path: Path, **overrides):

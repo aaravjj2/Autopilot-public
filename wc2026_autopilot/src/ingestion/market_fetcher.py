@@ -263,7 +263,6 @@ def fetch_kalshi_market(ticker: str) -> Market | None:
     m = data.get("market") or data
     if not m:
         return None
-    rows = fetch_kalshi_markets(limit=1)
     # Re-parse single market inline
     yes_bid = float(m.get("yes_bid") or 0)
     yes_ask = float(m.get("yes_ask") or 0)
