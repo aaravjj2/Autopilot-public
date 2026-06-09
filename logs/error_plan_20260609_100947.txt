@@ -1,0 +1,85 @@
+Phase: plan
+Tool: opencode
+Error Type: Rate limited (429)
+
+Based on the codebase analysis, here are the top **10 improvement tasks** (bugs, gaps, and fixes) prioritized by impact:
+
+---
+
+## IMPROVEMENT TASKS
+
+### P0 — CRITICAL BUGS
+
+**T1: `_nav_for_holdings()` in `data/performance.py` computes NAV incorrectly (always returns notional)**
+
+The function at line 22 iterates through holdings but ignores the actual stock price — it computes `nav += notional * h.weight` regardless of px. This means every PerformanceSnapshot value_usd is always $100,000 no matter what happens to prices. All Sharpe ratios, return percentages, and equity curves are meaningless.
+- **File:** `autopilot-local/backend/data/performance.py`, line 22
+- **Fix:** `nav += px * h.shares` or `nav += notional * h.weight * (px / avg_entry)` 
+
+**T2: `alpaca_client.py` imports `yfinance` inside a method body (inefficient + no error isolation)**
+
+`import yfinance as yf` on line 84 executes on every `get_latest_prices()` call, adding ~500ms import overhead. Also, a new `httpx.Client(timeout=10.0)` is created per-method (4+ clients per call). Should be module-level lazy import + shared httpx client.
+- **File:** `autopilot-local/backend/alpaca_client.py`
+- **Fix:** Move `import yfinance` to top, hoist httpx.Client to `__init__`
+
+**T3: `marketplace_routes.py` SSE stream `_pnl_stream()` creates unreclaimable asyncio tasks**
+
+The infinite `while True` loop in `_pnl_stream()` (line 248) has no `CancelledError` handler. When a client disconnects from the EventSource, the asyncio task keeps running forever, querying Alpaca every 3s for a zombie client.
+- **File:** `autopilot-local/backend/marketplace_routes.py`, line 248
+- **Fix:** Wrap in try/except CancelledError, add `asyncio.sleep(3, loop=...)` cancellation support
+
+---
+
+### P1 — FUNCTIONALITY GAPS
+
+**T4: `backend_api.py` does NOT include marketplace (copy-trading) routes**
+
+The unified backend at `backend_api.py` doesn't call `register_marketplace(app)` from `marketplace_integration.py`. So endpoints like `/api/portfolios`, `/api/polymarket/summary`, `/api/positions` are missing from the Playwright test backend. Likely cause of the 12 Playwright failures.
+- **File:** `backend_api.py` (lifespan or startup section)
+- **Fix:** Add `register_marketplace(app)` call in the `lifespan` or immediately after `app` creation
+
+**T5: `_portfolio_card()` hardcodes `aum_usd: 100_000.0` — should be dynamic**
+
+The portfolio card response sends a static $100k AUM regardless of the portfolio's actual performance. Misleading for the dashboard UI.
+- **File:** `autopilot-local/backend/marketplace_routes.py`, line 48
+- **Fix:** Derive AUM from the latest PerformanceSnapshot
+
+**T6: `pm_sync.py` silently skips rows when timestamp parsing fails**
+
+`_sync_snapshots()` at line 186 catches `ValueError/TypeError` for `datetime.fromisoformat(ts)` and silently `continue`s. This can lose entire days of bankroll snapshots without logging.
+- **File:** `autopilot-local/backend/pm_sync.py`, line 189
+- **Fix:** Add `LOGGER.warning("Skipping snapshot with unparseable timestamp: %s", ts)` before continue
+
+---
+
+### P2 — ROBUSTNESS & TESTING
+
+**T7: 12 Playwright E2E tests failing (11% of suite)**
+
+Iteration 0635 shows 12 failing out of 106 Playwright tests. Probable causes: (a) stale data-testid selectors in spec files vs. rendered components, (b) missing marketplace routes (T4), (c) front-end assumptions about the API response shape diverging from actual responses. Needs diagnosis and fix.
+- **Files:** `autopilot-local/frontend/tests/e2e/*.spec.ts`
+- **Fix:** Run with `--trace on` to capture failure screenshots, then update selectors and mock data
+
+**T8: `autopilot-continuous.py` Discord rate limit too aggressive (`time.sleep(0.3)`)**
+
+Discord webhook rate limit is 1 message per second. Current 0.3s sleep will trigger HTTP 429 after 3+ consecutive posts, causing lost cycle reports.
+- **File:** `autopilot-continuous.py`, line 57 (and line 55 in `autopilot.py`)
+- **Fix:** Change to `time.sleep(1.5)` or implement proper retry with backoff on 429
+
+**T9: No git hooks or code formatting standards — mixed indentation (2-space vs 4-space)**
+
+`alpaca_client.py` uses 2-space indentation (breaking PEP 8). The rest of the backend uses 4-space. No ruff/black configuration exists.
+- **Files:** Various (especially `alpaca_client.py`)
+- **Fix:** Add `pyproject.toml` with ruff config, run `ruff format`, add `ruff check --fix`
+
+**T10: `keys.env.example` lists 12 API keys with no usage context**
+
+The template has 12+ data API keys (Tiingo, Finage, NewsAPI, Finnhub, Polygon, Twelve Data, Quandl, Prixie, etc.) but no documentation about which features require which keys. First-time setup is trial-and-error.
+- **File:** `keys.env.example`
+- **Fix:** Add inline `# Required for: [feature name]` comments after each key, or add a `keys.env.example` header mapping features to keys
+
+---
+
+Each task is scoped to a single file or concern, actionable without dependencies, and testable independently. Want me to start implementing these in priority order?
+
+session_id: 20260609_100808_fe7924
