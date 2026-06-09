@@ -165,6 +165,21 @@ def probe_tool(tool):
                 if providers.returncode == 0:
                     cd_unlock("codebuff-mod")
 
+        elif tool == "opencode":
+            r = subprocess.run(["which", "opencode"], capture_output=True, text=True, timeout=5)
+            if r.returncode == 0:
+                # Quick responsiveness check
+                ping = subprocess.run(
+                    ["opencode", "run", "respond with only: ok", "--dir", str(BASE)],
+                    capture_output=True, text=True, timeout=15
+                )
+                if ping.returncode == 0:
+                    cd_unlock("opencode")
+                elif is_rate_limited(ping.stdout + ping.stderr):
+                    cd_lock("opencode", 30)
+                else:
+                    cd_unlock("opencode")
+
     except subprocess.TimeoutExpired:
         pass   # tool slow but not rate-limited
     except Exception as e:
@@ -172,7 +187,7 @@ def probe_tool(tool):
 
 def probe_loop():
     while True:
-        for tool in ["agy", "copilot", "gemini", "freebuff", "codebuff-mod", "ngrok", "ollama"]:
+        for tool in ["agy", "copilot", "freebuff", "codebuff-mod", "opencode", "ngrok", "ollama"]:
             probe_tool(tool)
         time.sleep(60)
 
@@ -350,8 +365,6 @@ def auto_plan() -> list[dict]:
             )
             out = r_api.json()["choices"][0]["message"]["content"]
             parsed_out = True
-        elif planner == "gemini":
-            cmd = ["gemini", "-p", prompt]
         else:
             cmd = ["agy", "--dangerously-skip-permissions", "-p", prompt,
                    "--workdir", WORKDIR]
@@ -397,10 +410,6 @@ def run_task(task: dict):
             cmd = ["agy", "--dangerously-skip-permissions", "-p", prompt,
                    "--workdir", workdir]
             timeout = 600
-
-        elif tool == "gemini":
-            cmd = ["gemini", "-p", f"In the project at {workdir}: {prompt}"]
-            timeout = 300
 
         elif tool == "opencode":
             cmd = ["opencode", "run", prompt, "--dir", workdir]

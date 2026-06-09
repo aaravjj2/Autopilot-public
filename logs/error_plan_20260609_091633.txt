@@ -1,0 +1,73 @@
+Phase: plan
+Tool: opencode
+Error Type: Model not found
+
+Now I have a thorough understanding of the entire codebase. Here are the **10 improvement tasks** I've identified:
+
+---
+
+## Improvement Tasks — Generated 2026-06-09
+
+### HIGH PRIORITY (bugs / security)
+
+**1. [SECURITY] Remove plaintext PAT token from git remote URL**
+- The origin remote URL at `/home/aarav/Aarav/Autopilot` embeds a GitHub personal access token: `https://224672050:gho_6O...@github.com/aaravjj2/Autopilot-public.git`
+- This leaks credentials in logs, `.git/config`, and any `git push` output
+- **Fix:** Use `git remote set-url origin` to strip the token, configure `credential.helper` (git-credential-store or gh CLI), and rotate the exposed PAT
+
+**2. [BUG] PolyMarket-MCP submodule tracking broken**
+- `git status` shows `external/PolyMarket-MCP` with `?` (untracked) instead of a proper gitlink entry
+- The `.gitmodules` file has the entry but the gitlink in the index is missing
+- **Fix:** `git submodule init` + `git submodule update --init --recursive` for the broken submodule, or `git rm --cached external/PolyMarket-MCP && git submodule add <url>` to re-register it
+
+**3. [BUG] `autopilot.py` crashes hard if `.state/config.json` is missing**
+- Line 24: `cfg = json.loads((STATE / "config.json").read_text())` — bare reads with zero error handling
+- If the file doesn't exist (fresh clone, corrupted state), the entire daemon crashes with `FileNotFoundError`
+- **Fix:** Wrap in try/except, generate a default config or print a helpful error message, and exit gracefully
+
+**4. [BUG] `autopilot.py` probes `gemini` tool every 60s but gemini CLI is NOT installed**
+- Line 175: `probe_loop()` iterates over `["agy", "copilot", "gemini", "freebuff", "codebuff-mod", "ngrok", "ollama"]`
+- Memory explicitly states: "gemini CLI is NOT installed on this system"
+- **Fix:** Remove `"gemini"` from the probe list to eliminate wasted subprocess calls every 60 seconds
+
+### MEDIUM PRIORITY (reliability / quality)
+
+**5. [RELIABILITY] `autopilot-continuous.py` rate-limit cooldowns are in-memory only**
+- The `RATE_LIMITS` dict (lines 24-30) never persists to disk
+- If the process restarts, all cooldowns reset immediately, hammering rate-limited APIs again
+- `autopilot.py` already has working disk persistence via `cd_write()` — the continuous loop should use the same pattern
+- **Fix:** Persist `RATE_LIMITS` to `STATE / "cooldowns.json"` like `autopilot.py` does
+
+**6. [QUALITY] `retry.py` backoff has no jitter — 20 retries at identical intervals**
+- `call_with_retries` uses `time.sleep(max(0.0, float(backoff_seconds)))` — flat, deterministic timing
+- For 20 retries this creates thundering-herd timing against the same API
+- **Fix:** Add `random.uniform(0.8, 1.2) * backoff_seconds` jitter, or use exponential backoff with `backoff_seconds * (2 ** attempt)`
+
+**7. [QUALITY] `pytest.ini` and `pyproject.toml` have duplicate pytest config**
+- `pytest.ini` defines `asyncio_default_fixture_loop_scope = function` and `markers`
+- `pyproject.toml` defines `asyncio_mode = "auto"` and its own `markers` list
+- The `pytest.ini` markers lack the `smoke` marker that `pyproject.toml` has
+- **Fix:** Remove `pytest.ini` or consolidate all config into one source of truth (pytest reads `pyproject.toml` natively)
+
+### LOW PRIORITY (polish / hygiene)
+
+**8. [HYGIENE] `run_discord_bot.py` uses bare `print()` instead of structured logging**
+- Line 17: `print(f"Loaded Discord keys from: {discord_keys}")` — should be `logger.info()`
+- The script already imports and configures logging (lines 25-34) but doesn't use it for this message
+- **Fix:** Replace the remaining `print()` call with `logger.info()`
+
+**9. [HYGIENE] `.gitignore` missing patterns for database files and logs**
+- `*.db`, `*.sqlite`, `*.sqlite3` are not gitignored — could leak audit.db, auth.db into version control
+- `logs/*.md` is not gitignored — cycle reports in markdown show as untracked (confirmed by `git status`)
+- **Fix:** Add `*.db`, `*.sqlite`, `*.sqlite3`, `logs/*.md` patterns to `.gitignore`
+
+**10. [POLISH] `autopilot.py` has no `--validate` / dry-run mode to check config without starting the full daemon**
+- The daemon immediately starts probe loops, tunnel management, and the planning cycle
+- No way to just verify that `.state/config.json` is valid, all paths exist, and required env vars are set
+- **Fix:** Add `argparse` entry point with `--validate` flag that checks config schema, file existence, and tool availability then exits
+
+---
+
+Shall I proceed with implementing these tasks? I can start with the top 3 highest-priority ones.
+
+session_id: 20260609_091434_7e8e05

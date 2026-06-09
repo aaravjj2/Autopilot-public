@@ -862,6 +862,7 @@ async def _run_intelligence_for_ticker(ticker: str) -> None:
                 try:
                     flags_raw = json.loads(flags_raw)
                 except Exception:
+                    logger.warning("Failed to parse settlement_flags JSON: %s", flags_raw[:200])
                     flags_raw = [flags_raw]
             opp = ArbOpportunity(
                 id=str(row.get("id")),
@@ -1924,6 +1925,7 @@ async def websocket_endpoint(websocket: WebSocket):
                     pong = {"type": "heartbeat", "timestamp": datetime.now(timezone.utc).isoformat()}
                     await websocket.send_json(pong)
                 except Exception:
+                    logger.warning("WebSocket heartbeat send failed — closing heartbeat loop")
                     break
 
         hb_task = asyncio.create_task(heartbeat())
@@ -1941,6 +1943,7 @@ async def websocket_endpoint(websocket: WebSocket):
     except WebSocketDisconnect:
         manager.disconnect(websocket)
     except Exception:
+        logger.warning("WebSocket handler caught unexpected exception — disconnecting", exc_info=True)
         manager.disconnect(websocket)
 
 # Manual refresh endpoint
