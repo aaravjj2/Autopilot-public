@@ -116,17 +116,6 @@ def probe_tool(tool):
             else:
                 cd_unlock("agy")
 
-        elif tool == "gemini":
-            r = subprocess.run(
-                ["gemini", "-p", "say ok"],
-                capture_output=True, text=True, timeout=20
-            )
-            out = r.stdout + r.stderr
-            if is_rate_limited(out):
-                cd_lock("gemini", 0)   # gemini resets fast
-            else:
-                cd_unlock("gemini")
-
         elif tool == "ngrok":
             url = (STATE / "ngrok_url.txt").read_text().strip()
             if not url:

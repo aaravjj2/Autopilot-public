@@ -129,7 +129,7 @@ class DataCache:
             if APEX_POSITIONS is not None:
                 APEX_POSITIONS.set(len(self._positions))
         except Exception:
-            pass
+            logger.warning("Failed to set APEX_POSITIONS metric", exc_info=True)
 
     def _hydrate_audit_once(self, limit: int = 100) -> None:
         opportunities: list[dict] = []
@@ -138,6 +138,7 @@ class DataCache:
         try:
             rows = store.read_table("audit_log", limit=limit)
         except Exception:
+            logger.exception("Failed to read audit_log from store")
             self._opportunities = []
             self._proposals = []
             self._events = deque(maxlen=200)
@@ -555,6 +556,7 @@ async def lifespan(app: FastAPI):
                 )
                 _ws_tickers = [m.ticker for m in markets][:50]
             except Exception:
+                logger.warning("Kalshi WS L2 — failed to get macro markets, no WS tickers")
                 _ws_tickers = []
             if _ws_tickers:
                 _kalshi_ws_task = asyncio.create_task(_kalshi_ws_mgr.run(_ws_tickers))
@@ -620,7 +622,7 @@ async def prometheus_request_counter(request, call_next):
                 endpoint=request.url.path,
             ).inc()
     except Exception:
-        pass
+        logger.warning("Failed to increment APEX_REQUESTS metric", exc_info=True)
     return response
 
 _CORS_ORIGINS = [
@@ -1744,13 +1746,14 @@ def _health_payload() -> dict[str, Any]:
         arb_active = len(store.list_arb_opportunities(limit=500))
         opportunities_count = max(opportunities_count, arb_active)
     except Exception:
-        pass
+        logger.warning("Health check: failed to list arb opportunities", exc_info=True)
     ml_block: dict = {}
     try:
         from apex.services.self_improvement import ml_status
 
         ml_block = ml_status(store)
     except Exception:
+        logger.warning("Health check: ml_status failed", exc_info=True)
         ml_block = {}
     def _finite_or_none(value: Any) -> float | None:
         try:

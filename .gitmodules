@@ -1,0 +1,35 @@
+[submodule "external/Kronos"]
+	path = external/Kronos
+	url = https://github.com/shiyu-coder/Kronos.git
+
+[submodule "external/MiroFish"]
+	path = external/MiroFish
+	url = https://github.com/666ghj/MiroFish.git
+
+[submodule "external/PolyMarket-MCP"]
+	path = external/PolyMarket-MCP
+	url = https://github.com/guangxiangdebizi/PolyMarket-MCP.git
+
+[submodule "external/TradingAgents"]
+	path = external/TradingAgents
+	url = https://github.com/TauricResearch/TradingAgents.git
+
+[submodule "external/alpaca-mcp-server"]
+	path = external/alpaca-mcp-server
+	url = https://github.com/alpacahq/alpaca-mcp-server.git
+
+[submodule "external/daily_stock_analysis"]
+	path = external/daily_stock_analysis
+	url = https://github.com/ZhuLinsen/daily_stock_analysis.git
+
+[submodule "external/dexter"]
+	path = external/dexter
+	url = https://github.com/virattt/dexter.git
+
+[submodule "external/financial-services"]
+	path = external/financial-services
+	url = https://github.com/anthropics/financial-services.git
+
+[submodule "external/polymarket-mcp-server"]
+	path = external/polymarket-mcp-server
+	url = https://github.com/caiovicentino/polymarket-mcp-server.git
