@@ -239,7 +239,7 @@ cycle-20260609-123003
 
 | Issue | Status |
 |-------|--------|
-| Git push capability | 🔴 **REGRESSED** — PAT removed from URL but no credential helper configured. Push will fail with auth error. |
+| Git push capability | 🔴 **REGRESSED** — PAT removed from URL but no credential helper configured. Push confirmed failing: `fatal: could not read Username for 'https://github.com': No such device or address` |
 | Playwright E2E flaky | 🟢 RESOLVED — robust skip logic for missing dashboard |
 | API smoke failing | 🟢 RESOLVED — working since iter 631 |
 | Kalshi 429 rate limits | 🟢 MITIGATED — 60s TTL caching |
