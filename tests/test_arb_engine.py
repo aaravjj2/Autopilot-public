@@ -1,11 +1,13 @@
 from __future__ import annotations
 
+import pytest
 from pathlib import Path
 from types import SimpleNamespace
 
 from apex.repositories.sqlite_store import SQLiteStore
 
 
+@pytest.mark.smoke
 def test_topics_compatible_blocks_cross_topic_false_positives() -> None:
     from apex.services.arb_engine import _topics_compatible
 

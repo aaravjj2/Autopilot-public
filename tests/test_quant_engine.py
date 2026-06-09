@@ -30,7 +30,8 @@ def test_net_edge_matches_fee_model() -> None:
     assert net == pytest.approx(gross - fee, abs=1e-6)
 
 
-def test_fractional_kelly_bounded() -> None:
+@pytest.mark.smoke
+def test_fractional_kelly_produces_valid_sizes() -> None:
     f = qe.fractional_kelly(win_prob=0.9, cost=0.85, alpha=0.25)
     assert 0.0 <= f <= 0.5
 

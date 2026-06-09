@@ -6,6 +6,7 @@ Reports everything to Discord.
 """
 
 import json
+import logging
 import subprocess
 import time
 import threading
@@ -28,6 +29,18 @@ KAGGLE_UN = cfg["kaggle_username"]
 OR_KEY    = cfg.get("openrouter_key", "")
 OR_MODEL  = cfg.get("openrouter_free_model", "deepseek/deepseek-v4-flash:free")
 
+# ── Local logger (supplements Discord notifications) ────────────────────
+LOGS.mkdir(parents=True, exist_ok=True)
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)s] %(message)s",
+    handlers=[
+        logging.FileHandler(LOGS / "daemon.log"),
+        logging.StreamHandler(),
+    ],
+)
+logger = logging.getLogger("autopilot")
+
 # ── Discord ────────────────────────────────────────────────────────────
 def disc(msg: str, color: int = 0x5865F2, title: str = "Autopilot"):
     try:
@@ -41,7 +54,7 @@ def disc(msg: str, color: int = 0x5865F2, title: str = "Autopilot"):
         }, timeout=5)
         time.sleep(0.5)   # stay under 30/min webhook limit
     except Exception as e:
-        print(f"[discord] {e}")
+        logger.warning("Discord webhook failed: %s", e)
 
 def disc_ok(msg):   disc(msg, 0x57F287, "✅ Success")
 def disc_warn(msg): disc(msg, 0xFEE75C, "⚠️ Warning")
@@ -166,7 +179,7 @@ def probe_tool(tool):
     except subprocess.TimeoutExpired:
         pass   # tool slow but not rate-limited
     except Exception as e:
-        print(f"[probe:{tool}] {e}")
+        logger.warning("Tool probe [%s] failed: %s", tool, e)
 
 def probe_loop():
     while True:
@@ -239,7 +252,7 @@ def kaggle_poll_ngrok():
                 return url
 
         except Exception as e:
-            print(f"[kaggle_poll] {e}")
+            logger.warning("Kaggle poll error: %s", e)
 
     disc_err("Kaggle tunnel never came up after 20 min")
     return None
@@ -256,7 +269,7 @@ def tunnel_manager_loop():
                 tunnel_alive = r.status_code in (200, 401)
             except requests.RequestException as e:
                 tunnel_alive = False
-                print(f"[tunnel] health check failed: {e}")
+                logger.warning("Tunnel health check failed: %s", e)
 
         if not tunnel_alive:
             (STATE / "ngrok_url.txt").write_text("")

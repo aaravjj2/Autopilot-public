@@ -7,6 +7,7 @@ import pytest
 from apex.dashboard.health import _probe_llm_route
 
 
+@pytest.mark.smoke
 def test_llm_route_ok_in_heuristic_mode(monkeypatch: pytest.MonkeyPatch) -> None:
     monkeypatch.delenv("GROQ_API_KEY", raising=False)
     monkeypatch.delenv("OPENROUTER_KEY", raising=False)
@@ -20,6 +21,7 @@ def test_llm_route_ok_in_heuristic_mode(monkeypatch: pytest.MonkeyPatch) -> None
     assert "heuristic" in row.detail.lower()
 
 
+@pytest.mark.smoke
 def test_llm_route_ok_when_groq_key_present(monkeypatch: pytest.MonkeyPatch) -> None:
     from types import SimpleNamespace
 

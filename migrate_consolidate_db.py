@@ -2,8 +2,16 @@
 """Database consolidation script - merges discord_trades.db and signal_quality.db into audit.db"""
 from __future__ import annotations
 
+import logging
 import sqlite3
 from pathlib import Path
+
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)s] %(message)s",
+)
+logger = logging.getLogger("migrate_db")
+
 
 def migrate_database(audit_db_path: str = "data/audit.db") -> None:
     """Consolidate all SQLite databases into audit.db with data preservation."""
@@ -157,7 +165,7 @@ def migrate_database(audit_db_path: str = "data/audit.db") -> None:
     # Migrate discord_trades.db
     discord_db = Path("data/discord_trades.db")
     if discord_db.exists():
-        print(f"📦 Migrating {discord_db}...")
+        logger.info("📦 Migrating %s...", discord_db)
         discord_conn = sqlite3.connect(discord_db)
         discord_conn.row_factory = sqlite3.Row
         discord_cursor = discord_conn.cursor()
@@ -202,21 +210,21 @@ def migrate_database(audit_db_path: str = "data/audit.db") -> None:
                     )
                     migrated += 1
                 except Exception as e:
-                    print(f"  ⚠️  Failed to migrate discord trade {row['id']}: {e}")
+                    logger.warning("⚠️  Failed to migrate discord trade %s: %s", row["id"], e)
             
             audit_conn.commit()
-            print(f"  ✅ Migrated {migrated} Discord trades")
+            logger.info("✅ Migrated %d Discord trades", migrated)
         except Exception as e:
-            print(f"  ❌ Failed to migrate discord_trades: {e}")
+            logger.error("❌ Failed to migrate discord_trades: %s", e)
         finally:
             discord_conn.close()
     else:
-        print(f"ℹ️  {discord_db} not found, skipping")
+        logger.info("ℹ️  %s not found, skipping", discord_db)
     
     # Migrate signal_quality.db
     signal_db = Path("data/signal_quality.db")
     if signal_db.exists():
-        print(f"📦 Migrating {signal_db}...")
+        logger.info("📦 Migrating %s...", signal_db)
         signal_conn = sqlite3.connect(signal_db)
         signal_conn.row_factory = sqlite3.Row
         signal_cursor = signal_conn.cursor()
@@ -254,28 +262,28 @@ def migrate_database(audit_db_path: str = "data/audit.db") -> None:
                     )
                     migrated += 1
                 except Exception as e:
-                    print(f"  ⚠️  Failed to migrate signal {row['id']}: {e}")
+                    logger.warning("⚠️  Failed to migrate signal %s: %s", row["id"], e)
             
             audit_conn.commit()
-            print(f"  ✅ Migrated {migrated} signals")
+            logger.info("✅ Migrated %d signals", migrated)
         except Exception as e:
-            print(f"  ❌ Failed to migrate signal_quality: {e}")
+            logger.error("❌ Failed to migrate signal_quality: %s", e)
         finally:
             signal_conn.close()
     else:
-        print(f"ℹ️  {signal_db} not found, skipping")
+        logger.info("ℹ️  %s not found, skipping", signal_db)
     
     # Verify migration
-    print("\n📊 Migration Summary:")
+    logger.info("📊 Migration Summary:\n")
     for table in ["audit_log", "discord_trades", "signal_tracking", "equity_curve", "completed_trades"]:
         try:
             count = audit_cursor.execute(f"SELECT COUNT(*) FROM {table}").fetchone()[0]
-            print(f"  {table}: {count} rows")
+            logger.info("  %s: %d rows", table, count)
         except Exception:
-            print(f"  {table}: 0 rows")
+            logger.info("  %s: 0 rows", table)
     
     audit_conn.close()
-    print("\n✅ Database consolidation complete!")
+    logger.info("✅ Database consolidation complete!\n")
 
 if __name__ == "__main__":
     migrate_database()

@@ -102,6 +102,7 @@ def build_proposal(**overrides) -> TradeProposal:
     return TradeProposal(**payload)
 
 
+@pytest.mark.smoke
 def test_execution_rejects_below_conviction_floor(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
     settings = build_settings(tmp_path)
     store = SQLiteStore(settings.sqlite_path)

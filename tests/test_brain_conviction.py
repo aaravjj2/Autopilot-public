@@ -1,6 +1,9 @@
 from __future__ import annotations
 
 
+import pytest
+
+
 from apex.core.config import Settings
 from apex.domain.enums import Direction, PMSignal
 from apex.layers.l1.brain import FinanceBrainService
@@ -46,6 +49,7 @@ class MockPMClient:
         return {"signal": self._signal.value, "divergence": self._divergence}
 
 
+@pytest.mark.smoke
 def test_trend_score_bullish():
     settings = make_settings()
     pm_client = MockPMClient()

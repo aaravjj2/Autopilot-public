@@ -34,6 +34,7 @@ def client(tmp_path, monkeypatch):
         auth_store_mod.reset_auth_store_for_tests(None)
 
 
+@pytest.mark.smoke
 def test_reads_are_public(client):
     assert client.get("/health").status_code == 200
 

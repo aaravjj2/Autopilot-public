@@ -10,6 +10,7 @@ from apex.scheduler.jobs import SCHEDULE, register_jobs
 from test_integrations_and_autotrade import _engine, _opportunity
 
 
+@pytest.mark.smoke
 def test_register_jobs_schedule_matches_callbacks(tmp_path: Path) -> None:
     sched = MagicMock()
     register_jobs(sched, _engine(tmp_path, autotrade_all_approved=False))

@@ -25,6 +25,7 @@ from apex.brain.finance_brain import (
 # --------------------------------------------------------------------------- #
 # Knowledge base integrity
 # --------------------------------------------------------------------------- #
+@pytest.mark.smoke
 def test_knowledge_cards_have_unique_ids_and_content() -> None:
     cards = kb.all_cards()
     assert len(cards) >= 10

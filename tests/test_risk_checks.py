@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import pytest
 from datetime import date, timedelta
 
 from apex.core.config import Settings
@@ -47,6 +48,7 @@ def make_proposal(**overrides) -> TradeProposal:
     return TradeProposal(**payload)
 
 
+@pytest.mark.smoke
 def test_r01_rejects_live_endpoint() -> None:
     settings = make_settings(ALPACA_PAPER_TRADE=False, ALPACA_BASE_URL="https://api.alpaca.markets")
     engine = RiskCheckEngine(settings)
