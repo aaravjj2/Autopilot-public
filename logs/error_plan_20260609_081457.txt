@@ -1,0 +1,72 @@
+Phase: plan
+Tool: opencode
+Error Type: Rate limited (429)
+
+Now I have a thorough picture. Let me compile the analysis into prioritized improvement tasks.
+
+---
+
+## Codebase Analysis Complete — 10 Improvement Tasks
+
+Based on inspection of all key source files, error logs, health reports, and test artifacts:
+
+### Task 1 — Fix Playwright E2E navigation test (HIGH)
+**File:** `autopilot-local/frontend/tests/e2e/full-flow.spec.ts`
+**Issue:** Line 15 expects `page.toHaveURL(/trading/)` but clicking sidebar link navigates to `/dashboard/trading`. The sidebar links are nested under `/dashboard/` prefix but the test regex expects `/trading/` directly. Fix the URL pattern or the click handler.
+**Evidence:** 12 consecutive failures in iteration 0635, 8 in 0634. Error context shows sidebar links point to `/dashboard/trading`, not `/trading/`.
+
+### Task 2 — Fix Pydantic v2 deprecation warnings (HIGH)
+**File:** `autopilot-local/backend/db.py` (lines ~78, 95, 109)
+**Issue:** 3 models (`PolymarketPosition`, `PolymarketTrade`, `PolymarketSnapshot`) use old `class Config: table_name = "..."` pattern instead of Pydantic v2's `model_config = ConfigDict(table_name="...")`. Causes 3 deprecation warnings every test run.
+**Fix:** Replace `class Config:` with `model_config = ConfigDict(...)`.
+
+### Task 3 — Clean unused imports & f-string in autopilot-continuous.py (MEDIUM)
+**File:** `autopilot-continuous.py` (line 8)
+**Issue:** 4 unused imports (`os`, `threading`, `sys`, `collections.defaultdict`), 1 multi-import on single line, 1 f-string without placeholder (`f"▶️ Phase started"` — just use regular string).
+**Fix:** `ruff check --fix --select F,T` or manual cleanup.
+
+### Task 4 — Remove deprecated frontend exports (MEDIUM)
+**File:** `autopilot-local/frontend/lib/backend-urls.ts`
+**Issue:** `apexWsUrl` (line 42), `MARKETPLACE_API_URL` (line 53), `marketWsUrl` (line 56) are marked `@deprecated` with replacement functions available. They clutter the API surface and could cause confusion.
+**Fix:** Remove the 3 deprecated exports and search-replace any usages across the frontend.
+
+### Task 5 — Fix gemini CLI probe in autopilot.py (MEDIUM)
+**File:** `autopilot.py` (lines 106-115)
+**Issue:** `probe_tool("gemini")` runs `["gemini", "-p", "say ok"]` but the SOUL.md explicitly states "gemini CLI is NOT installed on this system." This always fails silently.
+**Fix:** Either install gemini CLI, or wrap in try/except and mark as permanently unavailable, or remove the probe.
+
+### Task 6 — Add candidate_* model dirs to .gitignore (MEDIUM)
+**File:** `.gitignore`
+**Issue:** The only `candidate_*` gitignore rule is `data/models/arb_edge/candidate_*/` but the CODEBASE_HEALTH report notes 4 untracked `candidate_*` directories at root level. These generate git noise on every cycle.
+**Fix:** Add `candidate_*/` at root level to .gitignore.
+
+### Task 7 — Install pytest-timeout and add @smoke markers (MEDIUM)
+**Files:** `pyproject.toml`, test files
+**Issue:** `pytest-timeout` is listed in `[dev]` deps but not installed in active venv. The `@smoke` marker is defined in pytest config but zero tests use it. Test suite 414 tests takes >120s with no per-test timeouts.
+**Fix:** Install `pytest-timeout`, add `@pytest.mark.smoke` to ~10-15 core tests, configure `-m "not slow"` as default to keep cycle fast.
+
+### Task 8 — Fix stale config.json OpenRouter key placeholder (LOW)
+**File:** `.state/config.json`
+**Issue:** `openrouter_key` is `"FILL_IN_YOUR_OPENROUTER_KEY_HERE"` — the routing code in `autopilot.py` line 313 checks for this but silently falls through without logging. Should warn or remove the unused key.
+**Fix:** Either set a real key, or remove the key field and delete the OpenRouter routing branch, or add a warning log when the stub is detected.
+
+### Task 9 — Implement log rotation for error logs (LOW)
+**Directory:** `logs/`
+**Issue:** 63+ `error_*.txt` files generated in one day, all for the same root cause (HTTP 429 rate limits). No log rotation or cleanup. Consumes disk space and clutters directory.
+**Fix:** Add a cleanup script that removes error logs older than 7 days, or consolidate into a single rotating log file per phase.
+
+### Task 10 — Add requirements.txt / dependency lock (LOW)
+**File:** `pyproject.toml` (no lock file)
+**Issue:** Only `pyproject.toml` with loose version pins exists. No `requirements.txt` or lock file for reproducible installs. The `backend/requirements.txt` is separate and minimal.
+**Fix:** Generate `requirements.txt` from `pyproject.toml` using `pip-compile` or `pip freeze > requirements.lock.txt` for deterministic installs.
+
+---
+
+**Stats:**
+- 406/406 pytest passing (zero failures)
+- 94/106 Playwright passing (12 failures in full-flow spec)
+- 62 total error logs (all from rate limiting — no code failures)
+- 0 TODO/FIXME in `src/` directory
+- Source code is remarkably clean — the main blockers are the E2E test and the Pydantic deprecations
+
+session_id: 20260609_081327_e8d1d5

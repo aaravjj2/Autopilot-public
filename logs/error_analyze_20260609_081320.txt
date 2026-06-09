@@ -1,0 +1,96 @@
+Phase: analyze
+Tool: opencode
+Error Type: Rate limited (429)
+
+Analysis complete. Here's the full report:
+
+---
+
+## Codebase Analysis Report — 2026-06-09
+
+**Test Suite: 406/406 pytest passing (as of iteration 0635)**
+**Playwright E2E: 94/106 passed — 12 failed (iteration 0635), 96/104 — 8 failed (iteration 0634)**
+**TypeScript: Compiles clean**
+**Lint: 6 fixable issues (4 unused imports, 1 multi-import, 1 f-string)**
+
+---
+
+### 🔴 Issue #1: Playwright E2E consistently failing (highest priority)
+- 12 failures in iteration 0635, 8 in 0634 — all in `full-flow.spec.ts`
+- **Root cause:** The `complete navigation flow` test has a consistent failure pattern — `waitForSelector('html[data-terminal-hydrated="true"]', { timeout: 30_000 })` times out or sidebar `clickSidebar` navigation fails at Marketplace/Positions step because the nav link href doesn't match the expected pattern
+- **Impact:** Every cycle reports "overall: FAIL" despite pytest, backtesting, API smoke, and regression all passing clean
+- **Evidence:** `test-results/` directory shows `full-flow-Full-User-Flow-complete-navigation-flow-chromium` with 2 retries
+
+### 🔴 Issue #2: Pydantic v2 Config class deprecation (3 instances)
+- **File:** `autopilot-local/backend/db.py` lines 78, 95, 109
+- **Models affected:** `PolymarketPosition`, `PolymarketTrade`, `PolymarketSnapshot`
+- **Current code:**
+  ```python
+  class Config:
+      table_name = "polymarket_position"
+  ```
+- **Required fix:** Replace with `model_config = ConfigDict(table_name="polymarket_position")` (Pydantic v2 API)
+- 3 `sqlmodel/main.py` warnings also appear but are from the library itself
+
+### 🔴 Issue #3: OpenRouter API key is a stub placeholder
+- **File:** `.state/config.json` line 6
+- Value is `"FILL_IN_YOUR_OPENROUTER_KEY_HERE"` — not a real key
+- The OpenRouter routing path in `autopilot-continuous.py` will silently fail
+
+### 🔴 Issue #4: Rate limit saturation on continuous loop
+- 63+ error log files generated today in `logs/error_*.txt`
+- Every phase (bootstrap, analyze, plan, execute, test, commit, report) hitting **HTTP 429** from opencode-zen API
+- The continuous loop is largely non-functional due to API rate limits
+
+### 🟡 Issue #5: Lint errors in autopilot-continuous.py (6 fixable)
+- **4 unused imports:** `os`, `threading`, `sys`, `collections.defaultdict` (lines 8, 11)
+- **1 multiple-imports-on-one-line:** `import json, os, subprocess, ...` (line 8)
+- **1 f-string without placeholders:** `f"▶️ Phase started"` (line 62)
+- All 6 are auto-fixable with `ruff check --fix`
+
+### 🟡 Issue #6: Deprecated exports in frontend
+- **File:** `autopilot-local/frontend/lib/backend-urls.ts` lines 42, 53, 56
+- `apexWsUrl` (line 42) — marked `@deprecated` in favor of `getApexApiUrl()`/`getApexWsUrl()`
+- `MARKETPLACE_API_URL` (line 53) — marked `@deprecated` in favor of `getMarketplaceApiUrl()`
+- `marketWsUrl` (line 56) — marked `@deprecated` in favor of `getApexWsUrl()`
+
+### 🟡 Issue #7: Test suite runtime exceeds 120s timeout
+- Full `pytest tests/` collection shows 414 tests, but running them all times out at 120s
+- Some individual tests also timeout (e.g. `test_security_primitives.py`, `test_execution.py`)
+- No per-test timeouts configured — could leave individual tests hanging
+
+### 🟡 Issue #8: External TODOs in Kronos config (4 instances)
+- `external/Kronos/finetune/config.py` lines 12, 40, 81, 99
+- User-facing "fill me in" placeholders for data paths, workspace name, model locations
+- Low priority (external template code)
+
+---
+
+### ✅ What's Healthy
+
+| Area | Status |
+|------|--------|
+| Python tests | 406/406 passing (0 failures) |
+| TypeScript | Compiles with zero errors |
+| TODO/FIXME in src/ | 0 instances — source code is clean |
+| Broken imports | None across 110+ Python files |
+| Syntax errors | None |
+| Hardcoded secrets | None in source code (env vars only) |
+| `utcnow()` deprecation | Already fixed (`datetime.now(datetime.UTC)`) |
+| Bare except clauses | None in src/ |
+| Debug breakpoints | None left in code |
+| Coverage | Good across arb engine, risk, execution, ML, DeFi, CFTC compliance |
+
+---
+
+### Priority Action Plan
+
+1. **Fix Playwright E2E test** — repair `full-flow.spec.ts` navigation selectors so the cycle can report "overall: PASS"
+2. **Fix Pydantic v2 deprecations** — update 3 `class Config:` blocks in `db.py` to use `model_config = ConfigDict(...)`
+3. **Fix 6 lint errors** — `ruff check --fix` on `autopilot-continuous.py`
+4. **Remove deprecated frontend exports** — clean up `backend-urls.ts`
+5. **Add test timeouts** — configure `pytest-timeout` to prevent hanging tests
+
+The codebase is in good health overall — the main blocker is the Playwright navigation test that prevents the cycle from reporting success.
+
+session_id: 20260609_080808_4ebae2
