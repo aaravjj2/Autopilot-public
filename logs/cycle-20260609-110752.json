@@ -1,0 +1,52 @@
+{
+  "cycle": "cycle-20260609-110752",
+  "timestamp": "2026-06-09T11:07:52Z",
+  "model": "deepseek-v4-flash-free (opencode-zen)",
+  "tasks_executed": [
+    {
+      "id": "t-1",
+      "description": "Fix .state/config.json crash in autopilot.py (line 24)",
+      "status": "completed",
+      "detail": "Wrapped bare json.loads() in try/except FileNotFoundError | JSONDecodeError. On failure: prints diagnostic message, creates default config.json with empty fields, then continues. Previously killed daemon before any logging."
+    },
+    {
+      "id": "t-2",
+      "description": "Fix .state/config.json crash in autopilot-continuous.py (line 22)",
+      "status": "completed",
+      "detail": "Same fix applied to autopilot-continuous.py — was vulnerable to same crash on fresh clone or corrupted state."
+    },
+    {
+      "id": "t-3",
+      "description": "Remove dead gemini entry from autopilot-continuous.py RATE_LIMITS",
+      "status": "completed",
+      "detail": "Removed 'gemini': {...} from RATE_LIMITS dict. Gemini CLI is not installed on this system per memory. autopilot.py already removed it in e794bb2, but autopilot-continuous.py was not updated."
+    },
+    {
+      "id": "t-4",
+      "description": "Add disk persistence for RATE_LIMITS in autopilot-continuous.py",
+      "status": "completed",
+      "detail": "Added STATE_RATE_FILE = STATE / 'rate_limits.json', _load_rate_limits() (loads from disk with fallback to defaults), _save_rate_limits() (writes after every lock/unlock). RATE_LIMITS initialized from _load_rate_limits() at module load. mark_locked() and mark_available() both call _save_rate_limits() after mutation. Matching autopilot.py cooldowns.json pattern."
+    }
+  ],
+  "test_results": {
+    "passed": 32,
+    "skipped": 0,
+    "failed": 0,
+    "duration_sec": 6.7,
+    "note": "smoke suite (001_regression + 011_regression + security_primitives)"
+  },
+  "functional_tests": {
+    "config_crash_recovery": "PASS",
+    "rate_limit_persistence": "PASS",
+    "gemini_entry_removed": "PASS",
+    "default_creation_on_missing": "PASS"
+  },
+  "git": {
+    "message": "fix(crash): protect config loading, remove dead gemini entry, persist rate limits",
+    "push_result": "blocked — no credential helper configured. 6 commits ahead of origin/main."
+  },
+  "known_blockers": [
+    "Git push blocked — needs user to configure gh auth or provide token",
+    "LLM routing may hit rate limits (Groq 401, OpenCode Zen 429)"
+  ]
+}

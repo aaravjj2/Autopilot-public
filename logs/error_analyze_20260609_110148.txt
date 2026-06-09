@@ -1,0 +1,146 @@
+Phase: analyze
+Tool: opencode
+Error Type: Model not found
+
+  ┊ review diff
+a//home/aarav/Aarav/Autopilot/logs/error_analyze_20260609_105753.txt → b//home/aarav/Aarav/Autopilot/logs/error_analyze_20260609_105753.txt
+@@ -0,0 +1,109 @@
++Phase: analyze
++Tool: deepseek-v4-flash-free (providers: opencode-zen)
++Cycle: 636 (current)
++
++## Comprehensive Codebase Analysis — 2026-06-09 10:57 UTC
++
++### Test Status
++- Smoke suite (10 critical-path tests): 10/10 passed in 15.8s ✅
++- Full backend suite (414 tests): timed out at 120s (may need parallel mode)
++- Playwright E2E: 20 skipped (config), **1 FAILING** — see below
++
++---
++
++### 🔴 P0 — CRITICAL BUGS (must fix)
++
++**1. [BUG] `autopilot.py` + `autopilot-continuous.py` crash if `.state/config.json` is missing**
++- File: `autopilot.py:24` and `autopilot-continuous.py:22`
++- Code: `cfg = json.loads((STATE / "config.json").read_text())`
++- Zero error handling. Fresh clone, corrupted state, or permission issue → `FileNotFoundError` kills both daemons immediately before any logging is set up.
++- Fix: Wrap in try/except FileNotFoundError with helpful error + graceful exit.
++
++**2. [BUG] Playwright E2E — full-flow.spec.ts trading navigation fails**
++- File: `autopilot-local/frontend/tests/e2e/full-flow.spec.ts:15`
++- Error: `expect(page).toHaveURL(/trading/)` failed — received `http://127.0.0.1:3000/dashboard`
++- Clicking "Trading" sidebar link doesn't navigate to `/dashboard/trading/`. The test expects URL transition but the sidebar click either doesn't register or routing doesn't trigger.
++- Test source reference: `clickSidebar(page, 'Trading')` then expects `/trading/`
++- Fix: Investigate sidebar navigation handler — may be a hydration issue or route guard blocking navigation.
++
++---
++
++### 🟡 P1 — RELIABILITY ISSUES (medium)
++
++**3. [BUG] `gemini` dead entry in `autopilot-continuous.py` RATE_LIMITS**
++- File: `autopilot-continuous.py:33`
++- Code: `"gemini": { "cooldown": 0, "fails": 0, "locked_until": None }`
++- `autopilot.py` already removed gemini from its probe list (commit e794bb2) but `autopilot-continuous.py` was not updated.
++- Memory states: "gemini CLI is NOT installed on this system. Do not route tasks to it."
++- Fix: Remove the `gemini` entry from RATE_LIMITS.
++
++**4. [RELIABILITY] `autopilot-continuous.py` RATE_LIMITS are in-memory only**
++- File: `autopilot-continuous.py:28-34`
++- The RATE_LIMITS dict lives entirely in memory, never persisted to disk.
++- Process restart → all cooldowns reset → immediately hammers rate-limited APIs.
++- `autopilot.py` already has working disk persistence via `cd_write()`.
++- Fix: Add JSON file persistence for RATE_LIMITS matching `autopilot.py` pattern.
++
++**5. [RELIABILITY] `src/apex/core/retry.py` — no jitter or exponential backoff**
++- File: `src/apex/core/retry.py:54`
++- Code: `time.sleep(max(0.0, float(backoff_seconds)))` — flat, deterministic sleep every retry attempt.
++- When called by 7+ consumers (broker, execution, ingestion, engine), creates thundering-herd timing.
++- Also missing `import random` (needed for jitter).
++- Also uses bare `except Exception` (line 44) which catches `KeyboardInterrupt`.
++- Fix: Add `random.uniform(0.8, 1.2) * backoff_seconds * (2 ** attempt)` and handle non-transient exceptions properly.
++
++---
++
++### 🟢 P2 — QUALITY ISSUES (low)
++
++**6. [QUALITY] Duplicate pytest configuration**
++- `pytest.ini` (root): `asyncio_default_fixture_loop_scope = function`, markers: `slow + smoke`
++- `pyproject.toml` (root): `asyncio_mode = "auto"`, markers: `slow + asyncio + smoke`
++- `asyncio_default_fixture_loop_scope` vs `asyncio_mode` are different config keys, but having both config files may cause pytest to warn about conflicting definitions.
++- Fix: Remove `pytest.ini` and consolidate into `pyproject.toml` (standard).
++
++**7. [QUALITY] `.gitignore` missing log report patterns**
++- Current: `logs/*.log` and `logs/cycle_*.json`
++- Missing: `logs/*.md` and `logs/error_*.txt`
++- Git status shows untracked markdown report files like `CODEBASE_HEALTH_2026-06-09.md`.
++- Fix: Add `logs/*.md` and `logs/error_*.txt` to `.gitignore`.
++
++---
++
++### 🔵 P3 — HYGIENE (info)
++
++**8. [HYGIENE] `run_discord_bot.py` uses bare `print()`**
++- File: `run_discord_bot.py:17`
++- Code: `print(f"Loaded Discord keys from: {discord_keys}")`
++- Script already configures logging (lines 25-34) with a `logger` object.
+… omitted 31 diff line(s) across 1 additional file(s)/section(s)
+## Codebase Analysis Complete — 10 Issues Found
+
+**10 issues** across 4 severity tiers. Here's what I found:
+
+---
+
+### 🔴 P0 — Critical (2)
+
+**1. `.state/config.json` missing → both daemons crash**
+`autopilot.py:24` and `autopilot-continuous.py:22` do a bare `read_text()` with zero error handling. Fresh clone or corrupted state = instant crash.
+
+**2. Playwright E2E trading navigation broken**
+`autopilot-local/frontend/tests/e2e/full-flow.spec.ts:15` — clicking "Trading" sidebar stays on `/dashboard`, never reaches `/dashboard/trading/`. The test expects URL transition but routing doesn't fire.
+
+---
+
+### 🟡 P1 — Reliability (3)
+
+**3. Dead `gemini` entry in `autopilot-continuous.py` RATE_LIMITS** (line 33) — `autopilot.py` already removed it, but the continuous loop still tracks it. Gemini CLI isn't even installed.
+
+**4. RATE_LIMITS in-memory only** — restart resets all cooldowns → immediately hammers rate-limited APIs. `autopilot.py` has disk persistence; the continuous loop doesn't.
+
+**5. `src/apex/core/retry.py` flat backoff + bare except** — No jitter or exponential backoff on line 54, which creates thundering-herd when 7+ consumers call it. Also catches `KeyboardInterrupt` via bare `except Exception`. Missing `import random`.
+
+---
+
+### 🟢 P2 — Quality (2)
+
+**6. Duplicate pytest config** — `pytest.ini` vs `pyproject.toml` both configure async test behavior. Should consolidate into one.
+
+**7. `.gitignore` missing patterns** — `logs/*.md` and `logs/error_*.txt` not ignored, causing untracked files in git status.
+
+---
+
+### 🔵 P3 — Hygiene (3)
+
+**8. `run_discord_bot.py` uses `print()`** instead of the `logger` object it already configures.
+
+**9. PolyMarket-MCP submodule untracked** — shows `?` in git status, not initialized.
+
+**10. `CODEBASE_HEALTH_*.md` untracked** — no gitignore coverage.
+
+---
+
+### Test Status
+- **Smoke suite**: 10/10 passed in 15.8s ✅
+- **Full backend suite**: timed out at 120s ⚠️ (needs parallel mode)
+- **Playwright E2E**: 1 failing (the trading nav bug above) ❌
+- **20 Playwright tests skipped** in config
+
+### Recommended Fix Order (next cycle)
+1. `.state/config.json` error handling in both daemons
+2. Fix Playwright trading navigation test
+3. Remove dead `gemini` entry from `autopilot-continuous.py`
+4. Add disk persistence for RATE_LIMITS
+5. Add jitter + exponential backoff to `retry.py`
+
+**Want me to proceed with implementing these fixes now?**
+
+session_id: 20260609_105800_bfaf90

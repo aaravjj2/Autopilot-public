@@ -1,0 +1,111 @@
+Phase: bootstrap
+Tool: opencode
+Error Type: TTY not available
+
+  ┊ review diff
+a//home/aarav/Aarav/Autopilot/CODEBASE_HEALTH_2026-06-09.md → b//home/aarav/Aarav/Autopilot/CODEBASE_HEALTH_2026-06-09.md
+@@ -1,6 +1,7 @@
+ # Codebase Health & Environment Report
+-**Generated:** 2026-06-09T14:06 UTC
++**Generated:** 2026-06-09T14:56 UTC
+ **Overall Status: HEALTHY ✅** (with known issues tracked)
++**Cycle:** #660+ iterations, 131 commits, 33 tags
+ 
+ ---
+ 
+@@ -11,10 +12,13 @@
+ | **OS** | ✅ | WSL (Ubuntu on Windows) — `/dev/sdd` ext4 |
+ | **Python** | ✅ | 3.13.12 (miniconda3 — system default) |
+ | **Node** | ✅ | v22.22.1 / npm 10.9.4 (via nvm) |
+-| **Disk** | ✅ | 1,007G total, 212G used (23%), **744G free** |
+-| **RAM** | ✅ | 23Gi total, 8.7Gi used, **14Gi available** |
++| **Disk** | ✅ | 1,007G total, 213G used (23%), **744G free** |
++| **RAM** | ✅ | 23Gi total, 9.4Gi used, **13Gi available** |
+ | **Virtual Env** | ✅ | `.venv/` — 278 packages, `pip check` clean |
+-| **Linters** | ⚠️ | pylint, ruff, mypy **not installed** in venv |
++| **Linters** | ✅ | **INSTALLED** — ruff 0.15.16, mypy 2.1.0, pylint 4.0.5 in .venv |
++| **Playwright** | ✅ | v1.60.0, chromium-1223 cached (browsers available for E2E) |
++
++**Linters upgrade note:** Cycle `cycle-20260609-101605` installed linters in .venv. System pip still has older versions (ruff 0.8.4, mypy 1.14.0) but .venv is the active environment.
+ 
+ ---
+ 
+@@ -22,17 +26,33 @@
+ 
+ | Metric | Value |
+ |--------|-------|
+-| **Branch** | `main` — ahead of `origin/main` by **4 commits** |
+-| **Commits** | 123 total on main |
+-| **Tags** | 33 tags (latest: `cycle-20260609-133100`) |
+-| **Remote** | `https://github.com/aaravjj2/Autopilot-public.git` — **PAT removed** ✅ |
+-| **Uncommitted** | 3 modified files: `data/kalshi_ticks.jsonl`, `data/training/corpus.jsonl`, `logs/cycle_final_report_v9.md` |
+-| **Untracked** | `logs/error_report_20260609_093122.txt`, `tests/data/` |
++| **Branch** | `main` — ahead of `origin/main` by **12 commits** |
++| **Commits** | 131 total on main |
++| **Tags** | 33 tags (latest: `cycle-20260609-143000-final`) |
++| **Remote** | `https://github.com/aaravjj2/Autopilot-public.git` — **PAT removed** ✅ (no credentials) |
++| **Uncommitted** | Working tree **clean** — no modified or untracked files |
+ | **Submodules** | 9 external repos — **all initialized and checked out** |
+ | **Stashed** | Empty — nothing stashed |
+ 
+-### Git push blocked 🚫
+-PAT was removed from remote URL (security fix in commit `69f34ef`) but no credential helper was configured. `git push` will fail with `fatal: could not read Username for 'https://github.com': No such device or address`.
++### Unsynced commits (12 ahead, not in remote)
++```
++fa35f01 docs(report): final cycle report v10 — ~660 iterations, 131 commits, 33 tags
++4662eba docs(report): update cycle final report with verified push failure message
++a9729f6 feat(data): restructure training corpus with real arb opportunities and world cup predictions
++38469c3 feat(data): add kalshi market ticks for NBA 3PT and WTA tennis markets
++6c35224 docs(health): update codebase health report with current stats and issue tracking
++7881853 style(lint): cleanup imports and fix bare f-string in autopilot-continuous.py
++57f81e3 chore(logs): add cycle and error report logs from recent runs
++57f43b2 fix(lint): add tests/__init__.py, fix test imports, remove dead code, run ruff
++e945916 docs(report): final cycle report v9 — ~653 iterations, 123 commits, 33 tags
++53e995e feat(data): restructure training corpus with real arb opportunities
++e794bb2 fix(cleanup): remove dead gemini CLI code, add opencode probe, log bare exception handlers
++69f34ef fix(security): remove PAT from remote URL, untrack .state/ secrets, create .gitmodules
++```
++
++### Git push BLOCKED 🚫
++`fatal: could not read Username for 'https://github.com': No such device or address`
++PAT was removed from remote URL (security fix in commit `69f34ef`) but no credential helper was configured. 12 commits and 33 tags exist locally only, not backed up to remote. **This is the highest-priority blocker.**
+ 
+ ---
+ 
+@@ -40,11 +60,12 @@
+ 
+ | Service | PID | Port | Status | Uptime |
+ |---------|-----|------|--------|--------|
+-| **Backend API** (FastAPI) | 285356 | :8000 | ✅ HEALTHY — HTTP 200 (0.20s) | ~30h (since Jun 8) |
+-| **Frontend** (Next.js) | 294555 | :3000 | ✅ HEALTHY — HTTP 200 (0.07s) | ~30h (since Jun 8) |
+-| **Loop Daemon** (autopilot-continuous.py) | 257711 | — | ✅ RUNNING | ~22h (since Jun 8) |
+-
+-**Note:** A third Python process (PID 590137) runs `api/app.py` on port 8000 — this is NOT serving (port is held by uvicorn 285356). Possibly a stale or duplicate process.
++| **Backend API** (FastAPI) | 285356 | :8000 | ✅ HEALTHY — HTTP 200 (0.20s) | ~31h (since Jun 8) |
++| **Frontend** (Next.js v15.5.18) | 294555 | :3000 | ✅ HEALTHY — HTML loaded | ~31h (since Jun 8) |
+… omitted 188 diff line(s) across 1 additional file(s)/section(s)
+Codebase health scan complete. Full report written to `CODEBASE_HEALTH_2026-06-09.md` (11.5KB). Here's the executive summary:
+
+---
+
+**Overall: HEALTHY ✅** — Backend, frontend, and loop daemon all running continuously for ~31h. Test suite stable at 394/414 pass (0 fail). Data pipelines functioning.
+
+**What's good:**
+- 358 arb opportunities detected, 13 proposals active, model at 92.17% accuracy
+- Linters now installed in .venv (ruff 0.15.16, mypy 2.1.0, pylint 4.0.5) — issue resolved
+- Playwright chromium-1223 cached and available for E2E tests
+- 744G free disk, 13Gi available RAM
+- 131 commits, 33 tags across ~660 autopilot iterations
+
+**Critical issues (need human action):**
+1. 🔴 **Git push blocked** — 12 commits and 33 tags exist only on this machine. PAT was stripped for security but no credential helper was configured. `gh auth login` or a `.netrc` file would fix it.
+2. 🟡 **Data stale** — Last cache refresh 38h ago. Kalshi arb data may be outdated.
+3. 🟡 **LLM routing all broken** — Groq key expired (401), OpenCode Zen rate-limited (429). Deterministic fallback only — no AI analysis running.
+4. 🟢 **Stale duplicate process** — PID 590137 (root-owned, from Apex-Terminal project) needs `sudo kill`.
+
+**Test health verified live:**
+- `pytest -m "smoke"` → 10/10 passed in 9.56s
+- Backend health endpoint responds HTTP 200
+- Frontend Next.js serves HTML on :3000
+
+session_id: 20260609_105520_d19630

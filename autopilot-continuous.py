@@ -19,19 +19,48 @@ STATE     = BASE / ".state"
 RESULTS   = BASE / "results"
 LOGS      = BASE / "logs"
 
-cfg       = json.loads((STATE / "config.json").read_text())
+try:
+    cfg       = json.loads((STATE / "config.json").read_text())
+except (FileNotFoundError, json.JSONDecodeError) as e:
+    msg = f"FATAL: Cannot load config from {STATE / 'config.json'}: {e}\n"
+    msg += "Create a valid config.json in .state/ directory or restore from backup."
+    print(msg, flush=True)
+    with open(STATE / "config.json", "w") as f:
+        json.dump({"discord_webhook": "", "workdir": str(BASE), "ngrok_authtoken": ""}, f, indent=2)
+    cfg = json.loads((STATE / "config.json").read_text())
+
 DISCORD   = cfg["discord_webhook"]
 WORKDIR   = cfg["workdir"]
 NGROK_TOK = cfg["ngrok_authtoken"]
 
-# Rate limits: key = tool name, value = cooldown_minutes
-RATE_LIMITS = {
+# Persisted rate limits file
+STATE_RATE_FILE = STATE / "rate_limits.json"
+
+DEFAULT_RATE_LIMITS = {
     "agy":          { "cooldown": 30, "fails": 0, "locked_until": None },
     "copilot-gpt52":{ "cooldown": 5,  "fails": 0, "locked_until": None },
     "opencode":     { "cooldown": 0,  "fails": 0, "locked_until": None },
     "ngrok":        { "cooldown": 0,  "fails": 0, "locked_until": None },
-    "gemini":       { "cooldown": 0,  "fails": 0, "locked_until": None },
 }
+
+def _load_rate_limits() -> dict:
+    """Load rate limits from disk or return defaults."""
+    try:
+        data = json.loads(STATE_RATE_FILE.read_text())
+        # Merge with defaults to pick up new entries
+        for k, v in DEFAULT_RATE_LIMITS.items():
+            if k not in data:
+                data[k] = v
+        return data
+    except (FileNotFoundError, json.JSONDecodeError):
+        return dict(DEFAULT_RATE_LIMITS)
+
+def _save_rate_limits(data: dict):
+    """Persist rate limits to disk."""
+    STATE_RATE_FILE.write_text(json.dumps(data, indent=2))
+
+# Load persisted state, then keep in-memory for hot access
+RATE_LIMITS = _load_rate_limits()
 
 PHASE_MODELS = [
     "bootstrap",
@@ -95,6 +124,7 @@ def mark_locked(tool: str):
         datetime.now() + timedelta(minutes=cooldown)
     ).isoformat()
     RATE_LIMITS[tool]["fails"] += 1
+    _save_rate_limits(RATE_LIMITS)
     post_to_discord("RATE_LIMIT", 
         f"🔒 **{tool}** locked for {cooldown}min\nUnlocks: {RATE_LIMITS[tool]['locked_until']}", 
         0xFEE75C, "⏱️")
@@ -103,6 +133,7 @@ def mark_available(tool: str):
     """Unlock tool."""
     RATE_LIMITS[tool]["locked_until"] = None
     RATE_LIMITS[tool]["fails"] = 0
+    _save_rate_limits(RATE_LIMITS)
 
 # ── Phase Execution ─────────────────────────────────────────────────────────
 def run_phase(phase: str, prompt: str) -> tuple[bool, str]:

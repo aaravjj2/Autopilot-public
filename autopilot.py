@@ -21,7 +21,17 @@ RESULTS   = BASE / "results"
 LOGS      = BASE / "logs"
 NOTEBOOKS = BASE / "notebooks"
 
-cfg       = json.loads((STATE / "config.json").read_text())
+try:
+    cfg       = json.loads((STATE / "config.json").read_text())
+except (FileNotFoundError, json.JSONDecodeError) as e:
+    msg = f"FATAL: Cannot load config from {STATE / 'config.json'}: {e}\n"
+    msg += "Create a valid config.json in .state/ directory or restore from backup."
+    print(msg, flush=True)
+    with open(STATE / "config.json", "w") as f:
+        json.dump({"discord_webhook": "", "workdir": str(BASE), "ngrok_authtoken": "",
+                    "kaggle_username": "", "openrouter_key": "", "openrouter_free_model": ""}, f, indent=2)
+    cfg = json.loads((STATE / "config.json").read_text())
+
 DISCORD   = cfg["discord_webhook"]
 WORKDIR   = cfg["workdir"]
 NGROK_TOK = cfg["ngrok_authtoken"]
