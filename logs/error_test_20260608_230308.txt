@@ -1,0 +1,7 @@
+Phase: test
+Tool: opencode
+Error Type: API call failed (hermes)
+
+API call failed after 3 retries: Connection error.
+
+session_id: 20260608_183445_444b6f
