@@ -5,10 +5,14 @@ Per-phase model switching. Rate limit with per-tool cooldowns.
 Full cycle visibility: Bootstrap→Analyze→Plan→Execute→Test→Commit→Report
 """
 
-import json, os, subprocess, time, threading, requests, re, sys, logging
+import json
+import subprocess
+import time
+import requests
+import re
+import logging
 from datetime import datetime, timedelta
 from pathlib import Path
-from collections import defaultdict
 
 BASE      = Path.home() / "Aarav/Autopilot"
 STATE     = BASE / ".state"
@@ -59,7 +63,7 @@ def post_to_discord(phase: str, content: str, color: int = 0x5865F2, emoji: str 
         logging.error(f"Discord webhook error: {e}")
 
 def post_phase_start(phase: str):
-    post_to_discord(phase, f"▶️ Phase started", 0x5865F2, "🚀")
+    post_to_discord(phase, "▶️ Phase started", 0x5865F2, "🚀")
 
 def post_phase_output(phase: str, output: str):
     post_to_discord(phase, output, 0x3BA55C, "📝")
