@@ -1,0 +1,73 @@
+{
+  "cycle": "cycle-final-v13",
+  "timestamp": "2026-06-10T22:45:00Z",
+  "model": "deepseek-v4-flash-free (opencode-zen)",
+  "total_iterations": 692,
+  "target_iterations": 1000,
+  "completion_pct": 69.2,
+  "total_commits": 145,
+  "total_tags": 42,
+  "latest_tag": "cycle-20260609-221600",
+  "latest_head": "418bc35",
+  "commits_since_v12": 7,
+  "tags_since_v12": 2,
+  "phase": "v13-rate-limited",
+  "test_results": {
+    "collected": 414,
+    "passed": 394,
+    "skipped": 20,
+    "failed": 0,
+    "duration_sec": 117,
+    "status": "ALL PASSING"
+  },
+  "infrastructure": {
+    "backend": "HEALTHY :8000",
+    "frontend": "HEALTHY :3000",
+    "daemon_pid": 2991676,
+    "alpaca_equity": 146923.32,
+    "arb_opportunities": "360+",
+    "ml_accuracy": 92.17,
+    "ml_win_rate": 67.83
+  },
+  "data": {
+    "kalshi_ticks": 3774,
+    "corpus_rows": 463,
+    "candidate_models": "346+",
+    "data_size_mb": 61,
+    "audit_db_mb": 20
+  },
+  "new_commits": [
+    "418bc35 chore(submodule): update PolyMarket-MCP pointer after gitignore fix",
+    "c75ac4e docs(logs): add cycle report for 2026-06-09",
+    "ed38c74 refactor(data): rebuild arb training corpus with deduped and reordered entries",
+    "e01313e feat(data): append fresh Kalshi REST tick data for KXMLBTOTAL contracts",
+    "687e4bf fix(test): update dashboard health test to explicit ollama_host",
+    "9d8b2db feat(fallback): add ollama fallback chain for LLM routing when opencode-zen is rate-limited",
+    "d62cfab chore(data): update market ticks and training corpus with latest arb data"
+  ],
+  "key_improvements": [
+    "Daemon restarted (PID 2991676) — source fixes now active",
+    "Ollama fallback chain added to LLM routing",
+    "KXMLBTOTAL Bitcoin mining futures market data added (+39 ticks)",
+    "Training corpus rebuilt with deduplication (+3 rows)",
+    "PolyMarket-MCP submodule pointer updated",
+    "Dashboard health test clarified with explicit ollama_host"
+  ],
+  "known_blockers": [
+    "Git push blocked — 145 commits local-only, no credential helper",
+    "OpenCode Zen HTTP 429 on every phase — all autonomous cycles blocked",
+    "Ollama not running — fallback chain exists but non-functional",
+    "utcnow() deprecation not fixed in source — still fires every iteration",
+    "Pydantic/ChromaDB deprecation warnings (18 per test run)"
+  ],
+  "remediation_progress": {
+    "daemon_restarted": true,
+    "ollama_fallback_added": true,
+    "config_crash_fix_active": true,
+    "git_push_fixed": false,
+    "ollama_running": false,
+    "llm_routing_restored": false
+  },
+  "days_running": 23,
+  "report_version": 13
+}
