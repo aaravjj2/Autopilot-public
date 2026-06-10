@@ -1,0 +1,100 @@
+Phase: plan
+Tool: opencode
+Error Type: Model not found
+
+Now I have a thorough picture. Here are my **10 improvement tasks**, prioritized by impact:
+
+---
+
+## 🔴 P0 — Critical (blocks core functionality)
+
+### T1. Fix git push — configure credential helper or switch to SSH
+**Why:** 136+ commits, 38 tags are all local-only. One disk failure = total loss. PAT already removed in `69f34ef` but nothing replaced it.
+**Evidence:** `git push` → `fatal: could not read Username for 'https://github.com': No such device or address`
+**Fix:** Either `gh auth login` with token, `git remote set-url` with embedded PAT (less secure), or generate/register SSH key. Run and verify a successful push.
+**Files:** `git remote -v`, possibly `~/.gitconfig`
+
+### T2. .state/config.json missing — daemon runs with empty config
+**Why:** The file doesn't exist on disk. Both `autopilot.py` and `autopilot-continuous.py` handle `FileNotFoundError` by writing a **blank** config template. The daemon then runs with empty `discord_webhook`, empty `ngrok_authtoken`, and empty `workdir` — features silently degrade.
+**Evidence:** `ls -la .state/config.json` → "NO CONFIG". Blank template has `"discord_webhook": ""`.
+**Fix:** Either populate it from environment variables or create it with known-good values from a hidden `.env` or `keys.env`.
+**Files:** `.state/config.json`, `autopilot-continuous.py:22-30`, `autopilot.py:24-33`
+
+### T3. Restart autopilot loop daemon (PID 257711)
+**Why:** Running old code — all recent fixes (utcnow() deprecation, config crash handling, rate limit persistence) are **committed but not running**. The process has been up ~30h since before the fixes were applied.
+**Evidence:** Health report: "daemon not restarted since before the fix commit"
+**Fix:** `kill 257711` → restart with `nohup python3 autopilot-continuous.py > /dev/null 2>&1 &`. Verify new PID picks up latest commits.
+**Files:** `autopilot-continuous.py` (re-run fresh)
+
+---
+
+## 🟡 P1 — High (causes silent failures or observability loss)
+
+### T4. Fix 30 bare `except Exception:` handlers across src/apex/integrations/
+**Why:** These silently swallow ALL errors. Makes debugging impossible — issues in trading adapters, market data, BrightData, Kalshi, Polymarket, and broker integration are invisible until they cause downstream failures.
+**Evidence:** Confirmed in 17+ files: `alpaca_adapter.py` (7 instances), `brightdata_intelligence.py` (5), `brightdata_mcp_client.py` (4), `tradingagents_adapter.py` (3), `market_data.py` (3), plus `broker.py`, `kalshi_adapter.py`, `polymarket_adapter.py`, `news_regime_adapters.py`, `market_facade.py`, `thesis_service.py`, `world_cup_markets.py`. All use `except Exception:` with no logging.
+**Fix:** Replace each with specific exception types or at minimum `except Exception as e: logger.error(...)`.
+**Files:** `src/apex/integrations/alpaca_adapter.py`, `brightdata_intelligence.py`, `brightdata_mcp_client.py`, `tradingagents_adapter.py`, `market_data.py`, `broker.py`, `kalshi_adapter.py`, `polymarket_adapter.py`, `news_regime_adapters.py`, `market_facade.py`, `thesis_service.py`, `world_cup_markets.py`
+
+### T5. Replace raw `print()` with proper logging in 7+ top-level files
+**Why:** Raw `print()` has no timestamps, no log levels, can't be filtered or routed. Breaks observability in the main daemon scripts.
+**Evidence:** `autopilot.py:29`, `autopilot-continuous.py:27`, `backend_api.py:209,214`, `build_apex_pdf.py:888`, `run_discord_bot.py:17`, `scratch.py:17,43` — all use `print()` for debug/error output.
+**Fix:** Convert to `logger.info()`/`logger.warning()`/`logger.error()`. Ensure each file has a `logging.getLogger(__name__)`.
+**Files:** `backend_api.py`, `build_apex_pdf.py`, `run_discord_bot.py`, `scratch.py`, also verify `autopilot.py` and `autopilot-continuous.py` which have partial logging already.
+
+### T6. Kill stale duplicate backend process (PID 590137)
+**Why:** Root-owned process from Apex-Terminal project sitting on port 8000. Port is already held by uvicorn (285356). Wastes ~200MB RAM and could cause port conflicts.
+**Evidence:** `ps aux | grep api/app.py` shows PID 590137 running with `--port 8000` from a different project directory.
+**Fix:** `sudo kill 590137` (root-owned, needs sudo). Verify process is gone.
+**Files:** None (ops task)
+
+---
+
+## 🟢 P2 — Medium (quality of life, tech debt)
+
+### T7. Enable self-improvement loop + fix scheduler job deduplication
+**Why:** `self_improvement_loop` is disabled in the scheduler. Also "Adding job tentatively" logged every iteration — indicates APScheduler job accumulation.
+**Evidence:** API health endpoint shows `"self_improvement_loop": false`. Error logs show repeated "Adding job tentatively" messages.
+**Fix:** Enable the loop flag in scheduler config and add `id=` parameter to APScheduler `add_job()` calls for dedup (using `replace_existing=True`).
+**Files:** `autopilot-local/backend/scheduler.py`, config for self-improvement loop
+
+### T8. Convert `bootstrap_copy_trading_env()` from side-effect env loading to proper settings object
+**Why:** `config.py` uses a complex env-aliasing chain (`bootstrap_copy_trading_env`) that copies values between 3 name-spaces (APCA_*, ALPACA_*, bare ALPACA). No validation that critical keys exist at startup. Multiple files also call `os.environ.get("OPENAI_API_KEY", "")` etc. directly, bypassing config.
+**Evidence:** `config.py:29-41` has 13 lines of env variable aliasing with no error if nothing loads. `tradingagents_adapter.py:27-34` and `dexter_adapter.py:41` call `os.environ.get()` directly for the same keys.
+**Fix:** Add a startup validation that logs a warning if `ALPACA_API_KEY`, `OPENAI_API_KEY`, `DISCORD_WEBHOOK` are empty. Route all env access through the settings object.
+**Files:** `autopilot-local/backend/config.py`, `src/apex/integrations/tradingagents_adapter.py`, `src/apex/integrations/dexter_adapter.py`
+
+### T9. Reduce test deprecation warnings (ChromaDB Pydantic + Starlette)
+**Why:** 15 ChromaDB `model_fields` deprecation warnings + StarletteDeprecationWarning per test run. Clutters output, masks real issues. Currently 18 warnings suppressed in `filterwarnings` but the root cause is not fixed.
+**Evidence:** `pyproject.toml:70-73` has two filterwarnings entries suppressing `model_fields` and `class-based config`. Cycle report says "15 warnings".
+**Fix:** Either pin ChromaDB to a compatible version, or upgrade to Pydantic V3-compatible ChromaDB. Or at minimum add a `warnings.filterwarnings` with a comment explaining the tracking issue.
+**Files:** `pyproject.toml`, potentially `tests/conftest.py`
+
+### T10. Add FastAPI startup database migration/schema check
+**Why:** No validation that the SQLite database has the expected tables at startup. If `autopilot.db` is missing or corrupt, the app starts but returns 500 errors on every endpoint.
+**Evidence:** `main.py` creates `_store_instance` lazily but never verifies schema. `marketplace_routes.py` uses SQLModel `select()` which will fail if tables don't exist.
+**Fix:** Add a `@app.on_event("startup")` or lifespan handler that runs `SELECT name FROM sqlite_master WHERE type='table'` on expected tables and logs a warning if any are missing.
+**Files:** `autopilot-local/backend/main.py` (lifespan function)
+
+---
+
+## Scoring Matrix
+
+| # | Task | Severity | Effort | Impact | Dependencies |
+|---|------|----------|--------|--------|-------------|
+| 1 | Fix git push | 🔴 P0 | 15m | Prevents remote backup of 136 commits | GitHub login/token |
+| 2 | Fix missing config.json | 🔴 P0 | 10m | Daemon runs with empty webhook/ngrok | — |
+| 3 | Restart loop daemon | 🔴 P0 | 5m | Picks up committed fixes | PID lookup |
+| 4 | Bare except handlers | 🟡 P1 | 2-3h | Enables proper debugging across 17 files | — |
+| 5 | Print → logging | 🟡 P1 | 45m | Adds timestamps/levels to 7 files | — |
+| 6 | Kill stale PID 590137 | 🟡 P1 | 5m | Frees memory, eliminates port risk | sudo access |
+| 7 | Enable self-improvement loop | 🟢 P2 | 30m | Restores ML auto-training | Scheduler config |
+| 8 | Settings validation | 🟢 P2 | 45m | Catches missing keys at startup | — |
+| 9 | Fix test deprecations | 🟢 P2 | 30m | Clean test output, no hidden warnings | — |
+| 10 | DB schema check on startup | 🟢 P2 | 20m | Prevents silent 500s on config errors | — |
+
+---
+
+This is the current snapshot. Want me to execute any of these tasks, or would you like me to adjust the prioritization?
+
+session_id: 20260609_205209_528c81

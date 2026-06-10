@@ -424,7 +424,7 @@ def test_leg_imbalance(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
         ALPACA_PAPER_TRADE=True,
     )
     store = SQLiteStore(settings.sqlite_path)
-    
+
     class MockBroker:
         def __init__(self):
             self.submit_polymarket_paper_called = False
@@ -438,19 +438,19 @@ def test_leg_imbalance(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
         async def submit_polymarket_paper(self, **kwargs):
             self.submit_polymarket_paper_called = True
             return "POLY_TEST_ID"
-            
+
         def monitor_fill(self, order_id, timeout_seconds=30):
             if "POLY" in order_id:
                 return True, "filled"
             if "KALSHI" in order_id:
                 return False, "timeout"
             return True, "filled"
-            
+
         def close_symbol_position(self, symbol):
             self.close_symbol_called = True
             self.closed_symbol = symbol
             return True
-            
+
         def active_broker(self, proposal):
             return self
 
@@ -461,11 +461,11 @@ def test_leg_imbalance(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
         "run_arb_paper",
         lambda *args, **kwargs: MagicMock(all_passed=True, passed=["R02"])
     )
-    
+
     execution = ExecutionService(broker=broker, risk_engine=risk, store=store, settings=settings)
-    
+
     monkeypatch.setattr("apex.layers.l3.execution.fast_fill_peek", lambda b, o, s: (True, "filled"))
-    
+
     opp = ArbOpportunity(
         id="ARB-1234",
         kalshi_ticker="KALSHI-TEST",
@@ -484,13 +484,13 @@ def test_leg_imbalance(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
         outcome=None,
         pnl=0.0
     )
-    
+
     res = asyncio.run(execution.submit_arb_paper_orders(opp))
-    
+
     assert res == (None, None)
     assert broker.close_symbol_called
     assert broker.closed_symbol == "PM:0x123|NO"
-    
+
     events = store.list_audit_events()
     alert_events = [e for e in events if e["event_type"] == EventType.SYSTEM_ALERT.value]
     assert len(alert_events) > 0

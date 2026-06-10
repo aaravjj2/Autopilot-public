@@ -8,7 +8,7 @@ from apex.layers.l2.arb_analyst_panel import ArbAnalystPanel
 
 def test_get_failed_thesis_examples(tmp_path):
     store = SQLiteStore(tmp_path / "test.db")
-    
+
     # 1. Store opp with LOSS and SAFE
     opp1 = ArbOpportunity(
         kalshi_ticker="TICK-1",
@@ -27,7 +27,7 @@ def test_get_failed_thesis_examples(tmp_path):
     )
     # inject the attribute before saving
     setattr(opp1, "thesis_settlement_verdict", "SAFE")
-    
+
     # 2. Store opp with WIN and SAFE
     opp2 = ArbOpportunity(
         kalshi_ticker="TICK-2",
@@ -65,7 +65,7 @@ def test_get_failed_thesis_examples(tmp_path):
     setattr(opp3, "thesis_settlement_verdict", "CAUTION")
 
     store.save_arb_opportunities([opp1, opp2, opp3])
-    
+
     # Fetch failed examples
     failed = store.get_failed_thesis_examples()
     assert len(failed) == 1
@@ -73,7 +73,7 @@ def test_get_failed_thesis_examples(tmp_path):
     assert getattr(failed[0], "thesis_settlement_verdict") == "SAFE"
 
     # Test the injection into panel
-    # We won't test the actual LLM call, but we can verify the prompt generation 
+    # We won't test the actual LLM call, but we can verify the prompt generation
     # indirectly or just make sure there are no errors when constructing panel
     settings = Settings(sqlite_path=tmp_path / "test.db")
     panel = ArbAnalystPanel(settings)

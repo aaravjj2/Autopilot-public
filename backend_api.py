@@ -51,15 +51,15 @@ def _alpaca():
 class ConnectionManager:
     def __init__(self):
         self.active_connections: list[WebSocket] = []
-    
+
     async def connect(self, websocket: WebSocket):
         await websocket.accept()
         self.active_connections.append(websocket)
-    
+
     def disconnect(self, websocket: WebSocket):
         if websocket in self.active_connections:
             self.active_connections.remove(websocket)
-    
+
     async def broadcast(self, message: dict):
         dead = []
         for conn in self.active_connections:
@@ -213,7 +213,7 @@ class DataCache:
         except Exception as e:
             print(f"Cache refresh error: {e}")
             self._is_stale = True
-    
+
     def mark_stale_if_needed(self):
         if self._last_update:
             last = datetime.fromisoformat(self._last_update)
@@ -221,7 +221,7 @@ class DataCache:
             self._data_age_seconds = age
             if self._alpaca_connected:
                 self._is_stale = age > 300  # 5 minutes stale threshold
-    
+
     # NOTE: _get_opportunities, _get_proposals, _get_events removed — duplicated by _hydrate_audit_once
 
 cache = DataCache()
@@ -1878,14 +1878,14 @@ async def submit_order(order: dict):
     alpaca = _alpaca()
     if not alpaca.available:
         return {"error": "Alpaca not configured", "status": "failed"}
-    
+
     symbol = order.get("symbol", "")
     qty = float(order.get("qty", 0))
     side = order.get("side", "buy")
     order_type = order.get("type", "market")
     time_in_force = order.get("time_in_force", "day")
     limit_price = order.get("limit_price")
-    
+
     result = alpaca.place_order(
         symbol=symbol,
         qty=qty,
@@ -1894,9 +1894,9 @@ async def submit_order(order: dict):
         time_in_force=time_in_force,
         limit_price=limit_price,
     )
-    
+
     await asyncio.to_thread(cache.refresh)
-    
+
     return result
 
 @app.post("/orders/{order_id}/cancel")
@@ -1904,7 +1904,7 @@ async def cancel_order(order_id: str):
     alpaca = _alpaca()
     if not alpaca.available:
         return {"error": "Alpaca not configured", "status": "failed"}
-    
+
     result = alpaca.cancel_order(order_id)
     await asyncio.to_thread(cache.refresh)
     return result

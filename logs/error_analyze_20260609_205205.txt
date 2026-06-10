@@ -1,0 +1,100 @@
+Phase: analyze
+Tool: opencode
+Error Type: Rate limited (429)
+
+Now I have a complete picture. Here is the comprehensive analysis:
+
+---
+
+## Codebase Analysis Report — 2026-06-09
+
+**Generated**: 2026-06-09 20:24 UTC  
+**Commit range**: 136 commits, 40 tags (latest: `cycle-20260610-000755-log-archive`)  
+**Source files**: 220 Python files, 77 test files across `src/apex/` and `tests/`
+
+### ✅ What's Healthy
+
+| Area | Status |
+|------|--------|
+| **Python tests** | **406/406 passing** (0 failures) — clean for 50+ consecutive iterations |
+| **TypeScript** | Compiles with **zero errors** |
+| **Ruff lint** | `autopilot-continuous.py` passes clean — ✅ |
+| **TODO/FIXME in src/** | **0 instances** — source code is spotless |
+| **Broken imports** | None across 110+ Python files |
+| **Syntax errors** | None |
+| **Hardcoded secrets** | None in source code (env vars only) |
+| **`utcnow()` deprecation** | Already fixed (`datetime.now(datetime.UTC)`) |
+| **Bare except clauses** | None in src/ |
+| **Debug breakpoints** | Zero `pdb.set_trace()` left in code |
+| **pytest-timeout** | Installed (v2.4.0) — ready for per-test timeouts |
+| **Pydantic v2 deprecations** | **Already fixed** — `db.py` uses `ConfigDict(...)` pattern. Old `class Config:` only in `external/` projects |
+| **Previous lint issues** | **Already fixed** in commit `7881853` — unused imports & bare f-string cleaned |
+
+### 🔴 Critical Issues (3)
+
+**1. Playwright E2E consistently failing — `full-flow.spec.ts`**
+- Latest run: 94/106 passing (12 failures). Prior: 96/104 (8 failures)
+- All failures concentrated in the "complete navigation flow" test
+- Root cause: `waitForSelector('html[data-terminal-hydrated="true"]', { timeout: 30_000 })` times out, even after retry2
+- The test-results directory shows `full-flow-Full-User-Flow-complete-navigation-flow-chromium` with 2 retry artifacts
+- The `clickSidebar` function correctly uses sidebar hrefs (e.g., `/dashboard/trading`), but the hydration check never completes
+- **Impact**: Every cycle reports `"overall": false` despite all other checks passing (pytest, backtest, regression, API smoke)
+- **Evidence**: 12+ consecutive cycle reports showing `playwright_failed > 0`
+
+**2. All LLM routing paths broken — HTTP 429 cascade**
+- OpenCode Zen returns 429 on every phase — **138 error log files** generated today alone
+- Every cycle produces 7 error files (one per phase: bootstrap, analyze, plan, execute, test, commit, report)
+- The continuous loop (`autopilot-continuous.py` PID 257711) is running but producing no useful work
+- All 4 fallback tools in the cooldowns config (agy, copilot-gpt52, opencode, ngrok) are either rate-limited or unavailable
+- **Impact**: Analysis, planning, execution, and reporting all fail. Continuous improvement loop is non-functional
+
+**3. Git push broken — 136 commits local-only**
+- Remote: `origin` → `https://github.com/aaravjj2/Autopilot-public.git`
+- No credential helper configured — `fatal: could not read Username` on every push attempt
+- SOUL.md notes this as a known constraint
+- **Risk**: Total loss of 22 days of work if the WSL filesystem is corrupted
+
+### 🟡 Medium Issues (5)
+
+**4. Deprecated frontend exports (3 instances)**
+- `backend-urls.ts` lines 42, 53, 56 define 3 `@deprecated` exports
+- `apexWsUrl` (line 42) — deprecated in favor of `getApexApiUrl()`/`getApexWsUrl()`
+- `MARKETPLACE_API_URL` (line 53) — deprecated in favor of `getMarketplaceApiUrl()`
+- `marketWsUrl` (line 56) — deprecated in favor of `getApexWsUrl()`
+- **No other files import these** — they are dead code on the public API surface
+
+**5. Error log spam — 138 files, same root cause**
+- `logs/` directory is 3.5M with 138 `error_*.txt` files, all for HTTP 429 rate limits
+- No log rotation: files accumulate forever, making it hard to spot new error patterns
+- Pattern: `error_{phase}_20260609_{time}.txt` — ~7 files per cycle × ~20 cycles = 140 files
+
+**6. Test suite runtime — 414 tests in >2 minutes**
+- Full pytest collection: 414 tests take ~2m 25s
+- No per-test timeouts despite `pytest-timeout` being installed (v2.4.0)
+- Some tests can hang indefinitely (e.g., `test_security_primitives.py`, `test_execution.py`)
+- The 10 `@smoke` tests pass in 4.90s — this is the fast path, but the full suite has no timeout safety net
+
+**7. No dependency lock file**
+- Only `pyproject.toml` with loose version pins exists
+- No `requirements.txt`, `requirements.lock.txt`, or `pip-compile` output
+- Reproducibility depends on pip resolution at install time
+
+**8. `external/PolyMarket-MCP/` untracked**
+- A second copy of the PolyMarket MCP server (different from `external/polymarket-mcp-server/`)
+- Not in `.gitignore` — shows as `? external/PolyMarket-MCP` in git status
+- Clutters status output and could accidentally be committed
+
+### 🟢 Resolved Since Last Report
+
+| Issue | Status |
+|-------|--------|
+| Pydantic v2 `class Config:` deprecations (db.py) | **FIXED** — now uses `ConfigDict(...)` |
+| Lint errors in autopilot-continuous.py (6 instances) | **FIXED** — commit `7881853` |
+| gemini CLI probe | **FIXED** — removed in commit `9c6ee51` |
+| `.state/config.json` OpenRouter stub | **FIXED** — file no longer exists |
+
+---
+
+This is the current state. The only real code-level issue is the Playwright E2E test — and that's a timing/hydration problem, not a logic bug. The main blocker is the rate-limit cascade that prevents the continuous loop from doing anything useful.
+
+session_id: 20260609_205011_8929cf

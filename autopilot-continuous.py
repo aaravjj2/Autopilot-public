@@ -78,7 +78,7 @@ def post_to_discord(phase: str, content: str, color: int = 0x5865F2, emoji: str 
     try:
         title = f"{emoji} {phase.upper()}"
         desc = content[:2000]  # Discord limit
-        
+
         requests.post(DISCORD, json={
             "embeds": [{
                 "title": title,
@@ -110,11 +110,11 @@ def is_available(tool: str) -> bool:
     """Check if tool is available (not in cooldown)."""
     if tool not in RATE_LIMITS:
         return True
-    
+
     locked = RATE_LIMITS[tool]["locked_until"]
     if locked is None:
         return True
-    
+
     return datetime.now() > datetime.fromisoformat(locked)
 
 def mark_locked(tool: str):
@@ -125,8 +125,8 @@ def mark_locked(tool: str):
     ).isoformat()
     RATE_LIMITS[tool]["fails"] += 1
     _save_rate_limits(RATE_LIMITS)
-    post_to_discord("RATE_LIMIT", 
-        f"🔒 **{tool}** locked for {cooldown}min\nUnlocks: {RATE_LIMITS[tool]['locked_until']}", 
+    post_to_discord("RATE_LIMIT",
+        f"🔒 **{tool}** locked for {cooldown}min\nUnlocks: {RATE_LIMITS[tool]['locked_until']}",
         0xFEE75C, "⏱️")
 
 def mark_available(tool: str):
@@ -142,10 +142,10 @@ def run_phase(phase: str, prompt: str) -> tuple[bool, str]:
     Returns (success: bool, output: str)
     """
     post_phase_start(phase)
-    
+
     # All phases use the same hermes --profile autopilot-worker now
     # Model/provider are configured in the profile's config.yaml
-    
+
     try:
         # Use hermes for ALL phases — agy needs a PTY which subprocess can't provide
         # The autopilot-worker profile has opencode-zen + deepseek-v4-flash-free configured
@@ -159,12 +159,12 @@ def run_phase(phase: str, prompt: str) -> tuple[bool, str]:
         ]
         tool_key = "opencode"
         timeout = 600  # 10 min per phase — AI agents need time to think + execute tools
-        
+
         # Check rate limit
         if not is_available(tool_key):
             post_phase_error(phase, f"**{tool_key}** is rate-limited")
             return False, ""
-        
+
         # Run command
         result = subprocess.run(
             cmd,
@@ -172,19 +172,19 @@ def run_phase(phase: str, prompt: str) -> tuple[bool, str]:
             text=True,
             timeout=timeout
         )
-        
+
         output = result.stdout + result.stderr
-        
+
         # Check for critical errors — scan output content for failure indicators
         # IMPORTANT: hermes chat -q returns exit code 0 even with API failures (404, 429 after 3 retries)
         # We must check output content for failure indicators
         error_found = False
         error_type = "Unknown error"
-        
+
         # Check return code
         if result.returncode != 0:
             error_found = True
-        
+
         # Error patterns to scan in output (content-based, catches exit-code=0 failures)
         error_patterns = [
             ("api call failed", "API call failed (hermes)"),
@@ -201,36 +201,36 @@ def run_phase(phase: str, prompt: str) -> tuple[bool, str]:
             ("permission denied", "Permission denied"),
             ("no such device or address", "TTY not available"),
         ]
-        
+
         for pattern, desc in error_patterns:
             if re.search(pattern, output, re.IGNORECASE):
                 error_found = True
                 error_type = desc
                 break
-        
+
         if error_found:
-            
+
             # Log the full error for debugging
             error_log = LOGS / f"error_{phase}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.txt"
             error_log.write_text(f"Phase: {phase}\nTool: {tool_key}\nError Type: {error_type}\n\n{output}")
-            
+
             post_phase_error(phase, f"❌ {error_type}\\nCheck: {error_log.name}")
             return False, output[:500]
-        
+
         # Check for rate limit patterns
-        if any(p in output.lower() for p in 
+        if any(p in output.lower() for p in
                ["rate limit", "429", "quota exceeded", "too many requests"]):
             mark_locked(tool_key)
             post_phase_error(phase, f"Rate limited by {tool_key}")
             return False, output[:500]
-        
+
         # Success
         post_phase_output(phase, output[:1500])
         post_phase_complete(phase, f"✓ {phase} complete")
         mark_available(tool_key)
-        
+
         return True, output
-        
+
     except subprocess.TimeoutExpired:
         post_phase_error(phase, f"Timeout ({timeout}s)")
         return False, ""
@@ -241,18 +241,18 @@ def run_phase(phase: str, prompt: str) -> tuple[bool, str]:
 # ── Full Cycle ──────────────────────────────────────────────────────────────
 def run_cycle(cycle_num: int):
     """Run one full improvement cycle with full Discord streaming."""
-    
+
     ts = datetime.now().strftime("%Y%m%d_%H%M%S")
     cycle_log = {
         "cycle": cycle_num,
         "timestamp": ts,
         "phases": {}
     }
-    
-    post_to_discord("CYCLE_START", 
-        f"🔄 **Cycle #{cycle_num}** started at {ts}", 
+
+    post_to_discord("CYCLE_START",
+        f"🔄 **Cycle #{cycle_num}** started at {ts}",
         0x5865F2, "🚀")
-    
+
     phases = [
         ("bootstrap", "Check codebase health and environment setup"),
         ("analyze", "Analyze codebase for issues, TODOs, failing tests"),
@@ -262,27 +262,27 @@ def run_cycle(cycle_num: int):
         ("commit", "Commit changes with auto-generated messages"),
         ("report", "Generate final cycle report"),
     ]
-    
+
     for phase, prompt in phases:
         success, output = run_phase(phase, prompt)
         cycle_log["phases"][phase] = {
             "success": success,
             "output": output[:500]
         }
-        
+
         # Brief pause between phases
         time.sleep(2)
-    
+
     # Final summary
     summary = "\n".join([
         f"• {p}: {'✅' if cycle_log['phases'].get(p, {}).get('success') else '❌'}"
         for p in PHASE_MODELS
     ])
-    
+
     post_to_discord("CYCLE_COMPLETE",
         f"**Cycle #{cycle_num}** Summary:\n{summary}",
         0x57F287, "✅")
-    
+
     # Save log
     (LOGS / f"cycle_{ts}.json").write_text(json.dumps(cycle_log, indent=2))
     return cycle_log
@@ -296,31 +296,31 @@ def get_git_commit_info() -> str:
             ["git", "rev-list", "--count", "HEAD"],
             capture_output=True, text=True, cwd=WORKDIR, timeout=10
         ).stdout.strip()
-        
+
         # Get recent 5 commits with shortened hashes
         recent = subprocess.run(
             ["git", "log", "-5", "--oneline"],
             capture_output=True, text=True, cwd=WORKDIR, timeout=10
         ).stdout.strip()
-        
+
         # Get current branch
         branch = subprocess.run(
             ["git", "rev-parse", "--abbrev-ref", "HEAD"],
             capture_output=True, text=True, cwd=WORKDIR, timeout=10
         ).stdout.strip()
-        
+
         # Get commits ahead of origin
         ahead = subprocess.run(
             ["git", "rev-list", "--count", "origin/main..HEAD"],
             capture_output=True, text=True, cwd=WORKDIR, timeout=10
         ).stdout.strip()
-        
+
         # Get last commit author
         author = subprocess.run(
             ["git", "log", "-1", "--pretty=format:%an"],
             capture_output=True, text=True, cwd=WORKDIR, timeout=10
         ).stdout.strip()
-        
+
         report = f"""
 Total Commits: **{total}**
 Current Branch: **{branch}**
@@ -344,15 +344,15 @@ def main():
         "Model switching per phase\n"
         "Rate limits: agy(30m), copilot-gpt52(5m), others(0m)",
         0x5865F2, "⚙️")
-    
+
     cycle_num = 1
     last_git_report = datetime.now()  # Track last git commit info report
-    
+
     while True:
         try:
             run_cycle(cycle_num)
             cycle_num += 1
-            
+
             # Check if 24 hours have passed for git commit info report
             if (datetime.now() - last_git_report).total_seconds() >= 86400:  # 24 hours
                 git_report = get_git_commit_info()
@@ -360,13 +360,13 @@ def main():
                     f"📊 **Git Commit Info (24h Report)**\\n{git_report}",
                     0xFFA500, "📈")
                 last_git_report = datetime.now()
-            
+
             # Wait before next cycle (configurable: 30 min default)
             post_to_discord("CYCLE_SLEEP",
                 "💤 Waiting 30 minutes before next cycle...",
                 0x5865F2, "⏱️")
             time.sleep(1800)  # 30 minutes
-            
+
         except KeyboardInterrupt:
             post_to_discord("SHUTDOWN",
                 "🛑 Autopilot stopped by user",

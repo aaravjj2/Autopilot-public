@@ -30,7 +30,7 @@ def mock_opp():
 
 def test_arb_analyst_panel_evaluate(mock_opp):
     settings = Settings()
-    
+
     mock_client = MagicMock()
     mock_response = MagicMock()
     mock_message = MagicMock()
@@ -43,20 +43,20 @@ def test_arb_analyst_panel_evaluate(mock_opp):
     })
     mock_response.choices = [MagicMock(message=mock_message)]
     mock_client.chat.completions.create.return_value = mock_response
-    
+
     with patch.object(Settings, "get_llm_client", return_value=mock_client), \
          patch("apex.repositories.sqlite_store.SQLiteStore") as mock_store:
-        
+
         mock_store_inst = mock_store.return_value
         mock_store_inst.get_resolved_arb_opportunities.return_value = []
-        
+
         panel = ArbAnalystPanel(settings)
         thesis = asyncio.run(panel.evaluate(mock_opp))
-        
+
         assert isinstance(thesis, ArbThesis)
         assert thesis.settlement_verdict == "SAFE"
         assert thesis.divergence_reason == "Test reason"
         assert thesis.net_edge_estimate == 0.08
-        
+
         # 3 from phase 1 + 2 from phase 2
         assert mock_client.chat.completions.create.call_count == 5

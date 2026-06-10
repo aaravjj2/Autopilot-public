@@ -132,7 +132,7 @@ def test_m08(monkeypatch) -> None:
         ARB_PAPER_RELAX_ORDERBOOK=False,
     )
     engine = RiskCheckEngine(settings)
-    
+
     opp = ArbOpportunity(
         kalshi_ticker="KXTEST",
         poly_market_id="PTEST",
@@ -148,7 +148,7 @@ def test_m08(monkeypatch) -> None:
         settlement_match_score=0.9,
         settlement_flags=[],
     )
-    
+
     def mock_fetch(ticker):
         return {
             "yes": [[0.30, 100]],
@@ -156,12 +156,12 @@ def test_m08(monkeypatch) -> None:
         }
     monkeypatch.setattr("apex.layers.l3.risk_checks.fetch_kalshi_orderbook", mock_fetch)
     monkeypatch.setattr("apex.cache.orderbook_l2.read_orderbook", lambda *a, **k: {})
-    
+
     class MockResponse:
         def raise_for_status(self): pass
         def json(self): return {"asks": [{"price": "0.45", "size": "1000"}]}
     monkeypatch.setattr("requests.get", lambda url, timeout: MockResponse())
-    
+
     res = engine.run_arb_paper(opp)
     assert "M08" in res.failed
     assert "M08_SPREAD_WIDTH: 0.2000 > 0.15" in res.rejection_reason

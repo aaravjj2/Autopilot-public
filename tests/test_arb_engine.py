@@ -42,17 +42,17 @@ def test_scan_and_persist_demo(tmp_path: Path, monkeypatch) -> None:
 
     import apex.services.arb_engine as arb_engine_mod
     monkeypatch.setattr(arb_engine_mod, "KalshiEventClient", lambda s: fake_kal)
-    
+
     # Mock Polymarket local import by patching the function inside arb_engine
     monkeypatch.setattr(arb_engine_mod, "fetch_active_liquid_markets", lambda **kwargs: fake_pm, raising=False)
-    
+
     # Mock ChromaMarketStore
     fake_chroma = SimpleNamespace()
     fake_chroma.upsert_market = lambda id, title, plat: None
     fake_chroma.find_semantic_match = lambda title, plat, top_k=5: [("pm1", 0.9)]
     import apex.integrations.chromadb_market_store as chroma_mod
     monkeypatch.setattr(chroma_mod, "ChromaMarketStore", lambda path: fake_chroma)
-    
+
     # Mock SettlementAuditor
     fake_auditor = SimpleNamespace()
     fake_auditor.verify = lambda k, p, **kwargs: SimpleNamespace(match_score=0.9, flags=[])
@@ -68,7 +68,7 @@ def test_scan_and_persist_demo(tmp_path: Path, monkeypatch) -> None:
     found = engine.scan()
     assert isinstance(found, list)
     assert len(found) > 0
-    
+
     # Simulate persist
     store.save_arb_opportunities(found)
     rows = store.list_arb_opportunities()
