@@ -15,7 +15,7 @@ def test_llm_route_ok_in_heuristic_mode(monkeypatch: pytest.MonkeyPatch) -> None
     monkeypatch.setenv("OLLAMA_HOST", "http://127.0.0.1:1")
     from apex.core.config import Settings
 
-    s = Settings.model_construct(llm_provider="groq", llm_model="llama-3.3-70b-versatile")
+    s = Settings.model_construct(llm_provider="groq", llm_model="llama-3.3-70b-versatile", ollama_host="http://127.0.0.1:1")
     row = _probe_llm_route(s)
     assert row.status == "ok"
     assert "heuristic" in row.detail.lower()
