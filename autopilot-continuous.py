@@ -135,108 +135,106 @@ def mark_available(tool: str):
     RATE_LIMITS[tool]["fails"] = 0
     _save_rate_limits(RATE_LIMITS)
 
+# ── Fallback chain: order of model providers to try ──────────────────────
+FALLBACK_CHAIN = [
+    {"tool_key": "opencode", "cmd": lambda p: [
+        "hermes", "--profile", "autopilot-worker",
+        "chat", "-q", p,
+        "-t", "terminal,file,code_execution", "-Q"
+    ]},
+    {"tool_key": "ollama", "cmd": lambda p: [
+        "ollama", "run", "llama3.2:1b", p
+    ]},
+]
+
 # ── Phase Execution ─────────────────────────────────────────────────────────
+def _execute_with_tool(phase: str, prompt: str, tool_key: str, cmd_builder) -> tuple[bool, str, str]:
+    """Execute one phase attempt with a specific tool. Returns (success, output, error_type)."""
+    timeout = 600 if tool_key == "opencode" else 120
+
+    if not is_available(tool_key):
+        return False, "", f"{tool_key} is rate-limited"
+
+    cmd = cmd_builder(prompt)
+    try:
+        result = subprocess.run(cmd, capture_output=True, text=True, timeout=timeout)
+    except subprocess.TimeoutExpired:
+        return False, "", f"Timeout ({timeout}s)"
+    except FileNotFoundError:
+        return False, "", f"{tool_key} not found in PATH"
+    except Exception as e:
+        return False, "", str(e)
+
+    output = result.stdout + result.stderr
+
+    # Check return code
+    if result.returncode != 0:
+        return False, output[:500], f"Exit code {result.returncode}"
+
+    # Content-based failure patterns
+    error_patterns = [
+        ("api call failed", "API call failed"),
+        ("http 404", "Model not found (404)"),
+        ("http 429", "Rate limited (429)"),
+        ("http 500", "Server error (500)"),
+        ("notfounderror", "Model not found"),
+        ("ratelimiterror", "Rate limit error"),
+        ("all retries exhausted", "API retries exhausted"),
+        ("traceback", "Python exception"),
+        ("error opening TTY", "TTY not available"),
+        ("permission denied", "Permission denied"),
+        ("no such device or address", "TTY not available"),
+    ]
+    for pattern, desc in error_patterns:
+        if re.search(pattern, output, re.IGNORECASE):
+            return False, output[:500], desc
+
+    # Rate-limit indicators
+    if any(p in output.lower() for p in
+           ["rate limit", "429", "quota exceeded", "too many requests"]):
+        mark_locked(tool_key)
+        return False, output[:500], f"Rate limited by {tool_key}"
+
+    # Check for empty/minimal response from ollama/local
+    if tool_key == "ollama" and len(output.strip()) < 10:
+        return False, output[:500], "Empty response from ollama"
+
+    return True, output, ""
+
+
 def run_phase(phase: str, prompt: str) -> tuple[bool, str]:
     """
-    Run a phase with appropriate model + streaming output to Discord.
+    Run a phase with fallback model chain + streaming output to Discord.
+    Tries: opencode-zen → ollama (llama3.2:1b)
     Returns (success: bool, output: str)
     """
     post_phase_start(phase)
 
-    # All phases use the same hermes --profile autopilot-worker now
-    # Model/provider are configured in the profile's config.yaml
+    last_error = ""
+    for entry in FALLBACK_CHAIN:
+        tool_key = entry["tool_key"]
+        cmd_builder = entry["cmd"]
 
-    try:
-        # Use hermes for ALL phases — agy needs a PTY which subprocess can't provide
-        # The autopilot-worker profile has opencode-zen + deepseek-v4-flash-free configured
-        cmd = [
-            "hermes",
-            "--profile", "autopilot-worker",
-            "chat",
-            "-q", prompt,
-            "-t", "terminal,file,code_execution",
-            "-Q"
-        ]
-        tool_key = "opencode"
-        timeout = 600  # 10 min per phase — AI agents need time to think + execute tools
+        success, output, error_type = _execute_with_tool(phase, prompt, tool_key, cmd_builder)
 
-        # Check rate limit
-        if not is_available(tool_key):
-            post_phase_error(phase, f"**{tool_key}** is rate-limited")
-            return False, ""
+        if success:
+            post_phase_output(phase, output[:1500])
+            post_phase_complete(phase, f"✓ {phase} complete (via {tool_key})")
+            mark_available(tool_key)
+            return True, output
 
-        # Run command
-        result = subprocess.run(
-            cmd,
-            capture_output=True,
-            text=True,
-            timeout=timeout
-        )
+        # Log failure for this tool
+        error_log = LOGS / f"error_{phase}_{tool_key}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.txt"
+        error_log.write_text(f"Phase: {phase}\nTool: {tool_key}\nError: {error_type}\n\n{output}")
+        post_phase_error(phase, f"⚠️ {tool_key} failed: {error_type} — trying next fallback")
+        last_error = f"{tool_key}: {error_type}"
 
-        output = result.stdout + result.stderr
+        # Brief pause between fallback attempts
+        time.sleep(3)
 
-        # Check for critical errors — scan output content for failure indicators
-        # IMPORTANT: hermes chat -q returns exit code 0 even with API failures (404, 429 after 3 retries)
-        # We must check output content for failure indicators
-        error_found = False
-        error_type = "Unknown error"
-
-        # Check return code
-        if result.returncode != 0:
-            error_found = True
-
-        # Error patterns to scan in output (content-based, catches exit-code=0 failures)
-        error_patterns = [
-            ("api call failed", "API call failed (hermes)"),
-            ("http 404", "Model not found (404)"),
-            ("http 429", "Rate limited (429)"),
-            ("notfounderror", "Model not found"),
-            ("ratelimiterror", "Rate limit error"),
-            ("all retries exhausted", "API retries exhausted"),
-            ("unknown option", "CLI flag not recognized"),
-            ("flags provided but not defined", "Invalid CLI flag"),
-            ("traceback", "Python exception"),
-            ("error opening TTY", "TTY not available"),
-            ("bubbletea.*tty", "TTY not available"),
-            ("permission denied", "Permission denied"),
-            ("no such device or address", "TTY not available"),
-        ]
-
-        for pattern, desc in error_patterns:
-            if re.search(pattern, output, re.IGNORECASE):
-                error_found = True
-                error_type = desc
-                break
-
-        if error_found:
-
-            # Log the full error for debugging
-            error_log = LOGS / f"error_{phase}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.txt"
-            error_log.write_text(f"Phase: {phase}\nTool: {tool_key}\nError Type: {error_type}\n\n{output}")
-
-            post_phase_error(phase, f"❌ {error_type}\\nCheck: {error_log.name}")
-            return False, output[:500]
-
-        # Check for rate limit patterns
-        if any(p in output.lower() for p in
-               ["rate limit", "429", "quota exceeded", "too many requests"]):
-            mark_locked(tool_key)
-            post_phase_error(phase, f"Rate limited by {tool_key}")
-            return False, output[:500]
-
-        # Success
-        post_phase_output(phase, output[:1500])
-        post_phase_complete(phase, f"✓ {phase} complete")
-        mark_available(tool_key)
-
-        return True, output
-
-    except subprocess.TimeoutExpired:
-        post_phase_error(phase, f"Timeout ({timeout}s)")
-        return False, ""
-    except Exception as e:
-        post_phase_error(phase, str(e))
-        return False, ""
+    # All fallbacks exhausted
+    post_phase_error(phase, f"❌ All fallbacks exhausted for phase '{phase}': {last_error}")
+    return False, f"All fallbacks exhausted: {last_error}"
 
 # ── Full Cycle ──────────────────────────────────────────────────────────────
 def run_cycle(cycle_num: int):
