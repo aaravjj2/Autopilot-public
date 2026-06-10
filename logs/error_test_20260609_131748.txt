@@ -1,0 +1,7 @@
+Phase: test
+Tool: opencode
+Error Type: API call failed (hermes)
+
+API call failed after 3 retries: HTTP 429: Rate limit exceeded. Please try again later.
+
+session_id: 20260609_131342_a7cfa6
